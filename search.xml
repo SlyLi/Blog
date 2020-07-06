@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Markdown语法</title>
-    <url>/2020/06/21/Markdown%E8%AF%AD%E6%B3%95/</url>
+    <url>/posts/2020-06-001.html</url>
     <content><![CDATA[<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><blockquote>
 <h4 id="Markdown是什么？"><a href="#Markdown是什么？" class="headerlink" title="Markdown是什么？"></a>Markdown<em>是什么</em>？</h4><h4 id="谁创造了它？"><a href="#谁创造了它？" class="headerlink" title="谁创造了它？"></a><em>谁</em>创造了它？</h4><h4 id="为什么要使用它？"><a href="#为什么要使用它？" class="headerlink" title="为什么要使用它？"></a><em>为什么</em>要使用它？</h4><h4 id="怎么使用？"><a href="#怎么使用？" class="headerlink" title="怎么使用？"></a><em>怎么</em>使用？</h4><h4 id="谁在用？"><a href="#谁在用？" class="headerlink" title="谁在用？"></a><em>谁</em>在用？</h4><h4 id="尝试一下"><a href="#尝试一下" class="headerlink" title="尝试一下"></a>尝试一下</h4></blockquote>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="1-Markdown是什么？"><a href="#1-Markdown是什么？" class="headerlink" title="1. Markdown是什么？"></a>1. Markdown<em>是什么</em>？</h3><p><strong>Markdown</strong>是一种轻量级<strong>标记语言</strong>，它以纯文本形式(<em>易读、易写、易更改</em>)编写文档，并最终以HTML格式发布。<br><strong>Markdown</strong>也可以理解为将以MARKDOWN语法编写的语言转换成HTML内容的工具。    </p>
@@ -173,8 +173,32 @@
       </tags>
   </entry>
   <entry>
+    <title>butterfly修改</title>
+    <url>/posts/2020-07-003.html</url>
+    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
+<h3 id="评论"><a href="#评论" class="headerlink" title="评论"></a>评论</h3><p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br>如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
+<pre><code>---
+title: butterfly修改
+date: 2020-07-05 21:11:42
+comments: false
+---</code></pre><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，  </p>
+<div class="note warning">
+            <p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
+          </div>
+
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
-    <url>/2020/07/05/extact-pkg/</url>
+    <url>/posts/2020-07-002.html</url>
     <content><![CDATA[<h3 id="下载-https-github-com-notscuffed-repkg-中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的-pkg，将二者放到同一目录下。"><a href="#下载-https-github-com-notscuffed-repkg-中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的-pkg，将二者放到同一目录下。" class="headerlink" title="下载 https://github.com/notscuffed/repkg 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。"></a>下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3><p><img src= "/img/loading.gif" data-src="http://slyli.gitee.io/blogresource/2020-07/pkg1.png" alt="目录示例"></p>
 <h3 id="启动powershell进入到此目录执行命令。"><a href="#启动powershell进入到此目录执行命令。" class="headerlink" title="启动powershell进入到此目录执行命令。"></a>启动powershell进入到此目录执行命令。</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
 
@@ -192,7 +216,7 @@
   </entry>
   <entry>
     <title>博客说明</title>
-    <url>/2020/07/04/%E5%8D%9A%E5%AE%A2%E8%AF%B4%E6%98%8E/</url>
+    <url>/posts/2020-07-001.html</url>
     <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
 <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="创建一个新的文章或页面"><a href="#创建一个新的文章或页面" class="headerlink" title="创建一个新的文章或页面"></a>创建一个新的文章或页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] [title]</span><br></pre></td></tr></table></figure>
 <h4 id="布局（Layout）"><a href="#布局（Layout）" class="headerlink" title="布局（Layout）"></a>布局（Layout）</h4><p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
@@ -216,30 +240,8 @@ draft    source/_drafts</code></pre><h4 id="例子"><a href="#例子" class="hea
       </categories>
       <tags>
         <tag>blog</tag>
+        <tag>butterfly</tag>
         <tag>hexo</tag>
-        <tag>butterfly</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>butterfly修改</title>
-    <url>/2020/07/05/butterfly%E4%BF%AE%E6%94%B9/</url>
-    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
-<h3 id="评论"><a href="#评论" class="headerlink" title="评论"></a>评论</h3><p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br>如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
-<pre><code>---
-title: butterfly修改
-date: 2020-07-05 21:11:42
-comments: false
----</code></pre><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，  </p>
-<blockquote>
-<p><i class="fa fa-exclamation" style="color:#f00; margin-right:5px"></i>   注意：在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
       </tags>
   </entry>
 </search>
