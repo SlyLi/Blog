@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>butterfly修改</title>
+    <url>/posts/2020-07-003.html</url>
+    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
+<h3 id="评论"><a href="#评论" class="headerlink" title="评论"></a>评论</h3><p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br>如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
+<pre><code>---
+title: butterfly修改
+date: 2020-07-05 21:11:42
+comments: false
+---</code></pre><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，  </p>
+<div class="note warning">
+            <p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
+          </div>
+
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>butterfly</tag>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown语法</title>
     <url>/posts/2020-06-001.html</url>
     <content><![CDATA[<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><blockquote>
@@ -168,32 +192,8 @@
         <category>blog</category>
       </categories>
       <tags>
+        <tag>blog</tag>
         <tag>markdown</tag>
-        <tag>blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>butterfly修改</title>
-    <url>/posts/2020-07-003.html</url>
-    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
-<h3 id="评论"><a href="#评论" class="headerlink" title="评论"></a>评论</h3><p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br>如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
-<pre><code>---
-title: butterfly修改
-date: 2020-07-05 21:11:42
-comments: false
----</code></pre><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，  </p>
-<div class="note warning">
-            <p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
-          </div>
-
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
       </tags>
   </entry>
   <entry>
@@ -267,9 +267,7 @@ draft    source/_drafts</code></pre><h4 id="例子"><a href="#例子" class="hea
 <h3 id="将项目更新到GitHub-Pages上"><a href="#将项目更新到GitHub-Pages上" class="headerlink" title="将项目更新到GitHub Pages上"></a>将项目更新到GitHub Pages上</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo doc</a> </p>
-<h3 id="git的使用"><a href="#git的使用" class="headerlink" title="git的使用"></a>git的使用</h3><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-
-<h4 id="git初始化仓库"><a href="#git初始化仓库" class="headerlink" title="git初始化仓库"></a>git初始化仓库</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<h3 id="git的使用"><a href="#git的使用" class="headerlink" title="git的使用"></a>git的使用</h3><h4 id="git初始化仓库"><a href="#git初始化仓库" class="headerlink" title="git初始化仓库"></a>git初始化仓库</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
 <h4 id="git添加到缓冲区"><a href="#git添加到缓冲区" class="headerlink" title="git添加到缓冲区"></a>git添加到缓冲区</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add *</span><br></pre></td></tr></table></figure>
 
 <h4 id="git提交改动"><a href="#git提交改动" class="headerlink" title="git提交改动"></a>git提交改动</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">"msg"</span></span><br></pre></td></tr></table></figure>
@@ -283,8 +281,8 @@ draft    source/_drafts</code></pre><h4 id="例子"><a href="#例子" class="hea
         <category>blog</category>
       </categories>
       <tags>
-        <tag>blog</tag>
         <tag>butterfly</tag>
+        <tag>blog</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
