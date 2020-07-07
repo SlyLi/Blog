@@ -173,24 +173,6 @@
       </tags>
   </entry>
   <entry>
-    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
-    <url>/posts/2020-07-002.html</url>
-    <content><![CDATA[<h3 id="下载-https-github-com-notscuffed-repkg-中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的-pkg，将二者放到同一目录下。"><a href="#下载-https-github-com-notscuffed-repkg-中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的-pkg，将二者放到同一目录下。" class="headerlink" title="下载 https://github.com/notscuffed/repkg 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。"></a>下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3><p><img src= "/image/loading.gif" data-src="http://slyli.gitee.io/blogresource/2020-07/pkg1.png" alt="目录示例"></p>
-<h3 id="启动powershell进入到此目录执行命令。"><a href="#启动powershell进入到此目录执行命令。" class="headerlink" title="启动powershell进入到此目录执行命令。"></a>启动powershell进入到此目录执行命令。</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
-
-<p><img src= "/image/loading.gif" data-src="http://slyli.gitee.io/blogresource/2020-07/pkg2.png" alt="解压"></p>
-<h3 id="解压完成后，会将所有文件默认放入同目录下的Output文件中。"><a href="#解压完成后，会将所有文件默认放入同目录下的Output文件中。" class="headerlink" title="解压完成后，会将所有文件默认放入同目录下的Output文件中。"></a>解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3><h3 id="想要了解更多可以查看源仓库-notscuffed-repkg说明。"><a href="#想要了解更多可以查看源仓库-notscuffed-repkg说明。" class="headerlink" title="想要了解更多可以查看源仓库 notscuffed/repkg说明。"></a>想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>wallpapper engine</tag>
-        <tag>github</tag>
-        <tag>steam</tag>
-        <tag>repkg</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>butterfly修改</title>
     <url>/posts/2020-07-003.html</url>
     <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
@@ -212,6 +194,24 @@ comments: false
       <tags>
         <tag>blog</tag>
         <tag>butterfly</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
+    <url>/posts/2020-07-002.html</url>
+    <content><![CDATA[<h3 id="下载-https-github-com-notscuffed-repkg-中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的-pkg，将二者放到同一目录下。"><a href="#下载-https-github-com-notscuffed-repkg-中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的-pkg，将二者放到同一目录下。" class="headerlink" title="下载 https://github.com/notscuffed/repkg 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。"></a>下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3><p><img src= "/image/loading.gif" data-src="http://slyli.gitee.io/blogresource/2020-07/pkg1.png" alt="目录示例"></p>
+<h3 id="启动powershell进入到此目录执行命令。"><a href="#启动powershell进入到此目录执行命令。" class="headerlink" title="启动powershell进入到此目录执行命令。"></a>启动powershell进入到此目录执行命令。</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/image/loading.gif" data-src="http://slyli.gitee.io/blogresource/2020-07/pkg2.png" alt="解压"></p>
+<h3 id="解压完成后，会将所有文件默认放入同目录下的Output文件中。"><a href="#解压完成后，会将所有文件默认放入同目录下的Output文件中。" class="headerlink" title="解压完成后，会将所有文件默认放入同目录下的Output文件中。"></a>解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3><h3 id="想要了解更多可以查看源仓库-notscuffed-repkg说明。"><a href="#想要了解更多可以查看源仓库-notscuffed-repkg说明。" class="headerlink" title="想要了解更多可以查看源仓库 notscuffed/repkg说明。"></a>想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>wallpapper engine</tag>
+        <tag>github</tag>
+        <tag>steam</tag>
+        <tag>repkg</tag>
       </tags>
   </entry>
   <entry>
@@ -266,8 +266,18 @@ draft    source/_drafts</code></pre><h4 id="例子"><a href="#例子" class="hea
 
 <h3 id="将项目更新到GitHub-Pages上"><a href="#将项目更新到GitHub-Pages上" class="headerlink" title="将项目更新到GitHub Pages上"></a>将项目更新到GitHub Pages上</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
 
-
 <p>More info: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo doc</a> </p>
+<h3 id="git的使用"><a href="#git的使用" class="headerlink" title="git的使用"></a>git的使用</h3><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+
+<h4 id="git初始化仓库"><a href="#git初始化仓库" class="headerlink" title="git初始化仓库"></a>git初始化仓库</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<h4 id="git添加到缓冲区"><a href="#git添加到缓冲区" class="headerlink" title="git添加到缓冲区"></a>git添加到缓冲区</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add *</span><br></pre></td></tr></table></figure>
+
+<h4 id="git提交改动"><a href="#git提交改动" class="headerlink" title="git提交改动"></a>git提交改动</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">"msg"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="git推送到远程仓库"><a href="#git推送到远程仓库" class="headerlink" title="git推送到远程仓库"></a>git推送到远程仓库</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+
+<h4 id="如果没有远程仓库，可以先添加"><a href="#如果没有远程仓库，可以先添加" class="headerlink" title="如果没有远程仓库，可以先添加"></a>如果没有远程仓库，可以先添加</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin server</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>blog</category>
