@@ -204,6 +204,40 @@ comments: false
       </tags>
   </entry>
   <entry>
+    <title>伽马兽王</title>
+    <url>/posts/2020-07-004.html</url>
+    <content><![CDATA[<h3 id="兽王"><a href="#兽王" class="headerlink" title="兽王"></a>兽王</h3><p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b00.png" alt="兽王"></p>
+<h3 id="加点"><a href="#加点" class="headerlink" title="加点"></a>加点</h3><p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b17.png" alt="bd"><br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b18.png" alt="bd"><br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b19.png" alt="bd"></p>
+<h3 id="装备"><a href="#装备" class="headerlink" title="装备"></a>装备</h3><div class="note success no-icon">
+            <p>没有dlc，以下只有本体中的武器。<br>攻击类武器受福统一选择 生命值低于50%时，造成额外150%辐射伤害，配合压血神器。</p>
+          </div>
+
+<h4 id="君王"><a href="#君王" class="headerlink" title="君王"></a>君王</h4><p><strong>步枪</strong>，当前版本混10不刮痧的枪，子弹散射，近距离好用，基拉夫特掉落。</p>
+<p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b01.png" alt="君王"></p>
+<h4 id="射弹循环"><a href="#射弹循环" class="headerlink" title="射弹循环"></a>射弹循环</h4><p><strong>散弹枪</strong>，发射后会在敌人之间弹射，在敌人多的时候很好用，每当发出的攻击多一种元素时该枪会多射出一发子弹，配合盾雷失效附加额外元素伤害使用。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b02.png" alt="射弹循环"></p>
+<h4 id="瘟疫传播者"><a href="#瘟疫传播者" class="headerlink" title="瘟疫传播者"></a>瘟疫传播者</h4><p><strong>重型武器</strong>，高伤害，发射前需要蓄力。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b03.png" alt="瘟疫传播者"></p>
+<h4 id="梅尔加尼的爆发"><a href="#梅尔加尼的爆发" class="headerlink" title="梅尔加尼的爆发"></a>梅尔加尼的爆发</h4><p><strong>工具枪</strong>，过热后发射易伤弹，配合飞龙+1受福，用来触发盾雷技能失效受福。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b04.png" alt="梅尔加尼的爆发"></p>
+<h4 id="考桑"><a href="#考桑" class="headerlink" title="考桑"></a>考桑</h4><p><strong>冲锋枪</strong>，单体伤害，射速快。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b05.png" alt="考桑"></p>
+<h4 id="沙鹰"><a href="#沙鹰" class="headerlink" title="沙鹰"></a>沙鹰</h4><p><strong>狙击枪</strong>，与其说是狙击枪，更像散弹枪，子弹微散射，远距离也可使用，射速极快，兽王来说子弹根本不够用。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b06.png" alt="沙鹰"></p>
+<h4 id="备胎"><a href="#备胎" class="headerlink" title="备胎"></a>备胎</h4><p><strong>重型武器</strong>，不用蓄力，伤害还不错。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b07.png" alt="备胎"></p>
+<h4 id="头脑风暴者"><a href="#头脑风暴者" class="headerlink" title="头脑风暴者"></a>头脑风暴者</h4><p><strong>散弹枪</strong>，多弹片工具枪，可以利用加点中的被动<code>清点人数</code>有效的缩短主动技能的冷却时间。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b08.png" alt="头脑风暴者"></p>
+<h4 id="不可饶恕"><a href="#不可饶恕" class="headerlink" title="不可饶恕"></a>不可饶恕</h4><p><strong>手枪</strong>，工具枪，有高额的暴击伤害，配和高伤、弹速慢的武器切枪使用。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b09.png" alt="不可饶恕"></p>
+<h4 id="变形金刚"><a href="#变形金刚" class="headerlink" title="变形金刚"></a>变形金刚</h4><p><strong>护盾</strong>，免疫电属性伤害并吸收为护盾，受福选择技能失效附加额外属性伤害。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b11.png" alt="变形金刚"></p>
+<h4 id="赤红之牙"><a href="#赤红之牙" class="headerlink" title="赤红之牙"></a>赤红之牙</h4><p><strong>模组</strong>，伽马爆发时嘲讽所有敌人，伽马流<code>核心</code>装备，不可缺少，属性看自己选择。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b12.png" alt="赤红之牙"></p>
+<h4 id="六角"><a href="#六角" class="headerlink" title="六角"></a>六角</h4><p><strong>手雷</strong>，受福选择技能失效附加额外属性伤害。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b13.png" alt="六角"></p>
+<h4 id="吹雪不死"><a href="#吹雪不死" class="headerlink" title="吹雪不死"></a>吹雪不死</h4><p><strong>神器</strong>，吹雪可以提高滑铲速度，跑路快；不死可以是自己保留<code>1</code>点生命值，用来触发武器受福<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b14.png" alt="吹雪不死"></p>
+<h4 id="吹雪胜利突袭"><a href="#吹雪胜利突袭" class="headerlink" title="吹雪胜利突袭"></a>吹雪胜利突袭</h4><p><strong>神器</strong> 备用神器，不采用压血流时使用。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b10.png" alt="吹雪胜利突袭"></p>
+<h3 id="玩法"><a href="#玩法" class="headerlink" title="玩法"></a>玩法</h3><p>伽马兽王应该时兽王职业中最安逸的流派了，伽马爆发时儿子的全图嘲讽可以给兽王提供良好的输出环境，输出时配合切飞龙，可以大幅提高伤害。技能冷却时，配合头脑风暴/射弹循环可以迅速使下一次技能准备就绪，然后继续输出。</p>
+]]></content>
+      <categories>
+        <category>games</category>
+      </categories>
+      <tags>
+        <tag>伽马兽王</tag>
+        <tag>borderlands3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
     <url>/posts/2020-07-002.html</url>
     <content><![CDATA[<h3 id="下载-https-github-com-notscuffed-repkg-中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的-pkg，将二者放到同一目录下。"><a href="#下载-https-github-com-notscuffed-repkg-中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的-pkg，将二者放到同一目录下。" class="headerlink" title="下载 https://github.com/notscuffed/repkg 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。"></a>下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3><p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/pkg1.png" alt="目录示例"></p>
@@ -263,40 +297,6 @@ comments: false
         <tag>HFUT</tag>
         <tag>全国大学生智能汽车竞赛</tag>
         <tag>恩智浦杯</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>伽马兽王</title>
-    <url>/posts/2020-07-004.html</url>
-    <content><![CDATA[<h3 id="兽王"><a href="#兽王" class="headerlink" title="兽王"></a>兽王</h3><p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b00.png" alt="兽王"></p>
-<h3 id="加点"><a href="#加点" class="headerlink" title="加点"></a>加点</h3><p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b17.png" alt="bd"><br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b18.png" alt="bd"><br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b19.png" alt="bd"></p>
-<h3 id="装备"><a href="#装备" class="headerlink" title="装备"></a>装备</h3><div class="note success no-icon">
-            <p>没有dlc，以下只有本体中的武器。<br>攻击类武器受福统一选择 生命值低于50%时，造成额外150%辐射伤害，配合压血神器。</p>
-          </div>
-
-<h4 id="君王"><a href="#君王" class="headerlink" title="君王"></a>君王</h4><p><strong>步枪</strong>，当前版本混10不刮痧的枪，子弹散射，近距离好用，基拉夫特掉落。</p>
-<p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b01.png" alt="君王"></p>
-<h4 id="射弹循环"><a href="#射弹循环" class="headerlink" title="射弹循环"></a>射弹循环</h4><p><strong>散弹枪</strong>，发射后会在敌人之间弹射，在敌人多的时候很好用，每当发出的攻击多一种元素时该枪会多射出一发子弹，配合盾雷失效附加额外元素伤害使用。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b02.png" alt="射弹循环"></p>
-<h4 id="瘟疫传播者"><a href="#瘟疫传播者" class="headerlink" title="瘟疫传播者"></a>瘟疫传播者</h4><p><strong>重型武器</strong>，高伤害，发射前需要蓄力。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b03.png" alt="瘟疫传播者"></p>
-<h4 id="梅尔加尼的爆发"><a href="#梅尔加尼的爆发" class="headerlink" title="梅尔加尼的爆发"></a>梅尔加尼的爆发</h4><p><strong>工具枪</strong>，过热后发射易伤弹，配合飞龙+1受福，用来触发盾雷技能失效受福。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b04.png" alt="梅尔加尼的爆发"></p>
-<h4 id="考桑"><a href="#考桑" class="headerlink" title="考桑"></a>考桑</h4><p><strong>冲锋枪</strong>，单体伤害，射速快。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b05.png" alt="考桑"></p>
-<h4 id="沙鹰"><a href="#沙鹰" class="headerlink" title="沙鹰"></a>沙鹰</h4><p><strong>狙击枪</strong>，与其说是狙击枪，更像散弹枪，子弹微散射，远距离也可使用，射速极快，兽王来说子弹根本不够用。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b06.png" alt="沙鹰"></p>
-<h4 id="备胎"><a href="#备胎" class="headerlink" title="备胎"></a>备胎</h4><p><strong>重型武器</strong>，不用蓄力，伤害还不错。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b07.png" alt="备胎"></p>
-<h4 id="头脑风暴者"><a href="#头脑风暴者" class="headerlink" title="头脑风暴者"></a>头脑风暴者</h4><p><strong>散弹枪</strong>，多弹片工具枪，可以利用加点中的被动<code>清点人数</code>有效的缩短主动技能的冷却时间。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b08.png" alt="头脑风暴者"></p>
-<h4 id="不可饶恕"><a href="#不可饶恕" class="headerlink" title="不可饶恕"></a>不可饶恕</h4><p><strong>手枪</strong>，工具枪，有高额的暴击伤害，配和高伤、弹速慢的武器切枪使用。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b09.png" alt="不可饶恕"></p>
-<h4 id="变形金刚"><a href="#变形金刚" class="headerlink" title="变形金刚"></a>变形金刚</h4><p><strong>护盾</strong>，免疫电属性伤害并吸收为护盾，受福选择技能失效附加额外属性伤害。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b11.png" alt="变形金刚"></p>
-<h4 id="赤红之牙"><a href="#赤红之牙" class="headerlink" title="赤红之牙"></a>赤红之牙</h4><p><strong>模组</strong>，伽马爆发时嘲讽所有敌人，伽马流<code>核心</code>装备，不可缺少，属性看自己选择。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b12.png" alt="赤红之牙"></p>
-<h4 id="六角"><a href="#六角" class="headerlink" title="六角"></a>六角</h4><p><strong>手雷</strong>，受福选择技能失效附加额外属性伤害。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b13.png" alt="六角"></p>
-<h4 id="吹雪不死"><a href="#吹雪不死" class="headerlink" title="吹雪不死"></a>吹雪不死</h4><p><strong>神器</strong>，吹雪可以提高滑铲速度，跑路快；不死可以是自己保留<code>1</code>点生命值，用来触发武器受福<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b14.png" alt="吹雪不死"></p>
-<h4 id="吹雪胜利突袭"><a href="#吹雪胜利突袭" class="headerlink" title="吹雪胜利突袭"></a>吹雪胜利突袭</h4><p><strong>神器</strong> 备用神器，不采用压血流时使用。<br><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b10.png" alt="吹雪胜利突袭"></p>
-<h3 id="玩法"><a href="#玩法" class="headerlink" title="玩法"></a>玩法</h3><p>伽马兽王应该时兽王职业中最安逸的流派了，伽马爆发时儿子的全图嘲讽可以给兽王提供良好的输出环境，输出时配合切飞龙，可以大幅提高伤害。技能冷却时，配合头脑风暴/射弹循环可以迅速使下一次技能准备就绪，然后继续输出。</p>
-]]></content>
-      <categories>
-        <category>games</category>
-      </categories>
-      <tags>
-        <tag>伽马兽王</tag>
-        <tag>borderlands3</tag>
       </tags>
   </entry>
   <entry>
