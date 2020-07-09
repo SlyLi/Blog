@@ -204,6 +204,24 @@ comments: false
       </tags>
   </entry>
   <entry>
+    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
+    <url>/posts/2020-07-002.html</url>
+    <content><![CDATA[<h3 id="下载-https-github-com-notscuffed-repkg-中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的-pkg，将二者放到同一目录下。"><a href="#下载-https-github-com-notscuffed-repkg-中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的-pkg，将二者放到同一目录下。" class="headerlink" title="下载 https://github.com/notscuffed/repkg 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。"></a>下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3><p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/pkg1.png" alt="目录示例"></p>
+<h3 id="启动powershell进入到此目录执行命令。"><a href="#启动powershell进入到此目录执行命令。" class="headerlink" title="启动powershell进入到此目录执行命令。"></a>启动powershell进入到此目录执行命令。</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/pkg2.png" alt="解压"></p>
+<h3 id="解压完成后，会将所有文件默认放入同目录下的Output文件中。"><a href="#解压完成后，会将所有文件默认放入同目录下的Output文件中。" class="headerlink" title="解压完成后，会将所有文件默认放入同目录下的Output文件中。"></a>解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3><h3 id="想要了解更多可以查看源仓库-notscuffed-repkg说明。"><a href="#想要了解更多可以查看源仓库-notscuffed-repkg说明。" class="headerlink" title="想要了解更多可以查看源仓库 notscuffed/repkg说明。"></a>想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>wallpapper engine</tag>
+        <tag>github</tag>
+        <tag>steam</tag>
+        <tag>repkg</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>伽马兽王</title>
     <url>/posts/2020-07-004.html</url>
     <content><![CDATA[<h3 id="兽王"><a href="#兽王" class="headerlink" title="兽王"></a>兽王</h3><p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b00.png" alt="兽王"></p>
@@ -238,24 +256,6 @@ comments: false
       </tags>
   </entry>
   <entry>
-    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
-    <url>/posts/2020-07-002.html</url>
-    <content><![CDATA[<h3 id="下载-https-github-com-notscuffed-repkg-中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的-pkg，将二者放到同一目录下。"><a href="#下载-https-github-com-notscuffed-repkg-中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的-pkg，将二者放到同一目录下。" class="headerlink" title="下载 https://github.com/notscuffed/repkg 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。"></a>下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3><p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/pkg1.png" alt="目录示例"></p>
-<h3 id="启动powershell进入到此目录执行命令。"><a href="#启动powershell进入到此目录执行命令。" class="headerlink" title="启动powershell进入到此目录执行命令。"></a>启动powershell进入到此目录执行命令。</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
-
-<p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/pkg2.png" alt="解压"></p>
-<h3 id="解压完成后，会将所有文件默认放入同目录下的Output文件中。"><a href="#解压完成后，会将所有文件默认放入同目录下的Output文件中。" class="headerlink" title="解压完成后，会将所有文件默认放入同目录下的Output文件中。"></a>解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3><h3 id="想要了解更多可以查看源仓库-notscuffed-repkg说明。"><a href="#想要了解更多可以查看源仓库-notscuffed-repkg说明。" class="headerlink" title="想要了解更多可以查看源仓库 notscuffed/repkg说明。"></a>想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>wallpapper engine</tag>
-        <tag>github</tag>
-        <tag>steam</tag>
-        <tag>repkg</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>全国大学生智能汽车竞赛记录</title>
     <url>/posts/2020-07-005.html</url>
     <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>18年下半年，也就是我大三的上半学期，是第二年的全国大学生智能汽车竞赛的校内报名时间。同学来邀请我参加，我也想做点东西，就一起参加了。我们一组三人，自己主要负责相关代码的编写。</p>
@@ -285,6 +285,9 @@ comments: false
 <h4 id="决赛视频-1"><a href="#决赛视频-1" class="headerlink" title="决赛视频"></a>决赛视频</h4><div id="dplayer2" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer2"),"video":{"url":"https://gitee.com/slyli/BlogResource/raw/master/2020-07/weihai.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
 
 <h4 id="成绩-1"><a href="#成绩-1" class="headerlink" title="成绩"></a>成绩</h4><p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/record3.png" alt="code1"></p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ol>
+<li>有段时间调车的时候会偶尔遇到卡死的问题，小调试屏也是白屏。开始以为是硬件接触不好的问题，就没在意，后面出现情况多了之后才开始重视，查找问题原因，一直耽搁了几天才找出来，用的是注释大法 hhhh。最后原因是<code>while循环</code>的问题，跳出循环的条件有点漏洞，导致while循环可能运行到一个未定义的状况，导致循环一直跳不出来。</li>
+</ol>
 <h3 id="总结与其他"><a href="#总结与其他" class="headerlink" title="总结与其他"></a>总结与其他</h3><ol>
 <li>这次比赛对我来说确实是一次十分有用的经历，在准备的过程中学到了很多真实有用的东西，增加了自己的技能，不管是找工作还是什么，使没有多少内容的简历增加了点可写的项目。</li>
 <li>遗憾的是，当时我们队伍里三人都是大三的，而且都是准备考研的，所以在省赛之后的一段时间内，一直是一边准备考研一边准备比赛的，没能全力以赴在国赛中获得一个令人满意的成绩。</li>
