@@ -1,310 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>butterfly修改</title>
-    <url>/posts/2020-07-003.html</url>
-    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
-<h3 id="评论"><a class="markdownIt-Anchor" href="#评论"></a> 评论</h3>
-<p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br />
-如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
-<pre><code>---
-title: butterfly修改
-date: 2020-07-05 21:11:42
-comments: false
----
-</code></pre>
-<h3 id="valine评论添加qq提醒"><a class="markdownIt-Anchor" href="#valine评论添加qq提醒"></a> valine评论添加QQ提醒</h3>
-<p>butterfly主题把下列js代码修改后添加到butterfly.yml中的inject后面就好了。<br />
-其他的需要将下列代码添加到一个位置，使每个有valine评论的页面有下列代码。</p>
-<div class="note warning">
-            <p>要先加Qmsg酱为好友。</p>
-          </div>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var title2&#x3D;&quot;msg&#x3D;您的博客又有新评论啦~ \n&quot;;</span><br><span class="line">var SCKEY_Qmsg&#x3D;&quot; &quot;;</span><br><span class="line">function send_valine_Qmsg()&#123;</span><br><span class="line">    var pagename&#x3D;document.title;</span><br><span class="line">    var wz&#x3D;pagename.indexOf(&#39;|&#39;);</span><br><span class="line">    var res&#x3D;pagename.substring(0,wz);</span><br><span class="line">    var pageurl&#x3D;document.URL;</span><br><span class="line">    var ptime&#x3D;new Date();</span><br><span class="line">    var vnick&#x3D;document.getElementsByClassName(&quot;vnick vinput&quot;)[0].value;</span><br><span class="line">    var vmail&#x3D;document.getElementsByClassName(&quot;vmail vinput&quot;)[0].value;</span><br><span class="line">    var vlink&#x3D;document.getElementsByClassName(&quot;vlink vinput&quot;)[0].value;</span><br><span class="line">    var veditor&#x3D;document.getElementsByClassName(&quot;veditor vinput&quot;)[0].value;</span><br><span class="line">    var data&#x3D;&quot;昵称：&quot;+vnick+&quot;\n邮箱：&quot;+vmail+&quot;\n网站地址：&quot;+vlink+&quot;\n当前页面：&quot;+pagename+&quot;\n评论内容：&quot;+veditor+&quot;\n跳转链接：&quot;+pageurl+&quot;\n评论时间：&quot;+ptime.toLocaleString();</span><br><span class="line">    var httpRequest &#x3D; new XMLHttpRequest();</span><br><span class="line">    httpRequest.open(&#39;POST&#39;,SCKEY_Qmsg, true); </span><br><span class="line">    httpRequest.setRequestHeader(&quot;Content-type&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;);</span><br><span class="line">    httpRequest.send(title2+data);</span><br><span class="line">&#125;;</span><br><span class="line">var ValineButton&#x3D;document.getElementsByClassName(&quot;vsubmit vbtn&quot;)[0];</span><br><span class="line">ValineButton.onclick&#x3D;send_valine_Qmsg;</span><br></pre></td></tr></table></figure>
-<p>SCKEY_Qmsg设置为Qmsg酱的接口地址。<br />
-转自<a href="https://www.zyskys.com/posts/bd75.html" target="_blank" rel="noopener">零奇</a></p>
-<h3 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h3>
-<p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，</p>
-<div class="note warning">
-            <p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
-          </div>
-<h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3>
-<p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
-<h3 id="引入katex"><a class="markdownIt-Anchor" href="#引入katex"></a> 引入Katex</h3>
-<p>使用时需要在<code>front-matter</code>里加入： <code>katex: true</code><br />
-具体使用方法见<a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">katex</a>。</p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>butterfly</tag>
-        <tag>blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
-    <url>/posts/2020-07-002.html</url>
-    <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
-<p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/pkg1.png" alt="目录示例" /></p>
-<h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
-<p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/pkg2.png" alt="解压" /></p>
-<h3 id="解压完成后会将所有文件默认放入同目录下的output文件中"><a class="markdownIt-Anchor" href="#解压完成后会将所有文件默认放入同目录下的output文件中"></a> 解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3>
-<h3 id="想要了解更多可以查看源仓库-notscuffedrepkg说明"><a class="markdownIt-Anchor" href="#想要了解更多可以查看源仓库-notscuffedrepkg说明"></a> 想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>wallpapper engine</tag>
-        <tag>github</tag>
-        <tag>steam</tag>
-        <tag>repkg</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Markdown语法</title>
-    <url>/posts/2020-06-001.html</url>
-    <content><![CDATA[<h2 id="主要内容"><a class="markdownIt-Anchor" href="#主要内容"></a> 主要内容</h2>
-<blockquote>
-<h4 id="markdown是什么"><a class="markdownIt-Anchor" href="#markdown是什么"></a> Markdown<em>是什么</em>？</h4>
-<h4 id="谁创造了它"><a class="markdownIt-Anchor" href="#谁创造了它"></a> <em>谁</em>创造了它？</h4>
-<h4 id="为什么要使用它"><a class="markdownIt-Anchor" href="#为什么要使用它"></a> <em>为什么</em>要使用它？</h4>
-<h4 id="怎么使用"><a class="markdownIt-Anchor" href="#怎么使用"></a> <em>怎么</em>使用？</h4>
-<h4 id="谁在用"><a class="markdownIt-Anchor" href="#谁在用"></a> <em>谁</em>在用？</h4>
-<h4 id="尝试一下"><a class="markdownIt-Anchor" href="#尝试一下"></a> 尝试一下</h4>
-</blockquote>
-<h2 id="正文"><a class="markdownIt-Anchor" href="#正文"></a> 正文</h2>
-<h3 id="1-markdown是什么"><a class="markdownIt-Anchor" href="#1-markdown是什么"></a> 1. Markdown<em>是什么</em>？</h3>
-<p><strong>Markdown</strong>是一种轻量级<strong>标记语言</strong>，它以纯文本形式(<em>易读、易写、易更改</em>)编写文档，并最终以HTML格式发布。<br />
-<strong>Markdown</strong>也可以理解为将以MARKDOWN语法编写的语言转换成HTML内容的工具。</p>
-<h3 id="2-谁创造了它"><a class="markdownIt-Anchor" href="#2-谁创造了它"></a> 2. <em>谁</em>创造了它？</h3>
-<p>它由<a href="http://www.aaronsw.com/" target="_blank" rel="noopener"><strong>Aaron Swartz</strong></a>和<strong>John Gruber</strong>共同设计，<strong>Aaron Swartz</strong>就是那位于去年（<em>2013年1月11日</em>）自杀,有着<strong>开挂</strong>一般人生经历的程序员。维基百科对他的<a href="http://zh.wikipedia.org/wiki/%E4%BA%9A%E4%BC%A6%C2%B7%E6%96%AF%E6%B2%83%E8%8C%A8" target="_blank" rel="noopener">介绍</a>是：<strong>软件工程师、作家、政治组织者、互联网活动家、维基百科人</strong>。</p>
-<p>他有着足以让你跪拜的人生经历：</p>
-<ul>
-<li><strong>14岁</strong>参与RSS 1.0规格标准的制订。</li>
-<li><strong>2004</strong>年入读<strong>斯坦福</strong>，之后退学。</li>
-<li><strong>2005</strong>年创建<a href="http://infogami.org/" target="_blank" rel="noopener">Infogami</a>，之后与<a href="http://www.reddit.com/" target="_blank" rel="noopener">Reddit</a>合并成为其合伙人。</li>
-<li><strong>2010</strong>年创立求进会（Demand Progress），积极参与禁止网络盗版法案（SOPA）活动，最终该提案被撤回。</li>
-<li><strong>2011</strong>年7月19日，因被控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕。</li>
-<li><strong>2013</strong>年1月自杀身亡。</li>
-</ul>
-<p><img src= "/image/loading.gif" data-src="https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg" alt="Aaron Swartz" /></p>
-<p>天才都有早逝的归途。</p>
-<h3 id="3-为什么要使用它"><a class="markdownIt-Anchor" href="#3-为什么要使用它"></a> 3. <em>为什么</em>要使用它？</h3>
-<ul>
-<li>它是易读（看起来舒服）、易写（语法简单）、易更改<strong>纯文本</strong>。处处体现着<strong>极简主义</strong>的影子。</li>
-<li>兼容HTML，可以转换为HTML格式发布。</li>
-<li>跨平台使用。</li>
-<li>越来越多的网站支持Markdown。</li>
-<li>更方便清晰地组织你的电子邮件。（Markdown-here, Airmail）</li>
-<li>摆脱Word（我不是认真的）。</li>
-</ul>
-<h3 id="4-怎么使用"><a class="markdownIt-Anchor" href="#4-怎么使用"></a> 4. <em>怎么</em>使用？</h3>
-<p>如果不算<strong>扩展</strong>，Markdown的语法绝对<strong>简单</strong>到让你爱不释手。</p>
-<p>Markdown语法主要分为如下几大部分：<br />
-<strong>标题</strong>，<strong>段落</strong>，<strong>区块引用</strong>，<strong>代码区块</strong>，<strong>强调</strong>，<strong>列表</strong>，<strong>分割线</strong>，<strong>链接</strong>，<strong>图片</strong>，<strong>反斜杠 <code>\</code></strong>，<strong>符号’`’</strong>。</p>
-<h4 id="41-标题"><a class="markdownIt-Anchor" href="#41-标题"></a> 4.1 标题</h4>
-<p>两种形式：<br />
-1）使用<code>=</code>和<code>-</code>标记一级和二级标题。</p>
-<blockquote>
-<p>一级标题<br />
-<code>=========</code><br />
-二级标题<br />
-<code>---------</code></p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<h1 id="一级标题"><a class="markdownIt-Anchor" href="#一级标题"></a> 一级标题</h1>
-<h2 id="二级标题"><a class="markdownIt-Anchor" href="#二级标题"></a> 二级标题</h2>
-</blockquote>
-<p>2）使用<code>#</code>，可表示1-6级标题。</p>
-<blockquote>
-<p># 一级标题<br />
-## 二级标题<br />
-### 三级标题<br />
-#### 四级标题<br />
-##### 五级标题<br />
-###### 六级标题</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<h1 id="一级标题-2"><a class="markdownIt-Anchor" href="#一级标题-2"></a> 一级标题</h1>
-<h2 id="二级标题-2"><a class="markdownIt-Anchor" href="#二级标题-2"></a> 二级标题</h2>
-<h3 id="三级标题"><a class="markdownIt-Anchor" href="#三级标题"></a> 三级标题</h3>
-<h4 id="四级标题"><a class="markdownIt-Anchor" href="#四级标题"></a> 四级标题</h4>
-<h5 id="五级标题"><a class="markdownIt-Anchor" href="#五级标题"></a> 五级标题</h5>
-<h6 id="六级标题"><a class="markdownIt-Anchor" href="#六级标题"></a> 六级标题</h6>
-</blockquote>
-<h4 id="42-段落"><a class="markdownIt-Anchor" href="#42-段落"></a> 4.2 段落</h4>
-<p>段落的前后要有空行，所谓的空行是指没有文字内容。若想在段内强制换行的方式是使用<strong>两个以上</strong>空格加上回车（引用中换行省略回车）。</p>
-<h4 id="43-区块引用"><a class="markdownIt-Anchor" href="#43-区块引用"></a> 4.3 区块引用</h4>
-<p>在段落的每行或者只在第一行使用符号<code>&gt;</code>,还可使用多个嵌套引用，如：</p>
-<blockquote>
-<p>&gt; 区块引用<br />
-&gt;&gt; 嵌套引用</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p>区块引用</p>
-<blockquote>
-<p>嵌套引用</p>
-</blockquote>
-</blockquote>
-<h4 id="44-代码区块"><a class="markdownIt-Anchor" href="#44-代码区块"></a> 4.4 代码区块</h4>
-<p>代码区块的建立是在每行加上4个空格或者一个制表符（如同写代码一样）。如<br />
-普通段落：</p>
-<p>void main()<br />
-{<br />
-printf(“Hello, Markdown.”);<br />
-}</p>
-<p>代码区块：</p>
-<pre><code>void main()
-{
-    printf(&quot;Hello, Markdown.&quot;);
+<!DOCTYPE html><html lang="ch-ZN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>machine-learning 知识点总结 | Sly Li</title><meta name="description" content="引言  监督学习  根据数据集中的样本的“正确答案”，设法预测出未知数据的正确答案。 回归问题，即通过回归来推出一个连续的输出。 分类问题，对目标分类，输出离散结果。   无监督学习 对于没有分类或标签的数据集，找到其中的某种数据结构，或者将其分类。  单变量线性回归(Linear Regression with One Variable)  模型  回归问题中，输入变量只有一个，通过给定数据，"><meta name="keywords" content="machine learning,吴达恩"><meta name="author" content="Sly Li"><meta name="copyright" content="Sly Li"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/image/favicon.png"><link rel="canonical" href="http://slyli.cn/posts/2020-07-006.html"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta name="msvalidate.01" content="40800d7ddbfe4bc789367280a8addd52"/><meta name="baidu-site-verification" content="G9pFOrKi8Sw1jxpS"/><meta property="og:type" content="article"><meta property="og:title" content="machine-learning 知识点总结"><meta property="og:url" content="http://slyli.cn/posts/2020-07-006.html"><meta property="og:site_name" content="Sly Li"><meta property="og:description" content="引言  监督学习  根据数据集中的样本的“正确答案”，设法预测出未知数据的正确答案。 回归问题，即通过回归来推出一个连续的输出。 分类问题，对目标分类，输出离散结果。   无监督学习 对于没有分类或标签的数据集，找到其中的某种数据结构，或者将其分类。  单变量线性回归(Linear Regression with One Variable)  模型  回归问题中，输入变量只有一个，通过给定数据，"><meta property="og:image" content="https://slyli.gitee.io/blogresource/img/default.png"><meta property="article:published_time" content="2020-07-11T10:40:54.000Z"><meta property="article:modified_time" content="2020-07-11T14:15:58.169Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
 }
-</code></pre>
-<p><strong>注意</strong>:需要和普通段落之间存在空行。</p>
-<h4 id="45-强调"><a class="markdownIt-Anchor" href="#45-强调"></a> 4.5 强调</h4>
-<p>在强调内容两侧分别加上<code>*</code>或者<code>_</code>，如：</p>
-<blockquote>
-<p>*斜体*，_斜体_<br />
-**粗体**，__粗体__</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><em>斜体</em>，<em>斜体</em><br />
-<strong>粗体</strong>，<strong>粗体</strong></p>
-</blockquote>
-<h4 id="46-列表"><a class="markdownIt-Anchor" href="#46-列表"></a> 4.6 列表</h4>
-<p>使用<code>·</code>、<code>+</code>、或<code>-</code>标记无序列表，如：</p>
-<blockquote>
-<p>-（+*） 第一项<br />
--（+*） 第二项<br />
-- （+*）第三项</p>
-</blockquote>
-<p><strong>注意</strong>：标记后面最少有一个_空格_或_制表符_。若不在引用区块中，必须和前方段落之间存在空行。</p>
-<p>效果：</p>
-<blockquote>
-<ul>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项</li>
-</ul>
-</blockquote>
-<p>有序列表的标记方式是将上述的符号换成数字,并辅以<code>.</code>，如：</p>
-<blockquote>
-<p>1 . 第一项<br />
-2 . 第二项<br />
-3 . 第三项</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<ol>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项</li>
-</ol>
-</blockquote>
-<h4 id="47-分割线"><a class="markdownIt-Anchor" href="#47-分割线"></a> 4.7 分割线</h4>
-<p>分割线最常使用就是三个或以上<code>*</code>，还可以使用<code>-</code>和<code>_</code>。</p>
-<h4 id="48-链接"><a class="markdownIt-Anchor" href="#48-链接"></a> 4.8 链接</h4>
-<p>链接可以由两种形式生成：<strong>行内式</strong>和<strong>参考式</strong>。<br />
-<strong>行内式</strong>：</p>
-<blockquote>
-<p>[younghz的Markdown库](https:😕/github.com/younghz/Markdown “Markdown”)。</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库</a>。</p>
-</blockquote>
-<p><strong>参考式</strong>：</p>
-<blockquote>
-<p>[younghz的Markdown库1][1]<br />
-[younghz的Markdown库2][2]<br />
-[1]:https:😕/github.com/younghz/Markdown “Markdown”<br />
-[2]:https:😕/github.com/younghz/Markdown “Markdown”</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库1</a><br />
-<a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库2</a></p>
-</blockquote>
-<p><strong>注意</strong>：上述的<code>[1]:https:://github.com/younghz/Markdown &quot;Markdown&quot;</code>不出现在区块中。</p>
-<h4 id="49-图片"><a class="markdownIt-Anchor" href="#49-图片"></a> 4.9 图片</h4>
-<p>添加图片的形式和链接相似，只需在链接的基础上前方加一个<code>！</code>。</p>
-<h4 id="410-反斜杠"><a class="markdownIt-Anchor" href="#410-反斜杠"></a> 4.10 反斜杠<code>\</code></h4>
-<p>相当于<strong>反转义</strong>作用。使符号成为普通符号。</p>
-<h4 id="411-符号"><a class="markdownIt-Anchor" href="#411-符号"></a> 4.11 符号’`’</h4>
-<p>起到标记作用。如：</p>
-<blockquote>
-<p>`ctrl+a`</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><code>ctrl+a</code></p>
-</blockquote>
-<h4 id="5-谁在用"><a class="markdownIt-Anchor" href="#5-谁在用"></a> 5. <em>谁</em>在用？</h4>
-<p>Markdown的使用者：</p>
-<ul>
-<li>GitHub</li>
-<li>简书</li>
-<li>Stack Overflow</li>
-<li>Apollo</li>
-<li>Moodle</li>
-<li>Reddit</li>
-<li>等等</li>
-</ul>
-<h4 id="6-尝试一下"><a class="markdownIt-Anchor" href="#6-尝试一下"></a> 6. 尝试一下</h4>
-<ul>
-<li><strong>Chrome</strong>下的插件诸如<code>stackedit</code>与<code>markdown-here</code>等非常方便，也不用担心平台受限。</li>
-<li><strong>在线</strong>的dillinger.io评价也不错</li>
-<li><strong>Windowns</strong>下的MarkdownPad也用过，不过免费版的体验不是很好。</li>
-<li><strong>Mac</strong>下的Mou是国人贡献的，口碑很好。</li>
-<li><strong>Linux</strong>下的ReText不错。</li>
-</ul>
-<p><strong>当然，最终境界永远都是笔下是语法，心中格式化 😃。</strong></p>
-<hr />
-<p><strong>注意</strong>：不同的Markdown解释器或工具对相应语法（扩展语法）的解释效果不尽相同，具体可参见工具的使用说明。<br />
-虽然有人想出面搞一个所谓的标准化的Markdown，[没想到还惹怒了健在的创始人John Gruber]<br />
-(<a href="http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/" target="_blank" rel="noopener">http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/</a> )。</p>
-<hr />
-<p>以上基本是所有traditonal markdown的语法。</p>
-<h3 id="其它"><a class="markdownIt-Anchor" href="#其它"></a> 其它：</h3>
-<p>列表的使用(非traditonal markdown)：</p>
-<p>用<code>|</code>表示表格纵向边界，表头和表内容用<code>-</code>隔开，并可用<code>:</code>进行对齐设置，两边都有<code>:</code>则表示居中，若不加<code>:</code>则默认左对齐。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">代码库</th>
-<th>链接</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">MarkDown</td>
-<td><a href="https://github.com/younghz/Markdown" target="_blank" rel="noopener" title="Markdown">https://github.com/younghz/Markdown</a></td>
-</tr>
-<tr>
-<td style="text-align:center">MarkDownCopy</td>
-<td><a href="https://github.com/younghz/Markdown" target="_blank" rel="noopener" title="Markdown">https://github.com/younghz/Markdown</a></td>
-</tr>
-</tbody>
-</table>
-<p>关于其它扩展语法可参见具体工具的使用说明。</p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>machine-learning 知识点总结</title>
-    <url>/posts/2020-07-006.html</url>
-    <content><![CDATA[<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="next" title="全国大学生智能汽车竞赛记录" href="http://slyli.cn/posts/2020-07-005.html"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6facd0f053c5c32a56f404f1655089bb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: true,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/image/avatar.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">7</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">15</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> Game</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text"> 引言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习"><span class="toc-number">1.1.</span> <span class="toc-text"> 监督学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无监督学习"><span class="toc-number">1.2.</span> <span class="toc-text"> 无监督学习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单变量线性回归linear-regression-with-one-variable"><span class="toc-number">2.</span> <span class="toc-text"> 单变量线性回归(Linear Regression with One Variable)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型"><span class="toc-number">2.1.</span> <span class="toc-text"> 模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代价函数"><span class="toc-number">2.2.</span> <span class="toc-text"> 代价函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降算法"><span class="toc-number">2.3.</span> <span class="toc-text"> 梯度下降算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多变量线性回归linear-regression-with-multiple-variables"><span class="toc-number">3.</span> <span class="toc-text"> 多变量线性回归(Linear Regression with Multiple Variables)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#特征缩放"><span class="toc-number">3.1.</span> <span class="toc-text"> 特征缩放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正规方程"><span class="toc-number">3.2.</span> <span class="toc-text"> 正规方程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑回归logistic-regression"><span class="toc-number">4.</span> <span class="toc-text"> 逻辑回归(Logistic Regression)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分类问题"><span class="toc-number">4.1.</span> <span class="toc-text"> 分类问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#假说表示"><span class="toc-number">4.2.</span> <span class="toc-text"> 假说表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代价函数-2"><span class="toc-number">4.3.</span> <span class="toc-text"> 代价函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多类别分类一对多"><span class="toc-number">4.4.</span> <span class="toc-text"> 多类别分类：一对多</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则化regularization"><span class="toc-number">5.</span> <span class="toc-text"> 正则化(Regularization)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#过拟合的问题"><span class="toc-number">5.1.</span> <span class="toc-text"> 过拟合的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代价函数-3"><span class="toc-number">5.2.</span> <span class="toc-text"> 代价函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#神经网络表述neural-networks-representation"><span class="toc-number">6.</span> <span class="toc-text"> 神经网络：表述(Neural Networks: Representation)</span></a></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://slyli.gitee.io/blogresource/img/default.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Sly Li</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> Game</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">machine-learning 知识点总结</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-07-11 18:40:54"><i class="far fa-calendar-alt fa-fw"></i> Created 2020-07-11</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-07-11 22:15:58"><i class="fas fa-history fa-fw"></i> Updated 2020-07-11</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>Word count:</span><span class="word-count">2.5k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>Reading time: 10 min</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"><span class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>Comments:</span><a href="/posts/2020-07-006.html#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/posts/2020-07-006.html" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
 <h3 id="监督学习"><a class="markdownIt-Anchor" href="#监督学习"></a> 监督学习</h3>
 <ul>
 <li>根据数据集中的样本的“正确答案”，设法预测出未知数据的正确答案。</li>
@@ -392,194 +190,34 @@ printf(“Hello, Markdown.”);<br />
 假如我们有非常多的特征，我们并不知道其中哪些特征我们要惩罚，我们将对所有的特征进行惩罚，并且让代价函数最优化的软件来选择这些惩罚的程度。这样的结果是得到了一个较为简单的能防止过拟合问题的假设：<br />
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>J</mi><mrow><mo fence="true">(</mo><mi>θ</mi><mo fence="true">)</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>m</mi></mrow></mfrac><mo stretchy="false">[</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></msubsup><mrow><mo stretchy="false">(</mo><msub><mi>h</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msup><mi>x</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">)</mo><mo>−</mo><msup><mi>y</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><mo>+</mo><mi>λ</mi><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><msubsup><mi>θ</mi><mi>j</mi><mn>2</mn></msubsup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">J\left( \theta  \right)=\frac{1}{2m}[\sum\limits_{i=1}^{m}{({h_\theta}({x^{(i)}})-{y^{(i)}})^2}+\lambda \sum\limits_{j=1}^{n}{\theta_{j}^{2}}]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.329066em;vertical-align:-0.9776689999999999em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathdefault mtight">m</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">[</span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3513970000000004em;"><span style="top:-2.122331em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.0000050000000003em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop op-symbol small-op">∑</span></span></span><span style="top:-3.950005em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9776689999999999em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">i</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">i</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.465174em;vertical-align:-1.113777em;"></span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3513970000000004em;"><span style="top:-2.122331em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.0000050000000003em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop op-symbol small-op">∑</span></span></span><span style="top:-3.950005em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.113777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-2.441336em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.394772em;"><span></span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span></p>
 <h2 id="神经网络表述neural-networks-representation"><a class="markdownIt-Anchor" href="#神经网络表述neural-networks-representation"></a> 神经网络：表述(<strong>Neural Networks: Representation</strong>)</h2>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>machine learning</tag>
-        <tag>吴达恩</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>全国大学生智能汽车竞赛记录</title>
-    <url>/posts/2020-07-005.html</url>
-    <content><![CDATA[<h3 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h3>
-<p>18年下半年，也就是我大三的上半学期，是第二年的全国大学生智能汽车竞赛的校内报名时间。同学来邀请我参加，我也想做点东西，就一起参加了。我们一组三人，自己主要负责相关代码的编写。</p>
-<h3 id="准备"><a class="markdownIt-Anchor" href="#准备"></a> 准备</h3>
-<p>报名后就临近放假了，而且当时课程还挺多的，就没怎么准备，最后放假前拿着参赛的摄像头去学校实验室跑道上采集了下赛道数据,一边自己在寒假的时候开始准备，写写如何处理。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/path.jpg" alt="path" /></p>
-<p>采集回来的赛道信息就是这样的二进制黑白图，每一列是一部分的采集变化图，就在整个过程中随意截取了几段，（黑色：1、白色：0）。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/graph.png" alt="path" /></p>
-<h3 id="过程"><a class="markdownIt-Anchor" href="#过程"></a> 过程</h3>
-<h4 id="首先让小车跑起来"><a class="markdownIt-Anchor" href="#首先让小车跑起来"></a> 首先让小车跑起来</h4>
-<p>简单来说就是用单片机生成pwm给驱动板来驱动电机和舵机。最开始可以给一个固定的值让小车直接往前走。</p>
-<h4 id="提取赛道的中线让小车巡中线前进"><a class="markdownIt-Anchor" href="#提取赛道的中线让小车巡中线前进"></a> 提取赛道的中线，让小车巡中线前进</h4>
-<p>整个赛道在单片机看来就是上图所示的0和1，所以0和1的分界线就是赛道的边界。首先将整个边界提取出来，（左边界+右边界）/2 就基本上是赛道的中线了，然后小车巡中线前进即可。思路：给不同高度的中线上的不同点以不同的权值，加权计算出来后得到一个中点的位置，然后将这个终点与摄像头的中点比较，看偏差的位置和多少，然后再给舵机不同的打角方向和幅度。每次都是按照这个中点来前进，整个流程下来就是按照中线前进了。</p>
-<h4 id="十字路口"><a class="markdownIt-Anchor" href="#十字路口"></a> 十字路口</h4>
-<p>这是个老元素了，首先得判断出来这是个十字路口，过程中要注意和圆环元素的区别，我判断的依据是两边边界的边线都在某个高度丢失。然后需要对十字路口进行补线，先找到边界丢失的拐角处，对于丢线的部分可以按照未丢线部分的斜率延长边线。当然还有其他方法，我在这就不说了。</p>
-<h4 id="圆环"><a class="markdownIt-Anchor" href="#圆环"></a> 圆环</h4>
-<p>这也是个老元素了，同样首先要判断出来这是圆环，可以使用电磁信号辅助判断。然后进行各种补线使小车进去一次圆环后出来，并且不再进这个圆环。我的方法是一个阶段一个阶段的进行判断、补线、判断、 补线。。。直到完成整个元素，具体的我就不在这里详细描述了。</p>
-<h4 id="断路"><a class="markdownIt-Anchor" href="#断路"></a> 断路</h4>
-<p>这个简单，直接巡电磁线前进就好了，注意的的进短路前要减速，因为小车尺寸限制，前瞻不能很长，所以短路转弯速度快了容易冲出去。</p>
-<h4 id="路障"><a class="markdownIt-Anchor" href="#路障"></a> 路障</h4>
-<p>我们使用的超声波配合摄像头一起识别，识别到后可以固定打角出去，然后定时，再固定打角回来。这是一种比较简单而且速度快的方法，但是参数不太好调。另外可以在侧面装一个摄像头，识别到后，系统切换到侧面的摄像头，然后按照摄像头采集的赛道边线数据前进。这种方法可能速度比较慢，但是稳定性较好，我们是这两种都完成了，摄像头的方案留作备用，在省赛决赛时，路障前后直道的长度较短，备用方法很有效。</p>
-<h4 id="结束"><a class="markdownIt-Anchor" href="#结束"></a> 结束</h4>
-<p>各个元素处理完后，就开始了漫长的调参优化过程了，由于组员没有用过Git，所以我们代码都是以QQ群的方式共享的。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/code2.png" alt="code1" /><br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/code1.png" alt="code2" /></p>
-<p>最后放一段主循环的代码吧。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">while (1)</span><br><span class="line">    &#123;</span><br><span class="line">        GearSelect();</span><br><span class="line">        CameraGetImg(&amp;buff, img, cam_type);</span><br><span class="line">        LCD_Img_Binary_Z(site, size, buff, imgsize);</span><br><span class="line">        ReadADC();</span><br><span class="line">        stop &#x3D; 0;</span><br><span class="line">        if (Stop() &#x3D;&#x3D; 1 &amp;&amp; road_type !&#x3D; OBSTALE &amp;&amp; in_obs &#x3D;&#x3D; 0) &#x2F;&#x2F;(Stop() &#x3D;&#x3D; 1 || distance &lt; 20)</span><br><span class="line">        &#123;</span><br><span class="line">            road_type &#x3D; STOP;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (road_type &#x3D;&#x3D; STOP &amp;&amp; Stop() &#x3D;&#x3D; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            if (LengthOfX(40, img) &gt; 15)</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; NORMAL;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; ELECTROMAGNETIC;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        switch (road_type)</span><br><span class="line">        &#123;</span><br><span class="line">        case NORMAL:</span><br><span class="line">            roundabout_flag &#x3D; 0;</span><br><span class="line">            road_flag &#x3D; GetMiddleLine(img, mid_line, left_line, right_line, &amp;roundabout_flag);</span><br><span class="line">            stop &#x3D; StartLine(img);</span><br><span class="line">            if (road_flag &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line">                distance1 &#x3D; GetUltrasnoic();</span><br><span class="line">                distance &#x3D; GetUltrasnoic();</span><br><span class="line">                if (speed_param.obs_pit &#x3D;&#x3D; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    distance +&#x3D; 100;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (distance &lt; 1100 &amp;&amp; distance &gt; 500 &amp;&amp; distance1 &lt; 1150 &amp;&amp; distance1 &gt; 500)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (speed_param.obs_pit &#x3D;&#x3D; 1)</span><br><span class="line">                    &#123;</span><br><span class="line">                        set_vector_handler(PIT3_VECTORn, PIT3_IRQHandler);</span><br><span class="line">                        ave_speed &#x3D; AveSpeed();</span><br><span class="line">                        &#x2F;&#x2F; 定时后的固定速度</span><br><span class="line">                        duty &#x3D; 725 + 0.09 * (ave_speed);</span><br><span class="line">                        uint32 pit_time &#x3D; 275 - 0.1 * ave_speed;</span><br><span class="line">                        pit_init_ms(PIT3, pit_time);</span><br><span class="line">                        enable_irq(PIT3_IRQn);</span><br><span class="line">                        road_type &#x3D; OBSTALE;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        cam_type &#x3D; SUB_CAM;</span><br><span class="line">                        delay &#x3D; speed_param.switch_delay;</span><br><span class="line">                        road_type &#x3D; OBSTALE;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (road_flag &#x3D;&#x3D; 2)</span><br><span class="line">            &#123;</span><br><span class="line">                delay &#x3D; speed_param.switch_delay-10;</span><br><span class="line">                road_type &#x3D; ELECTROMAGNETIC;</span><br><span class="line">                MotorLpid(0);</span><br><span class="line">                MotorRpid(0);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            for (int q &#x3D; 0; q &lt; HEIGHT; q++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (mid_line[q] &lt; WIDTH)</span><br><span class="line">                    LCD_point((Site_t)&#123;(int)(mid_line[q] * 1.6), (int)(q * 1.6)&#125;, RED);</span><br><span class="line">            &#125;</span><br><span class="line">            for (int q &#x3D; 0; q &lt; HEIGHT; q++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (left_line[q] &lt; WIDTH)</span><br><span class="line">                    LCD_point((Site_t)&#123;(int)(left_line[q] * 1.6), (int)(q * 1.6)&#125;, BLUE);</span><br><span class="line">            &#125;</span><br><span class="line">            for (int q &#x3D; 0; q &lt; HEIGHT; q++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (right_line[q] &lt; WIDTH)</span><br><span class="line">                    LCD_point((Site_t)&#123;(int)(right_line[q] * 1.6), (int)(q * 1.6)&#125;, BLUE);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            error &#x3D; Error(mid_line);</span><br><span class="line">            far_error &#x3D; FarError(mid_line);</span><br><span class="line"></span><br><span class="line">            if (roundabout_flag &gt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                if (AveSpeed() &gt; 580)</span><br><span class="line">                &#123;</span><br><span class="line">                    speed_param.speed -&#x3D; 100;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(speed_param.func_error_control!&#x3D;NULL)</span><br><span class="line">            &#123;</span><br><span class="line">              speed_param.func_error_control(error, far_error, mid_line);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            Steerpid(error);</span><br><span class="line"></span><br><span class="line">            if (mid_line[HEIGHT] &gt; HEIGHT - 5)</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; STOP;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (stop &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line">                MotorStop();</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (error &lt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.speed + speed_param.speed_error * error);</span><br><span class="line">                    MotorRpid(speed_param.speed);</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.speed);</span><br><span class="line">                    MotorRpid(speed_param.speed - speed_param.speed_error * error);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        case ELECTROMAGNETIC:</span><br><span class="line">            stop &#x3D; StartLine(img);</span><br><span class="line">            error_elect &#x3D; ADCControl(delay);</span><br><span class="line">            if (delay &gt; 0)</span><br><span class="line">            &#123;   </span><br><span class="line">              if(error_elect&lt;0) &#x2F;&#x2F;向右转弯</span><br><span class="line">              &#123;</span><br><span class="line">                 MotorLpid(100);</span><br><span class="line">                 MotorRpid(100+200 * error_elect);   </span><br><span class="line">              &#125;else</span><br><span class="line">              &#123;</span><br><span class="line">                 MotorLpid(100- 200 * error_elect);</span><br><span class="line">                 MotorRpid(100 );   </span><br><span class="line">              &#125;</span><br><span class="line">                delay--;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (stop &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line">                MotorStop();</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (speed_param.elec_speed &gt; 300)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (error_elect &lt; 0)</span><br><span class="line">                    &#123;</span><br><span class="line">                        MotorLpid(speed_param.elec_speed);</span><br><span class="line">                        MotorRpid(speed_param.elec_speed + speed_param.speed_error * error_elect);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        MotorLpid(speed_param.elec_speed - speed_param.speed_error * error_elect);</span><br><span class="line">                        MotorRpid(speed_param.elec_speed);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.elec_speed);</span><br><span class="line">                    MotorRpid(speed_param.elec_speed);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (LengthOfX(40, img) &gt; 25)</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; NORMAL;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        case OBSTALE:</span><br><span class="line">            if (speed_param.obs_pit &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line"></span><br><span class="line">                if (in_obs++ &gt; 60)</span><br><span class="line">                &#123;</span><br><span class="line">                    in_obs &#x3D; 0;</span><br><span class="line">                    road_type &#x3D; STOP;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                SteerDuty(duty);</span><br><span class="line">                if (obs_delay &gt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    obs_delay--;</span><br><span class="line">                &#125;</span><br><span class="line">                if (duty &#x3D;&#x3D; 700 &amp;&amp; obs_delay &#x3D;&#x3D; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    duty &#x3D; 685;</span><br><span class="line">                &#125;</span><br><span class="line">                if (duty &#x3D;&#x3D; 685 &amp;&amp; RetUsual(img) &#x3D;&#x3D; 1 &amp;&amp; LengthOfX(66, img) &gt; 15 &amp;&amp; in_obs &gt; 20)</span><br><span class="line">                &#123;</span><br><span class="line">                    in_obs &#x3D; 0;</span><br><span class="line">                    road_type &#x3D; NORMAL;</span><br><span class="line">                &#125;</span><br><span class="line">                &#x2F;&#x2F;全固定</span><br><span class="line">                MotorLpid(500);</span><br><span class="line">                MotorRpid(500);</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (CamProsObstale(img, side_line) &#x3D;&#x3D; 1)</span><br><span class="line">                &#123;</span><br><span class="line">                    road_type &#x3D; NORMAL;</span><br><span class="line">                    cam_type &#x3D; MAIN_CAM;</span><br><span class="line">                &#125;</span><br><span class="line">                if (delay &gt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(50);</span><br><span class="line">                    MotorRpid(50);</span><br><span class="line">                    delay--;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.obs_speed);</span><br><span class="line">                    MotorRpid(speed_param.obs_speed);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            break;</span><br><span class="line">        case STOP:</span><br><span class="line">            MotorStop();</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="各个阶段调车记录"><a class="markdownIt-Anchor" href="#各个阶段调车记录"></a> 各个阶段调车记录</h4>
-<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"video":{"url":"https://gitee.com/slyli/BlogResource/raw/master/2020-07/school.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
-<h3 id="安徽省赛"><a class="markdownIt-Anchor" href="#安徽省赛"></a> 安徽省赛</h3>
-<p>我们这次比赛在安徽省是由淮南联合大学承办的。说到这必须得吐槽一下了，7月份，选择铁皮房做比赛场地，一个大的比赛场地只有角落有几台空调之外也就算了，竟然还限制队员进场人数。</p>
-<h4 id="参赛证"><a class="markdownIt-Anchor" href="#参赛证"></a> 参赛证</h4>
-<p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/record2.png" alt="code1" /></p>
-<h4 id="决赛视频"><a class="markdownIt-Anchor" href="#决赛视频"></a> 决赛视频</h4>
-<p>从其他地方找到的我们车的视频。</p>
-<div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"video":{"url":"https://gitee.com/slyli/BlogResource/raw/master/2020-07/anhui.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
-<h4 id="成绩"><a class="markdownIt-Anchor" href="#成绩"></a> 成绩</h4>
-<p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/record1.png" alt="code1" /></p>
-<h3 id="国赛"><a class="markdownIt-Anchor" href="#国赛"></a> 国赛</h3>
-<p>这次国赛在山东大学（威海）举办的，不得不说威海的气候确实舒服啊，夏天夜晚海风迎面吹来，清凉却不潮湿。</p>
-<h4 id="参赛证-2"><a class="markdownIt-Anchor" href="#参赛证-2"></a> 参赛证</h4>
-<p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/record4.png" alt="code1" /></p>
-<h4 id="决赛视频-2"><a class="markdownIt-Anchor" href="#决赛视频-2"></a> 决赛视频</h4>
-<div id="dplayer2" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer2"),"video":{"url":"https://gitee.com/slyli/BlogResource/raw/master/2020-07/weihai.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
-<h4 id="成绩-2"><a class="markdownIt-Anchor" href="#成绩-2"></a> 成绩</h4>
-<p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/record3.png" alt="code1" /></p>
-<h3 id="遇到的问题"><a class="markdownIt-Anchor" href="#遇到的问题"></a> 遇到的问题</h3>
-<ol>
-<li>有段时间调车的时候会偶尔遇到卡死的问题，小调试屏也是白屏。开始以为是硬件接触不好的问题，就没在意，后面出现情况多了之后才开始重视，查找问题原因，一直耽搁了几天才找出来，用的是注释大法 hhhh。最后原因是<code>while循环</code>的问题，跳出循环的条件有点漏洞，导致while循环可能运行到一个未定义的状况，导致循环一直跳不出来。</li>
-</ol>
-<h3 id="总结与其他"><a class="markdownIt-Anchor" href="#总结与其他"></a> 总结与其他</h3>
-<ol>
-<li>这次比赛对我来说确实是一次十分有用的经历，在准备的过程中学到了很多真实有用的东西，增加了自己的技能，不管是找工作还是什么，使没有多少内容的简历增加了点可写的项目。</li>
-<li>遗憾的是，当时我们队伍里三人都是大三的，而且都是准备考研的，所以在省赛之后的一段时间内，一直是一边准备考研一边准备比赛的，没能全力以赴在国赛中获得一个令人满意的成绩。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>C语言</category>
-      </categories>
-      <tags>
-        <tag>HFUT</tag>
-        <tag>全国大学生智能汽车竞赛</tag>
-        <tag>恩智浦杯</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>伽马兽王</title>
-    <url>/posts/2020-07-004.html</url>
-    <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
-<p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b00.png" alt="兽王" /></p>
-<h3 id="加点"><a class="markdownIt-Anchor" href="#加点"></a> 加点</h3>
-<p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b17.png" alt="bd" /><br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b18.png" alt="bd" /><br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b19.png" alt="bd" /></p>
-<h3 id="装备"><a class="markdownIt-Anchor" href="#装备"></a> 装备</h3>
-<div class="note success no-icon">
-            <p>没有dlc，以下只有本体中的武器。<br />攻击类武器受福统一选择 生命值低于50%时，造成额外150%辐射伤害，配合压血神器。</p>
-          </div>
-<h4 id="君王"><a class="markdownIt-Anchor" href="#君王"></a> 君王</h4>
-<p><strong>步枪</strong>，当前版本混10不刮痧的枪，子弹散射，近距离好用，基拉夫特掉落。</p>
-<p><img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b01.png" alt="君王" /></p>
-<h4 id="射弹循环"><a class="markdownIt-Anchor" href="#射弹循环"></a> 射弹循环</h4>
-<p><strong>散弹枪</strong>，发射后会在敌人之间弹射，在敌人多的时候很好用，每当发出的攻击多一种元素时该枪会多射出一发子弹，配合盾雷失效附加额外元素伤害使用。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b02.png" alt="射弹循环" /></p>
-<h4 id="瘟疫传播者"><a class="markdownIt-Anchor" href="#瘟疫传播者"></a> 瘟疫传播者</h4>
-<p><strong>重型武器</strong>，高伤害，发射前需要蓄力。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b03.png" alt="瘟疫传播者" /></p>
-<h4 id="梅尔加尼的爆发"><a class="markdownIt-Anchor" href="#梅尔加尼的爆发"></a> 梅尔加尼的爆发</h4>
-<p><strong>工具枪</strong>，过热后发射易伤弹，配合飞龙+1受福，用来触发盾雷技能失效受福。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b04.png" alt="梅尔加尼的爆发" /></p>
-<h4 id="考桑"><a class="markdownIt-Anchor" href="#考桑"></a> 考桑</h4>
-<p><strong>冲锋枪</strong>，单体伤害，射速快。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b05.png" alt="考桑" /></p>
-<h4 id="沙鹰"><a class="markdownIt-Anchor" href="#沙鹰"></a> 沙鹰</h4>
-<p><strong>狙击枪</strong>，与其说是狙击枪，更像散弹枪，子弹微散射，远距离也可使用，射速极快，兽王来说子弹根本不够用。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b06.png" alt="沙鹰" /></p>
-<h4 id="备胎"><a class="markdownIt-Anchor" href="#备胎"></a> 备胎</h4>
-<p><strong>重型武器</strong>，不用蓄力，伤害还不错。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b07.png" alt="备胎" /></p>
-<h4 id="头脑风暴者"><a class="markdownIt-Anchor" href="#头脑风暴者"></a> 头脑风暴者</h4>
-<p><strong>散弹枪</strong>，多弹片工具枪，可以利用加点中的被动<code>清点人数</code>有效的缩短主动技能的冷却时间。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b08.png" alt="头脑风暴者" /></p>
-<h4 id="不可饶恕"><a class="markdownIt-Anchor" href="#不可饶恕"></a> 不可饶恕</h4>
-<p><strong>手枪</strong>，工具枪，有高额的暴击伤害，配和高伤、弹速慢的武器切枪使用。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b09.png" alt="不可饶恕" /></p>
-<h4 id="变形金刚"><a class="markdownIt-Anchor" href="#变形金刚"></a> 变形金刚</h4>
-<p><strong>护盾</strong>，免疫电属性伤害并吸收为护盾，受福选择技能失效附加额外属性伤害。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b11.png" alt="变形金刚" /></p>
-<h4 id="赤红之牙"><a class="markdownIt-Anchor" href="#赤红之牙"></a> 赤红之牙</h4>
-<p><strong>模组</strong>，伽马爆发时嘲讽所有敌人，伽马流<code>核心</code>装备，不可缺少，属性看自己选择。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b12.png" alt="赤红之牙" /></p>
-<h4 id="六角"><a class="markdownIt-Anchor" href="#六角"></a> 六角</h4>
-<p><strong>手雷</strong>，受福选择技能失效附加额外属性伤害。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b13.png" alt="六角" /></p>
-<h4 id="吹雪不死"><a class="markdownIt-Anchor" href="#吹雪不死"></a> 吹雪不死</h4>
-<p><strong>神器</strong>，吹雪可以提高滑铲速度，跑路快；不死可以是自己保留<code>1</code>点生命值，用来触发武器受福<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b14.png" alt="吹雪不死" /></p>
-<h4 id="吹雪胜利突袭"><a class="markdownIt-Anchor" href="#吹雪胜利突袭"></a> 吹雪胜利突袭</h4>
-<p><strong>神器</strong> 备用神器，不采用压血流时使用。<br />
-<img src= "/image/loading.gif" data-src="https://slyli.gitee.io/blogresource/2020-07/b10.png" alt="吹雪胜利突袭" /></p>
-<h3 id="玩法"><a class="markdownIt-Anchor" href="#玩法"></a> 玩法</h3>
-<p>伽马兽王应该时兽王职业中最安逸的流派了，伽马爆发时儿子的全图嘲讽可以给兽王提供良好的输出环境，输出时配合切飞龙，可以大幅提高伤害。技能冷却时，配合头脑风暴/射弹循环可以迅速使下一次技能准备就绪，然后继续输出。</p>
-]]></content>
-      <categories>
-        <category>games</category>
-      </categories>
-      <tags>
-        <tag>伽马兽王</tag>
-        <tag>borderlands3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客说明</title>
-    <url>/posts/2020-07-001.html</url>
-    <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
-<p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
-<h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
-<h3 id="创建一个新的文章或页面"><a class="markdownIt-Anchor" href="#创建一个新的文章或页面"></a> 创建一个新的文章或页面</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] [title]</span><br></pre></td></tr></table></figure>
-<h4 id="布局layout"><a class="markdownIt-Anchor" href="#布局layout"></a> 布局（Layout）</h4>
-<p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
-<pre><code>布局	路径
-post	source/_posts
-page	source
-draft	source/_drafts
-</code></pre>
-<h4 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h4>
-<p>创建一个标题为exp的文章，默认布局为post，在命令中可以省略。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new exp</span><br></pre></td></tr></table></figure>
-<p>创建一个名为exp的页面。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new page exp</span><br></pre></td></tr></table></figure>
-<h3 id="本地运行服务器可以在localhost4000中查看"><a class="markdownIt-Anchor" href="#本地运行服务器可以在localhost4000中查看"></a> 本地运行服务器，可以在<a href="http://localhost:4000" target="_blank" rel="noopener">localhost:4000</a>中查看</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<h3 id="重新渲染博客"><a class="markdownIt-Anchor" href="#重新渲染博客"></a> 重新渲染博客</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
-<h3 id="将项目更新到github-pages上"><a class="markdownIt-Anchor" href="#将项目更新到github-pages上"></a> 将项目更新到GitHub Pages上</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo doc</a></p>
-<h3 id="git的使用"><a class="markdownIt-Anchor" href="#git的使用"></a> git的使用</h3>
-<h4 id="git初始化仓库"><a class="markdownIt-Anchor" href="#git初始化仓库"></a> git初始化仓库</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
-<h4 id="git添加到缓冲区"><a class="markdownIt-Anchor" href="#git添加到缓冲区"></a> git添加到缓冲区</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add *</span><br></pre></td></tr></table></figure>
-<h4 id="git提交改动"><a class="markdownIt-Anchor" href="#git提交改动"></a> git提交改动</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">"msg"</span></span><br></pre></td></tr></table></figure>
-<h4 id="git推送到远程仓库"><a class="markdownIt-Anchor" href="#git推送到远程仓库"></a> git推送到远程仓库</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
-<h4 id="如果没有远程仓库可以先添加"><a class="markdownIt-Anchor" href="#如果没有远程仓库可以先添加"></a> 如果没有远程仓库，可以先添加</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin server</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>butterfly</tag>
-        <tag>blog</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-</search>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Sly Li</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://slyli.cn/posts/2020-07-006.html">http://slyli.cn/posts/2020-07-006.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/machine-learning/">machine learning</a><a class="post-meta__tags" href="/tags/%E5%90%B4%E8%BE%BE%E6%81%A9/">吴达恩</a></div><div class="post_share"><div class="social-share" data-image="https://slyli.gitee.io/blogresource/img/default.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/2020-07-005.html"><img class="next-cover" data-src="https://slyli.gitee.io/blogresource/2020-07/car1.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">全国大学生智能汽车竞赛记录</div></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var requestSetting = function (from,set) {
+  var from = from
+  var setting = set.split(',').filter(function(item){
+  return from.indexOf(item) > -1
+  });
+  setting = setting.length == 0 ? from :setting;
+  return setting
+}
+
+var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+window.valine = new Valine({
+  el:'#vcomment',
+  appId: 'a6SkEWr1cDgiFLXRdcU3DkUn-gzGzoHsz',
+  appKey: 'LaMtrAthbpM4HvRmTUUilSbo',
+  placeholder: '昵称框输入QQ号自动获取必填信息~',
+  avatar: 'monsterid',
+  meta: guestInfo,
+  pageSize: '10',
+  lang: 'zh-CN',
+  recordIP: true,
+  serverURLs: '',
+  emojiCDN: '',
+  emojiMaps: "",
+  enableQQ: true,
+  requiredFields: requiredFields
+});</script></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Sly Li</div><div class="footer_custom_text">All Right Reserved</div><div class="icp"><a href="http://beian.miit.gov.cn/" target="_blank" rel="noopener"><img class="icp-icon" src="/img/icp.png"/><span>皖ICP备17005781号-1</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button id="readmode" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="font_plus" title="Increase Font Size"><i class="fas fa-plus"></i></button><button id="font_minus" title="Decrease Font Size"><i class="fas fa-minus"></i></button><button class="translate_chn_to_cht" id="translateLink" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="scroll_to_comment fas fa-comments"></i></a><button class="close" id="mobile-toc-button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script type="text/javascript">
+var title2="msg=哥哥~~ 您的博客又有新评论啦~   ฅ(๑ ̀ㅅ ́๑)ฅ \n"; var SCKEY_Qmsg="https://qmsg.zendee.cn:443/send/ce2e5ff5e06719f8e3e96f3ab08aed67"; function send_valine_Qmsg(){ var pagename=document.title; var wz=pagename.indexOf('|'); var res=pagename.substring(0,wz); var pageurl=document.URL; var ptime=new Date(); var vnick=document.getElementsByClassName("vnick vinput")[0].value; var vmail=document.getElementsByClassName("vmail vinput")[0].value; var vlink=document.getElementsByClassName("vlink vinput")[0].value; var veditor=document.getElementsByClassName("veditor vinput")[0].value; var data="昵称："+vnick+"\n邮箱："+vmail+"\n网站地址："+vlink+"\n当前页面："+pagename+"\n评论内容："+veditor+"\n跳转链接："+pageurl+"\n评论时间："+ptime.toLocaleString(); var httpRequest = new XMLHttpRequest(); httpRequest.open('POST',SCKEY_Qmsg, true); httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded"); httpRequest.send(title2+data); }; var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0]; if(ValineButton!=null) ValineButton.onclick=send_valine_Qmsg; </script></body></html>
