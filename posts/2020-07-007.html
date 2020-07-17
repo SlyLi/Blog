@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="ch-ZN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>基于雷达探测技术和stm32平台的自动避障智能车 | Sly Li</title><meta name="description" content="对于毕业设计，我最初的构想就是，首先要有一个能够无线控制移动的小车，然后在小车上面搭载一个激光雷达，激光雷达工作返回的数据都通过无线传输到计算机上面，然后计算机可视化显示雷达数据并且能够同时定位和生成地图。之后我们可以给定目标点，自动规划合理的行驶路径，小车自动行驶到目标点。  整体结构  总体结构包括：电机模块、L289N驱动模块、STM32F407单片机模块、激光雷达模块、ESP8266WIF"><meta name="keywords" content="RPLIDAR A1 激光雷达,SLAM小车,自动避障小车"><meta name="author" content="Sly Li"><meta name="copyright" content="Sly Li"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/favicon.png"><link rel="canonical" href="http://slyli.cn/posts/2020-07-007.html"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta name="msvalidate.01" content="40800d7ddbfe4bc789367280a8addd52"/><meta name="baidu-site-verification" content="G9pFOrKi8Sw1jxpS"/><meta property="og:type" content="article"><meta property="og:title" content="基于雷达探测技术和stm32平台的自动避障智能车"><meta property="og:url" content="http://slyli.cn/posts/2020-07-007.html"><meta property="og:site_name" content="Sly Li"><meta property="og:description" content="对于毕业设计，我最初的构想就是，首先要有一个能够无线控制移动的小车，然后在小车上面搭载一个激光雷达，激光雷达工作返回的数据都通过无线传输到计算机上面，然后计算机可视化显示雷达数据并且能够同时定位和生成地图。之后我们可以给定目标点，自动规划合理的行驶路径，小车自动行驶到目标点。  整体结构  总体结构包括：电机模块、L289N驱动模块、STM32F407单片机模块、激光雷达模块、ESP8266WIF"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/default.png"><meta property="article:published_time" content="2020-07-15T04:24:35.000Z"><meta property="article:modified_time" content="2020-07-15T12:54:51.839Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="next" title="machine-learning 知识点总结" href="http://slyli.cn/posts/2020-07-006.html"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6facd0f053c5c32a56f404f1655089bb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: true,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/avatar.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">8</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> Game</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#整体结构"><span class="toc-number">1.</span> <span class="toc-text"> 整体结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#激光雷达"><span class="toc-number">2.</span> <span class="toc-text"> 激光雷达</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#esp8266"><span class="toc-number">3.</span> <span class="toc-text"> ESP8266</span></a></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/default.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Sly Li</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> Game</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">基于雷达探测技术和stm32平台的自动避障智能车</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-07-15 12:24:35"><i class="far fa-calendar-alt fa-fw"></i> Created 2020-07-15</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-07-15 20:54:51"><i class="fas fa-history fa-fw"></i> Updated 2020-07-15</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/C/">C#</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>Word count:</span><span class="word-count">1.8k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>Reading time: 5 min</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"><span class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>Comments:</span><a href="/posts/2020-07-007.html#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/posts/2020-07-007.html" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p>对于毕业设计，我最初的构想就是，首先要有一个能够无线控制移动的小车，然后在小车上面搭载一个激光雷达，激光雷达工作返回的数据都通过无线传输到计算机上面，然后计算机可视化显示雷达数据并且能够同时定位和生成地图。之后我们可以给定目标点，自动规划合理的行驶路径，小车自动行驶到目标点。</p>
+<h2 id="整体结构"><a class="markdownIt-Anchor" href="#整体结构"></a> 整体结构</h2>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="" alt="框图" /></p>
+<p>总体结构包括：电机模块、L289N驱动模块、STM32F407单片机模块、激光雷达模块、ESP8266WIFI模块和PC上位机模块。</p>
+<ul>
+<li>电机模块：该模块用来实现小车的各种移动功能。在本系统在电机模块采用了4个12V的直流减速电机。</li>
+<li>L289N驱动模块：该模块用来接收单片机发出的PWM(Pulse width modulation脉冲宽度调试)信号，并据此来控制电机的旋转速度和旋转方向。</li>
+<li>STM32F407单片机模块：该模块是小车下位机的主要控制芯片，用来连接各个模块并发出相应的控制指令。可以控制电机转速进行移动、接收雷达数据、通过WIFI模块连接PC上位机等。</li>
+<li>激光雷达模块：该模块相当于此系统中的眼睛，用于观测周围环境识别障碍。本课题中采用的是SLAMTEC公司的RPLIDAR A1型号的激光雷达。</li>
+<li>ESP8266WIFI模块：该模块用来建立单片机与PC上位机之间的TCP连接，并实现二者之间的高速数据传输。</li>
+<li>PC上位机模块：该模块首先可以接收到激光雷达通过无线传输过来的数据，对数据解析后进行可视化显示。然后根据这些雷达数据可以同时生成地图和定位小车在地图中的位置。并且可以选择目的地，规划好路径后可以自动发送控制信号，控制小车绕过障碍移动到目的地。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="" alt="实物图" /></li>
+</ul>
+<h2 id="激光雷达"><a class="markdownIt-Anchor" href="#激光雷达"></a> 激光雷达</h2>
+<p>本系统中我们采用的是中采用的是SLAMTEC公司的RPLIDAR A1型号的激光雷达，如下所示。</p>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="" alt="雷达" /><br />
+对RPLIDAR的命令一般有如图所示格式：<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="" alt="命令格式" /><br />
+每个请求报文均以0xA5为固定开始，RPLIDAR也将这个标志作为一个新命令的开始。常用的RPLIDAR指令如表所示：</p>
+<table>
+<thead>
+<tr>
+<th>命令名</th>
+<th>值</th>
+<th>负载</th>
+<th>应答模式</th>
+<th>RPLIDAR执行操作</th>
+<th>支持固件版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STOP</td>
+<td>0x25</td>
+<td>无</td>
+<td>无应答</td>
+<td>离开扫描采样模式，进入空闲模式</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>RESET</td>
+<td>0x40</td>
+<td>无</td>
+<td>无应答</td>
+<td>测距核心软重启</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>SCAN</td>
+<td>0x20</td>
+<td>无</td>
+<td>多次应答</td>
+<td>请求进入扫描采样状态</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>EXPRESS_SCAN</td>
+<td>0x82</td>
+<td>有</td>
+<td>多次应答</td>
+<td>请求进入扫描采样状态，并工作在最高采样频率下</td>
+<td>1.17</td>
+</tr>
+<tr>
+<td>FORCE_SCAN</td>
+<td>0x21</td>
+<td>无</td>
+<td>多次应答</td>
+<td>请求进入扫描采样状态，强制数据输出</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>GET_INFO</td>
+<td>0x50</td>
+<td>无</td>
+<td>单次应答</td>
+<td>获取设备序列号等信息</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>GET_HEALTH</td>
+<td>0x52</td>
+<td>无</td>
+<td>单次应答</td>
+<td>获取设备健康状态</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>GET_SAMPLERATE</td>
+<td>0x59</td>
+<td>无</td>
+<td>单次应答</td>
+<td>获取单词激光测距的用时</td>
+<td>1.17</td>
+</tr>
+<tr>
+<td>GET_LIDAR_CONF</td>
+<td>0x84</td>
+<td>有</td>
+<td>单次应答</td>
+<td>按地址获取雷达配置信息</td>
+<td>1.24</td>
+</tr>
+</tbody>
+</table>
+<p>本系统中我们使用如下命令<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="" alt="命令" /></p>
+<p>当RPLIDAR没有其他工作时，单片机发送的该命令后，RPLIDAR将开始进入扫描测距模式。每个获得测距数据都会以应答报文的形式返回给单片机。如果RPLIDAR之间就在扫描测距模式运作，那么它会首先停止该工作，并重新开始新一轮的扫描测距采样工作。当RPLIDAR在停机状态时，所有的外部请求命令都会被忽略。如果RPLIDAR接收到该请求命令后立即返回了起始应答报文，这表明RPLIDAR接收了该请求并且进入了扫描测距模式，之后RPLIDAR将会不间断的发送采集到的数据给单片机，直到单片机发出新的命令或者RPLIDAR出现故障。<br />
+RPLIDAR会将扫描测距获得的采样点数据通过下图所示的结构作为应答报文发送至单片机。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="" alt="数据格式" /></p>
+<p>其中各个字段的定义及含义如下：</p>
+<ul>
+<li>S是扫描的起始标志位，S=1时代表激光雷达开始了新一圈的扫描。</li>
+<li>是S的取反， =！S，可以作为一种确定开始新一圈扫描数据的检验。</li>
+<li>C是检验为，它的值永远为1，可用于检测该报文是否发生错误和进行数据校验。</li>
+<li>Quality是采样点的质量，它与激光雷达接收到的信号的质量相关。</li>
+<li>angle_q6是扫描点相对于激光雷达朝向的夹角，实际的角度为angle_q6/64.0 Deg。</li>
+<li>distance_q2是扫描点和激光雷达之间的距离，无效点的距离为0，实际距离的值为distance_q2/4.0 mm。</li>
+</ul>
+<p>在C#中，我们可以使用如下代码对返回的数据进行处理，转化成可以的数据。</p>
+<pre><code>//byte b[5] 激光雷达返回的一个扫描点的信息
+angle = (double)(((b[2] &lt;&lt; 7) | (b[1] &gt;&gt; 1)) / 64.0);
+distance = (double)(((b[4] &lt;&lt; 8) | b[3])/4.0);
+quality = b[0] &gt;&gt; 2;
+start = Convert.ToBoolean(b[0] &amp; 0x01);
+check = ((b[1] &amp; 0x01) == 0x01 &amp;&amp; (b[0] &amp; 0x01) != ((b[0] &gt;&gt; 1) &amp; 0x01));
+</code></pre>
+<p>关于雷达的其他各种详细信息请到思岚的网站上下载http://www.slamtec.com/cn/Support#rplidar-a-series</p>
+<h2 id="esp8266"><a class="markdownIt-Anchor" href="#esp8266"></a> ESP8266</h2>
+<div class="note warning">
+            <p>在于电脑连接时，如果收到不消息，很有可能是自己电脑防火墙的问题。</p>
+          </div>
+<p>ESP8266支持多种工作模式。<br />
+STA模式：ESP8266模块可以连接到路由器或者任意其他WIFI可以连接上的网络设备上。<br />
+AP模式：ESP8266模块作为WIFI热点，其他设备可以连接到此模式下的ESP8266模块，可以实现电脑或者手机于设备直接通信，完成局域网控制。<br />
+STA+AP模式：上述两种模式的共存。</p>
+<p>我们使用STA模式，笔记本电脑做热点，ESP8266连接到笔记本电脑上并开启透传。</p>
+<pre><code>//设置工作模式 1：station模式   2：AP模式  3：兼容 AP+station模式
+Esp8266_Send_Cmd(&quot;AT+CWMODE=1&quot;);
+
+//让Wifi模块重启的命令
+Esp8266_Send_Cmd(&quot;AT+RST&quot;);
+Esp8266_Send_Data(&quot;+++&quot;);
+delay_ms(1000);					//等待500ms太少 要1000ms才可以退出
+
+//让模块连接上自己的路由
+Esp8266_Send_Cmd(&quot;AT+CWJAP=\&quot;wifi\&quot;,\&quot;00000000\&quot;&quot;);
+delay_ms(200);   
+
+//=0：单路连接模式     =1：多路连接模式
+Esp8266_Send_Cmd(&quot;AT+CIPMUX=0&quot;);
+delay_ms(200);   
+
+//是否开启透传模式  0：表示关闭 1：表示开启透传
+Esp8266_Send_Cmd(&quot;AT+CIPMODE=1&quot;);
+delay_ms(200);   
+//建立TCP连接  这四项分别代表了 要连接的ID号0~4   连接类型  远程服务器IP地址   远程服务器端口号
+Esp8266_Send_Cmd(&quot;AT+CIPSTART=\&quot;TCP\&quot;,\&quot;192.168.137.1\&quot;,8888&quot;);
+delay_ms(200);  
+//透传模式下 开始发送数据的指令 这个指令之后就可以直接发数据了
+Esp8266_Send_Cmd(&quot;AT+CIPSEND&quot;);
+delay_ms(200);   </code></pre>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Sly Li</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://slyli.cn/posts/2020-07-007.html">http://slyli.cn/posts/2020-07-007.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/HFUT/">HFUT</a><a class="post-meta__tags" href="/tags/C%E8%AF%AD%E8%A8%80/">C语言</a><a class="post-meta__tags" href="/tags/STM32/">STM32</a><a class="post-meta__tags" href="/tags/RPLIDAR-A1-%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE/">RPLIDAR A1 激光雷达</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/default.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/2020-07-006.html"><img class="next-cover" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/ml1.jpeg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">machine-learning 知识点总结</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/posts/2020-07-005.html" title="全国大学生智能汽车竞赛记录"><img class="relatedPosts_cover" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/car1.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-07</div><div class="relatedPosts_title">全国大学生智能汽车竞赛记录</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var requestSetting = function (from,set) {
+  var from = from
+  var setting = set.split(',').filter(function(item){
+  return from.indexOf(item) > -1
+  });
+  setting = setting.length == 0 ? from :setting;
+  return setting
+}
+
+var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+window.valine = new Valine({
+  el:'#vcomment',
+  appId: 'a6SkEWr1cDgiFLXRdcU3DkUn-gzGzoHsz',
+  appKey: 'LaMtrAthbpM4HvRmTUUilSbo',
+  placeholder: '昵称框输入QQ号自动获取必填信息~',
+  avatar: 'monsterid',
+  meta: guestInfo,
+  pageSize: '10',
+  lang: 'zh-CN',
+  recordIP: true,
+  serverURLs: '',
+  emojiCDN: '',
+  emojiMaps: "",
+  enableQQ: true,
+  requiredFields: requiredFields
+});</script></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Sly Li</div><div class="footer_custom_text">All Right Reserved</div><div class="icp"><a href="http://beian.miit.gov.cn/" target="_blank" rel="noopener"><img class="icp-icon" src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/icp.png"/><span>皖ICP备17005781号-1</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button id="readmode" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="font_plus" title="Increase Font Size"><i class="fas fa-plus"></i></button><button id="font_minus" title="Decrease Font Size"><i class="fas fa-minus"></i></button><button class="translate_chn_to_cht" id="translateLink" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="scroll_to_comment fas fa-comments"></i></a><button class="close" id="mobile-toc-button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script type="text/javascript"> var title2="msg=哥哥~~ 您的博客又有新评论啦~   ฅ(๑ ̀ㅅ ́๑)ฅ \n"; var SCKEY_Qmsg="https://qmsg.zendee.cn:443/send/ce2e5ff5e06719f8e3e96f3ab08aed67"; function send_valine_Qmsg(){ var pagename=document.title; var wz=pagename.indexOf('|'); var res=pagename.substring(0,wz); var pageurl=document.URL; var ptime=new Date(); var vnick=document.getElementsByClassName("vnick vinput")[0].value; var vmail=document.getElementsByClassName("vmail vinput")[0].value; var vlink=document.getElementsByClassName("vlink vinput")[0].value; var veditor=document.getElementsByClassName("veditor vinput")[0].value; var data="昵称："+vnick+"\n邮箱："+vmail+"\n网站地址："+vlink+"\n当前页面："+pagename+"\n评论内容："+veditor+"\n跳转链接："+pageurl+"\n评论时间："+ptime.toLocaleString(); var httpRequest = new XMLHttpRequest(); httpRequest.open('POST',SCKEY_Qmsg, true); httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded"); httpRequest.send(title2+data); }; var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0]; if(ValineButton!=null) ValineButton.onclick=send_valine_Qmsg; </script>
+<script type="text/javascript"> (function(){ var bp = document.createElement('script'); var curProtocol = window.location.protocol.split(':')[0]; if (curProtocol === 'https') { bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'; } else { bp.src = 'http://push.zhanzhang.baidu.com/push.js'; } var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(bp, s); })(); </script></body></html>
