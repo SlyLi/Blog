@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>线性回归 python实现</title>
-    <url>/posts/2020-07-008.html</url>
+    <url>/posts/Wed%20Jul%2008%202020%2000:00:00%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4).html</url>
     <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
 <pre><code>import numpy as np
 from matplotlib import pyplot as plt
@@ -77,7 +77,7 @@ if __name__ == &quot;__main__&quot;:
   </entry>
   <entry>
     <title>Markdown语法</title>
-    <url>/posts/2020-06-001.html</url>
+    <url>/posts/Mon%20Jun%2001%202020%2000:00:00%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4).html</url>
     <content><![CDATA[<h2 id="主要内容"><a class="markdownIt-Anchor" href="#主要内容"></a> 主要内容</h2>
 <blockquote>
 <h4 id="markdown是什么"><a class="markdownIt-Anchor" href="#markdown是什么"></a> Markdown<em>是什么</em>？</h4>
@@ -316,7 +316,7 @@ printf(“Hello, Markdown.”);<br />
   </entry>
   <entry>
     <title>butterfly修改</title>
-    <url>/posts/2020-07-003.html</url>
+    <url>/posts/Fri%20Jul%2003%202020%2000:00:00%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4).html</url>
     <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
 <h3 id="评论"><a class="markdownIt-Anchor" href="#评论"></a> 评论</h3>
 <p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br />
@@ -365,7 +365,7 @@ comments: false
   </entry>
   <entry>
     <title>c++学习</title>
-    <url>/posts/2020-07-009.html</url>
+    <url>/posts/Thu%20Jul%2009%202020%2000:00:00%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4).html</url>
     <content><![CDATA[<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
 <p>虚函数是指一个类中你希望重写(override)的成员函数，当你用一个基类指针或引用,指向一个继承类对象的时候，调用一个虚函数时, 实际调用的是继承类的版本。</p>
 <pre><code>class Animal {
@@ -416,6 +416,9 @@ int main(int argc, char** argv)
 <p>使用<code>virtual</code>后，函数的输出是<code>Dog</code></p>
 <p>没有使用virtual之前，C++对成员函数使用静态绑定，函数的调用地址在运行前就已经固定。不考虑指针指向的内容，对于什么类型的指针就调用什么类型的函数。<br />
 对于虚函数，每个派生类对象都有一个指向虚函数表的指针，访问任何虚函数都是间接通过这个指针进行的，之所以要用虚函数表，是因为调用一个虚函数的哪个版本是在运行过程（调用时指针所指的对象）才能确定的（动态绑定）。</p>
+<div class="note warning">
+            <p>因此特性，若基类的析构函数是non-virtual的，容易造成局部销毁，导致资源泄漏。非常危险。</p>
+          </div>
 <h3 id="const"><a class="markdownIt-Anchor" href="#const"></a> <code>const</code></h3>
 <ul>
 <li>
@@ -447,8 +450,28 @@ int main(int argc, char** argv)
 </li>
 <li>
 <p>构造函数最好使用成员初值列赋值。</p>
-<p>Construct():value1(),value2(),value3(){}</p>
+<pre><code> Construct():value1(),value2(),value3(){}
+</code></pre>
 </li>
+<li>
+<p>C++编译器会自动给空类创建构造函数、赋值函数和析构函数。（当这些函数被调用时）</p>
+<pre><code> class Empty{};
+</code></pre>
+<p>等价于</p>
+<pre><code> class Empty
+ {
+     public:
+         Empty(){...}
+         Empty(const Empty&amp; rhs){...}
+         ~Empty(){...}
+
+         Empty&amp; operator=(const Empty&amp; rhs){...}
+ }
+</code></pre>
+</li>
+</ol>
+<p>想要阻止这一自动创建，可以将这些函数声明为<code>private</code>，并且故意不实现他们。</p>
+<ol start="6">
 <li></li>
 </ol>
 ]]></content>
@@ -461,7 +484,7 @@ int main(int argc, char** argv)
   </entry>
   <entry>
     <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
-    <url>/posts/2020-07-002.html</url>
+    <url>/posts/Thu%20Jul%2002%202020%2000:00:00%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4).html</url>
     <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
 <p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
 <h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
@@ -481,70 +504,8 @@ int main(int argc, char** argv)
       </tags>
   </entry>
   <entry>
-    <title>小说网站爬虫</title>
-    <url>/posts/2020-07-010.html</url>
-    <content><![CDATA[<pre><code>import requests
-from bs4 import BeautifulSoup
-import re
-import os
-
-# 本脚本无普适性，请具体网站具体分析
-root = ''  # 文章首页链接
-art_id = ''  # 文章链接id
-
-fname = './txts/'+art_id[5:-1]+'.txt'
-encode = 'gbk'
-
-
-def GetAllSection(root, id):
-    r = requests.get(root + id)
-    r.encoding = encode
-    bs = BeautifulSoup(r.text, 'html.parser')
-    url_a = bs.find_all('a')
-    urls = []
-    for u in url_a:
-        href = u.get('href')
-        if href and re.match(id, href):
-            urls.append(root+href)
-
-    del urls[0]
-    return urls
-
-
-def SaveArticle(root, id, fname):
-    i = 1
-    urls = GetAllSection(root, id)
-    for url in urls:
-        r = requests.get(url)
-        r.encoding = encode
-        bs = BeautifulSoup(r.text, 'html.parser')
-        text = bs.find_all('p')[1].text
-        text = text.replace('\xa0', ' ')
-        text = text.replace('\ufffd', ' ')
-        text = text.replace('\n\r\n', '\n')
-        with open(fname, 'a', encoding=encode) as file:
-            if i == 1:
-                file.write(bs.h1.text+'\n')
-                i = 0
-            file.write(text+'\n')
-
-
-if __name__ == &quot;__main__&quot;:
-    SaveArticle(root, art_id, fname)
-    # print(fname)
-</code></pre>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>machine-learning 知识点总结</title>
-    <url>/posts/2020-07-006.html</url>
+    <url>/posts/Mon%20Jul%2006%202020%2000:00:00%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4).html</url>
     <content><![CDATA[<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
 <h3 id="监督学习"><a class="markdownIt-Anchor" href="#监督学习"></a> 监督学习</h3>
 <ul>
@@ -713,7 +674,7 @@ if __name__ == &quot;__main__&quot;:
   </entry>
   <entry>
     <title>伽马兽王</title>
-    <url>/posts/2020-07-004.html</url>
+    <url>/posts/Sat%20Jul%2004%202020%2000:00:00%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4).html</url>
     <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
 <p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b00.png" alt="兽王" /></p>
 <h3 id="加点"><a class="markdownIt-Anchor" href="#加点"></a> 加点</h3>
@@ -778,8 +739,70 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
+    <title>小说网站爬虫</title>
+    <url>/posts/Fri%20Jul%2010%202020%2000:00:00%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4).html</url>
+    <content><![CDATA[<pre><code>import requests
+from bs4 import BeautifulSoup
+import re
+import os
+
+# 本脚本无普适性，请具体网站具体分析
+root = ''  # 文章首页链接
+art_id = ''  # 文章链接id
+
+fname = './txts/'+art_id[5:-1]+'.txt'
+encode = 'gbk'
+
+
+def GetAllSection(root, id):
+    r = requests.get(root + id)
+    r.encoding = encode
+    bs = BeautifulSoup(r.text, 'html.parser')
+    url_a = bs.find_all('a')
+    urls = []
+    for u in url_a:
+        href = u.get('href')
+        if href and re.match(id, href):
+            urls.append(root+href)
+
+    del urls[0]
+    return urls
+
+
+def SaveArticle(root, id, fname):
+    i = 1
+    urls = GetAllSection(root, id)
+    for url in urls:
+        r = requests.get(url)
+        r.encoding = encode
+        bs = BeautifulSoup(r.text, 'html.parser')
+        text = bs.find_all('p')[1].text
+        text = text.replace('\xa0', ' ')
+        text = text.replace('\ufffd', ' ')
+        text = text.replace('\n\r\n', '\n')
+        with open(fname, 'a', encoding=encode) as file:
+            if i == 1:
+                file.write(bs.h1.text+'\n')
+                i = 0
+            file.write(text+'\n')
+
+
+if __name__ == &quot;__main__&quot;:
+    SaveArticle(root, art_id, fname)
+    # print(fname)
+</code></pre>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>全国大学生智能汽车竞赛记录</title>
-    <url>/posts/2020-07-005.html</url>
+    <url>/posts/Sun%20Jul%2005%202020%2000:00:00%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4).html</url>
     <content><![CDATA[<h3 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h3>
 <p>18年下半年，也就是我大三的上半学期，是第二年的全国大学生智能汽车竞赛的校内报名时间。同学来邀请我参加，我也想做点东西，就一起参加了。我们一组三人，自己主要负责相关代码的编写。</p>
 <h3 id="准备"><a class="markdownIt-Anchor" href="#准备"></a> 准备</h3>
@@ -850,7 +873,7 @@ if __name__ == &quot;__main__&quot;:
   </entry>
   <entry>
     <title>博客说明</title>
-    <url>/posts/2020-07-001.html</url>
+    <url>/posts/Wed%20Jul%2001%202020%2000:00:00%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4).html</url>
     <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
 <p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
 <h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
@@ -898,7 +921,7 @@ draft	source/_drafts
   </entry>
   <entry>
     <title>基于雷达探测技术和stm32平台的自动避障智能车</title>
-    <url>/posts/2020-07-007.html</url>
+    <url>/posts/Tue%20Jul%2007%202020%2000:00:00%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4).html</url>
     <content><![CDATA[<p>对于毕业设计，我最初的构想就是，首先要有一个能够无线控制移动的小车，然后在小车上面搭载一个激光雷达，激光雷达工作返回的数据都通过无线传输到计算机上面，然后计算机可视化显示雷达数据并且能够同时定位和生成地图。之后我们可以给定目标点，自动规划合理的行驶路径，小车自动行驶到目标点。</p>
 <h2 id="整体结构"><a class="markdownIt-Anchor" href="#整体结构"></a> 整体结构</h2>
 <p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp1.png" alt="框图" /></p>
