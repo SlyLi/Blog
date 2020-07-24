@@ -1,318 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>Markdown语法</title>
-    <url>/posts/2020-06-001.html</url>
-    <content><![CDATA[<h2 id="主要内容"><a class="markdownIt-Anchor" href="#主要内容"></a> 主要内容</h2>
-<blockquote>
-<h4 id="markdown是什么"><a class="markdownIt-Anchor" href="#markdown是什么"></a> Markdown<em>是什么</em>？</h4>
-<h4 id="谁创造了它"><a class="markdownIt-Anchor" href="#谁创造了它"></a> <em>谁</em>创造了它？</h4>
-<h4 id="为什么要使用它"><a class="markdownIt-Anchor" href="#为什么要使用它"></a> <em>为什么</em>要使用它？</h4>
-<h4 id="怎么使用"><a class="markdownIt-Anchor" href="#怎么使用"></a> <em>怎么</em>使用？</h4>
-<h4 id="谁在用"><a class="markdownIt-Anchor" href="#谁在用"></a> <em>谁</em>在用？</h4>
-<h4 id="尝试一下"><a class="markdownIt-Anchor" href="#尝试一下"></a> 尝试一下</h4>
-</blockquote>
-<h2 id="正文"><a class="markdownIt-Anchor" href="#正文"></a> 正文</h2>
-<h3 id="1-markdown是什么"><a class="markdownIt-Anchor" href="#1-markdown是什么"></a> 1. Markdown<em>是什么</em>？</h3>
-<p><strong>Markdown</strong>是一种轻量级<strong>标记语言</strong>，它以纯文本形式(<em>易读、易写、易更改</em>)编写文档，并最终以HTML格式发布。<br />
-<strong>Markdown</strong>也可以理解为将以MARKDOWN语法编写的语言转换成HTML内容的工具。</p>
-<h3 id="2-谁创造了它"><a class="markdownIt-Anchor" href="#2-谁创造了它"></a> 2. <em>谁</em>创造了它？</h3>
-<p>它由<a href="http://www.aaronsw.com/" target="_blank" rel="noopener"><strong>Aaron Swartz</strong></a>和<strong>John Gruber</strong>共同设计，<strong>Aaron Swartz</strong>就是那位于去年（<em>2013年1月11日</em>）自杀,有着<strong>开挂</strong>一般人生经历的程序员。维基百科对他的<a href="http://zh.wikipedia.org/wiki/%E4%BA%9A%E4%BC%A6%C2%B7%E6%96%AF%E6%B2%83%E8%8C%A8" target="_blank" rel="noopener">介绍</a>是：<strong>软件工程师、作家、政治组织者、互联网活动家、维基百科人</strong>。</p>
-<p>他有着足以让你跪拜的人生经历：</p>
-<ul>
-<li><strong>14岁</strong>参与RSS 1.0规格标准的制订。</li>
-<li><strong>2004</strong>年入读<strong>斯坦福</strong>，之后退学。</li>
-<li><strong>2005</strong>年创建<a href="http://infogami.org/" target="_blank" rel="noopener">Infogami</a>，之后与<a href="http://www.reddit.com/" target="_blank" rel="noopener">Reddit</a>合并成为其合伙人。</li>
-<li><strong>2010</strong>年创立求进会（Demand Progress），积极参与禁止网络盗版法案（SOPA）活动，最终该提案被撤回。</li>
-<li><strong>2011</strong>年7月19日，因被控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕。</li>
-<li><strong>2013</strong>年1月自杀身亡。</li>
-</ul>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg" alt="Aaron Swartz" /></p>
-<p>天才都有早逝的归途。</p>
-<h3 id="3-为什么要使用它"><a class="markdownIt-Anchor" href="#3-为什么要使用它"></a> 3. <em>为什么</em>要使用它？</h3>
-<ul>
-<li>它是易读（看起来舒服）、易写（语法简单）、易更改<strong>纯文本</strong>。处处体现着<strong>极简主义</strong>的影子。</li>
-<li>兼容HTML，可以转换为HTML格式发布。</li>
-<li>跨平台使用。</li>
-<li>越来越多的网站支持Markdown。</li>
-<li>更方便清晰地组织你的电子邮件。（Markdown-here, Airmail）</li>
-<li>摆脱Word（我不是认真的）。</li>
-</ul>
-<h3 id="4-怎么使用"><a class="markdownIt-Anchor" href="#4-怎么使用"></a> 4. <em>怎么</em>使用？</h3>
-<p>如果不算<strong>扩展</strong>，Markdown的语法绝对<strong>简单</strong>到让你爱不释手。</p>
-<p>Markdown语法主要分为如下几大部分：<br />
-<strong>标题</strong>，<strong>段落</strong>，<strong>区块引用</strong>，<strong>代码区块</strong>，<strong>强调</strong>，<strong>列表</strong>，<strong>分割线</strong>，<strong>链接</strong>，<strong>图片</strong>，<strong>反斜杠 <code>\</code></strong>，<strong>符号’`’</strong>。</p>
-<h4 id="41-标题"><a class="markdownIt-Anchor" href="#41-标题"></a> 4.1 标题</h4>
-<p>两种形式：<br />
-1）使用<code>=</code>和<code>-</code>标记一级和二级标题。</p>
-<blockquote>
-<p>一级标题<br />
-<code>=========</code><br />
-二级标题<br />
-<code>---------</code></p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<h1 id="一级标题"><a class="markdownIt-Anchor" href="#一级标题"></a> 一级标题</h1>
-<h2 id="二级标题"><a class="markdownIt-Anchor" href="#二级标题"></a> 二级标题</h2>
-</blockquote>
-<p>2）使用<code>#</code>，可表示1-6级标题。</p>
-<blockquote>
-<p># 一级标题<br />
-## 二级标题<br />
-### 三级标题<br />
-#### 四级标题<br />
-##### 五级标题<br />
-###### 六级标题</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<h1 id="一级标题-2"><a class="markdownIt-Anchor" href="#一级标题-2"></a> 一级标题</h1>
-<h2 id="二级标题-2"><a class="markdownIt-Anchor" href="#二级标题-2"></a> 二级标题</h2>
-<h3 id="三级标题"><a class="markdownIt-Anchor" href="#三级标题"></a> 三级标题</h3>
-<h4 id="四级标题"><a class="markdownIt-Anchor" href="#四级标题"></a> 四级标题</h4>
-<h5 id="五级标题"><a class="markdownIt-Anchor" href="#五级标题"></a> 五级标题</h5>
-<h6 id="六级标题"><a class="markdownIt-Anchor" href="#六级标题"></a> 六级标题</h6>
-</blockquote>
-<h4 id="42-段落"><a class="markdownIt-Anchor" href="#42-段落"></a> 4.2 段落</h4>
-<p>段落的前后要有空行，所谓的空行是指没有文字内容。若想在段内强制换行的方式是使用<strong>两个以上</strong>空格加上回车（引用中换行省略回车）。</p>
-<h4 id="43-区块引用"><a class="markdownIt-Anchor" href="#43-区块引用"></a> 4.3 区块引用</h4>
-<p>在段落的每行或者只在第一行使用符号<code>&gt;</code>,还可使用多个嵌套引用，如：</p>
-<blockquote>
-<p>&gt; 区块引用<br />
-&gt;&gt; 嵌套引用</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p>区块引用</p>
-<blockquote>
-<p>嵌套引用</p>
-</blockquote>
-</blockquote>
-<h4 id="44-代码区块"><a class="markdownIt-Anchor" href="#44-代码区块"></a> 4.4 代码区块</h4>
-<p>代码区块的建立是在每行加上4个空格或者一个制表符（如同写代码一样）。如<br />
-普通段落：</p>
-<p>void main()<br />
-{<br />
-printf(“Hello, Markdown.”);<br />
-}</p>
-<p>代码区块：</p>
-<pre><code>void main()
-{
-    printf(&quot;Hello, Markdown.&quot;);
+<!DOCTYPE html><html lang="ch-ZN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>machine-learning 知识点总结 | Sly Li</title><meta name="description" content="引言  监督学习  根据数据集中的样本的“正确答案”，设法预测出未知数据的正确答案。 回归问题，即通过回归来推出一个连续的输出。 分类问题，对目标分类，输出离散结果。   无监督学习 对于没有分类或标签的数据集，找到其中的某种数据结构，或者将其分类。  单变量线性回归(Linear Regression with One Variable)  模型  回归问题中，输入变量只有一个，通过给定数据，"><meta name="keywords" content="machine learning,吴达恩"><meta name="author" content="Sly Li"><meta name="copyright" content="Sly Li"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/favicon.png"><link rel="canonical" href="http://slyli.cn/posts/2020-07-006.html"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta name="msvalidate.01" content="40800d7ddbfe4bc789367280a8addd52"/><meta name="baidu-site-verification" content="G9pFOrKi8Sw1jxpS"/><meta property="og:type" content="article"><meta property="og:title" content="machine-learning 知识点总结"><meta property="og:url" content="http://slyli.cn/posts/2020-07-006.html"><meta property="og:site_name" content="Sly Li"><meta property="og:description" content="引言  监督学习  根据数据集中的样本的“正确答案”，设法预测出未知数据的正确答案。 回归问题，即通过回归来推出一个连续的输出。 分类问题，对目标分类，输出离散结果。   无监督学习 对于没有分类或标签的数据集，找到其中的某种数据结构，或者将其分类。  单变量线性回归(Linear Regression with One Variable)  模型  回归问题中，输入变量只有一个，通过给定数据，"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/ml1.jpeg"><meta property="article:published_time" content="2020-07-11T10:40:54.000Z"><meta property="article:modified_time" content="2020-07-24T12:04:05.312Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
 }
-</code></pre>
-<p><strong>注意</strong>:需要和普通段落之间存在空行。</p>
-<h4 id="45-强调"><a class="markdownIt-Anchor" href="#45-强调"></a> 4.5 强调</h4>
-<p>在强调内容两侧分别加上<code>*</code>或者<code>_</code>，如：</p>
-<blockquote>
-<p>*斜体*，_斜体_<br />
-**粗体**，__粗体__</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><em>斜体</em>，<em>斜体</em><br />
-<strong>粗体</strong>，<strong>粗体</strong></p>
-</blockquote>
-<h4 id="46-列表"><a class="markdownIt-Anchor" href="#46-列表"></a> 4.6 列表</h4>
-<p>使用<code>·</code>、<code>+</code>、或<code>-</code>标记无序列表，如：</p>
-<blockquote>
-<p>-（+*） 第一项<br />
--（+*） 第二项<br />
-- （+*）第三项</p>
-</blockquote>
-<p><strong>注意</strong>：标记后面最少有一个_空格_或_制表符_。若不在引用区块中，必须和前方段落之间存在空行。</p>
-<p>效果：</p>
-<blockquote>
-<ul>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项</li>
-</ul>
-</blockquote>
-<p>有序列表的标记方式是将上述的符号换成数字,并辅以<code>.</code>，如：</p>
-<blockquote>
-<p>1 . 第一项<br />
-2 . 第二项<br />
-3 . 第三项</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<ol>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项</li>
-</ol>
-</blockquote>
-<h4 id="47-分割线"><a class="markdownIt-Anchor" href="#47-分割线"></a> 4.7 分割线</h4>
-<p>分割线最常使用就是三个或以上<code>*</code>，还可以使用<code>-</code>和<code>_</code>。</p>
-<h4 id="48-链接"><a class="markdownIt-Anchor" href="#48-链接"></a> 4.8 链接</h4>
-<p>链接可以由两种形式生成：<strong>行内式</strong>和<strong>参考式</strong>。<br />
-<strong>行内式</strong>：</p>
-<blockquote>
-<p>[younghz的Markdown库](https:😕/github.com/younghz/Markdown “Markdown”)。</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库</a>。</p>
-</blockquote>
-<p><strong>参考式</strong>：</p>
-<blockquote>
-<p>[younghz的Markdown库1][1]<br />
-[younghz的Markdown库2][2]<br />
-[1]:https:😕/github.com/younghz/Markdown “Markdown”<br />
-[2]:https:😕/github.com/younghz/Markdown “Markdown”</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库1</a><br />
-<a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库2</a></p>
-</blockquote>
-<p><strong>注意</strong>：上述的<code>[1]:https:://github.com/younghz/Markdown &quot;Markdown&quot;</code>不出现在区块中。</p>
-<h4 id="49-图片"><a class="markdownIt-Anchor" href="#49-图片"></a> 4.9 图片</h4>
-<p>添加图片的形式和链接相似，只需在链接的基础上前方加一个<code>！</code>。</p>
-<h4 id="410-反斜杠"><a class="markdownIt-Anchor" href="#410-反斜杠"></a> 4.10 反斜杠<code>\</code></h4>
-<p>相当于<strong>反转义</strong>作用。使符号成为普通符号。</p>
-<h4 id="411-符号"><a class="markdownIt-Anchor" href="#411-符号"></a> 4.11 符号’`’</h4>
-<p>起到标记作用。如：</p>
-<blockquote>
-<p>`ctrl+a`</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><code>ctrl+a</code></p>
-</blockquote>
-<h4 id="5-谁在用"><a class="markdownIt-Anchor" href="#5-谁在用"></a> 5. <em>谁</em>在用？</h4>
-<p>Markdown的使用者：</p>
-<ul>
-<li>GitHub</li>
-<li>简书</li>
-<li>Stack Overflow</li>
-<li>Apollo</li>
-<li>Moodle</li>
-<li>Reddit</li>
-<li>等等</li>
-</ul>
-<h4 id="6-尝试一下"><a class="markdownIt-Anchor" href="#6-尝试一下"></a> 6. 尝试一下</h4>
-<ul>
-<li><strong>Chrome</strong>下的插件诸如<code>stackedit</code>与<code>markdown-here</code>等非常方便，也不用担心平台受限。</li>
-<li><strong>在线</strong>的dillinger.io评价也不错</li>
-<li><strong>Windowns</strong>下的MarkdownPad也用过，不过免费版的体验不是很好。</li>
-<li><strong>Mac</strong>下的Mou是国人贡献的，口碑很好。</li>
-<li><strong>Linux</strong>下的ReText不错。</li>
-</ul>
-<p><strong>当然，最终境界永远都是笔下是语法，心中格式化 😃。</strong></p>
-<hr />
-<p><strong>注意</strong>：不同的Markdown解释器或工具对相应语法（扩展语法）的解释效果不尽相同，具体可参见工具的使用说明。<br />
-虽然有人想出面搞一个所谓的标准化的Markdown，[没想到还惹怒了健在的创始人John Gruber]<br />
-(<a href="http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/" target="_blank" rel="noopener">http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/</a> )。</p>
-<hr />
-<p>以上基本是所有traditonal markdown的语法。</p>
-<h3 id="其它"><a class="markdownIt-Anchor" href="#其它"></a> 其它：</h3>
-<p>列表的使用(非traditonal markdown)：</p>
-<p>用<code>|</code>表示表格纵向边界，表头和表内容用<code>-</code>隔开，并可用<code>:</code>进行对齐设置，两边都有<code>:</code>则表示居中，若不加<code>:</code>则默认左对齐。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">代码库</th>
-<th>链接</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">MarkDown</td>
-<td><a href="https://github.com/younghz/Markdown" target="_blank" rel="noopener" title="Markdown">https://github.com/younghz/Markdown</a></td>
-</tr>
-<tr>
-<td style="text-align:center">MarkDownCopy</td>
-<td><a href="https://github.com/younghz/Markdown" target="_blank" rel="noopener" title="Markdown">https://github.com/younghz/Markdown</a></td>
-</tr>
-</tbody>
-</table>
-<p>关于其它扩展语法可参见具体工具的使用说明。</p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>butterfly修改</title>
-    <url>/posts/2020-07-003.html</url>
-    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
-<h3 id="评论"><a class="markdownIt-Anchor" href="#评论"></a> 评论</h3>
-<p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br />
-如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
-<pre><code>---
-title: butterfly修改
-date: 2020-07-05 21:11:42
-comments: false
----
-</code></pre>
-<h3 id="valine评论添加qq提醒"><a class="markdownIt-Anchor" href="#valine评论添加qq提醒"></a> valine评论添加QQ提醒</h3>
-<p>butterfly主题把下列js代码修改后添加到butterfly.yml中的inject后面就好了。<br />
-其他的需要将下列代码添加到一个位置，使每个有valine评论的页面有下列代码。</p>
-<div class="note warning">
-            <p>要先加Qmsg酱为好友。</p>
-          </div>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var title2&#x3D;&quot;msg&#x3D;您的博客又有新评论啦~ \n&quot;;</span><br><span class="line">var SCKEY_Qmsg&#x3D;&quot; &quot;;</span><br><span class="line">function send_valine_Qmsg()&#123;</span><br><span class="line">    var pagename&#x3D;document.title;</span><br><span class="line">    var wz&#x3D;pagename.indexOf(&#39;|&#39;);</span><br><span class="line">    var res&#x3D;pagename.substring(0,wz);</span><br><span class="line">    var pageurl&#x3D;document.URL;</span><br><span class="line">    var ptime&#x3D;new Date();</span><br><span class="line">    var vnick&#x3D;document.getElementsByClassName(&quot;vnick vinput&quot;)[0].value;</span><br><span class="line">    var vmail&#x3D;document.getElementsByClassName(&quot;vmail vinput&quot;)[0].value;</span><br><span class="line">    var vlink&#x3D;document.getElementsByClassName(&quot;vlink vinput&quot;)[0].value;</span><br><span class="line">    var veditor&#x3D;document.getElementsByClassName(&quot;veditor vinput&quot;)[0].value;</span><br><span class="line">    var data&#x3D;&quot;昵称：&quot;+vnick+&quot;\n邮箱：&quot;+vmail+&quot;\n网站地址：&quot;+vlink+&quot;\n当前页面：&quot;+pagename+&quot;\n评论内容：&quot;+veditor+&quot;\n跳转链接：&quot;+pageurl+&quot;\n评论时间：&quot;+ptime.toLocaleString();</span><br><span class="line">    var httpRequest &#x3D; new XMLHttpRequest();</span><br><span class="line">    httpRequest.open(&#39;POST&#39;,SCKEY_Qmsg, true); </span><br><span class="line">    httpRequest.setRequestHeader(&quot;Content-type&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;);</span><br><span class="line">    httpRequest.send(title2+data);</span><br><span class="line">&#125;;</span><br><span class="line">var ValineButton&#x3D;document.getElementsByClassName(&quot;vsubmit vbtn&quot;)[0];</span><br><span class="line">ValineButton.onclick&#x3D;send_valine_Qmsg;</span><br></pre></td></tr></table></figure>
-<p>SCKEY_Qmsg设置为Qmsg酱的接口地址。<br />
-转自<a href="https://www.zyskys.com/posts/bd75.html" target="_blank" rel="noopener">零奇</a></p>
-<h3 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h3>
-<p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，</p>
-<div class="note warning">
-            <p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
-          </div>
-<h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3>
-<p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
-<h3 id="引入katex"><a class="markdownIt-Anchor" href="#引入katex"></a> 引入Katex</h3>
-<p>使用时需要在<code>front-matter</code>里加入： <code>katex: true</code><br />
-具体使用方法见<a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">katex</a>。</p>
-<h3 id="subtitle"><a class="markdownIt-Anchor" href="#subtitle"></a> Subtitle</h3>
-<p>主页面的subtitle，在设置 <code>source : 3</code> 的 <a href="http://yijuzhan.com/" target="_blank" rel="noopener">一句</a> 接口时出现了https错误。</p>
-<pre><code>Mixed Content: xxx This request has been blocked; the content must be served over HTTPS.
-</code></pre>
-<p>原因是在HTTPS页面中引入了HTTP的资源，解决方案实在页面头部插入</p>
-<pre><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;upgrade-insecure-requests&quot;&gt;
-</code></pre>
-<p>可以在 <code>butterfly.yml</code> 找到<code>inject:head</code>,在后面加入上述代码即可。</p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
-    <url>/posts/2020-07-002.html</url>
-    <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
-<h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg2.png" alt="解压" /></p>
-<h3 id="解压完成后会将所有文件默认放入同目录下的output文件中"><a class="markdownIt-Anchor" href="#解压完成后会将所有文件默认放入同目录下的output文件中"></a> 解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3>
-<h3 id="想要了解更多可以查看源仓库-notscuffedrepkg说明"><a class="markdownIt-Anchor" href="#想要了解更多可以查看源仓库-notscuffedrepkg说明"></a> 想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>wallpapper engine</tag>
-        <tag>github</tag>
-        <tag>steam</tag>
-        <tag>repkg</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>machine-learning 知识点总结</title>
-    <url>/posts/2020-07-006.html</url>
-    <content><![CDATA[<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="基于雷达探测技术和stm32平台的自动避障智能车" href="http://slyli.cn/posts/2020-07-007.html"><link rel="next" title="全国大学生智能汽车竞赛记录" href="http://slyli.cn/posts/2020-07-005.html"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6facd0f053c5c32a56f404f1655089bb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: true,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/avatar.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">11</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">22</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> Game</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text"> 引言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习"><span class="toc-number">1.1.</span> <span class="toc-text"> 监督学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无监督学习"><span class="toc-number">1.2.</span> <span class="toc-text"> 无监督学习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单变量线性回归linear-regression-with-one-variable"><span class="toc-number">2.</span> <span class="toc-text"> 单变量线性回归(Linear Regression with One Variable)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型"><span class="toc-number">2.1.</span> <span class="toc-text"> 模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代价函数"><span class="toc-number">2.2.</span> <span class="toc-text"> 代价函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降算法"><span class="toc-number">2.3.</span> <span class="toc-text"> 梯度下降算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多变量线性回归linear-regression-with-multiple-variables"><span class="toc-number">3.</span> <span class="toc-text"> 多变量线性回归(Linear Regression with Multiple Variables)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#特征缩放"><span class="toc-number">3.1.</span> <span class="toc-text"> 特征缩放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正规方程"><span class="toc-number">3.2.</span> <span class="toc-text"> 正规方程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑回归logistic-regression"><span class="toc-number">4.</span> <span class="toc-text"> 逻辑回归(Logistic Regression)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分类问题"><span class="toc-number">4.1.</span> <span class="toc-text"> 分类问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#假说表示"><span class="toc-number">4.2.</span> <span class="toc-text"> 假说表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代价函数-2"><span class="toc-number">4.3.</span> <span class="toc-text"> 代价函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多类别分类一对多"><span class="toc-number">4.4.</span> <span class="toc-text"> 多类别分类：一对多</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则化regularization"><span class="toc-number">5.</span> <span class="toc-text"> 正则化(Regularization)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#过拟合的问题"><span class="toc-number">5.1.</span> <span class="toc-text"> 过拟合的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代价函数-3"><span class="toc-number">5.2.</span> <span class="toc-text"> 代价函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#神经网络表述neural-networks-representation"><span class="toc-number">6.</span> <span class="toc-text"> 神经网络：表述(Neural Networks: Representation)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型表示"><span class="toc-number">6.1.</span> <span class="toc-text"> 模型表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例子and"><span class="toc-number">6.2.</span> <span class="toc-text"> 例子：AND</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#神经网络的学习neural-networks-learning"><span class="toc-number">7.</span> <span class="toc-text"> 神经网络的学习(Neural Networks: Learning)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#反向传播算法bp"><span class="toc-number">7.1.</span> <span class="toc-text"> 反向传播算法（bp）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度检验"><span class="toc-number">7.2.</span> <span class="toc-text"> 梯度检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#随机初始化"><span class="toc-number">7.3.</span> <span class="toc-text"> 随机初始化</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/ml1.jpeg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Sly Li</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> Game</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">machine-learning 知识点总结</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-07-11 18:40:54"><i class="far fa-calendar-alt fa-fw"></i> Created 2020-07-11</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-07-24 20:04:05"><i class="fas fa-history fa-fw"></i> Updated 2020-07-24</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>Word count:</span><span class="word-count">4.3k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>Reading time: 18 min</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"><span class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>Comments:</span><a href="/posts/2020-07-006.html#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/posts/2020-07-006.html" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
 <h3 id="监督学习"><a class="markdownIt-Anchor" href="#监督学习"></a> 监督学习</h3>
 <ul>
 <li>根据数据集中的样本的“正确答案”，设法预测出未知数据的正确答案。</li>
@@ -469,688 +259,34 @@ comments: false
 <p>如果我们令所有的初始参数都为0，这将意味着我们第二层的所有激活单元都会有相同的值。同理，如果我们初始所有的参数都为一个非0的数，结果也是一样的。</p>
 <p>我们通常初始参数为正负ε之间的随机值。</p>
 <p><code>关于理论知识的学习暂告一段落</code></p>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>machine learning</tag>
-        <tag>吴达恩</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>伽马兽王</title>
-    <url>/posts/2020-07-004.html</url>
-    <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b00.png" alt="兽王" /></p>
-<h3 id="加点"><a class="markdownIt-Anchor" href="#加点"></a> 加点</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b17.png" alt="bd" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b18.png" alt="bd" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b19.png" alt="bd" /></p>
-<h3 id="装备"><a class="markdownIt-Anchor" href="#装备"></a> 装备</h3>
-<div class="note success no-icon">
-            <p>没有dlc，以下只有本体中的武器。<br />攻击类武器受福统一选择 生命值低于50%时，造成额外150%辐射伤害，配合压血神器。</p>
-          </div>
-<h4 id="君王"><a class="markdownIt-Anchor" href="#君王"></a> 君王</h4>
-<p><strong>步枪</strong>，当前版本混10不刮痧的枪，子弹散射，近距离好用，基拉夫特掉落。</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b01.png" alt="君王" /></p>
-<h4 id="射弹循环"><a class="markdownIt-Anchor" href="#射弹循环"></a> 射弹循环</h4>
-<p><strong>散弹枪</strong>，发射后会在敌人之间弹射，在敌人多的时候很好用，每当发出的攻击多一种元素时该枪会多射出一发子弹，配合盾雷失效附加额外元素伤害使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b02.png" alt="射弹循环" /></p>
-<h4 id="瘟疫传播者"><a class="markdownIt-Anchor" href="#瘟疫传播者"></a> 瘟疫传播者</h4>
-<p><strong>重型武器</strong>，高伤害，发射前需要蓄力。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b03.png" alt="瘟疫传播者" /></p>
-<h4 id="梅尔加尼的爆发"><a class="markdownIt-Anchor" href="#梅尔加尼的爆发"></a> 梅尔加尼的爆发</h4>
-<p><strong>工具枪</strong>，过热后发射易伤弹，配合飞龙+1受福，用来触发盾雷技能失效受福。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b04.png" alt="梅尔加尼的爆发" /></p>
-<h4 id="考桑"><a class="markdownIt-Anchor" href="#考桑"></a> 考桑</h4>
-<p><strong>冲锋枪</strong>，单体伤害，射速快。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b05.png" alt="考桑" /></p>
-<h4 id="沙鹰"><a class="markdownIt-Anchor" href="#沙鹰"></a> 沙鹰</h4>
-<p><strong>狙击枪</strong>，与其说是狙击枪，更像散弹枪，子弹微散射，远距离也可使用，射速极快，兽王来说子弹根本不够用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b06.png" alt="沙鹰" /></p>
-<h4 id="备胎"><a class="markdownIt-Anchor" href="#备胎"></a> 备胎</h4>
-<p><strong>重型武器</strong>，不用蓄力，伤害还不错。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b07.png" alt="备胎" /></p>
-<h4 id="头脑风暴者"><a class="markdownIt-Anchor" href="#头脑风暴者"></a> 头脑风暴者</h4>
-<p><strong>散弹枪</strong>，多弹片工具枪，可以利用加点中的被动<code>清点人数</code>有效的缩短主动技能的冷却时间。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b08.png" alt="头脑风暴者" /></p>
-<h4 id="不可饶恕"><a class="markdownIt-Anchor" href="#不可饶恕"></a> 不可饶恕</h4>
-<p><strong>手枪</strong>，工具枪，有高额的暴击伤害，配和高伤、弹速慢的武器切枪使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b09.png" alt="不可饶恕" /></p>
-<h4 id="变形金刚"><a class="markdownIt-Anchor" href="#变形金刚"></a> 变形金刚</h4>
-<p><strong>护盾</strong>，免疫电属性伤害并吸收为护盾，受福选择技能失效附加额外属性伤害。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b11.png" alt="变形金刚" /></p>
-<h4 id="赤红之牙"><a class="markdownIt-Anchor" href="#赤红之牙"></a> 赤红之牙</h4>
-<p><strong>模组</strong>，伽马爆发时嘲讽所有敌人，伽马流<code>核心</code>装备，不可缺少，属性看自己选择。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b12.png" alt="赤红之牙" /></p>
-<h4 id="六角"><a class="markdownIt-Anchor" href="#六角"></a> 六角</h4>
-<p><strong>手雷</strong>，受福选择技能失效附加额外属性伤害。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b13.png" alt="六角" /></p>
-<h4 id="吹雪不死"><a class="markdownIt-Anchor" href="#吹雪不死"></a> 吹雪不死</h4>
-<p><strong>神器</strong>，吹雪可以提高滑铲速度，跑路快；不死可以是自己保留<code>1</code>点生命值，用来触发武器受福<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b14.png" alt="吹雪不死" /></p>
-<h4 id="吹雪胜利突袭"><a class="markdownIt-Anchor" href="#吹雪胜利突袭"></a> 吹雪胜利突袭</h4>
-<p><strong>神器</strong> 备用神器，不采用压血流时使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b10.png" alt="吹雪胜利突袭" /></p>
-<h3 id="玩法"><a class="markdownIt-Anchor" href="#玩法"></a> 玩法</h3>
-<p>伽马兽王应该时兽王职业中最安逸的流派了，伽马爆发时儿子的全图嘲讽可以给兽王提供良好的输出环境，输出时配合切飞龙，可以大幅提高伤害。技能冷却时，配合头脑风暴/射弹循环可以迅速使下一次技能准备就绪，然后继续输出。</p>
-]]></content>
-      <categories>
-        <category>games</category>
-      </categories>
-      <tags>
-        <tag>伽马兽王</tag>
-        <tag>borderlands3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小说网站爬虫</title>
-    <url>/posts/2020-07-010.html</url>
-    <content><![CDATA[<pre><code>import requests
-from bs4 import BeautifulSoup
-import re
-import os
-
-# 本脚本无普适性，请具体网站具体分析
-root = ''  # 文章首页链接
-art_id = ''  # 文章链接id
-
-fname = './txts/'+art_id[5:-1]+'.txt'
-encode = 'gbk'
-
-
-def GetAllSection(root, id):
-    r = requests.get(root + id)
-    r.encoding = encode
-    bs = BeautifulSoup(r.text, 'html.parser')
-    url_a = bs.find_all('a')
-    urls = []
-    for u in url_a:
-        href = u.get('href')
-        if href and re.match(id, href):
-            urls.append(root+href)
-
-    del urls[0]
-    return urls
-
-
-def SaveArticle(root, id, fname):
-    i = 1
-    urls = GetAllSection(root, id)
-    for url in urls:
-        r = requests.get(url)
-        r.encoding = encode
-        bs = BeautifulSoup(r.text, 'html.parser')
-        text = bs.find_all('p')[1].text
-        text = text.replace('\xa0', ' ')
-        text = text.replace('\ufffd', ' ')
-        text = text.replace('\n\r\n', '\n')
-        with open(fname, 'a', encoding=encode) as file:
-            if i == 1:
-                file.write(bs.h1.text+'\n')
-                i = 0
-            file.write(text+'\n')
-
-
-if __name__ == &quot;__main__&quot;:
-    SaveArticle(root, art_id, fname)
-    # print(fname)
-</code></pre>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>全国大学生智能汽车竞赛记录</title>
-    <url>/posts/2020-07-005.html</url>
-    <content><![CDATA[<h3 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h3>
-<p>18年下半年，也就是我大三的上半学期，是第二年的全国大学生智能汽车竞赛的校内报名时间。同学来邀请我参加，我也想做点东西，就一起参加了。我们一组三人，自己主要负责相关代码的编写。</p>
-<h3 id="准备"><a class="markdownIt-Anchor" href="#准备"></a> 准备</h3>
-<p>报名后就临近放假了，而且当时课程还挺多的，就没怎么准备，最后放假前拿着参赛的摄像头去学校实验室跑道上采集了下赛道数据,一边自己在寒假的时候开始准备，写写如何处理。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/path.jpg" alt="path" /></p>
-<p>采集回来的赛道信息就是这样的二进制黑白图，每一列是一部分的采集变化图，就在整个过程中随意截取了几段，（黑色：1、白色：0）。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/graph.png" alt="path" /></p>
-<h3 id="过程"><a class="markdownIt-Anchor" href="#过程"></a> 过程</h3>
-<h4 id="首先让小车跑起来"><a class="markdownIt-Anchor" href="#首先让小车跑起来"></a> 首先让小车跑起来</h4>
-<p>简单来说就是用单片机生成pwm给驱动板来驱动电机和舵机。最开始可以给一个固定的值让小车直接往前走。</p>
-<h4 id="提取赛道的中线让小车巡中线前进"><a class="markdownIt-Anchor" href="#提取赛道的中线让小车巡中线前进"></a> 提取赛道的中线，让小车巡中线前进</h4>
-<p>整个赛道在单片机看来就是上图所示的0和1，所以0和1的分界线就是赛道的边界。首先将整个边界提取出来，（左边界+右边界）/2 就基本上是赛道的中线了，然后小车巡中线前进即可。思路：给不同高度的中线上的不同点以不同的权值，加权计算出来后得到一个中点的位置，然后将这个终点与摄像头的中点比较，看偏差的位置和多少，然后再给舵机不同的打角方向和幅度。每次都是按照这个中点来前进，整个流程下来就是按照中线前进了。</p>
-<h4 id="十字路口"><a class="markdownIt-Anchor" href="#十字路口"></a> 十字路口</h4>
-<p>这是个老元素了，首先得判断出来这是个十字路口，过程中要注意和圆环元素的区别，我判断的依据是两边边界的边线都在某个高度丢失。然后需要对十字路口进行补线，先找到边界丢失的拐角处，对于丢线的部分可以按照未丢线部分的斜率延长边线。当然还有其他方法，我在这就不说了。</p>
-<h4 id="圆环"><a class="markdownIt-Anchor" href="#圆环"></a> 圆环</h4>
-<p>这也是个老元素了，同样首先要判断出来这是圆环，可以使用电磁信号辅助判断。然后进行各种补线使小车进去一次圆环后出来，并且不再进这个圆环。我的方法是一个阶段一个阶段的进行判断、补线、判断、 补线。。。直到完成整个元素，具体的我就不在这里详细描述了。</p>
-<h4 id="断路"><a class="markdownIt-Anchor" href="#断路"></a> 断路</h4>
-<p>这个简单，直接巡电磁线前进就好了，注意的的进短路前要减速，因为小车尺寸限制，前瞻不能很长，所以短路转弯速度快了容易冲出去。</p>
-<h4 id="路障"><a class="markdownIt-Anchor" href="#路障"></a> 路障</h4>
-<p>我们使用的超声波配合摄像头一起识别，识别到后可以固定打角出去，然后定时，再固定打角回来。这是一种比较简单而且速度快的方法，但是参数不太好调。另外可以在侧面装一个摄像头，识别到后，系统切换到侧面的摄像头，然后按照摄像头采集的赛道边线数据前进。这种方法可能速度比较慢，但是稳定性较好，我们是这两种都完成了，摄像头的方案留作备用，在省赛决赛时，路障前后直道的长度较短，备用方法很有效。</p>
-<h4 id="结束"><a class="markdownIt-Anchor" href="#结束"></a> 结束</h4>
-<p>各个元素处理完后，就开始了漫长的调参优化过程了，由于组员没有用过Git，所以我们代码都是以QQ群的方式共享的。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/code2.png" alt="code1" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/code1.png" alt="code2" /></p>
-<p>最后放一段主循环的代码吧。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">while (1)</span><br><span class="line">    &#123;</span><br><span class="line">        GearSelect();</span><br><span class="line">        CameraGetImg(&amp;buff, img, cam_type);</span><br><span class="line">        LCD_Img_Binary_Z(site, size, buff, imgsize);</span><br><span class="line">        ReadADC();</span><br><span class="line">        stop &#x3D; 0;</span><br><span class="line">        if (Stop() &#x3D;&#x3D; 1 &amp;&amp; road_type !&#x3D; OBSTALE &amp;&amp; in_obs &#x3D;&#x3D; 0) &#x2F;&#x2F;(Stop() &#x3D;&#x3D; 1 || distance &lt; 20)</span><br><span class="line">        &#123;</span><br><span class="line">            road_type &#x3D; STOP;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (road_type &#x3D;&#x3D; STOP &amp;&amp; Stop() &#x3D;&#x3D; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            if (LengthOfX(40, img) &gt; 15)</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; NORMAL;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; ELECTROMAGNETIC;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        switch (road_type)</span><br><span class="line">        &#123;</span><br><span class="line">        case NORMAL:</span><br><span class="line">            roundabout_flag &#x3D; 0;</span><br><span class="line">            road_flag &#x3D; GetMiddleLine(img, mid_line, left_line, right_line, &amp;roundabout_flag);</span><br><span class="line">            stop &#x3D; StartLine(img);</span><br><span class="line">            if (road_flag &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line">                distance1 &#x3D; GetUltrasnoic();</span><br><span class="line">                distance &#x3D; GetUltrasnoic();</span><br><span class="line">                if (speed_param.obs_pit &#x3D;&#x3D; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    distance +&#x3D; 100;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (distance &lt; 1100 &amp;&amp; distance &gt; 500 &amp;&amp; distance1 &lt; 1150 &amp;&amp; distance1 &gt; 500)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (speed_param.obs_pit &#x3D;&#x3D; 1)</span><br><span class="line">                    &#123;</span><br><span class="line">                        set_vector_handler(PIT3_VECTORn, PIT3_IRQHandler);</span><br><span class="line">                        ave_speed &#x3D; AveSpeed();</span><br><span class="line">                        &#x2F;&#x2F; 定时后的固定速度</span><br><span class="line">                        duty &#x3D; 725 + 0.09 * (ave_speed);</span><br><span class="line">                        uint32 pit_time &#x3D; 275 - 0.1 * ave_speed;</span><br><span class="line">                        pit_init_ms(PIT3, pit_time);</span><br><span class="line">                        enable_irq(PIT3_IRQn);</span><br><span class="line">                        road_type &#x3D; OBSTALE;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        cam_type &#x3D; SUB_CAM;</span><br><span class="line">                        delay &#x3D; speed_param.switch_delay;</span><br><span class="line">                        road_type &#x3D; OBSTALE;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (road_flag &#x3D;&#x3D; 2)</span><br><span class="line">            &#123;</span><br><span class="line">                delay &#x3D; speed_param.switch_delay-10;</span><br><span class="line">                road_type &#x3D; ELECTROMAGNETIC;</span><br><span class="line">                MotorLpid(0);</span><br><span class="line">                MotorRpid(0);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            for (int q &#x3D; 0; q &lt; HEIGHT; q++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (mid_line[q] &lt; WIDTH)</span><br><span class="line">                    LCD_point((Site_t)&#123;(int)(mid_line[q] * 1.6), (int)(q * 1.6)&#125;, RED);</span><br><span class="line">            &#125;</span><br><span class="line">            for (int q &#x3D; 0; q &lt; HEIGHT; q++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (left_line[q] &lt; WIDTH)</span><br><span class="line">                    LCD_point((Site_t)&#123;(int)(left_line[q] * 1.6), (int)(q * 1.6)&#125;, BLUE);</span><br><span class="line">            &#125;</span><br><span class="line">            for (int q &#x3D; 0; q &lt; HEIGHT; q++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (right_line[q] &lt; WIDTH)</span><br><span class="line">                    LCD_point((Site_t)&#123;(int)(right_line[q] * 1.6), (int)(q * 1.6)&#125;, BLUE);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            error &#x3D; Error(mid_line);</span><br><span class="line">            far_error &#x3D; FarError(mid_line);</span><br><span class="line"></span><br><span class="line">            if (roundabout_flag &gt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                if (AveSpeed() &gt; 580)</span><br><span class="line">                &#123;</span><br><span class="line">                    speed_param.speed -&#x3D; 100;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(speed_param.func_error_control!&#x3D;NULL)</span><br><span class="line">            &#123;</span><br><span class="line">              speed_param.func_error_control(error, far_error, mid_line);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            Steerpid(error);</span><br><span class="line"></span><br><span class="line">            if (mid_line[HEIGHT] &gt; HEIGHT - 5)</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; STOP;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (stop &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line">                MotorStop();</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (error &lt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.speed + speed_param.speed_error * error);</span><br><span class="line">                    MotorRpid(speed_param.speed);</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.speed);</span><br><span class="line">                    MotorRpid(speed_param.speed - speed_param.speed_error * error);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        case ELECTROMAGNETIC:</span><br><span class="line">            stop &#x3D; StartLine(img);</span><br><span class="line">            error_elect &#x3D; ADCControl(delay);</span><br><span class="line">            if (delay &gt; 0)</span><br><span class="line">            &#123;   </span><br><span class="line">              if(error_elect&lt;0) &#x2F;&#x2F;向右转弯</span><br><span class="line">              &#123;</span><br><span class="line">                 MotorLpid(100);</span><br><span class="line">                 MotorRpid(100+200 * error_elect);   </span><br><span class="line">              &#125;else</span><br><span class="line">              &#123;</span><br><span class="line">                 MotorLpid(100- 200 * error_elect);</span><br><span class="line">                 MotorRpid(100 );   </span><br><span class="line">              &#125;</span><br><span class="line">                delay--;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (stop &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line">                MotorStop();</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (speed_param.elec_speed &gt; 300)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (error_elect &lt; 0)</span><br><span class="line">                    &#123;</span><br><span class="line">                        MotorLpid(speed_param.elec_speed);</span><br><span class="line">                        MotorRpid(speed_param.elec_speed + speed_param.speed_error * error_elect);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        MotorLpid(speed_param.elec_speed - speed_param.speed_error * error_elect);</span><br><span class="line">                        MotorRpid(speed_param.elec_speed);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.elec_speed);</span><br><span class="line">                    MotorRpid(speed_param.elec_speed);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (LengthOfX(40, img) &gt; 25)</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; NORMAL;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        case OBSTALE:</span><br><span class="line">            if (speed_param.obs_pit &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line"></span><br><span class="line">                if (in_obs++ &gt; 60)</span><br><span class="line">                &#123;</span><br><span class="line">                    in_obs &#x3D; 0;</span><br><span class="line">                    road_type &#x3D; STOP;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                SteerDuty(duty);</span><br><span class="line">                if (obs_delay &gt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    obs_delay--;</span><br><span class="line">                &#125;</span><br><span class="line">                if (duty &#x3D;&#x3D; 700 &amp;&amp; obs_delay &#x3D;&#x3D; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    duty &#x3D; 685;</span><br><span class="line">                &#125;</span><br><span class="line">                if (duty &#x3D;&#x3D; 685 &amp;&amp; RetUsual(img) &#x3D;&#x3D; 1 &amp;&amp; LengthOfX(66, img) &gt; 15 &amp;&amp; in_obs &gt; 20)</span><br><span class="line">                &#123;</span><br><span class="line">                    in_obs &#x3D; 0;</span><br><span class="line">                    road_type &#x3D; NORMAL;</span><br><span class="line">                &#125;</span><br><span class="line">                &#x2F;&#x2F;全固定</span><br><span class="line">                MotorLpid(500);</span><br><span class="line">                MotorRpid(500);</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (CamProsObstale(img, side_line) &#x3D;&#x3D; 1)</span><br><span class="line">                &#123;</span><br><span class="line">                    road_type &#x3D; NORMAL;</span><br><span class="line">                    cam_type &#x3D; MAIN_CAM;</span><br><span class="line">                &#125;</span><br><span class="line">                if (delay &gt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(50);</span><br><span class="line">                    MotorRpid(50);</span><br><span class="line">                    delay--;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.obs_speed);</span><br><span class="line">                    MotorRpid(speed_param.obs_speed);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            break;</span><br><span class="line">        case STOP:</span><br><span class="line">            MotorStop();</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="各个阶段调车记录"><a class="markdownIt-Anchor" href="#各个阶段调车记录"></a> 各个阶段调车记录</h3>
-<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"video":{"url":"https://coding-net-production-file-1257242599.cos.ap-shanghai.myqcloud.com/b9b13c00-c5c9-11ea-904f-93cfd70074a2.mp4?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDay83lFmaS6Y4LTdzMVO1SdZOyJSNOYpr%26q-sign-time%3D1594728110%3B1594731710%26q-key-time%3D1594728110%3B1594731710%26q-header-list%3D%26q-url-param-list%3Dresponse-content-disposition%3Bresponse-expires%26q-signature%3Dade2f7796d0941ee0ad24645813c9de0a1d4ca2e&response-content-disposition=attachment%3Bfilename%3Dschool.mp4&response-expires=Fri%2C%2017%20Jul%202020%2000%3A01%3A50%20GMT"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
-<h3 id="小车成品"><a class="markdownIt-Anchor" href="#小车成品"></a> 小车成品</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/car1.jpg" alt="car" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/car2.jpg" alt="car" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/car3.jpg" alt="car" /></p>
-<h3 id="安徽省赛"><a class="markdownIt-Anchor" href="#安徽省赛"></a> 安徽省赛</h3>
-<p>我们这次比赛在安徽省是由淮南联合大学承办的。说到这必须得吐槽一下了，7月份，选择铁皮房做比赛场地，一个大的比赛场地只有角落有几台空调之外也就算了，竟然还限制队员进场人数。</p>
-<h4 id="参赛证"><a class="markdownIt-Anchor" href="#参赛证"></a> 参赛证</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/record2.png" alt="code1" /></p>
-<h4 id="决赛视频"><a class="markdownIt-Anchor" href="#决赛视频"></a> 决赛视频</h4>
-<p>从其他地方找到的我们车的视频。</p>
-<div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"video":{"url":"https://coding-net-production-file-1257242599.cos.ap-shanghai.myqcloud.com/04b2bdf0-c5ca-11ea-904f-93cfd70074a2.mp4?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDay83lFmaS6Y4LTdzMVO1SdZOyJSNOYpr%26q-sign-time%3D1594728222%3B1594731822%26q-key-time%3D1594728222%3B1594731822%26q-header-list%3D%26q-url-param-list%3Dresponse-content-disposition%3Bresponse-expires%26q-signature%3D39bae28fffd8cb0d711c225af69c139a79c4c385&response-content-disposition=attachment%3Bfilename%3Danhui.mp4&response-expires=Fri%2C%2017%20Jul%202020%2000%3A03%3A42%20GMT"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
-<h4 id="成绩"><a class="markdownIt-Anchor" href="#成绩"></a> 成绩</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/record1.png" alt="code1" /></p>
-<h3 id="国赛"><a class="markdownIt-Anchor" href="#国赛"></a> 国赛</h3>
-<p>这次国赛在山东大学（威海）举办的，不得不说威海的气候确实舒服啊，夏天夜晚海风迎面吹来，清凉却不潮湿。</p>
-<h4 id="参赛证-2"><a class="markdownIt-Anchor" href="#参赛证-2"></a> 参赛证</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/record4.png" alt="code1" /></p>
-<h4 id="决赛视频-2"><a class="markdownIt-Anchor" href="#决赛视频-2"></a> 决赛视频</h4>
-<div id="dplayer2" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer2"),"video":{"url":"https://coding-net-production-file-1257242599.cos.ap-shanghai.myqcloud.com/04c42310-c5ca-11ea-904f-93cfd70074a2.mp4?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDay83lFmaS6Y4LTdzMVO1SdZOyJSNOYpr%26q-sign-time%3D1594728226%3B1594731826%26q-key-time%3D1594728226%3B1594731826%26q-header-list%3D%26q-url-param-list%3Dresponse-content-disposition%3Bresponse-expires%26q-signature%3Dc82ad6b1505e1f9ea4283c57cb68358c58e05002&response-content-disposition=attachment%3Bfilename%3Dweihai.mp4&response-expires=Fri%2C%2017%20Jul%202020%2000%3A03%3A46%20GMT"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
-<h4 id="成绩-2"><a class="markdownIt-Anchor" href="#成绩-2"></a> 成绩</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/record3.png" alt="code1" /></p>
-<h3 id="遇到的问题"><a class="markdownIt-Anchor" href="#遇到的问题"></a> 遇到的问题</h3>
-<ol>
-<li>有段时间调车的时候会偶尔遇到卡死的问题，小调试屏也是白屏。开始以为是硬件接触不好的问题，就没在意，后面出现情况多了之后才开始重视，查找问题原因，一直耽搁了几天才找出来，用的是注释大法 hhhh。最后原因是<code>while循环</code>的问题，跳出循环的条件有点漏洞，导致while循环可能运行到一个未定义的状况，导致循环一直跳不出来。</li>
-</ol>
-<h3 id="总结与其他"><a class="markdownIt-Anchor" href="#总结与其他"></a> 总结与其他</h3>
-<ol>
-<li>这次比赛对我来说确实是一次十分有用的经历，在准备的过程中学到了很多真实有用的东西，增加了自己的技能，不管是找工作还是什么，使没有多少内容的简历增加了点可写的项目。</li>
-<li>遗憾的是，当时我们队伍里三人都是大三的，而且都是准备考研的，所以在省赛之后的一段时间内，一直是一边准备考研一边准备比赛的，没能全力以赴在国赛中获得一个令人满意的成绩。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>HFUT</tag>
-        <tag>全国大学生智能汽车竞赛</tag>
-        <tag>恩智浦杯</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于雷达探测技术和stm32平台的自动避障智能车</title>
-    <url>/posts/2020-07-007.html</url>
-    <content><![CDATA[<p>对于毕业设计，我最初的构想就是，首先要有一个能够无线控制移动的小车，然后在小车上面搭载一个激光雷达，激光雷达工作返回的数据都通过无线传输到计算机上面，然后计算机可视化显示雷达数据并且能够同时定位和生成地图。之后我们可以给定目标点，自动规划合理的行驶路径，小车自动行驶到目标点。</p>
-<h2 id="整体结构"><a class="markdownIt-Anchor" href="#整体结构"></a> 整体结构</h2>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp1.png" alt="框图" /></p>
-<p>总体结构包括：电机模块、L289N驱动模块、STM32F407单片机模块、激光雷达模块、ESP8266WIFI模块和PC上位机模块。</p>
-<ul>
-<li>电机模块：该模块用来实现小车的各种移动功能。在本系统在电机模块采用了4个12V的直流减速电机。</li>
-<li>L289N驱动模块：该模块用来接收单片机发出的PWM(Pulse width modulation脉冲宽度调试)信号，并据此来控制电机的旋转速度和旋转方向。</li>
-<li>STM32F407单片机模块：该模块是小车下位机的主要控制芯片，用来连接各个模块并发出相应的控制指令。可以控制电机转速进行移动、接收雷达数据、通过WIFI模块连接PC上位机等。</li>
-<li>激光雷达模块：该模块相当于此系统中的眼睛，用于观测周围环境识别障碍。本课题中采用的是SLAMTEC公司的RPLIDAR A1型号的激光雷达。</li>
-<li>ESP8266WIFI模块：该模块用来建立单片机与PC上位机之间的TCP连接，并实现二者之间的高速数据传输。</li>
-<li>PC上位机模块：该模块首先可以接收到激光雷达通过无线传输过来的数据，对数据解析后进行可视化显示。然后根据这些雷达数据可以同时生成地图和定位小车在地图中的位置。并且可以选择目的地，规划好路径后可以自动发送控制信号，控制小车绕过障碍移动到目的地。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp2.png" alt="实物图" /></li>
-</ul>
-<h2 id="激光雷达"><a class="markdownIt-Anchor" href="#激光雷达"></a> 激光雷达</h2>
-<p>本系统中我们采用的是中采用的是SLAMTEC公司的RPLIDAR A1型号的激光雷达，如下所示。</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp3.png" alt="雷达" /><br />
-对RPLIDAR的命令一般有如图所示格式：<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp4.png" alt="命令格式" /><br />
-每个请求报文均以0xA5为固定开始，RPLIDAR也将这个标志作为一个新命令的开始。常用的RPLIDAR指令如表所示：</p>
-<table>
-<thead>
-<tr>
-<th>命令名</th>
-<th>值</th>
-<th>负载</th>
-<th>应答模式</th>
-<th>RPLIDAR执行操作</th>
-<th>支持固件版本</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>STOP</td>
-<td>0x25</td>
-<td>无</td>
-<td>无应答</td>
-<td>离开扫描采样模式，进入空闲模式</td>
-<td>1.0</td>
-</tr>
-<tr>
-<td>RESET</td>
-<td>0x40</td>
-<td>无</td>
-<td>无应答</td>
-<td>测距核心软重启</td>
-<td>1.0</td>
-</tr>
-<tr>
-<td>SCAN</td>
-<td>0x20</td>
-<td>无</td>
-<td>多次应答</td>
-<td>请求进入扫描采样状态</td>
-<td>1.0</td>
-</tr>
-<tr>
-<td>EXPRESS_SCAN</td>
-<td>0x82</td>
-<td>有</td>
-<td>多次应答</td>
-<td>请求进入扫描采样状态，并工作在最高采样频率下</td>
-<td>1.17</td>
-</tr>
-<tr>
-<td>FORCE_SCAN</td>
-<td>0x21</td>
-<td>无</td>
-<td>多次应答</td>
-<td>请求进入扫描采样状态，强制数据输出</td>
-<td>1.0</td>
-</tr>
-<tr>
-<td>GET_INFO</td>
-<td>0x50</td>
-<td>无</td>
-<td>单次应答</td>
-<td>获取设备序列号等信息</td>
-<td>1.0</td>
-</tr>
-<tr>
-<td>GET_HEALTH</td>
-<td>0x52</td>
-<td>无</td>
-<td>单次应答</td>
-<td>获取设备健康状态</td>
-<td>1.0</td>
-</tr>
-<tr>
-<td>GET_SAMPLERATE</td>
-<td>0x59</td>
-<td>无</td>
-<td>单次应答</td>
-<td>获取单词激光测距的用时</td>
-<td>1.17</td>
-</tr>
-<tr>
-<td>GET_LIDAR_CONF</td>
-<td>0x84</td>
-<td>有</td>
-<td>单次应答</td>
-<td>按地址获取雷达配置信息</td>
-<td>1.24</td>
-</tr>
-</tbody>
-</table>
-<p>本系统中我们使用如下命令<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp5.png" alt="命令" /></p>
-<p>当RPLIDAR没有其他工作时，单片机发送的该命令后，RPLIDAR将开始进入扫描测距模式。每个获得测距数据都会以应答报文的形式返回给单片机。如果RPLIDAR之间就在扫描测距模式运作，那么它会首先停止该工作，并重新开始新一轮的扫描测距采样工作。当RPLIDAR在停机状态时，所有的外部请求命令都会被忽略。如果RPLIDAR接收到该请求命令后立即返回了起始应答报文，这表明RPLIDAR接收了该请求并且进入了扫描测距模式，之后RPLIDAR将会不间断的发送采集到的数据给单片机，直到单片机发出新的命令或者RPLIDAR出现故障。<br />
-RPLIDAR会将扫描测距获得的采样点数据通过下图所示的结构作为应答报文发送至单片机。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp6.png" alt="数据格式" /></p>
-<p>其中各个字段的定义及含义如下：</p>
-<ul>
-<li>S是扫描的起始标志位，S=1时代表激光雷达开始了新一圈的扫描。</li>
-<li>是S的取反， =！S，可以作为一种确定开始新一圈扫描数据的检验。</li>
-<li>C是检验为，它的值永远为1，可用于检测该报文是否发生错误和进行数据校验。</li>
-<li>Quality是采样点的质量，它与激光雷达接收到的信号的质量相关。</li>
-<li>angle_q6是扫描点相对于激光雷达朝向的夹角，实际的角度为angle_q6/64.0 Deg。</li>
-<li>distance_q2是扫描点和激光雷达之间的距离，无效点的距离为0，实际距离的值为distance_q2/4.0 mm。</li>
-</ul>
-<p>在C#中，我们可以使用如下代码对返回的数据进行处理，转化成可以的数据。</p>
-<pre><code>//byte b[5] 激光雷达返回的一个扫描点的信息
-angle = (double)(((b[2] &lt;&lt; 7) | (b[1] &gt;&gt; 1)) / 64.0);
-distance = (double)(((b[4] &lt;&lt; 8) | b[3])/4.0);
-quality = b[0] &gt;&gt; 2;
-start = Convert.ToBoolean(b[0] &amp; 0x01);
-check = ((b[1] &amp; 0x01) == 0x01 &amp;&amp; (b[0] &amp; 0x01) != ((b[0] &gt;&gt; 1) &amp; 0x01));
-</code></pre>
-<p>关于雷达的其他各种详细信息请到思岚的网站上下载http://www.slamtec.com/cn/Support#rplidar-a-series</p>
-<h2 id="esp8266"><a class="markdownIt-Anchor" href="#esp8266"></a> ESP8266</h2>
-<div class="note warning">
-            <p>在于电脑连接时，如果收到不消息，很有可能是自己电脑防火墙的问题。</p>
-          </div>
-<p>ESP8266支持多种工作模式。<br />
-STA模式：ESP8266模块可以连接到路由器或者任意其他WIFI可以连接上的网络设备上。<br />
-AP模式：ESP8266模块作为WIFI热点，其他设备可以连接到此模式下的ESP8266模块，可以实现电脑或者手机于设备直接通信，完成局域网控制。<br />
-STA+AP模式：上述两种模式的共存。</p>
-<p>我们使用STA模式，笔记本电脑做热点，ESP8266连接到笔记本电脑上并开启透传。</p>
-<pre><code>//设置工作模式 1：station模式   2：AP模式  3：兼容 AP+station模式
-Esp8266_Send_Cmd(&quot;AT+CWMODE=1&quot;);
-
-//让Wifi模块重启的命令
-Esp8266_Send_Cmd(&quot;AT+RST&quot;);
-Esp8266_Send_Data(&quot;+++&quot;);
-delay_ms(1000);					//等待500ms太少 要1000ms才可以退出
-
-//让模块连接上自己的路由
-Esp8266_Send_Cmd(&quot;AT+CWJAP=\&quot;wifi\&quot;,\&quot;00000000\&quot;&quot;);
-delay_ms(200);   
-
-//=0：单路连接模式     =1：多路连接模式
-Esp8266_Send_Cmd(&quot;AT+CIPMUX=0&quot;);
-delay_ms(200);   
-
-//是否开启透传模式  0：表示关闭 1：表示开启透传
-Esp8266_Send_Cmd(&quot;AT+CIPMODE=1&quot;);
-delay_ms(200);   
-//建立TCP连接  这四项分别代表了 要连接的ID号0~4   连接类型  远程服务器IP地址   远程服务器端口号
-Esp8266_Send_Cmd(&quot;AT+CIPSTART=\&quot;TCP\&quot;,\&quot;192.168.137.1\&quot;,8888&quot;);
-delay_ms(200);  
-//透传模式下 开始发送数据的指令 这个指令之后就可以直接发数据了
-Esp8266_Send_Cmd(&quot;AT+CIPSEND&quot;);
-delay_ms(200);   
-</code></pre>
-<h2 id="连接建立"><a class="markdownIt-Anchor" href="#连接建立"></a> 连接建立</h2>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp7.png" alt="建立流程" /></p>
-<p>对于上位机来说，首先要开启WIFI热点，使下位机有连接的前提，然后我们需要初始化TCP服务器，建立一个新线程并且时刻监听相应的IP地址和端口，若此时有下位机请求建立连接，与对应的下位机建立TCP连接，此时二者之间就可以开始收发数据了。</p>
-<p>一般来说上位机接收到的数据基本都是激光雷达通过单片机返回的激光雷达数据，首先我们需要对数据进行验证，然后再进行处理。</p>
-<p>上位机发送数据时，为了保证命令的可靠和安全性，每次发送的命令最开始都会上0xF0，0x0F两个字节的标志位，用来区分是上位机的命令还是其他的数据。上位机发送命令最常用的就是控制下位机移动的命令，在本课题中，我们用单个字符作为移动控制命令，即q、w、e、a、s、d、z、x、c,分别控制下位机进行左转、前进、右转、左移、后退、右移、原地左转、停止、原地右转。</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp8.png" alt="控制" /></p>
-<h2 id="雷达数据解析"><a class="markdownIt-Anchor" href="#雷达数据解析"></a> 雷达数据解析</h2>
-<p>完成雷达数据的解析之后，便可以将雷达数据可视化的显示到上位机的界面上了。因解析的扫描点数据是以极坐标形式存在的，我们首先需要将它们转化成笛卡尔坐标的形式。</p>
-<pre><code>$x = d \times sin \left( \theta \right)$
-$y = d \times cos \left( \theta \right)$
-</code></pre>
-<p>转化后的坐标是以雷达的坐标点为原点存在的，x表示的是扫描点和雷达之间在x轴上的距离，x为正值表示此点在雷达的右侧，负值为左侧，y同理。然后只需要将这些点通过为位图的方式显示出来即可，具体效果如下：</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp9.png" alt="控制" /></p>
-<p>红色三角形是智能车的位置，红色三角形所指向的方向就是激光雷达的正向，也就是激光雷达夹角为0的方向。周围的黑色点集就是激光雷达扫描一圈后返回的点集的角度和距离信息的可视化显示。上位机每获取激光雷达返回一圈数据就刷新一次位图，这样上位机就能实时的显示雷达所采集回来的数据了。</p>
-<h2 id="slam"><a class="markdownIt-Anchor" href="#slam"></a> SLAM</h2>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp10.png" alt="SLAM" /></p>
-<p>首先我们要对整个系统初始化，主要包括对系统的全局地图、当前位姿、智能车移动路径（位姿变化过程）、栅格地图更新要求、栅格地图边界尺寸、栅格地图单元方块大小、包括角度和距离的搜索分辨率以及最小的位姿更新要求等。设置当前坐标为初始坐标，也就是原点，当前方向为雷达的正方向。<br />
-当雷达获取到一组数据时，首先将其从极坐标转化成笛卡尔坐标，然后判断当前获得的数据是否是第一组获得的数据，如果是则更新全局地图，否则进行下一步，这个更新全局地图就是将这一组数据作为最初的全局地图的数据。</p>
-<p>然后判断整个系统是否需要更新栅格地图，判断依据是智能车移动的距离是否满足栅格地图更新的最小要求。若需要更新栅格地图，先将这些数据从局部坐标由当前位姿转化成全局坐标：</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi><mi>x</mi><mo>=</mo><mi>x</mi><mo>∗</mo><mi>c</mi><mi>o</mi><mi>s</mi><mo stretchy="false">(</mo><mi>p</mi><mi>θ</mi><mo stretchy="false">)</mo><mo>+</mo><mi>y</mi><mo>∗</mo><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>p</mi><mi>θ</mi><mo stretchy="false">)</mo><mo>+</mo><mi>p</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">wx = x*cos(p\theta) + y*sin(p\theta) + px</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.6597200000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">x</span></span></span></span><br />
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi><mi>y</mi><mo>=</mo><mi>x</mi><mo>∗</mo><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>p</mi><mi>θ</mi><mo stretchy="false">)</mo><mo>+</mo><mi>y</mi><mo>∗</mo><mi>c</mi><mi>o</mi><mi>s</mi><mo stretchy="false">(</mo><mi>p</mi><mi>θ</mi><mo stretchy="false">)</mo><mo>+</mo><mi>p</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">wy = x*sin(p\theta) + y*cos(p\theta) + py</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.6597200000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span></p>
-<p>其中px、py、pθ是智能车在全局地图中的坐标和方向，x、y是当前数据在局部地图中的点的坐标，wx、wy是转化成后的点在全局地图中的坐标。然后由这些坐标生成一个全局地图内的矩形区域，这个区域再加上栅格地图的边界大小生成一个更大的矩形区域，然后将处于这个区域内的全局地图提取出来，再根据预先定义的栅格单元大小生成栅格占用地图，记为A。栅格占用地图就是：若在一个栅格单元内存在提取出来的地图的任意一个点，则此栅格单元就被占用，相当于将原地图的分辨率降低，可以极大提高运算效率。然后将此栅格占用地图通过距离变换转化成栅格占用距离矩阵C，其中每个被占用的栅格单元的值为0，未被占用的栅格单元的值为此栅格单元到最近的被占用的栅格单元的距离。</p>
-<p>下一步就是要进行位姿预测，进行位姿预测时，我们将当前位姿与上一位姿的差值作为下一位姿和当前位姿的差值，这样可以直接得出预测位姿，使用这种方法进行预测的位姿最大的好处就是直观和简单。</p>
-<p>之后需要进行的是根据栅格占用距离矩阵进行预测位姿的优化工作，具体方法是使用搜索分辨率，以预测位姿为起点，对各个方向及各个方向上的不同距离进行遍历，生成一个新的预测位姿。然后将当前的扫描数据点集通过这个新的预测位姿生成一个新的栅格占用矩阵B，计算栅格占用矩阵B和栅格占用地图A之间的距离：</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></msubsup><mi>C</mi><mo stretchy="false">[</mo><mi>Y</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo separator="true">,</mo><mi>X</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">d=\sum\limits_{i=1}^m C[Y[i],X[i]]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.329066em;vertical-align:-0.9776689999999999em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3513970000000004em;"><span style="top:-2.122331em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.0000050000000003em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop op-symbol small-op">∑</span></span></span><span style="top:-3.950005em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9776689999999999em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">]</span></span></span></span></p>
-<p>其中d是二者之间的距离，X为当前扫描点集生成的占用矩阵B中被占用的单元横坐标集合，同理Y是纵坐标集合。在遍历完成后，选择一个距离最小的预测位姿作为最佳预测位姿，若在遍历过程中没有找到最佳预测位姿，可以选择减小搜索分辨率。</p>
-<p>在完成预测位姿的优化之后就需要更新全局地图和位姿，在更新之前要先判断预测的位姿是否正确。方法是计算预测位姿于当前位姿的差值，若差值中的距离或者角度超过一定范围，这表明此次预测的位姿是无效的，不应使用。否则进行位姿和全局地图的更新。位姿的更新是把预测位姿变成当前位姿然后加入到位姿变化也就是移动轨迹中。对于全局地图的更新，先将当前扫描点集依据更新的当前位姿转化成全局坐标的点集，判断这些点集在栅格地图中占用的闪个单元是否在全局地图中提取的栅格占用地图A中也被占用，若有则忽略此点，否则将这些转化成全局坐标的点加入到全局地图中，完成全局地图的更新。</p>
-<p>最后将生成的地图和智能车移动路径在上位机的界面上显示，例如在卧室内进行智能车移动和地图生成的结果如图所示：</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp11.png" alt="SLAM" /></p>
-<p>其中红色的点形成的曲线是智能车的移动轨迹，每个点都是移动过程的中的一个姿态。在最外层黑色的部分是未探索的区域，内部白色的区域是已探索完成，没有障碍可以移动的区域。黑色部分和白色部分的交界处是墙壁或者其他的障碍物，是无法移动越过去的。</p>
-<p>参考https://github.com/meyiao/LaserSLAM</p>
-<h2 id="路径规划"><a class="markdownIt-Anchor" href="#路径规划"></a> 路径规划</h2>
-<p>A<em>算法又称AStar算法，是一种在平面区域内，找到两个节点之间绕过障碍的低成本路径的方法。它被广泛的用于各种游戏的人物的寻路。严格上来说A</em>算法找到路径并不是最短路径，它的主要目标是尽可能快速度的找到通过目标节点的路径。</p>
-<p>A*算法是启发式的搜索，也就是说从起点开始，它对自己周围的位置进行评估，选择一个到达终点的最好的位置，然后在从这个最好的位置开始搜索，直到找到移动到终点。</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp12.png" alt="astar" /></p>
-<p>首先初始化开启列表和关闭列表，并将开始节点加入到开启列表中。先检测开启列表是否可用，若不可用则表明找不到通往目的地的路径，算法结束。</p>
-<p>若可用则查找开启列表中是否含有终点，如果没有在开启列表中找到终点，遍历开启列表中的所有节点，找到其中代价最小的节点，将其移动到关闭列表中并设置为当前节点。然后对于当前节点周围的8个节点，先将不在地图范围内的、障碍不可通过的和已经在关闭列表中的点排除。计算剩余节点的代价。</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mo>=</mo><mi>G</mi><mo>+</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">F=G+H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">G</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span></span></span></span></p>
-<p>其中F代表当前节点从此节点经过到达终点的距离，G为从当前节点移动到此节点的花费，H为从此节点移动到终点的距离。若此节点不在开启列表中，将其直接加入开启列表并将此节点的父节点设置为当前节点，否则将此次计算的代价与原有的代价比较，若大于原有代价，则不进行任何操作，否则更新此节点的代价和它的父节点。然后返回继续检测开启列表是否可用。</p>
-<p>若在开启列表中找到了终点，这表明已经找到了起始节点到终点的路径，接下来需要找到此路径，我们从终点开始，依次查找节点的父节点，最终会找到一条通往开始节点的路径，这条路径就是我们找到的路径。最后将此路径逆序返回，算法结束。</p>
-<p>在本课题中应用此算法时，我们不能直接套用，需要对相关的输入数据做一定的修改。主要有两个原因，一是原算法是理想中的模型，生成的路径是一连串的点的集合，在绕过障碍的路径规划中，规划好的路径会很有可能紧贴着障碍，而由算法指导进行移动的实际平台是有一定大小的，这显然不可取；另一个是当智能车按照规划的路径移动时，很难完全按照原始路径移动，移动过程中势必会有偏差，若路径靠近障碍物，很容易造成设备损坏。为解决这些问题，我们需要对地图障碍进行放大，具体操作是找到障碍与可以自由移动区域分界线，将这一分界线向自由移动区域移动一定范围，将移动后的分界线与原分界线的区域填充为障碍等不可到达的区域，这样在实际应用是，即使规划的路径紧贴障碍，在实际的地图中移动时也会留有一定的空间。</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp13.png" alt="astar" /></p>
-<p>首先红色的点形成的轨迹是用于生成地图时智能车的运动轨迹，轨迹的最后一个点是智能车在地图中的当前位置，我们将它作为进行路径规划的起点。我们分别选择了两个不同的点作为终点，首先对于右边的终点，两者之间没有任何障碍，故生成了从起点到终点的一条直线路径，显示的蓝色的直线。而对于左边的终点，二者之间是由障碍阻挡的，不能直接去往终点，需要在进行路径规划时绕过障碍，就像图中左边的折线一样，这条路径绕过障碍，而且与障碍之间还有一定的间隔，用来保证智能车在按照这个路径前进的时候不会撞到障碍。</p>
-<h2 id="循迹"><a class="markdownIt-Anchor" href="#循迹"></a> 循迹</h2>
-<p>所以对于自动避障行驶功能的实现，我们只需要使智能车按照规划好的路径移动即可。</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp14.png" alt="astar" /></p>
-<p>首先我们要得到规划好的路径图，之后遍历路径中的所有点，找到一个与智能车当前位置距离最近的点，要求每次找到的距离最近的点都应该在上次找到的距离最近的点与终点的那一段路径之中，这就保证了智能车不会往反向移动。然后计算当前找到的距离最近的点与终点之间的距离，判断是否达到目的地，若没有，根据这个点在路径中选择一个局部目标点，并朝这个局部目标点前进，对于局部目标点的选择，我们可以直接使用这个距离最近的点往终点方向前进一段距离的点。对于朝目标点移动，我们可以根据当前智能车的朝向与局部目标点相对于智能车当前位置的方向，选择相应的移动模式，从而达到朝向目标点移动的目的。</p>
-<p>移动之后我们需要重新获取智能车的当前位置，这一点我们可以由之前的SLAM算法传递给我们，获得位置后，我们需要再次在路径中找到距离当前位置最近点，然后判断是否到达了终点，持续重复这个过程直到到达目的地，至此算法结束，完成自动避障行驶。</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp15.png" alt="astar" /></p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp16.png" alt="astar" /></p>
-<p>红色的点形成的线条是小车的移动轨迹，蓝色的点形成的线条是规划的路径。在实验开始前我们需要首先生成地图，生成地图的过程就是我们令小车随机移动的过程，是在图中就是那些不在蓝色线条周围的红点形成的不规则线条。我们选择了起点和终点之间没有障碍的两个点，蓝色线条左上方为起点，右下方位终点，蓝色线条就是从起点到终点之间规划的路径。我们可以看到在蓝色线条附近有一条由红点形成的贴近蓝色线条的不规则曲线，这些红点就是智能车从起点到终点按照规划的路径行驶时到达过的位置。可以看到起点和终点之间是有障碍的，规划的路径绕开了起点和终点之间的障碍，智能车的行驶轨迹也随着路径自动绕开了障碍。</p>
-<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
-<p>本课题的下位机硬件部分，根据我们需要实现的功能，首先要选择需要的模块和器件。其中主要包括激光雷达、WIFI模块、主控芯片STM32F407单片机和麦克纳姆轮车模。想要使用这些模块并将它们组合成具有一定功能的小车，需要清楚他们各个模块的原理，还要清楚如何使用程序使它们协同配合，一起完成功能。完成各个模块的选择后，需要对这些模块进行组装和电路上的连接。对于电路的连接，尽量选择插线法，相对于直接焊接，插线具有良好的可拓展性和容错性。在连接完成进行硬件调试时，遇到了各种各样的奇怪问题。其中最难解决并且印象最深的问题就是激光雷达莫名不工作的问题，经过各方面检查和查阅各种资料后，最后了解到由于激光雷达和单片机共用一个电源电路，激光雷达导致单片机的供电电压电流不稳定，又返回来向激光雷达发送了一些奇怪的命令，导致激光雷达进入了保护模式从而停止工作。<br />
-本课题的上位机部分，主要需要实现的功能有，首先要完成与下位机的无线连接，能够进行数据传输和指令交互，然后需要对激光雷达返回的数据进行解析和显示，然后根据这些数据完成对下位机周围地图的构建，同时需要完成对下位机在地图中进行定位，最后就是完成从下位机当前位置完成到自由选择的目的终点的路径规划，进行路径规划时尤其要注意对障碍的躲避，之后便由上位机自动控制下位机按照指定的路径前进。在实现这些功能的过程中，不可避免的遇到了很多的问题，经过测试、调试都一一解决了，最后成功实现的所需要的功能，达到了预期的效果，成功的完成了毕业设计的工作。</p>
-<p>由于毕业设计时间和经费有限，因此整个系统还有许多可以优化和改进的地方，比如可以对SLAM算法的精确度和速度做进一步优化，可以选择精度、稳定性和速度更好的激光雷达，选择性能更好的WIFI模块，从而提升整个系统精确度和稳定性。<br />
-识。</p>
-<h2 id="对于演示视频之后如能找到好用的视频解决方案再上传"><a class="markdownIt-Anchor" href="#对于演示视频之后如能找到好用的视频解决方案再上传"></a> 对于演示视频，之后如能找到好用的视频解决方案再上传。</h2>
-]]></content>
-      <categories>
-        <category>C#</category>
-      </categories>
-      <tags>
-        <tag>HFUT</tag>
-        <tag>C</tag>
-        <tag>STM32</tag>
-        <tag>RPLIDAR A1 激光雷达</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>线性回归 python实现</title>
-    <url>/posts/2020-07-008.html</url>
-    <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
-<pre><code>import numpy as np
-from matplotlib import pyplot as plt
-# 线性回归
-# X是矩阵，每一行是一组输入数据；theta是列向量；y也是列向量
-def ComputeCost(X, y, theta):
-    m = len(y)
-    J = 0
-    t = np.dot(X, theta)-y
-    J = np.dot(t.T, t)/(2*m)
-    return J
-
-# 计算代价函数
-# alpaa是学习率；num_iters是迭代次数
-def GradientDescent(X, y, theta, alpha, num_iters):
-    m = len(y)
-    n = len(theta)
-    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
-    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
-
-    for i in range(num_iters):  # 遍历迭代次数
-        h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
-        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
-        theta = temp[:, i]
-        J_history[i] = ComputeCost(X, y, theta)  # 调用计算代价函数
-        # print(J_history[i])
-    return theta, J_history
-
-def featureNormaliza(X):
-    X_norm = np.array(X)  # 将X转化为numpy数组对象，才可以进行矩阵的运算
-    # 定义所需变量
-    mu = np.zeros((1, X.shape[1]))
-    sigma = np.zeros((1, X.shape[1]))
-    mu = np.mean(X_norm, 0)          # 求每一列的平均值（0指定为列，1代表行）
-    sigma = np.std(X_norm, 0)        # 求每一列的标准差
-    for i in range(X.shape[1]):     # 遍历列
-        X_norm[:, i] = (X_norm[:, i]-mu[i])/sigma[i]  # 归一化
-    return X_norm, mu, sigma
-
-# 逻辑回归
-if __name__ == &quot;__main__&quot;:
-    alpha = 0.01
-    num_iters = 400
-
-    # 取消归一化需要的参数
-    #alpha = 0.0000001
-    #num_iters = 4000
-
-    data = np.loadtxt('data.txt', delimiter=',', dtype=np.float64)
-    X = data[:, 0:-1]
-    y = data[:, -1].reshape(-1, 1)
-    X, mu, s = featureNormaliza(X)
-    #plt.scatter(X_norm[:, 0], X_norm[:, 1])
-    # plt.show()
-    X = np.hstack((np.ones((X.shape[0], 1)), X))
-    theta = np.zeros((X.shape[1], 1))
-    theta, J_history = GradientDescent(X, y, theta, alpha, num_iters)
-
-    x = np.arange(1, num_iters+1)
-    plt.plot(x, J_history)
-    plt.show()
-</code></pre>
-<p>虽然算法理解起来不算很难，等到了自己动手是实现的时候还是有很多问题的。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>machine learning</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>c++学习</title>
-    <url>/posts/2020-07-009.html</url>
-    <content><![CDATA[<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
-<p>虚函数是指一个类中你希望重写(override)的成员函数，当你用一个基类指针或引用,指向一个继承类对象的时候，调用一个虚函数时, 实际调用的是继承类的版本。</p>
-<pre><code>class Animal {
-public :
-    void  Print()
-    { 
-        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
-    }
-};
-class Dog: public Animal
-{
-public:
-    void  Print() 
-    {
-        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
-    }
-private:
-};
-int main(int argc, char** argv)
-{
-    Animal* d = new Dog();
-    d-&gt;Print();
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Sly Li</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://slyli.cn/posts/2020-07-006.html">http://slyli.cn/posts/2020-07-006.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/machine-learning/">machine learning</a><a class="post-meta__tags" href="/tags/%E5%90%B4%E8%BE%BE%E6%81%A9/">吴达恩</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/default.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/2020-07-007.html"><img class="prev-cover" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp2.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">基于雷达探测技术和stm32平台的自动避障智能车</div></div></a></div><div class="next-post pull-right"><a href="/posts/2020-07-005.html"><img class="next-cover" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/car1.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">全国大学生智能汽车竞赛记录</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/posts/2020-07-008.html" title="线性回归 python实现"><img class="relatedPosts_cover" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/default.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-21</div><div class="relatedPosts_title">线性回归 python实现</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var requestSetting = function (from,set) {
+  var from = from
+  var setting = set.split(',').filter(function(item){
+  return from.indexOf(item) > -1
+  });
+  setting = setting.length == 0 ? from :setting;
+  return setting
 }
-</code></pre>
-<p>没有使用<code>virtual</code>时，函数的输出的是<code>Animal</code></p>
-<pre><code>class Animal {
-public :
-    virtual void  Print()
-    { 
-        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
-    }
-};
-class Dog: public Animal
-{
-public:
-    void  Print() 
-    {
-        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
-    }
-private:
-};
-int main(int argc, char** argv)
-{
-    Animal* d = new Dog();	
-    d-&gt;Print();
-}
-</code></pre>
-<p>使用<code>virtual</code>后，函数的输出是<code>Dog</code></p>
-<p>没有使用virtual之前，C++对成员函数使用静态绑定，函数的调用地址在运行前就已经固定。不考虑指针指向的内容，对于什么类型的指针就调用什么类型的函数。<br />
-对于虚函数，每个派生类对象都有一个指向虚函数表的指针，访问任何虚函数都是间接通过这个指针进行的，之所以要用虚函数表，是因为调用一个虚函数的哪个版本是在运行过程（调用时指针所指的对象）才能确定的（动态绑定）。</p>
-<div class="note warning">
-            <p>因此特性，若基类的析构函数是non-virtual的，容易造成局部销毁，导致资源泄漏。非常危险。</p>
-          </div>
-<h3 id="const"><a class="markdownIt-Anchor" href="#const"></a> <code>const</code></h3>
-<ul>
-<li>
-<p>const在指针左边时，指针指向的内容是const。</p>
-</li>
-<li>
-<p>const在指针右边时，指针是const指针</p>
-</li>
-<li>
-<p>当const在函数名前面的时候修饰的是函数返回值。</p>
-</li>
-<li>
-<p>在函数名后面表示是常成员函数，该函数不能修改对象内的任何成员的值，如果需要修改，要在变量前面加<code>mutable</code>关键字。</p>
-</li>
-<li>
-<p>事实上，在某种条件下，<code>const</code>仍可能被修改，可见Effective C++ P22。</p>
-</li>
-</ul>
-<h3 id="others"><a class="markdownIt-Anchor" href="#others"></a> Others</h3>
-<ol>
-<li>
-<p>C++规定，对象的成员变量的初始化动作发生在进入构造函数本体之前。</p>
-</li>
-<li>
-<p>类内成员变量总是以其声明顺序被初始化，</p>
-</li>
-<li>
-<p>C++对于不同编译单元（源文件）的non-local static（文件内，所有函数以外的定义的对象）对象的初始化顺序无明确定义。为了避免这个问题，可以通过函数调用的方式（返回一个local static对象），将non-local static对象改为函数内部的static对象。</p>
-</li>
-<li>
-<p>构造函数最好使用成员初值列赋值。</p>
-<pre><code> Construct():value1(),value2(),value3(){}
-</code></pre>
-</li>
-<li>
-<p>C++编译器会自动给空类创建构造函数、赋值函数和析构函数。（当这些函数被调用时）</p>
-<pre><code> class Empty{};
-</code></pre>
-<p>等价于</p>
-<pre><code> class Empty
- {
-     public:
-         Empty(){...}
-         Empty(const Empty&amp; rhs){...}
-         ~Empty(){...}
 
-         Empty&amp; operator=(const Empty&amp; rhs){...}
- }
-</code></pre>
-</li>
-</ol>
-<p>想要阻止这一自动创建，可以将这些函数声明为<code>private</code>，并且故意不实现他们。</p>
-<ol start="6">
-<li></li>
-</ol>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客说明</title>
-    <url>/posts/2020-07-001.html</url>
-    <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
-<p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
-<h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
-<h3 id="创建一个新的文章或页面"><a class="markdownIt-Anchor" href="#创建一个新的文章或页面"></a> 创建一个新的文章或页面</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] [title]</span><br></pre></td></tr></table></figure>
-<h4 id="布局layout"><a class="markdownIt-Anchor" href="#布局layout"></a> 布局（Layout）</h4>
-<p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
-<pre><code>布局	路径
-post	source/_posts
-page	source
-draft	source/_drafts
-</code></pre>
-<h4 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h4>
-<p>创建一个标题为exp的文章，默认布局为post，在命令中可以省略。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new exp</span><br></pre></td></tr></table></figure>
-<p>创建一个名为exp的页面。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new page exp</span><br></pre></td></tr></table></figure>
-<h3 id="本地运行服务器可以在localhost4000中查看"><a class="markdownIt-Anchor" href="#本地运行服务器可以在localhost4000中查看"></a> 本地运行服务器，可以在<a href="http://localhost:4000" target="_blank" rel="noopener">localhost:4000</a>中查看</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<h3 id="重新渲染博客"><a class="markdownIt-Anchor" href="#重新渲染博客"></a> 重新渲染博客</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
-<h3 id="将项目更新到github-pages上"><a class="markdownIt-Anchor" href="#将项目更新到github-pages上"></a> 将项目更新到GitHub Pages上</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo doc</a></p>
-<h3 id="git的使用"><a class="markdownIt-Anchor" href="#git的使用"></a> git的使用</h3>
-<h4 id="git初始化仓库"><a class="markdownIt-Anchor" href="#git初始化仓库"></a> git初始化仓库</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
-<h4 id="git添加到缓冲区"><a class="markdownIt-Anchor" href="#git添加到缓冲区"></a> git添加到缓冲区</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add *</span><br></pre></td></tr></table></figure>
-<h4 id="git提交改动"><a class="markdownIt-Anchor" href="#git提交改动"></a> git提交改动</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">"msg"</span></span><br></pre></td></tr></table></figure>
-<h4 id="git推送到远程仓库"><a class="markdownIt-Anchor" href="#git推送到远程仓库"></a> git推送到远程仓库</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
-<h4 id="如果没有远程仓库可以先添加"><a class="markdownIt-Anchor" href="#如果没有远程仓库可以先添加"></a> 如果没有远程仓库，可以先添加</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin server</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-</search>
+var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+window.valine = new Valine({
+  el:'#vcomment',
+  appId: 'a6SkEWr1cDgiFLXRdcU3DkUn-gzGzoHsz',
+  appKey: 'LaMtrAthbpM4HvRmTUUilSbo',
+  placeholder: '昵称框输入QQ号自动获取必填信息~',
+  avatar: 'monsterid',
+  meta: guestInfo,
+  pageSize: '10',
+  lang: 'zh-CN',
+  recordIP: true,
+  serverURLs: '',
+  emojiCDN: '',
+  emojiMaps: "",
+  enableQQ: true,
+  requiredFields: requiredFields
+});</script></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Sly Li</div><div class="footer_custom_text">All Right Reserved</div><div class="icp"><a href="http://beian.miit.gov.cn/" target="_blank" rel="noopener"><img class="icp-icon" src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/icp.png"/><span>皖ICP备17005781号-1</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button id="readmode" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="font_plus" title="Increase Font Size"><i class="fas fa-plus"></i></button><button id="font_minus" title="Decrease Font Size"><i class="fas fa-minus"></i></button><button class="translate_chn_to_cht" id="translateLink" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="scroll_to_comment fas fa-comments"></i></a><button class="close" id="mobile-toc-button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><script type="text/javascript"> var title2="msg=哥哥~~ 您的博客又有新评论啦~   ฅ(๑ ̀ㅅ ́๑)ฅ \n"; var SCKEY_Qmsg="https://qmsg.zendee.cn:443/send/ce2e5ff5e06719f8e3e96f3ab08aed67"; function send_valine_Qmsg(){ var pagename=document.title; var wz=pagename.indexOf('|'); var res=pagename.substring(0,wz); var pageurl=document.URL; var ptime=new Date(); var vnick=document.getElementsByClassName("vnick vinput")[0].value; var vmail=document.getElementsByClassName("vmail vinput")[0].value; var vlink=document.getElementsByClassName("vlink vinput")[0].value; var veditor=document.getElementsByClassName("veditor vinput")[0].value; var data="昵称："+vnick+"\n邮箱："+vmail+"\n网站地址："+vlink+"\n当前页面："+pagename+"\n评论内容："+veditor+"\n跳转链接："+pageurl+"\n评论时间："+ptime.toLocaleString(); var httpRequest = new XMLHttpRequest(); httpRequest.open('POST',SCKEY_Qmsg, true); httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded"); httpRequest.send(title2+data); }; var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0]; if(ValineButton!=null) ValineButton.onclick=send_valine_Qmsg; </script>
+<script type="text/javascript"> (function(){ var bp = document.createElement('script'); var curProtocol = window.location.protocol.split(':')[0]; if (curProtocol === 'https') { bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'; } else { bp.src = 'http://push.zhanzhang.baidu.com/push.js'; } var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(bp, s); })(); </script></body></html>
