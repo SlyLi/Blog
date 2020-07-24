@@ -481,6 +481,68 @@ int main(int argc, char** argv)
       </tags>
   </entry>
   <entry>
+    <title>小说网站爬虫</title>
+    <url>/posts/2020-07-010.html</url>
+    <content><![CDATA[<pre><code>import requests
+from bs4 import BeautifulSoup
+import re
+import os
+
+# 本脚本无普适性，请具体网站具体分析
+root = ''  # 文章首页链接
+art_id = ''  # 文章链接id
+
+fname = './txts/'+art_id[5:-1]+'.txt'
+encode = 'gbk'
+
+
+def GetAllSection(root, id):
+    r = requests.get(root + id)
+    r.encoding = encode
+    bs = BeautifulSoup(r.text, 'html.parser')
+    url_a = bs.find_all('a')
+    urls = []
+    for u in url_a:
+        href = u.get('href')
+        if href and re.match(id, href):
+            urls.append(root+href)
+
+    del urls[0]
+    return urls
+
+
+def SaveArticle(root, id, fname):
+    i = 1
+    urls = GetAllSection(root, id)
+    for url in urls:
+        r = requests.get(url)
+        r.encoding = encode
+        bs = BeautifulSoup(r.text, 'html.parser')
+        text = bs.find_all('p')[1].text
+        text = text.replace('\xa0', ' ')
+        text = text.replace('\ufffd', ' ')
+        text = text.replace('\n\r\n', '\n')
+        with open(fname, 'a', encoding=encode) as file:
+            if i == 1:
+                file.write(bs.h1.text+'\n')
+                i = 0
+            file.write(text+'\n')
+
+
+if __name__ == &quot;__main__&quot;:
+    SaveArticle(root, art_id, fname)
+    # print(fname)
+</code></pre>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>machine-learning 知识点总结</title>
     <url>/posts/2020-07-006.html</url>
     <content><![CDATA[<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
@@ -647,68 +709,6 @@ int main(int argc, char** argv)
       <tags>
         <tag>machine learning</tag>
         <tag>吴达恩</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小说网站爬虫</title>
-    <url>/posts/2020-07-010.html</url>
-    <content><![CDATA[<pre><code>import requests
-from bs4 import BeautifulSoup
-import re
-import os
-
-# 本脚本无普适性，请具体网站具体分析
-root = ''  # 文章首页链接
-art_id = ''  # 文章链接id
-
-fname = './txts/'+art_id[5:-1]+'.txt'
-encode = 'gbk'
-
-
-def GetAllSection(root, id):
-    r = requests.get(root + id)
-    r.encoding = encode
-    bs = BeautifulSoup(r.text, 'html.parser')
-    url_a = bs.find_all('a')
-    urls = []
-    for u in url_a:
-        href = u.get('href')
-        if href and re.match(id, href):
-            urls.append(root+href)
-
-    del urls[0]
-    return urls
-
-
-def SaveArticle(root, id, fname):
-    i = 1
-    urls = GetAllSection(root, id)
-    for url in urls:
-        r = requests.get(url)
-        r.encoding = encode
-        bs = BeautifulSoup(r.text, 'html.parser')
-        text = bs.find_all('p')[1].text
-        text = text.replace('\xa0', ' ')
-        text = text.replace('\ufffd', ' ')
-        text = text.replace('\n\r\n', '\n')
-        with open(fname, 'a', encoding=encode) as file:
-            if i == 1:
-                file.write(bs.h1.text+'\n')
-                i = 0
-            file.write(text+'\n')
-
-
-if __name__ == &quot;__main__&quot;:
-    SaveArticle(root, art_id, fname)
-    # print(fname)
-</code></pre>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
