@@ -1,6 +1,336 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>LogisticRegression</title>
+    <url>/posts/2020-07-011.html</url>
+    <content><![CDATA[<pre><code>import numpy as np
+from matplotlib import pyplot as plt
+
+def Sigmod(z):
+    return 1.0/(1.0+np.exp(-z))
+
+def ComputeCost(x, y, theta, lam):
+    m = len(y)
+    h = Sigmod(np.dot(x, theta))
+    the = theta.copy()
+    the[0] = 0
+    temp = np.dot(the.T, the)
+    J = (0-np.dot(y.T, np.log(h))-np.dot((1-y).T, np.log(1-h))+lam*temp/2)/m
+    return J
+
+# 映射为多项式，增加特征量
+def MapFeature(x1, x2):
+    deg = 2
+    out = np.ones((x1.shape[0], 1))
+    for i in np.arange(1, deg+1):
+        for j in range(i+1):
+            temp = x1**(i-j)*(x2**j)  # 矩阵直接乘相当于matlab中的点乘.*
+            out = np.hstack((out, temp.reshape(-1, 1)))
+    return out
+
+def GradientDescent(x, y, theta, alpha, lam, num_iters):
+    m = len(y)
+    n = len(theta)
+
+    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
+
+    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
+
+    for i in range(num_iters):  # 遍历迭代次数
+        h = Sigmod(np.dot(x, theta))
+        # h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
+        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
+        theta = temp[:, i]
+        J_history[i] = ComputeCost(X, y, theta, lam)  # 调用计算代价函数
+        # print(J_history[i])
+    return theta, J_history
+
+def predict(X, theta):
+    m = X.shape[0]
+    p = np.zeros((m, 1))
+    p = Sigmod(np.dot(X, theta))    # 预测的结果，是个概率值
+
+    for i in range(m):
+        if p[i] &gt; 0.5:  # 概率大于0.5预测为1，否则预测为0
+            p[i] = 1
+        else:
+            p[i] = 0
+    return p
+
+# 画决策边界
+def plotDecisionBoundary(theta, X, y):
+    pos = np.where(y == 1)  # 找到y==1的坐标位置
+    neg = np.where(y == 0)  # 找到y==0的坐标位置
+    # 作图
+    plt.figure(figsize=(15, 12))
+    plt.plot(X[pos, 0], X[pos, 1], 'ro')        # red o
+    plt.plot(X[neg, 0], X[neg, 1], 'bo')        # blue o
+    #plt.title(u&quot;决策边界&quot;, fontproperties=font)
+
+    #u = np.linspace(30,100,100)
+    #v = np.linspace(30,100,100)
+
+    u = np.linspace(-1, 1.5, 50)  # 根据具体的数据，这里需要调整
+    v = np.linspace(-1, 1.5, 50)
+
+    z = np.zeros((len(u), len(v)))
+    for i in range(len(u)):
+        for j in range(len(v)):
+            z[i, j] = np.dot(MapFeature(u[i].reshape(1, -1),
+                                        v[j].reshape(1, -1)), theta)    # 计算对应的值，需要map
+
+    z = np.transpose(z)
+    # 画等高线，范围在[0,0.01]，即近似为决策边界
+    plt.contour(u, v, z, [0, 0.01], linewidth=2.0)
+    # plt.legend()
+    plt.show()
+
+if __name__ == &quot;__main__&quot;:
+    data = np.loadtxt('data2.txt', delimiter=',', dtype=np.float64)
+    lam = 0.1
+    alpha = 0.1
+    X = data[:, 0:-1]
+    y = data[:, -1].reshape(-1, 1)
+    X = MapFeature(X[:, 0], X[:, 1])
+
+    theta = np.zeros((X.shape[1], 1))
+
+    print(ComputeCost(X, y, theta,  lam))
+    theta, J_his = GradientDescent(X, y, theta, alpha, lam, 5000)
+
+    print(theta)
+    p = predict(X, theta)  # 预测
+    # 与真实值比较，p==y返回True，转化为float
+    print(u'在训练集上的准确度为%f%%' % np.mean(np.float64(p == y)*100))
+    X = data[:, 0:-1]
+    y = data[:, -1]
+    plotDecisionBoundary(theta, X, y)  # 画决策边界
+</code></pre>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>machine learning</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线性回归 python实现</title>
+    <url>/posts/2020-07-008.html</url>
+    <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
+<pre><code>import numpy as np
+from matplotlib import pyplot as plt
+# 线性回归
+# X是矩阵，每一行是一组输入数据；theta是列向量；y也是列向量
+def ComputeCost(X, y, theta):
+    m = len(y)
+    J = 0
+    t = np.dot(X, theta)-y
+    J = np.dot(t.T, t)/(2*m)
+    return J
+
+# 计算代价函数
+# alpaa是学习率；num_iters是迭代次数
+def GradientDescent(X, y, theta, alpha, num_iters):
+    m = len(y)
+    n = len(theta)
+    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
+    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
+
+    for i in range(num_iters):  # 遍历迭代次数
+        h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
+        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
+        theta = temp[:, i]
+        J_history[i] = ComputeCost(X, y, theta)  # 调用计算代价函数
+        # print(J_history[i])
+    return theta, J_history
+
+def featureNormaliza(X):
+    X_norm = np.array(X)  # 将X转化为numpy数组对象，才可以进行矩阵的运算
+    # 定义所需变量
+    mu = np.zeros((1, X.shape[1]))
+    sigma = np.zeros((1, X.shape[1]))
+    mu = np.mean(X_norm, 0)          # 求每一列的平均值（0指定为列，1代表行）
+    sigma = np.std(X_norm, 0)        # 求每一列的标准差
+    for i in range(X.shape[1]):     # 遍历列
+        X_norm[:, i] = (X_norm[:, i]-mu[i])/sigma[i]  # 归一化
+    return X_norm, mu, sigma
+
+# 逻辑回归
+if __name__ == &quot;__main__&quot;:
+    alpha = 0.01
+    num_iters = 400
+
+    # 取消归一化需要的参数
+    #alpha = 0.0000001
+    #num_iters = 4000
+
+    data = np.loadtxt('data.txt', delimiter=',', dtype=np.float64)
+    X = data[:, 0:-1]
+    y = data[:, -1].reshape(-1, 1)
+    X, mu, s = featureNormaliza(X)
+    #plt.scatter(X_norm[:, 0], X_norm[:, 1])
+    # plt.show()
+    X = np.hstack((np.ones((X.shape[0], 1)), X))
+    theta = np.zeros((X.shape[1], 1))
+    theta, J_history = GradientDescent(X, y, theta, alpha, num_iters)
+
+    x = np.arange(1, num_iters+1)
+    plt.plot(x, J_history)
+    plt.show()
+</code></pre>
+<p>虽然算法理解起来不算很难，等到了自己动手是实现的时候还是有很多问题的。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>machine learning</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
+    <url>/posts/2020-07-002.html</url>
+    <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
+<h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg2.png" alt="解压" /></p>
+<h3 id="解压完成后会将所有文件默认放入同目录下的output文件中"><a class="markdownIt-Anchor" href="#解压完成后会将所有文件默认放入同目录下的output文件中"></a> 解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3>
+<h3 id="想要了解更多可以查看源仓库-notscuffedrepkg说明"><a class="markdownIt-Anchor" href="#想要了解更多可以查看源仓库-notscuffedrepkg说明"></a> 想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>wallpapper engine</tag>
+        <tag>github</tag>
+        <tag>steam</tag>
+        <tag>repkg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++学习</title>
+    <url>/posts/2020-07-009.html</url>
+    <content><![CDATA[<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
+<p>虚函数是指一个类中你希望重写(override)的成员函数，当你用一个基类指针或引用,指向一个继承类对象的时候，调用一个虚函数时, 实际调用的是继承类的版本。</p>
+<pre><code>class Animal {
+public :
+    void  Print()
+    { 
+        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
+    }
+};
+class Dog: public Animal
+{
+public:
+    void  Print() 
+    {
+        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
+    }
+private:
+};
+int main(int argc, char** argv)
+{
+    Animal* d = new Dog();
+    d-&gt;Print();
+}
+</code></pre>
+<p>没有使用<code>virtual</code>时，函数的输出的是<code>Animal</code></p>
+<pre><code>class Animal {
+public :
+    virtual void  Print()
+    { 
+        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
+    }
+};
+class Dog: public Animal
+{
+public:
+    void  Print() 
+    {
+        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
+    }
+private:
+};
+int main(int argc, char** argv)
+{
+    Animal* d = new Dog();	
+    d-&gt;Print();
+}
+</code></pre>
+<p>使用<code>virtual</code>后，函数的输出是<code>Dog</code></p>
+<p>没有使用virtual之前，C++对成员函数使用静态绑定，函数的调用地址在运行前就已经固定。不考虑指针指向的内容，对于什么类型的指针就调用什么类型的函数。<br />
+对于虚函数，每个派生类对象都有一个指向虚函数表的指针，访问任何虚函数都是间接通过这个指针进行的，之所以要用虚函数表，是因为调用一个虚函数的哪个版本是在运行过程（调用时指针所指的对象）才能确定的（动态绑定）。</p>
+<div class="note warning">
+            <p>因此特性，若基类的析构函数是non-virtual的，容易造成局部销毁，导致资源泄漏。非常危险。</p>
+          </div>
+<h3 id="const"><a class="markdownIt-Anchor" href="#const"></a> <code>const</code></h3>
+<ul>
+<li>
+<p>const在指针左边时，指针指向的内容是const。</p>
+</li>
+<li>
+<p>const在指针右边时，指针是const指针</p>
+</li>
+<li>
+<p>当const在函数名前面的时候修饰的是函数返回值。</p>
+</li>
+<li>
+<p>在函数名后面表示是常成员函数，该函数不能修改对象内的任何成员的值，如果需要修改，要在变量前面加<code>mutable</code>关键字。</p>
+</li>
+<li>
+<p>事实上，在某种条件下，<code>const</code>仍可能被修改，可见Effective C++ P22。</p>
+</li>
+</ul>
+<h3 id="others"><a class="markdownIt-Anchor" href="#others"></a> Others</h3>
+<ol>
+<li>
+<p>C++规定，对象的成员变量的初始化动作发生在进入构造函数本体之前。</p>
+</li>
+<li>
+<p>类内成员变量总是以其声明顺序被初始化，</p>
+</li>
+<li>
+<p>C++对于不同编译单元（源文件）的non-local static（文件内，所有函数以外的定义的对象）对象的初始化顺序无明确定义。为了避免这个问题，可以通过函数调用的方式（返回一个local static对象），将non-local static对象改为函数内部的static对象。</p>
+</li>
+<li>
+<p>构造函数最好使用成员初值列赋值。</p>
+<pre><code> Construct():value1(),value2(),value3(){}
+</code></pre>
+</li>
+<li>
+<p>C++编译器会自动给空类创建构造函数、赋值函数和析构函数。（当这些函数被调用时）</p>
+<pre><code> class Empty{};
+</code></pre>
+<p>等价于</p>
+<pre><code> class Empty
+ {
+     public:
+         Empty(){...}
+         Empty(const Empty&amp; rhs){...}
+         ~Empty(){...}
+
+         Empty&amp; operator=(const Empty&amp; rhs){...}
+ }
+</code></pre>
+</li>
+</ol>
+<p>想要阻止这一自动创建，可以将这些函数声明为<code>private</code>，并且故意不实现他们。</p>
+<ol start="6">
+<li></li>
+</ol>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown语法</title>
     <url>/posts/2020-06-001.html</url>
     <content><![CDATA[<h2 id="主要内容"><a class="markdownIt-Anchor" href="#主要内容"></a> 主要内容</h2>
@@ -289,27 +619,6 @@ comments: false
       </tags>
   </entry>
   <entry>
-    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
-    <url>/posts/2020-07-002.html</url>
-    <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
-<h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg2.png" alt="解压" /></p>
-<h3 id="解压完成后会将所有文件默认放入同目录下的output文件中"><a class="markdownIt-Anchor" href="#解压完成后会将所有文件默认放入同目录下的output文件中"></a> 解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3>
-<h3 id="想要了解更多可以查看源仓库-notscuffedrepkg说明"><a class="markdownIt-Anchor" href="#想要了解更多可以查看源仓库-notscuffedrepkg说明"></a> 想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>wallpapper engine</tag>
-        <tag>github</tag>
-        <tag>steam</tag>
-        <tag>repkg</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>machine-learning 知识点总结</title>
     <url>/posts/2020-07-006.html</url>
     <content><![CDATA[<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
@@ -476,134 +785,6 @@ comments: false
       <tags>
         <tag>machine learning</tag>
         <tag>吴达恩</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>伽马兽王</title>
-    <url>/posts/2020-07-004.html</url>
-    <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b00.png" alt="兽王" /></p>
-<h3 id="加点"><a class="markdownIt-Anchor" href="#加点"></a> 加点</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b17.png" alt="bd" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b18.png" alt="bd" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b19.png" alt="bd" /></p>
-<h3 id="装备"><a class="markdownIt-Anchor" href="#装备"></a> 装备</h3>
-<div class="note success no-icon">
-            <p>没有dlc，以下只有本体中的武器。<br />攻击类武器受福统一选择 生命值低于50%时，造成额外150%辐射伤害，配合压血神器。</p>
-          </div>
-<h4 id="君王"><a class="markdownIt-Anchor" href="#君王"></a> 君王</h4>
-<p><strong>步枪</strong>，当前版本混10不刮痧的枪，子弹散射，近距离好用，基拉夫特掉落。</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b01.png" alt="君王" /></p>
-<h4 id="射弹循环"><a class="markdownIt-Anchor" href="#射弹循环"></a> 射弹循环</h4>
-<p><strong>散弹枪</strong>，发射后会在敌人之间弹射，在敌人多的时候很好用，每当发出的攻击多一种元素时该枪会多射出一发子弹，配合盾雷失效附加额外元素伤害使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b02.png" alt="射弹循环" /></p>
-<h4 id="瘟疫传播者"><a class="markdownIt-Anchor" href="#瘟疫传播者"></a> 瘟疫传播者</h4>
-<p><strong>重型武器</strong>，高伤害，发射前需要蓄力。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b03.png" alt="瘟疫传播者" /></p>
-<h4 id="梅尔加尼的爆发"><a class="markdownIt-Anchor" href="#梅尔加尼的爆发"></a> 梅尔加尼的爆发</h4>
-<p><strong>工具枪</strong>，过热后发射易伤弹，配合飞龙+1受福，用来触发盾雷技能失效受福。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b04.png" alt="梅尔加尼的爆发" /></p>
-<h4 id="考桑"><a class="markdownIt-Anchor" href="#考桑"></a> 考桑</h4>
-<p><strong>冲锋枪</strong>，单体伤害，射速快。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b05.png" alt="考桑" /></p>
-<h4 id="沙鹰"><a class="markdownIt-Anchor" href="#沙鹰"></a> 沙鹰</h4>
-<p><strong>狙击枪</strong>，与其说是狙击枪，更像散弹枪，子弹微散射，远距离也可使用，射速极快，兽王来说子弹根本不够用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b06.png" alt="沙鹰" /></p>
-<h4 id="备胎"><a class="markdownIt-Anchor" href="#备胎"></a> 备胎</h4>
-<p><strong>重型武器</strong>，不用蓄力，伤害还不错。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b07.png" alt="备胎" /></p>
-<h4 id="头脑风暴者"><a class="markdownIt-Anchor" href="#头脑风暴者"></a> 头脑风暴者</h4>
-<p><strong>散弹枪</strong>，多弹片工具枪，可以利用加点中的被动<code>清点人数</code>有效的缩短主动技能的冷却时间。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b08.png" alt="头脑风暴者" /></p>
-<h4 id="不可饶恕"><a class="markdownIt-Anchor" href="#不可饶恕"></a> 不可饶恕</h4>
-<p><strong>手枪</strong>，工具枪，有高额的暴击伤害，配和高伤、弹速慢的武器切枪使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b09.png" alt="不可饶恕" /></p>
-<h4 id="变形金刚"><a class="markdownIt-Anchor" href="#变形金刚"></a> 变形金刚</h4>
-<p><strong>护盾</strong>，免疫电属性伤害并吸收为护盾，受福选择技能失效附加额外属性伤害。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b11.png" alt="变形金刚" /></p>
-<h4 id="赤红之牙"><a class="markdownIt-Anchor" href="#赤红之牙"></a> 赤红之牙</h4>
-<p><strong>模组</strong>，伽马爆发时嘲讽所有敌人，伽马流<code>核心</code>装备，不可缺少，属性看自己选择。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b12.png" alt="赤红之牙" /></p>
-<h4 id="六角"><a class="markdownIt-Anchor" href="#六角"></a> 六角</h4>
-<p><strong>手雷</strong>，受福选择技能失效附加额外属性伤害。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b13.png" alt="六角" /></p>
-<h4 id="吹雪不死"><a class="markdownIt-Anchor" href="#吹雪不死"></a> 吹雪不死</h4>
-<p><strong>神器</strong>，吹雪可以提高滑铲速度，跑路快；不死可以是自己保留<code>1</code>点生命值，用来触发武器受福<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b14.png" alt="吹雪不死" /></p>
-<h4 id="吹雪胜利突袭"><a class="markdownIt-Anchor" href="#吹雪胜利突袭"></a> 吹雪胜利突袭</h4>
-<p><strong>神器</strong> 备用神器，不采用压血流时使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b10.png" alt="吹雪胜利突袭" /></p>
-<h3 id="玩法"><a class="markdownIt-Anchor" href="#玩法"></a> 玩法</h3>
-<p>伽马兽王应该时兽王职业中最安逸的流派了，伽马爆发时儿子的全图嘲讽可以给兽王提供良好的输出环境，输出时配合切飞龙，可以大幅提高伤害。技能冷却时，配合头脑风暴/射弹循环可以迅速使下一次技能准备就绪，然后继续输出。</p>
-]]></content>
-      <categories>
-        <category>games</category>
-      </categories>
-      <tags>
-        <tag>伽马兽王</tag>
-        <tag>borderlands3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小说网站爬虫</title>
-    <url>/posts/2020-07-010.html</url>
-    <content><![CDATA[<pre><code>import requests
-from bs4 import BeautifulSoup
-import re
-import os
-
-# 本脚本无普适性，请具体网站具体分析
-root = ''  # 文章首页链接
-art_id = ''  # 文章链接id
-
-fname = './txts/'+art_id[5:-1]+'.txt'
-encode = 'gbk'
-
-
-def GetAllSection(root, id):
-    r = requests.get(root + id)
-    r.encoding = encode
-    bs = BeautifulSoup(r.text, 'html.parser')
-    url_a = bs.find_all('a')
-    urls = []
-    for u in url_a:
-        href = u.get('href')
-        if href and re.match(id, href):
-            urls.append(root+href)
-
-    del urls[0]
-    return urls
-
-
-def SaveArticle(root, id, fname):
-    i = 1
-    urls = GetAllSection(root, id)
-    for url in urls:
-        r = requests.get(url)
-        r.encoding = encode
-        bs = BeautifulSoup(r.text, 'html.parser')
-        text = bs.find_all('p')[1].text
-        text = text.replace('\xa0', ' ')
-        text = text.replace('\ufffd', ' ')
-        text = text.replace('\n\r\n', '\n')
-        with open(fname, 'a', encoding=encode) as file:
-            if i == 1:
-                file.write(bs.h1.text+'\n')
-                i = 0
-            file.write(text+'\n')
-
-
-if __name__ == &quot;__main__&quot;:
-    SaveArticle(root, art_id, fname)
-    # print(fname)
-</code></pre>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
@@ -912,197 +1093,69 @@ $y = d \times cos \left( \theta \right)$
       </tags>
   </entry>
   <entry>
-    <title>线性回归 python实现</title>
-    <url>/posts/2020-07-008.html</url>
-    <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
-<pre><code>import numpy as np
-from matplotlib import pyplot as plt
-# 线性回归
-# X是矩阵，每一行是一组输入数据；theta是列向量；y也是列向量
-def ComputeCost(X, y, theta):
-    m = len(y)
-    J = 0
-    t = np.dot(X, theta)-y
-    J = np.dot(t.T, t)/(2*m)
-    return J
-
-# 计算代价函数
-# alpaa是学习率；num_iters是迭代次数
-def GradientDescent(X, y, theta, alpha, num_iters):
-    m = len(y)
-    n = len(theta)
-    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
-    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
-
-    for i in range(num_iters):  # 遍历迭代次数
-        h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
-        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
-        theta = temp[:, i]
-        J_history[i] = ComputeCost(X, y, theta)  # 调用计算代价函数
-        # print(J_history[i])
-    return theta, J_history
-
-def featureNormaliza(X):
-    X_norm = np.array(X)  # 将X转化为numpy数组对象，才可以进行矩阵的运算
-    # 定义所需变量
-    mu = np.zeros((1, X.shape[1]))
-    sigma = np.zeros((1, X.shape[1]))
-    mu = np.mean(X_norm, 0)          # 求每一列的平均值（0指定为列，1代表行）
-    sigma = np.std(X_norm, 0)        # 求每一列的标准差
-    for i in range(X.shape[1]):     # 遍历列
-        X_norm[:, i] = (X_norm[:, i]-mu[i])/sigma[i]  # 归一化
-    return X_norm, mu, sigma
-
-# 逻辑回归
-if __name__ == &quot;__main__&quot;:
-    alpha = 0.01
-    num_iters = 400
-
-    # 取消归一化需要的参数
-    #alpha = 0.0000001
-    #num_iters = 4000
-
-    data = np.loadtxt('data.txt', delimiter=',', dtype=np.float64)
-    X = data[:, 0:-1]
-    y = data[:, -1].reshape(-1, 1)
-    X, mu, s = featureNormaliza(X)
-    #plt.scatter(X_norm[:, 0], X_norm[:, 1])
-    # plt.show()
-    X = np.hstack((np.ones((X.shape[0], 1)), X))
-    theta = np.zeros((X.shape[1], 1))
-    theta, J_history = GradientDescent(X, y, theta, alpha, num_iters)
-
-    x = np.arange(1, num_iters+1)
-    plt.plot(x, J_history)
-    plt.show()
-</code></pre>
-<p>虽然算法理解起来不算很难，等到了自己动手是实现的时候还是有很多问题的。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>machine learning</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>c++学习</title>
-    <url>/posts/2020-07-009.html</url>
-    <content><![CDATA[<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
-<p>虚函数是指一个类中你希望重写(override)的成员函数，当你用一个基类指针或引用,指向一个继承类对象的时候，调用一个虚函数时, 实际调用的是继承类的版本。</p>
-<pre><code>class Animal {
-public :
-    void  Print()
-    { 
-        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
-    }
-};
-class Dog: public Animal
-{
-public:
-    void  Print() 
-    {
-        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
-    }
-private:
-};
-int main(int argc, char** argv)
-{
-    Animal* d = new Dog();
-    d-&gt;Print();
-}
-</code></pre>
-<p>没有使用<code>virtual</code>时，函数的输出的是<code>Animal</code></p>
-<pre><code>class Animal {
-public :
-    virtual void  Print()
-    { 
-        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
-    }
-};
-class Dog: public Animal
-{
-public:
-    void  Print() 
-    {
-        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
-    }
-private:
-};
-int main(int argc, char** argv)
-{
-    Animal* d = new Dog();	
-    d-&gt;Print();
-}
-</code></pre>
-<p>使用<code>virtual</code>后，函数的输出是<code>Dog</code></p>
-<p>没有使用virtual之前，C++对成员函数使用静态绑定，函数的调用地址在运行前就已经固定。不考虑指针指向的内容，对于什么类型的指针就调用什么类型的函数。<br />
-对于虚函数，每个派生类对象都有一个指向虚函数表的指针，访问任何虚函数都是间接通过这个指针进行的，之所以要用虚函数表，是因为调用一个虚函数的哪个版本是在运行过程（调用时指针所指的对象）才能确定的（动态绑定）。</p>
-<div class="note warning">
-            <p>因此特性，若基类的析构函数是non-virtual的，容易造成局部销毁，导致资源泄漏。非常危险。</p>
+    <title>伽马兽王</title>
+    <url>/posts/2020-07-004.html</url>
+    <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b00.png" alt="兽王" /></p>
+<h3 id="加点"><a class="markdownIt-Anchor" href="#加点"></a> 加点</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b17.png" alt="bd" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b18.png" alt="bd" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b19.png" alt="bd" /></p>
+<h3 id="装备"><a class="markdownIt-Anchor" href="#装备"></a> 装备</h3>
+<div class="note success no-icon">
+            <p>没有dlc，以下只有本体中的武器。<br />攻击类武器受福统一选择 生命值低于50%时，造成额外150%辐射伤害，配合压血神器。</p>
           </div>
-<h3 id="const"><a class="markdownIt-Anchor" href="#const"></a> <code>const</code></h3>
-<ul>
-<li>
-<p>const在指针左边时，指针指向的内容是const。</p>
-</li>
-<li>
-<p>const在指针右边时，指针是const指针</p>
-</li>
-<li>
-<p>当const在函数名前面的时候修饰的是函数返回值。</p>
-</li>
-<li>
-<p>在函数名后面表示是常成员函数，该函数不能修改对象内的任何成员的值，如果需要修改，要在变量前面加<code>mutable</code>关键字。</p>
-</li>
-<li>
-<p>事实上，在某种条件下，<code>const</code>仍可能被修改，可见Effective C++ P22。</p>
-</li>
-</ul>
-<h3 id="others"><a class="markdownIt-Anchor" href="#others"></a> Others</h3>
-<ol>
-<li>
-<p>C++规定，对象的成员变量的初始化动作发生在进入构造函数本体之前。</p>
-</li>
-<li>
-<p>类内成员变量总是以其声明顺序被初始化，</p>
-</li>
-<li>
-<p>C++对于不同编译单元（源文件）的non-local static（文件内，所有函数以外的定义的对象）对象的初始化顺序无明确定义。为了避免这个问题，可以通过函数调用的方式（返回一个local static对象），将non-local static对象改为函数内部的static对象。</p>
-</li>
-<li>
-<p>构造函数最好使用成员初值列赋值。</p>
-<pre><code> Construct():value1(),value2(),value3(){}
-</code></pre>
-</li>
-<li>
-<p>C++编译器会自动给空类创建构造函数、赋值函数和析构函数。（当这些函数被调用时）</p>
-<pre><code> class Empty{};
-</code></pre>
-<p>等价于</p>
-<pre><code> class Empty
- {
-     public:
-         Empty(){...}
-         Empty(const Empty&amp; rhs){...}
-         ~Empty(){...}
-
-         Empty&amp; operator=(const Empty&amp; rhs){...}
- }
-</code></pre>
-</li>
-</ol>
-<p>想要阻止这一自动创建，可以将这些函数声明为<code>private</code>，并且故意不实现他们。</p>
-<ol start="6">
-<li></li>
-</ol>
+<h4 id="君王"><a class="markdownIt-Anchor" href="#君王"></a> 君王</h4>
+<p><strong>步枪</strong>，当前版本混10不刮痧的枪，子弹散射，近距离好用，基拉夫特掉落。</p>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b01.png" alt="君王" /></p>
+<h4 id="射弹循环"><a class="markdownIt-Anchor" href="#射弹循环"></a> 射弹循环</h4>
+<p><strong>散弹枪</strong>，发射后会在敌人之间弹射，在敌人多的时候很好用，每当发出的攻击多一种元素时该枪会多射出一发子弹，配合盾雷失效附加额外元素伤害使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b02.png" alt="射弹循环" /></p>
+<h4 id="瘟疫传播者"><a class="markdownIt-Anchor" href="#瘟疫传播者"></a> 瘟疫传播者</h4>
+<p><strong>重型武器</strong>，高伤害，发射前需要蓄力。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b03.png" alt="瘟疫传播者" /></p>
+<h4 id="梅尔加尼的爆发"><a class="markdownIt-Anchor" href="#梅尔加尼的爆发"></a> 梅尔加尼的爆发</h4>
+<p><strong>工具枪</strong>，过热后发射易伤弹，配合飞龙+1受福，用来触发盾雷技能失效受福。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b04.png" alt="梅尔加尼的爆发" /></p>
+<h4 id="考桑"><a class="markdownIt-Anchor" href="#考桑"></a> 考桑</h4>
+<p><strong>冲锋枪</strong>，单体伤害，射速快。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b05.png" alt="考桑" /></p>
+<h4 id="沙鹰"><a class="markdownIt-Anchor" href="#沙鹰"></a> 沙鹰</h4>
+<p><strong>狙击枪</strong>，与其说是狙击枪，更像散弹枪，子弹微散射，远距离也可使用，射速极快，兽王来说子弹根本不够用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b06.png" alt="沙鹰" /></p>
+<h4 id="备胎"><a class="markdownIt-Anchor" href="#备胎"></a> 备胎</h4>
+<p><strong>重型武器</strong>，不用蓄力，伤害还不错。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b07.png" alt="备胎" /></p>
+<h4 id="头脑风暴者"><a class="markdownIt-Anchor" href="#头脑风暴者"></a> 头脑风暴者</h4>
+<p><strong>散弹枪</strong>，多弹片工具枪，可以利用加点中的被动<code>清点人数</code>有效的缩短主动技能的冷却时间。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b08.png" alt="头脑风暴者" /></p>
+<h4 id="不可饶恕"><a class="markdownIt-Anchor" href="#不可饶恕"></a> 不可饶恕</h4>
+<p><strong>手枪</strong>，工具枪，有高额的暴击伤害，配和高伤、弹速慢的武器切枪使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b09.png" alt="不可饶恕" /></p>
+<h4 id="变形金刚"><a class="markdownIt-Anchor" href="#变形金刚"></a> 变形金刚</h4>
+<p><strong>护盾</strong>，免疫电属性伤害并吸收为护盾，受福选择技能失效附加额外属性伤害。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b11.png" alt="变形金刚" /></p>
+<h4 id="赤红之牙"><a class="markdownIt-Anchor" href="#赤红之牙"></a> 赤红之牙</h4>
+<p><strong>模组</strong>，伽马爆发时嘲讽所有敌人，伽马流<code>核心</code>装备，不可缺少，属性看自己选择。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b12.png" alt="赤红之牙" /></p>
+<h4 id="六角"><a class="markdownIt-Anchor" href="#六角"></a> 六角</h4>
+<p><strong>手雷</strong>，受福选择技能失效附加额外属性伤害。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b13.png" alt="六角" /></p>
+<h4 id="吹雪不死"><a class="markdownIt-Anchor" href="#吹雪不死"></a> 吹雪不死</h4>
+<p><strong>神器</strong>，吹雪可以提高滑铲速度，跑路快；不死可以是自己保留<code>1</code>点生命值，用来触发武器受福<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b14.png" alt="吹雪不死" /></p>
+<h4 id="吹雪胜利突袭"><a class="markdownIt-Anchor" href="#吹雪胜利突袭"></a> 吹雪胜利突袭</h4>
+<p><strong>神器</strong> 备用神器，不采用压血流时使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b10.png" alt="吹雪胜利突袭" /></p>
+<h3 id="玩法"><a class="markdownIt-Anchor" href="#玩法"></a> 玩法</h3>
+<p>伽马兽王应该时兽王职业中最安逸的流派了，伽马爆发时儿子的全图嘲讽可以给兽王提供良好的输出环境，输出时配合切飞龙，可以大幅提高伤害。技能冷却时，配合头脑风暴/射弹循环可以迅速使下一次技能准备就绪，然后继续输出。</p>
 ]]></content>
       <categories>
-        <category>C/C++</category>
+        <category>games</category>
       </categories>
       <tags>
-        <tag>C++</tag>
+        <tag>伽马兽王</tag>
+        <tag>borderlands3</tag>
       </tags>
   </entry>
   <entry>
@@ -1151,6 +1204,68 @@ draft	source/_drafts
         <tag>blog</tag>
         <tag>butterfly</tag>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小说网站爬虫</title>
+    <url>/posts/2020-07-010.html</url>
+    <content><![CDATA[<pre><code>import requests
+from bs4 import BeautifulSoup
+import re
+import os
+
+# 本脚本无普适性，请具体网站具体分析
+root = ''  # 文章首页链接
+art_id = ''  # 文章链接id
+
+fname = './txts/'+art_id[5:-1]+'.txt'
+encode = 'gbk'
+
+
+def GetAllSection(root, id):
+    r = requests.get(root + id)
+    r.encoding = encode
+    bs = BeautifulSoup(r.text, 'html.parser')
+    url_a = bs.find_all('a')
+    urls = []
+    for u in url_a:
+        href = u.get('href')
+        if href and re.match(id, href):
+            urls.append(root+href)
+
+    del urls[0]
+    return urls
+
+
+def SaveArticle(root, id, fname):
+    i = 1
+    urls = GetAllSection(root, id)
+    for url in urls:
+        r = requests.get(url)
+        r.encoding = encode
+        bs = BeautifulSoup(r.text, 'html.parser')
+        text = bs.find_all('p')[1].text
+        text = text.replace('\xa0', ' ')
+        text = text.replace('\ufffd', ' ')
+        text = text.replace('\n\r\n', '\n')
+        with open(fname, 'a', encoding=encode) as file:
+            if i == 1:
+                file.write(bs.h1.text+'\n')
+                i = 0
+            file.write(text+'\n')
+
+
+if __name__ == &quot;__main__&quot;:
+    SaveArticle(root, art_id, fname)
+    # print(fname)
+</code></pre>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
 </search>
