@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ch-ZN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LogisticRegression--python | Sly Li</title><meta name="description" content="import numpy as np from matplotlib import pyplot as plt  def Sigmod(z):     return 1.0&#x2F;(1.0+np.exp(-z))  def ComputeCost(x, y, theta, lam):     m &#x3D; len(y)     h &#x3D; Sigmod(np.dot(x, theta))     the &#x3D; th"><meta name="keywords" content="machine learning,python,LogisticRegression"><meta name="author" content="Sly Li"><meta name="copyright" content="Sly Li"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/favicon.png"><link rel="canonical" href="http://slyli.cn/posts/2020-07-011.html"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta name="msvalidate.01" content="40800d7ddbfe4bc789367280a8addd52"/><meta name="baidu-site-verification" content="G9pFOrKi8Sw1jxpS"/><meta property="og:type" content="article"><meta property="og:title" content="LogisticRegression--python"><meta property="og:url" content="http://slyli.cn/posts/2020-07-011.html"><meta property="og:site_name" content="Sly Li"><meta property="og:description" content="import numpy as np from matplotlib import pyplot as plt  def Sigmod(z):     return 1.0&#x2F;(1.0+np.exp(-z))  def ComputeCost(x, y, theta, lam):     m &#x3D; len(y)     h &#x3D; Sigmod(np.dot(x, theta))     the &#x3D; th"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/lr2.png"><meta property="article:published_time" content="2020-07-29T10:50:04.000Z"><meta property="article:modified_time" content="2020-07-29T11:00:43.113Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="ch-ZN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LogisticRegression--python | Sly Li</title><meta name="description" content="逻辑回归 import numpy as np from matplotlib import pyplot as plt  def Sigmod(z):     return 1.0&#x2F;(1.0+np.exp(-z))  def ComputeCost(x, y, theta, lam):     m &#x3D; len(y)     h &#x3D; Sigmod(np.dot(x, theta))     the"><meta name="keywords" content="machine learning,python,LogisticRegression"><meta name="author" content="Sly Li"><meta name="copyright" content="Sly Li"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/favicon.png"><link rel="canonical" href="http://slyli.cn/posts/2020-07-011.html"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta name="msvalidate.01" content="40800d7ddbfe4bc789367280a8addd52"/><meta name="baidu-site-verification" content="G9pFOrKi8Sw1jxpS"/><meta property="og:type" content="article"><meta property="og:title" content="LogisticRegression--python"><meta property="og:url" content="http://slyli.cn/posts/2020-07-011.html"><meta property="og:site_name" content="Sly Li"><meta property="og:description" content="逻辑回归 import numpy as np from matplotlib import pyplot as plt  def Sigmod(z):     return 1.0&#x2F;(1.0+np.exp(-z))  def ComputeCost(x, y, theta, lam):     m &#x3D; len(y)     h &#x3D; Sigmod(np.dot(x, theta))     the"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/lr2.png"><meta property="article:published_time" content="2020-07-29T10:50:04.000Z"><meta property="article:modified_time" content="2020-07-31T08:53:43.862Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -102,7 +102,8 @@ if (autoChangeMode === '1') {
 .justified-gallery img{
   opacity: 1
 }
-</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/avatar.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">12</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">22</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> Game</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/lr2.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Sly Li</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> Game</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">LogisticRegression--python</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-07-29 18:50:04"><i class="far fa-calendar-alt fa-fw"></i> Created 2020-07-29</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-07-29 19:00:43"><i class="fas fa-history fa-fw"></i> Updated 2020-07-29</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>Word count:</span><span class="word-count">645</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>Reading time: 3 min</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"><span class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>Comments:</span><a href="/posts/2020-07-011.html#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/posts/2020-07-011.html" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><pre><code>import numpy as np
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/avatar.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">12</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">22</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> Game</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/lr2.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Sly Li</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> Game</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">LogisticRegression--python</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-07-29 18:50:04"><i class="far fa-calendar-alt fa-fw"></i> Created 2020-07-29</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-07-31 16:53:43"><i class="fas fa-history fa-fw"></i> Updated 2020-07-31</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>Word count:</span><span class="word-count">1.5k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>Reading time: 7 min</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"><span class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>Comments:</span><a href="/posts/2020-07-011.html#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/posts/2020-07-011.html" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p>逻辑回归</p>
+<pre><code>import numpy as np
 from matplotlib import pyplot as plt
 
 def Sigmod(z):
@@ -204,6 +205,149 @@ if __name__ == &quot;__main__&quot;:
     X = data[:, 0:-1]
     y = data[:, -1]
     plotDecisionBoundary(theta, X, y)  # 画决策边界
+</code></pre>
+<p>逻辑回归数字识别</p>
+<pre><code>import numpy as np
+from matplotlib import pyplot as plt
+import scipy.io as spio
+
+
+def Sigmod(z):
+    return 1.0/(1.0+np.exp(-z))
+
+
+def ComputeCost(x, y, theta, lam):
+    m = len(y)
+    h = Sigmod(np.dot(x, theta))
+    the = theta.copy()
+    the[0] = 0
+    temp = np.dot(the.T, the)
+    J = (0-np.dot(y.T, np.log(h))-np.dot((1-y).T, np.log(1-h))+lam*temp/2)/m
+    return J
+
+# 映射为多项式，增加特征量
+
+
+def MapFeature(x1, x2):
+    deg = 2
+    out = np.ones((x1.shape[0], 1))
+    for i in np.arange(1, deg+1):
+        for j in range(i+1):
+            temp = x1**(i-j)*(x2**j)  # 矩阵直接乘相当于matlab中的点乘.*
+            out = np.hstack((out, temp.reshape(-1, 1)))
+    return out
+
+
+def GradientDescent(X, y, theta, alpha, lam, num_iters):
+    m = len(y)
+    n = len(theta)
+
+    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
+
+    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
+
+    for i in range(num_iters):  # 遍历迭代次数
+        h = Sigmod(np.dot(X, theta))
+        # h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
+        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
+        theta = temp[:, i]
+        J_history[i] = ComputeCost(X, y, theta, lam)  # 调用计算代价函数
+        # print(J_history[i])
+    return theta, J_history
+
+
+def predict(X, theta):
+    m = X.shape[0]
+    p = np.zeros((m, 1))
+    p = Sigmod(np.dot(X, theta))    # 预测的结果，是个概率值
+
+    for i in range(m):
+        if p[i] &gt; 0.5:  # 概率大于0.5预测为1，否则预测为0
+            p[i] = 1
+        else:
+            p[i] = 0
+    return p
+
+
+# 显示100个数字
+
+
+def display_data(imgData):
+    sum = 0
+    '''
+    显示100个数（若是一个一个绘制将会非常慢，可以将要画的数字整理好，放到一个矩阵中，显示这个矩阵即可）
+    - 初始化一个二维数组
+    - 将每行的数据调整成图像的矩阵，放进二维数组
+    - 显示即可
+    '''
+    pad = 1
+    display_array = -np.ones((pad+10*(20+pad), pad+10*(20+pad)))
+    for i in range(10):
+        for j in range(10):
+            display_array[pad+i*(20+pad):pad+i*(20+pad)+20, pad+j*(20+pad):pad+j*(20+pad)+20] = (
+                imgData[sum, :].reshape(20, 20, order=&quot;F&quot;))    # order=F指定以列优先，在matlab中是这样的，python中需要指定，默认以行
+            sum += 1
+
+    plt.imshow(display_array, cmap='gray')  # 显示灰度图像
+    plt.axis('off')
+    plt.show()
+
+
+def OneAll(X, y, nums, alpha, lam, num_iters):
+    m, n = X.shape
+    theta_a = np.zeros((n+1, nums))
+    X = np.hstack((np.zeros((m, 1)), X))
+    class_y = np.zeros((m, nums))
+
+    for i in range(nums):
+        class_y[:, i] = np.int32(y == i).reshape(1, -1)
+
+    for i in range(nums):
+        init_theta = np.zeros((n+1, 1))
+        theta, _ = GradientDescent(
+            X, class_y[:, i].reshape(-1, 1), init_theta, alpha, lam, num_iters)
+        theta_a[:, i] = theta.reshape((1, -1))
+    return theta_a.T
+
+
+def predict_oneVsAll(all_theta, X):
+    m = X.shape[0]
+    p = np.zeros((m, 1))
+    X = np.hstack((np.ones((m, 1)), X))  # 在X最前面加一列1
+
+    h = Sigmod(np.dot(X, np.transpose(all_theta)))  # 预测
+
+    '''
+    返回h中每一行最大值所在的列号
+    - np.max(h, axis=1)返回h中每一行的最大值（是某个数字的最大概率）
+    - 最后where找到的最大概率所在的列号（列号即是对应的数字）
+    '''
+    p = np.array(np.where(h[0, :] == np.max(h, axis=1)[0]))
+    for i in np.arange(1, m):
+        t = np.array(np.where(h[i, :] == np.max(h, axis=1)[i]))
+        p = np.vstack((p, t))
+    return p
+
+
+if __name__ == &quot;__main__&quot;:
+    num_lables = 10
+    alpha = 0.1
+    lam = 0.1
+    num_iters = 1000
+
+    data = spio.loadmat(&quot;data_digits.mat&quot;)
+    X = data['X']  # 获取X数据，每一行对应一个数字20x20px
+    y = data['y']
+    m, n = X.shape
+    rand = [np.random.randint(0, m) for x in range(100)]
+    # display_data(X[rand, :])
+    theta_a = OneAll(X, y, num_lables, alpha, lam, num_iters)
+    p = predict_oneVsAll(theta_a, X)               # 预测
+    # 将预测结果和真实结果保存到文件中
+    res = np.hstack((p, y.reshape(-1, 1)))
+    np.savetxt(&quot;predict.csv&quot;, res, delimiter=',')
+
+    print(u&quot;预测准确度为：%f%%&quot; % np.mean(np.float64(p == y.reshape(-1, 1))*100))
 </code></pre>
 </div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Sly Li</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://slyli.cn/posts/2020-07-011.html">http://slyli.cn/posts/2020-07-011.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/machine-learning/">machine learning</a><a class="post-meta__tags" href="/tags/python/">python</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/lr2.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/2020-07-010.html"><img class="next-cover" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">小说网站爬虫</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/posts/2020-07-008.html" title="LinearRegression--python"><img class="relatedPosts_cover" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/lr1.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-21</div><div class="relatedPosts_title">LinearRegression--python</div></div></a></div><div class="relatedPosts_item"><a href="/posts/2020-07-006.html" title="machine-learning 知识点总结"><img class="relatedPosts_cover" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/ml1.jpeg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-11</div><div class="relatedPosts_title">machine-learning 知识点总结</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var requestSetting = function (from,set) {
   var from = from
