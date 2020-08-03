@@ -76,6 +76,64 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
+    <title>C学习</title>
+    <url>/posts/2020-08-001.html</url>
+    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
+<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
+<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
+<ul>
+<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
+<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
+<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
+<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
+</ul>
+<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
+<p>链接属性一共有三种：external,internal和none。</p>
+<ul>
+<li>
+<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
+</li>
+<li>
+<p>internal：只有同一文件内才为同一实体；</p>
+</li>
+<li>
+<p>none：多个声明被当作独立不同的实体；</p>
+</li>
+<li>
+<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
+<p>static int a;</p>
+</li>
+</ul>
+<p>那么变量a就是这个源文件所私有。</p>
+<ul>
+<li>
+<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
+</li>
+<li>
+<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
+<p>int a;<br />
+extern int b;<br />
+extern int c=10;</p>
+</li>
+</ul>
+<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
+<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
+<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
+<ul>
+<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
+<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
+<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
+当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LogisticRegression--python</title>
     <url>/posts/2020-07-011.html</url>
     <content><![CDATA[<p>逻辑回归</p>
@@ -752,27 +810,6 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
       </tags>
   </entry>
   <entry>
-    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
-    <url>/posts/2020-07-002.html</url>
-    <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
-<h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg2.png" alt="解压" /></p>
-<h3 id="解压完成后会将所有文件默认放入同目录下的output文件中"><a class="markdownIt-Anchor" href="#解压完成后会将所有文件默认放入同目录下的output文件中"></a> 解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3>
-<h3 id="想要了解更多可以查看源仓库-notscuffedrepkg说明"><a class="markdownIt-Anchor" href="#想要了解更多可以查看源仓库-notscuffedrepkg说明"></a> 想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>wallpapper engine</tag>
-        <tag>github</tag>
-        <tag>steam</tag>
-        <tag>repkg</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>machine-learning 知识点总结</title>
     <url>/posts/2020-07-006.html</url>
     <content><![CDATA[<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
@@ -942,65 +979,24 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
       </tags>
   </entry>
   <entry>
-    <title>小说网站爬虫</title>
-    <url>/posts/2020-07-010.html</url>
-    <content><![CDATA[<pre><code>import requests
-from bs4 import BeautifulSoup
-import re
-import os
-
-# 本脚本无普适性，请具体网站具体分析
-root = ''  # 文章首页链接
-art_id = ''  # 文章链接id
-
-fname = './txts/'+art_id[5:-1]+'.txt'
-encode = 'gbk'
-
-
-def GetAllSection(root, id):
-    r = requests.get(root + id)
-    r.encoding = encode
-    bs = BeautifulSoup(r.text, 'html.parser')
-    url_a = bs.find_all('a')
-    urls = []
-    for u in url_a:
-        href = u.get('href')
-        if href and re.match(id, href):
-            urls.append(root+href)
-
-    del urls[0]
-    return urls
-
-
-def SaveArticle(root, id, fname):
-    i = 1
-    urls = GetAllSection(root, id)
-    for url in urls:
-        r = requests.get(url)
-        r.encoding = encode
-        bs = BeautifulSoup(r.text, 'html.parser')
-        text = bs.find_all('p')[1].text
-        text = text.replace('\xa0', ' ')
-        text = text.replace('\ufffd', ' ')
-        text = text.replace('\n\r\n', '\n')
-        with open(fname, 'a', encoding=encode) as file:
-            if i == 1:
-                file.write(bs.h1.text+'\n')
-                i = 0
-            file.write(text+'\n')
-
-
-if __name__ == &quot;__main__&quot;:
-    SaveArticle(root, art_id, fname)
-    # print(fname)
-</code></pre>
+    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
+    <url>/posts/2020-07-002.html</url>
+    <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
+<h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg2.png" alt="解压" /></p>
+<h3 id="解压完成后会将所有文件默认放入同目录下的output文件中"><a class="markdownIt-Anchor" href="#解压完成后会将所有文件默认放入同目录下的output文件中"></a> 解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3>
+<h3 id="想要了解更多可以查看源仓库-notscuffedrepkg说明"><a class="markdownIt-Anchor" href="#想要了解更多可以查看源仓库-notscuffedrepkg说明"></a> 想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>
 ]]></content>
       <categories>
-        <category>Python</category>
+        <category>others</category>
       </categories>
       <tags>
-        <tag>Python</tag>
-        <tag>爬虫</tag>
+        <tag>wallpapper engine</tag>
+        <tag>github</tag>
+        <tag>steam</tag>
+        <tag>repkg</tag>
       </tags>
   </entry>
   <entry>
@@ -1067,6 +1063,68 @@ if __name__ == &quot;__main__&quot;:
       <tags>
         <tag>伽马兽王</tag>
         <tag>borderlands3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小说网站爬虫</title>
+    <url>/posts/2020-07-010.html</url>
+    <content><![CDATA[<pre><code>import requests
+from bs4 import BeautifulSoup
+import re
+import os
+
+# 本脚本无普适性，请具体网站具体分析
+root = ''  # 文章首页链接
+art_id = ''  # 文章链接id
+
+fname = './txts/'+art_id[5:-1]+'.txt'
+encode = 'gbk'
+
+
+def GetAllSection(root, id):
+    r = requests.get(root + id)
+    r.encoding = encode
+    bs = BeautifulSoup(r.text, 'html.parser')
+    url_a = bs.find_all('a')
+    urls = []
+    for u in url_a:
+        href = u.get('href')
+        if href and re.match(id, href):
+            urls.append(root+href)
+
+    del urls[0]
+    return urls
+
+
+def SaveArticle(root, id, fname):
+    i = 1
+    urls = GetAllSection(root, id)
+    for url in urls:
+        r = requests.get(url)
+        r.encoding = encode
+        bs = BeautifulSoup(r.text, 'html.parser')
+        text = bs.find_all('p')[1].text
+        text = text.replace('\xa0', ' ')
+        text = text.replace('\ufffd', ' ')
+        text = text.replace('\n\r\n', '\n')
+        with open(fname, 'a', encoding=encode) as file:
+            if i == 1:
+                file.write(bs.h1.text+'\n')
+                i = 0
+            file.write(text+'\n')
+
+
+if __name__ == &quot;__main__&quot;:
+    SaveArticle(root, art_id, fname)
+    # print(fname)
+</code></pre>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
@@ -1186,64 +1244,6 @@ draft	source/_drafts
         <tag>blog</tag>
         <tag>butterfly</tag>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C学习</title>
-    <url>/posts/2020-08-001.html</url>
-    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
-<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
-<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
-<ul>
-<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
-<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
-<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
-<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
-</ul>
-<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
-<p>链接属性一共有三种：external,internal和none。</p>
-<ul>
-<li>
-<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
-</li>
-<li>
-<p>internal：只有同一文件内才为同一实体；</p>
-</li>
-<li>
-<p>none：多个声明被当作独立不同的实体；</p>
-</li>
-<li>
-<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
-<p>static int a;</p>
-</li>
-</ul>
-<p>那么变量a就是这个源文件所私有。</p>
-<ul>
-<li>
-<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
-</li>
-<li>
-<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
-<p>int a;<br />
-extern int b;<br />
-extern int c=10;</p>
-</li>
-</ul>
-<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
-<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
-<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
-<ul>
-<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
-<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
-<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
-当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
       </tags>
   </entry>
   <entry>
@@ -1474,8 +1474,8 @@ $y = d \times cos \left( \theta \right)$
         <category>C#</category>
       </categories>
       <tags>
-        <tag>HFUT</tag>
         <tag>C</tag>
+        <tag>HFUT</tag>
         <tag>STM32</tag>
         <tag>RPLIDAR A1 激光雷达</tag>
       </tags>
