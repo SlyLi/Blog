@@ -1,66 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>C学习</title>
-    <url>/posts/2020-08-001.html</url>
-    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
-<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
-<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
-<ul>
-<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
-<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
-<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
-<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
-</ul>
-<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
-<p>链接属性一共有三种：external,internal和none。</p>
-<ul>
-<li>
-<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
-</li>
-<li>
-<p>internal：只有同一文件内才为同一实体；</p>
-</li>
-<li>
-<p>none：多个声明被当作独立不同的实体；</p>
-</li>
-<li>
-<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
-<pre><code>  static int a;
-</code></pre>
-</li>
-</ul>
-<p>那么变量a就是这个源文件所私有。</p>
-<ul>
-<li>
-<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
-</li>
-<li>
-<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
-<pre><code>  int a;
-  extern int b;
-  extern int c=10;
-</code></pre>
-</li>
-</ul>
-<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
-<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
-<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
-<ul>
-<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
-<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
-<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
-当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LinearRegression--python</title>
     <url>/posts/2020-07-008.html</url>
     <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
@@ -133,6 +73,66 @@ if __name__ == &quot;__main__&quot;:
       <tags>
         <tag>machine learning</tag>
         <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C学习</title>
+    <url>/posts/2020-08-001.html</url>
+    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
+<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
+<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
+<ul>
+<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
+<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
+<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
+<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
+</ul>
+<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
+<p>链接属性一共有三种：external,internal和none。</p>
+<ul>
+<li>
+<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
+</li>
+<li>
+<p>internal：只有同一文件内才为同一实体；</p>
+</li>
+<li>
+<p>none：多个声明被当作独立不同的实体；</p>
+</li>
+<li>
+<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
+<pre><code>  static int a;
+</code></pre>
+</li>
+</ul>
+<p>那么变量a就是这个源文件所私有。</p>
+<ul>
+<li>
+<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
+</li>
+<li>
+<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
+<pre><code>  int a;
+  extern int b;
+  extern int c=10;
+</code></pre>
+</li>
+</ul>
+<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
+<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
+<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
+<ul>
+<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
+<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
+<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
+当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
       </tags>
   </entry>
   <entry>
@@ -395,184 +395,6 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>c++学习</title>
-    <url>/posts/2020-07-009.html</url>
-    <content><![CDATA[<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
-<p>虚函数是指一个类中你希望重写(override)的成员函数，当你用一个基类指针或引用,指向一个继承类对象的时候，调用一个虚函数时, 实际调用的是继承类的版本。</p>
-<pre><code>class Animal {
-public :
-    void  Print()
-    { 
-        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
-    }
-};
-class Dog: public Animal
-{
-public:
-    void  Print() 
-    {
-        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
-    }
-private:
-};
-int main(int argc, char** argv)
-{
-    Animal* d = new Dog();
-    d-&gt;Print();
-}
-</code></pre>
-<p>没有使用<code>virtual</code>时，函数的输出的是<code>Animal</code></p>
-<pre><code>class Animal {
-public :
-    virtual void  Print()
-    { 
-        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
-    }
-};
-class Dog: public Animal
-{
-public:
-    void  Print() 
-    {
-        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
-    }
-private:
-};
-int main(int argc, char** argv)
-{
-    Animal* d = new Dog();	
-    d-&gt;Print();
-}
-</code></pre>
-<p>使用<code>virtual</code>后，函数的输出是<code>Dog</code></p>
-<p>没有使用virtual之前，C++对成员函数使用静态绑定，函数的调用地址在运行前就已经固定。不考虑指针指向的内容，对于什么类型的指针就调用什么类型的函数。<br />
-对于虚函数，每个派生类对象都有一个指向虚函数表的指针，访问任何虚函数都是间接通过这个指针进行的，之所以要用虚函数表，是因为调用一个虚函数的哪个版本是在运行过程（调用时指针所指的对象）才能确定的（动态绑定）。</p>
-<div class="note warning">
-            <p>因此特性，若基类的析构函数是non-virtual的，容易造成局部销毁，导致资源泄漏。非常危险。</p>
-          </div>
-<h3 id="const"><a class="markdownIt-Anchor" href="#const"></a> <code>const</code></h3>
-<ul>
-<li>
-<p>const在指针左边时，指针指向的内容是const。</p>
-</li>
-<li>
-<p>const在指针右边时，指针是const指针</p>
-</li>
-<li>
-<p>当const在函数名前面的时候修饰的是函数返回值。</p>
-</li>
-<li>
-<p>在函数名后面表示是常成员函数，该函数不能修改对象内的任何成员的值，如果需要修改，要在变量前面加<code>mutable</code>关键字。</p>
-</li>
-<li>
-<p>事实上，在某种条件下，<code>const</code>仍可能被修改，可见Effective C++ P22。</p>
-</li>
-</ul>
-<h3 id="explicit"><a class="markdownIt-Anchor" href="#explicit"></a> <code>explicit</code></h3>
-<p>explicit关键字的作用就是防止类构造函数的隐式自动转换，只能用于修饰只有一个参数的类构造函数，与默认的implicit（隐式）相对。构造函数只有一个参数时, 那么在编译的时候就会有一个缺省的转换操作：将该构造函数对应数据类型的数据转换为该类对象。</p>
-<pre><code>class Demo { Demo(param) };
-Demo d1(param);
-Demo d2 = param;    //可行，相当于Demo d1(param);
-
-class Demo { Demo(param) };
-Demo d1(param);
-Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
-</code></pre>
-<h3 id="others"><a class="markdownIt-Anchor" href="#others"></a> Others</h3>
-<ol>
-<li>
-<p>C++规定，对象的成员变量的初始化动作发生在进入构造函数本体之前。</p>
-</li>
-<li>
-<p>类内成员变量总是以其声明顺序被初始化，</p>
-</li>
-<li>
-<p>C++对于不同编译单元（源文件）的non-local static（文件内，所有函数以外的定义的对象）对象的初始化顺序无明确定义。为了避免这个问题，可以通过函数调用的方式（返回一个local static对象），将non-local static对象改为函数内部的static对象。</p>
-</li>
-<li>
-<p>构造函数最好使用成员初值列赋值。</p>
-<pre><code> Construct():value1(),value2(),value3(){}
-</code></pre>
-</li>
-<li>
-<p>C++编译器会自动给空类创建构造函数、赋值函数和析构函数。（当这些函数被调用时）</p>
-<pre><code> class Empty{};
-</code></pre>
-<p>等价于</p>
-<pre><code> class Empty
- {
-     public:
-         Empty(){...}
-         Empty(const Empty&amp; rhs){...}
-         ~Empty(){...}
-
-         Empty&amp; operator=(const Empty&amp; rhs){...}
- }
-</code></pre>
-</li>
-</ol>
-<p>想要阻止这一自动创建，可以将这些函数声明为<code>private</code>，并且故意不实现他们。</p>
-<ol start="6">
-<li>函数中通过值传递传递对象时，若一个派生类被视为基类传递，基类的构造函数会被调用，派生的特化性质被切掉。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>butterfly修改</title>
-    <url>/posts/2020-07-003.html</url>
-    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
-<h3 id="评论"><a class="markdownIt-Anchor" href="#评论"></a> 评论</h3>
-<p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br />
-如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
-<pre><code>---
-title: butterfly修改
-date: 2020-07-05 21:11:42
-comments: false
----
-</code></pre>
-<h3 id="valine评论添加qq提醒"><a class="markdownIt-Anchor" href="#valine评论添加qq提醒"></a> valine评论添加QQ提醒</h3>
-<p>butterfly主题把下列js代码修改后添加到butterfly.yml中的inject后面就好了。<br />
-其他的需要将下列代码添加到一个位置，使每个有valine评论的页面有下列代码。</p>
-<div class="note warning">
-            <p>要先加Qmsg酱为好友。</p>
-          </div>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var title2&#x3D;&quot;msg&#x3D;您的博客又有新评论啦~ \n&quot;;</span><br><span class="line">var SCKEY_Qmsg&#x3D;&quot; &quot;;</span><br><span class="line">function send_valine_Qmsg()&#123;</span><br><span class="line">    var pagename&#x3D;document.title;</span><br><span class="line">    var wz&#x3D;pagename.indexOf(&#39;|&#39;);</span><br><span class="line">    var res&#x3D;pagename.substring(0,wz);</span><br><span class="line">    var pageurl&#x3D;document.URL;</span><br><span class="line">    var ptime&#x3D;new Date();</span><br><span class="line">    var vnick&#x3D;document.getElementsByClassName(&quot;vnick vinput&quot;)[0].value;</span><br><span class="line">    var vmail&#x3D;document.getElementsByClassName(&quot;vmail vinput&quot;)[0].value;</span><br><span class="line">    var vlink&#x3D;document.getElementsByClassName(&quot;vlink vinput&quot;)[0].value;</span><br><span class="line">    var veditor&#x3D;document.getElementsByClassName(&quot;veditor vinput&quot;)[0].value;</span><br><span class="line">    var data&#x3D;&quot;昵称：&quot;+vnick+&quot;\n邮箱：&quot;+vmail+&quot;\n网站地址：&quot;+vlink+&quot;\n当前页面：&quot;+pagename+&quot;\n评论内容：&quot;+veditor+&quot;\n跳转链接：&quot;+pageurl+&quot;\n评论时间：&quot;+ptime.toLocaleString();</span><br><span class="line">    var httpRequest &#x3D; new XMLHttpRequest();</span><br><span class="line">    httpRequest.open(&#39;POST&#39;,SCKEY_Qmsg, true); </span><br><span class="line">    httpRequest.setRequestHeader(&quot;Content-type&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;);</span><br><span class="line">    httpRequest.send(title2+data);</span><br><span class="line">&#125;;</span><br><span class="line">var ValineButton&#x3D;document.getElementsByClassName(&quot;vsubmit vbtn&quot;)[0];</span><br><span class="line">ValineButton.onclick&#x3D;send_valine_Qmsg;</span><br></pre></td></tr></table></figure>
-<p>SCKEY_Qmsg设置为Qmsg酱的接口地址。<br />
-转自<a href="https://www.zyskys.com/posts/bd75.html" target="_blank" rel="noopener">零奇</a></p>
-<h3 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h3>
-<p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，</p>
-<div class="note warning">
-            <p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
-          </div>
-<h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3>
-<p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
-<h3 id="引入katex"><a class="markdownIt-Anchor" href="#引入katex"></a> 引入Katex</h3>
-<p>使用时需要在<code>front-matter</code>里加入： <code>katex: true</code><br />
-具体使用方法见<a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">katex</a>。</p>
-<h3 id="subtitle"><a class="markdownIt-Anchor" href="#subtitle"></a> Subtitle</h3>
-<p>主页面的subtitle，在设置 <code>source : 3</code> 的 <a href="http://yijuzhan.com/" target="_blank" rel="noopener">一句</a> 接口时出现了https错误。</p>
-<pre><code>Mixed Content: xxx This request has been blocked; the content must be served over HTTPS.
-</code></pre>
-<p>原因是在HTTPS页面中引入了HTTP的资源，解决方案实在页面头部插入</p>
-<pre><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;upgrade-insecure-requests&quot;&gt;
-</code></pre>
-<p>可以在 <code>butterfly.yml</code> 找到<code>inject:head</code>,在后面加入上述代码即可。</p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>butterfly</tag>
-        <tag>blog</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown语法</title>
     <url>/posts/2020-06-001.html</url>
     <content><![CDATA[<h2 id="主要内容"><a class="markdownIt-Anchor" href="#主要内容"></a> 主要内容</h2>
@@ -807,8 +629,186 @@ printf(“Hello, Markdown.”);<br />
         <category>blog</category>
       </categories>
       <tags>
-        <tag>blog</tag>
         <tag>markdown</tag>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>butterfly修改</title>
+    <url>/posts/2020-07-003.html</url>
+    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
+<h3 id="评论"><a class="markdownIt-Anchor" href="#评论"></a> 评论</h3>
+<p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br />
+如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
+<pre><code>---
+title: butterfly修改
+date: 2020-07-05 21:11:42
+comments: false
+---
+</code></pre>
+<h3 id="valine评论添加qq提醒"><a class="markdownIt-Anchor" href="#valine评论添加qq提醒"></a> valine评论添加QQ提醒</h3>
+<p>butterfly主题把下列js代码修改后添加到butterfly.yml中的inject后面就好了。<br />
+其他的需要将下列代码添加到一个位置，使每个有valine评论的页面有下列代码。</p>
+<div class="note warning">
+            <p>要先加Qmsg酱为好友。</p>
+          </div>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var title2&#x3D;&quot;msg&#x3D;您的博客又有新评论啦~ \n&quot;;</span><br><span class="line">var SCKEY_Qmsg&#x3D;&quot; &quot;;</span><br><span class="line">function send_valine_Qmsg()&#123;</span><br><span class="line">    var pagename&#x3D;document.title;</span><br><span class="line">    var wz&#x3D;pagename.indexOf(&#39;|&#39;);</span><br><span class="line">    var res&#x3D;pagename.substring(0,wz);</span><br><span class="line">    var pageurl&#x3D;document.URL;</span><br><span class="line">    var ptime&#x3D;new Date();</span><br><span class="line">    var vnick&#x3D;document.getElementsByClassName(&quot;vnick vinput&quot;)[0].value;</span><br><span class="line">    var vmail&#x3D;document.getElementsByClassName(&quot;vmail vinput&quot;)[0].value;</span><br><span class="line">    var vlink&#x3D;document.getElementsByClassName(&quot;vlink vinput&quot;)[0].value;</span><br><span class="line">    var veditor&#x3D;document.getElementsByClassName(&quot;veditor vinput&quot;)[0].value;</span><br><span class="line">    var data&#x3D;&quot;昵称：&quot;+vnick+&quot;\n邮箱：&quot;+vmail+&quot;\n网站地址：&quot;+vlink+&quot;\n当前页面：&quot;+pagename+&quot;\n评论内容：&quot;+veditor+&quot;\n跳转链接：&quot;+pageurl+&quot;\n评论时间：&quot;+ptime.toLocaleString();</span><br><span class="line">    var httpRequest &#x3D; new XMLHttpRequest();</span><br><span class="line">    httpRequest.open(&#39;POST&#39;,SCKEY_Qmsg, true); </span><br><span class="line">    httpRequest.setRequestHeader(&quot;Content-type&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;);</span><br><span class="line">    httpRequest.send(title2+data);</span><br><span class="line">&#125;;</span><br><span class="line">var ValineButton&#x3D;document.getElementsByClassName(&quot;vsubmit vbtn&quot;)[0];</span><br><span class="line">ValineButton.onclick&#x3D;send_valine_Qmsg;</span><br></pre></td></tr></table></figure>
+<p>SCKEY_Qmsg设置为Qmsg酱的接口地址。<br />
+转自<a href="https://www.zyskys.com/posts/bd75.html" target="_blank" rel="noopener">零奇</a></p>
+<h3 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h3>
+<p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，</p>
+<div class="note warning">
+            <p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
+          </div>
+<h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3>
+<p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
+<h3 id="引入katex"><a class="markdownIt-Anchor" href="#引入katex"></a> 引入Katex</h3>
+<p>使用时需要在<code>front-matter</code>里加入： <code>katex: true</code><br />
+具体使用方法见<a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">katex</a>。</p>
+<h3 id="subtitle"><a class="markdownIt-Anchor" href="#subtitle"></a> Subtitle</h3>
+<p>主页面的subtitle，在设置 <code>source : 3</code> 的 <a href="http://yijuzhan.com/" target="_blank" rel="noopener">一句</a> 接口时出现了https错误。</p>
+<pre><code>Mixed Content: xxx This request has been blocked; the content must be served over HTTPS.
+</code></pre>
+<p>原因是在HTTPS页面中引入了HTTP的资源，解决方案实在页面头部插入</p>
+<pre><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;upgrade-insecure-requests&quot;&gt;
+</code></pre>
+<p>可以在 <code>butterfly.yml</code> 找到<code>inject:head</code>,在后面加入上述代码即可。</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++学习</title>
+    <url>/posts/2020-07-009.html</url>
+    <content><![CDATA[<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
+<p>虚函数是指一个类中你希望重写(override)的成员函数，当你用一个基类指针或引用,指向一个继承类对象的时候，调用一个虚函数时, 实际调用的是继承类的版本。</p>
+<pre><code>class Animal {
+public :
+    void  Print()
+    { 
+        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
+    }
+};
+class Dog: public Animal
+{
+public:
+    void  Print() 
+    {
+        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
+    }
+private:
+};
+int main(int argc, char** argv)
+{
+    Animal* d = new Dog();
+    d-&gt;Print();
+}
+</code></pre>
+<p>没有使用<code>virtual</code>时，函数的输出的是<code>Animal</code></p>
+<pre><code>class Animal {
+public :
+    virtual void  Print()
+    { 
+        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
+    }
+};
+class Dog: public Animal
+{
+public:
+    void  Print() 
+    {
+        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
+    }
+private:
+};
+int main(int argc, char** argv)
+{
+    Animal* d = new Dog();	
+    d-&gt;Print();
+}
+</code></pre>
+<p>使用<code>virtual</code>后，函数的输出是<code>Dog</code></p>
+<p>没有使用virtual之前，C++对成员函数使用静态绑定，函数的调用地址在运行前就已经固定。不考虑指针指向的内容，对于什么类型的指针就调用什么类型的函数。<br />
+对于虚函数，每个派生类对象都有一个指向虚函数表的指针，访问任何虚函数都是间接通过这个指针进行的，之所以要用虚函数表，是因为调用一个虚函数的哪个版本是在运行过程（调用时指针所指的对象）才能确定的（动态绑定）。</p>
+<div class="note warning">
+            <p>因此特性，若基类的析构函数是non-virtual的，容易造成局部销毁，导致资源泄漏。非常危险。</p>
+          </div>
+<h3 id="const"><a class="markdownIt-Anchor" href="#const"></a> <code>const</code></h3>
+<ul>
+<li>
+<p>const在指针左边时，指针指向的内容是const。</p>
+</li>
+<li>
+<p>const在指针右边时，指针是const指针</p>
+</li>
+<li>
+<p>当const在函数名前面的时候修饰的是函数返回值。</p>
+</li>
+<li>
+<p>在函数名后面表示是常成员函数，该函数不能修改对象内的任何成员的值，如果需要修改，要在变量前面加<code>mutable</code>关键字。</p>
+</li>
+<li>
+<p>事实上，在某种条件下，<code>const</code>仍可能被修改，可见Effective C++ P22。</p>
+</li>
+</ul>
+<h3 id="explicit"><a class="markdownIt-Anchor" href="#explicit"></a> <code>explicit</code></h3>
+<p>explicit关键字的作用就是防止类构造函数的隐式自动转换，只能用于修饰只有一个参数的类构造函数，与默认的implicit（隐式）相对。构造函数只有一个参数时, 那么在编译的时候就会有一个缺省的转换操作：将该构造函数对应数据类型的数据转换为该类对象。</p>
+<pre><code>class Demo { Demo(param) };
+Demo d1(param);
+Demo d2 = param;    //可行，相当于Demo d1(param);
+
+class Demo { Demo(param) };
+Demo d1(param);
+Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
+</code></pre>
+<h3 id="others"><a class="markdownIt-Anchor" href="#others"></a> Others</h3>
+<ol>
+<li>
+<p>C++规定，对象的成员变量的初始化动作发生在进入构造函数本体之前。</p>
+</li>
+<li>
+<p>类内成员变量总是以其声明顺序被初始化，</p>
+</li>
+<li>
+<p>C++对于不同编译单元（源文件）的non-local static（文件内，所有函数以外的定义的对象）对象的初始化顺序无明确定义。为了避免这个问题，可以通过函数调用的方式（返回一个local static对象），将non-local static对象改为函数内部的static对象。</p>
+</li>
+<li>
+<p>构造函数最好使用成员初值列赋值。</p>
+<pre><code> Construct():value1(),value2(),value3(){}
+</code></pre>
+</li>
+<li>
+<p>C++编译器会自动给空类创建构造函数、赋值函数和析构函数。（当这些函数被调用时）</p>
+<pre><code> class Empty{};
+</code></pre>
+<p>等价于</p>
+<pre><code> class Empty
+ {
+     public:
+         Empty(){...}
+         Empty(const Empty&amp; rhs){...}
+         ~Empty(){...}
+
+         Empty&amp; operator=(const Empty&amp; rhs){...}
+ }
+</code></pre>
+</li>
+</ol>
+<p>想要阻止这一自动创建，可以将这些函数声明为<code>private</code>，并且故意不实现他们。</p>
+<ol start="6">
+<li>函数中通过值传递传递对象时，若一个派生类被视为基类传递，基类的构造函数会被调用，派生的特化性质被切掉。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -1002,65 +1002,69 @@ printf(“Hello, Markdown.”);<br />
       </tags>
   </entry>
   <entry>
-    <title>小说网站爬虫</title>
-    <url>/posts/2020-07-010.html</url>
-    <content><![CDATA[<pre><code>import requests
-from bs4 import BeautifulSoup
-import re
-import os
-
-# 本脚本无普适性，请具体网站具体分析
-root = ''  # 文章首页链接
-art_id = ''  # 文章链接id
-
-fname = './txts/'+art_id[5:-1]+'.txt'
-encode = 'gbk'
-
-
-def GetAllSection(root, id):
-    r = requests.get(root + id)
-    r.encoding = encode
-    bs = BeautifulSoup(r.text, 'html.parser')
-    url_a = bs.find_all('a')
-    urls = []
-    for u in url_a:
-        href = u.get('href')
-        if href and re.match(id, href):
-            urls.append(root+href)
-
-    del urls[0]
-    return urls
-
-
-def SaveArticle(root, id, fname):
-    i = 1
-    urls = GetAllSection(root, id)
-    for url in urls:
-        r = requests.get(url)
-        r.encoding = encode
-        bs = BeautifulSoup(r.text, 'html.parser')
-        text = bs.find_all('p')[1].text
-        text = text.replace('\xa0', ' ')
-        text = text.replace('\ufffd', ' ')
-        text = text.replace('\n\r\n', '\n')
-        with open(fname, 'a', encoding=encode) as file:
-            if i == 1:
-                file.write(bs.h1.text+'\n')
-                i = 0
-            file.write(text+'\n')
-
-
-if __name__ == &quot;__main__&quot;:
-    SaveArticle(root, art_id, fname)
-    # print(fname)
-</code></pre>
+    <title>伽马兽王</title>
+    <url>/posts/2020-07-004.html</url>
+    <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b00.png" alt="兽王" /></p>
+<h3 id="加点"><a class="markdownIt-Anchor" href="#加点"></a> 加点</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b17.png" alt="bd" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b18.png" alt="bd" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b19.png" alt="bd" /></p>
+<h3 id="装备"><a class="markdownIt-Anchor" href="#装备"></a> 装备</h3>
+<div class="note success no-icon">
+            <p>没有dlc，以下只有本体中的武器。<br />攻击类武器受福统一选择 生命值低于50%时，造成额外150%辐射伤害，配合压血神器。</p>
+          </div>
+<h4 id="君王"><a class="markdownIt-Anchor" href="#君王"></a> 君王</h4>
+<p><strong>步枪</strong>，当前版本混10不刮痧的枪，子弹散射，近距离好用，基拉夫特掉落。</p>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b01.png" alt="君王" /></p>
+<h4 id="射弹循环"><a class="markdownIt-Anchor" href="#射弹循环"></a> 射弹循环</h4>
+<p><strong>散弹枪</strong>，发射后会在敌人之间弹射，在敌人多的时候很好用，每当发出的攻击多一种元素时该枪会多射出一发子弹，配合盾雷失效附加额外元素伤害使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b02.png" alt="射弹循环" /></p>
+<h4 id="瘟疫传播者"><a class="markdownIt-Anchor" href="#瘟疫传播者"></a> 瘟疫传播者</h4>
+<p><strong>重型武器</strong>，高伤害，发射前需要蓄力。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b03.png" alt="瘟疫传播者" /></p>
+<h4 id="梅尔加尼的爆发"><a class="markdownIt-Anchor" href="#梅尔加尼的爆发"></a> 梅尔加尼的爆发</h4>
+<p><strong>工具枪</strong>，过热后发射易伤弹，配合飞龙+1受福，用来触发盾雷技能失效受福。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b04.png" alt="梅尔加尼的爆发" /></p>
+<h4 id="考桑"><a class="markdownIt-Anchor" href="#考桑"></a> 考桑</h4>
+<p><strong>冲锋枪</strong>，单体伤害，射速快。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b05.png" alt="考桑" /></p>
+<h4 id="沙鹰"><a class="markdownIt-Anchor" href="#沙鹰"></a> 沙鹰</h4>
+<p><strong>狙击枪</strong>，与其说是狙击枪，更像散弹枪，子弹微散射，远距离也可使用，射速极快，兽王来说子弹根本不够用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b06.png" alt="沙鹰" /></p>
+<h4 id="备胎"><a class="markdownIt-Anchor" href="#备胎"></a> 备胎</h4>
+<p><strong>重型武器</strong>，不用蓄力，伤害还不错。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b07.png" alt="备胎" /></p>
+<h4 id="头脑风暴者"><a class="markdownIt-Anchor" href="#头脑风暴者"></a> 头脑风暴者</h4>
+<p><strong>散弹枪</strong>，多弹片工具枪，可以利用加点中的被动<code>清点人数</code>有效的缩短主动技能的冷却时间。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b08.png" alt="头脑风暴者" /></p>
+<h4 id="不可饶恕"><a class="markdownIt-Anchor" href="#不可饶恕"></a> 不可饶恕</h4>
+<p><strong>手枪</strong>，工具枪，有高额的暴击伤害，配和高伤、弹速慢的武器切枪使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b09.png" alt="不可饶恕" /></p>
+<h4 id="变形金刚"><a class="markdownIt-Anchor" href="#变形金刚"></a> 变形金刚</h4>
+<p><strong>护盾</strong>，免疫电属性伤害并吸收为护盾，受福选择技能失效附加额外属性伤害。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b11.png" alt="变形金刚" /></p>
+<h4 id="赤红之牙"><a class="markdownIt-Anchor" href="#赤红之牙"></a> 赤红之牙</h4>
+<p><strong>模组</strong>，伽马爆发时嘲讽所有敌人，伽马流<code>核心</code>装备，不可缺少，属性看自己选择。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b12.png" alt="赤红之牙" /></p>
+<h4 id="六角"><a class="markdownIt-Anchor" href="#六角"></a> 六角</h4>
+<p><strong>手雷</strong>，受福选择技能失效附加额外属性伤害。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b13.png" alt="六角" /></p>
+<h4 id="吹雪不死"><a class="markdownIt-Anchor" href="#吹雪不死"></a> 吹雪不死</h4>
+<p><strong>神器</strong>，吹雪可以提高滑铲速度，跑路快；不死可以是自己保留<code>1</code>点生命值，用来触发武器受福<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b14.png" alt="吹雪不死" /></p>
+<h4 id="吹雪胜利突袭"><a class="markdownIt-Anchor" href="#吹雪胜利突袭"></a> 吹雪胜利突袭</h4>
+<p><strong>神器</strong> 备用神器，不采用压血流时使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b10.png" alt="吹雪胜利突袭" /></p>
+<h3 id="玩法"><a class="markdownIt-Anchor" href="#玩法"></a> 玩法</h3>
+<p>伽马兽王应该时兽王职业中最安逸的流派了，伽马爆发时儿子的全图嘲讽可以给兽王提供良好的输出环境，输出时配合切飞龙，可以大幅提高伤害。技能冷却时，配合头脑风暴/射弹循环可以迅速使下一次技能准备就绪，然后继续输出。</p>
 ]]></content>
       <categories>
-        <category>Python</category>
+        <category>games</category>
       </categories>
       <tags>
-        <tag>Python</tag>
-        <tag>爬虫</tag>
+        <tag>伽马兽王</tag>
+        <tag>borderlands3</tag>
       </tags>
   </entry>
   <entry>
@@ -1135,72 +1139,6 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>伽马兽王</title>
-    <url>/posts/2020-07-004.html</url>
-    <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b00.png" alt="兽王" /></p>
-<h3 id="加点"><a class="markdownIt-Anchor" href="#加点"></a> 加点</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b17.png" alt="bd" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b18.png" alt="bd" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b19.png" alt="bd" /></p>
-<h3 id="装备"><a class="markdownIt-Anchor" href="#装备"></a> 装备</h3>
-<div class="note success no-icon">
-            <p>没有dlc，以下只有本体中的武器。<br />攻击类武器受福统一选择 生命值低于50%时，造成额外150%辐射伤害，配合压血神器。</p>
-          </div>
-<h4 id="君王"><a class="markdownIt-Anchor" href="#君王"></a> 君王</h4>
-<p><strong>步枪</strong>，当前版本混10不刮痧的枪，子弹散射，近距离好用，基拉夫特掉落。</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b01.png" alt="君王" /></p>
-<h4 id="射弹循环"><a class="markdownIt-Anchor" href="#射弹循环"></a> 射弹循环</h4>
-<p><strong>散弹枪</strong>，发射后会在敌人之间弹射，在敌人多的时候很好用，每当发出的攻击多一种元素时该枪会多射出一发子弹，配合盾雷失效附加额外元素伤害使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b02.png" alt="射弹循环" /></p>
-<h4 id="瘟疫传播者"><a class="markdownIt-Anchor" href="#瘟疫传播者"></a> 瘟疫传播者</h4>
-<p><strong>重型武器</strong>，高伤害，发射前需要蓄力。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b03.png" alt="瘟疫传播者" /></p>
-<h4 id="梅尔加尼的爆发"><a class="markdownIt-Anchor" href="#梅尔加尼的爆发"></a> 梅尔加尼的爆发</h4>
-<p><strong>工具枪</strong>，过热后发射易伤弹，配合飞龙+1受福，用来触发盾雷技能失效受福。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b04.png" alt="梅尔加尼的爆发" /></p>
-<h4 id="考桑"><a class="markdownIt-Anchor" href="#考桑"></a> 考桑</h4>
-<p><strong>冲锋枪</strong>，单体伤害，射速快。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b05.png" alt="考桑" /></p>
-<h4 id="沙鹰"><a class="markdownIt-Anchor" href="#沙鹰"></a> 沙鹰</h4>
-<p><strong>狙击枪</strong>，与其说是狙击枪，更像散弹枪，子弹微散射，远距离也可使用，射速极快，兽王来说子弹根本不够用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b06.png" alt="沙鹰" /></p>
-<h4 id="备胎"><a class="markdownIt-Anchor" href="#备胎"></a> 备胎</h4>
-<p><strong>重型武器</strong>，不用蓄力，伤害还不错。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b07.png" alt="备胎" /></p>
-<h4 id="头脑风暴者"><a class="markdownIt-Anchor" href="#头脑风暴者"></a> 头脑风暴者</h4>
-<p><strong>散弹枪</strong>，多弹片工具枪，可以利用加点中的被动<code>清点人数</code>有效的缩短主动技能的冷却时间。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b08.png" alt="头脑风暴者" /></p>
-<h4 id="不可饶恕"><a class="markdownIt-Anchor" href="#不可饶恕"></a> 不可饶恕</h4>
-<p><strong>手枪</strong>，工具枪，有高额的暴击伤害，配和高伤、弹速慢的武器切枪使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b09.png" alt="不可饶恕" /></p>
-<h4 id="变形金刚"><a class="markdownIt-Anchor" href="#变形金刚"></a> 变形金刚</h4>
-<p><strong>护盾</strong>，免疫电属性伤害并吸收为护盾，受福选择技能失效附加额外属性伤害。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b11.png" alt="变形金刚" /></p>
-<h4 id="赤红之牙"><a class="markdownIt-Anchor" href="#赤红之牙"></a> 赤红之牙</h4>
-<p><strong>模组</strong>，伽马爆发时嘲讽所有敌人，伽马流<code>核心</code>装备，不可缺少，属性看自己选择。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b12.png" alt="赤红之牙" /></p>
-<h4 id="六角"><a class="markdownIt-Anchor" href="#六角"></a> 六角</h4>
-<p><strong>手雷</strong>，受福选择技能失效附加额外属性伤害。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b13.png" alt="六角" /></p>
-<h4 id="吹雪不死"><a class="markdownIt-Anchor" href="#吹雪不死"></a> 吹雪不死</h4>
-<p><strong>神器</strong>，吹雪可以提高滑铲速度，跑路快；不死可以是自己保留<code>1</code>点生命值，用来触发武器受福<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b14.png" alt="吹雪不死" /></p>
-<h4 id="吹雪胜利突袭"><a class="markdownIt-Anchor" href="#吹雪胜利突袭"></a> 吹雪胜利突袭</h4>
-<p><strong>神器</strong> 备用神器，不采用压血流时使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b10.png" alt="吹雪胜利突袭" /></p>
-<h3 id="玩法"><a class="markdownIt-Anchor" href="#玩法"></a> 玩法</h3>
-<p>伽马兽王应该时兽王职业中最安逸的流派了，伽马爆发时儿子的全图嘲讽可以给兽王提供良好的输出环境，输出时配合切飞龙，可以大幅提高伤害。技能冷却时，配合头脑风暴/射弹循环可以迅速使下一次技能准备就绪，然后继续输出。</p>
-]]></content>
-      <categories>
-        <category>games</category>
-      </categories>
-      <tags>
-        <tag>伽马兽王</tag>
-        <tag>borderlands3</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>博客说明</title>
     <url>/posts/2020-07-001.html</url>
     <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -1243,8 +1181,8 @@ draft	source/_drafts
         <category>blog</category>
       </categories>
       <tags>
-        <tag>butterfly</tag>
         <tag>blog</tag>
+        <tag>butterfly</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
@@ -1480,6 +1418,68 @@ $y = d \times cos \left( \theta \right)$
         <tag>HFUT</tag>
         <tag>STM32</tag>
         <tag>RPLIDAR A1 激光雷达</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小说网站爬虫</title>
+    <url>/posts/2020-07-010.html</url>
+    <content><![CDATA[<pre><code>import requests
+from bs4 import BeautifulSoup
+import re
+import os
+
+# 本脚本无普适性，请具体网站具体分析
+root = ''  # 文章首页链接
+art_id = ''  # 文章链接id
+
+fname = './txts/'+art_id[5:-1]+'.txt'
+encode = 'gbk'
+
+
+def GetAllSection(root, id):
+    r = requests.get(root + id)
+    r.encoding = encode
+    bs = BeautifulSoup(r.text, 'html.parser')
+    url_a = bs.find_all('a')
+    urls = []
+    for u in url_a:
+        href = u.get('href')
+        if href and re.match(id, href):
+            urls.append(root+href)
+
+    del urls[0]
+    return urls
+
+
+def SaveArticle(root, id, fname):
+    i = 1
+    urls = GetAllSection(root, id)
+    for url in urls:
+        r = requests.get(url)
+        r.encoding = encode
+        bs = BeautifulSoup(r.text, 'html.parser')
+        text = bs.find_all('p')[1].text
+        text = text.replace('\xa0', ' ')
+        text = text.replace('\ufffd', ' ')
+        text = text.replace('\n\r\n', '\n')
+        with open(fname, 'a', encoding=encode) as file:
+            if i == 1:
+                file.write(bs.h1.text+'\n')
+                i = 0
+            file.write(text+'\n')
+
+
+if __name__ == &quot;__main__&quot;:
+    SaveArticle(root, art_id, fname)
+    # print(fname)
+</code></pre>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
 </search>
