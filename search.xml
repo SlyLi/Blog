@@ -395,6 +395,184 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
+    <title>c++学习</title>
+    <url>/posts/2020-07-009.html</url>
+    <content><![CDATA[<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
+<p>虚函数是指一个类中你希望重写(override)的成员函数，当你用一个基类指针或引用,指向一个继承类对象的时候，调用一个虚函数时, 实际调用的是继承类的版本。</p>
+<pre><code>class Animal {
+public :
+    void  Print()
+    { 
+        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
+    }
+};
+class Dog: public Animal
+{
+public:
+    void  Print() 
+    {
+        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
+    }
+private:
+};
+int main(int argc, char** argv)
+{
+    Animal* d = new Dog();
+    d-&gt;Print();
+}
+</code></pre>
+<p>没有使用<code>virtual</code>时，函数的输出的是<code>Animal</code></p>
+<pre><code>class Animal {
+public :
+    virtual void  Print()
+    { 
+        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
+    }
+};
+class Dog: public Animal
+{
+public:
+    void  Print() 
+    {
+        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
+    }
+private:
+};
+int main(int argc, char** argv)
+{
+    Animal* d = new Dog();	
+    d-&gt;Print();
+}
+</code></pre>
+<p>使用<code>virtual</code>后，函数的输出是<code>Dog</code></p>
+<p>没有使用virtual之前，C++对成员函数使用静态绑定，函数的调用地址在运行前就已经固定。不考虑指针指向的内容，对于什么类型的指针就调用什么类型的函数。<br />
+对于虚函数，每个派生类对象都有一个指向虚函数表的指针，访问任何虚函数都是间接通过这个指针进行的，之所以要用虚函数表，是因为调用一个虚函数的哪个版本是在运行过程（调用时指针所指的对象）才能确定的（动态绑定）。</p>
+<div class="note warning">
+            <p>因此特性，若基类的析构函数是non-virtual的，容易造成局部销毁，导致资源泄漏。非常危险。</p>
+          </div>
+<h3 id="const"><a class="markdownIt-Anchor" href="#const"></a> <code>const</code></h3>
+<ul>
+<li>
+<p>const在指针左边时，指针指向的内容是const。</p>
+</li>
+<li>
+<p>const在指针右边时，指针是const指针</p>
+</li>
+<li>
+<p>当const在函数名前面的时候修饰的是函数返回值。</p>
+</li>
+<li>
+<p>在函数名后面表示是常成员函数，该函数不能修改对象内的任何成员的值，如果需要修改，要在变量前面加<code>mutable</code>关键字。</p>
+</li>
+<li>
+<p>事实上，在某种条件下，<code>const</code>仍可能被修改，可见Effective C++ P22。</p>
+</li>
+</ul>
+<h3 id="explicit"><a class="markdownIt-Anchor" href="#explicit"></a> <code>explicit</code></h3>
+<p>explicit关键字的作用就是防止类构造函数的隐式自动转换，只能用于修饰只有一个参数的类构造函数，与默认的implicit（隐式）相对。构造函数只有一个参数时, 那么在编译的时候就会有一个缺省的转换操作：将该构造函数对应数据类型的数据转换为该类对象。</p>
+<pre><code>class Demo { Demo(param) };
+Demo d1(param);
+Demo d2 = param;    //可行，相当于Demo d1(param);
+
+class Demo { Demo(param) };
+Demo d1(param);
+Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
+</code></pre>
+<h3 id="others"><a class="markdownIt-Anchor" href="#others"></a> Others</h3>
+<ol>
+<li>
+<p>C++规定，对象的成员变量的初始化动作发生在进入构造函数本体之前。</p>
+</li>
+<li>
+<p>类内成员变量总是以其声明顺序被初始化，</p>
+</li>
+<li>
+<p>C++对于不同编译单元（源文件）的non-local static（文件内，所有函数以外的定义的对象）对象的初始化顺序无明确定义。为了避免这个问题，可以通过函数调用的方式（返回一个local static对象），将non-local static对象改为函数内部的static对象。</p>
+</li>
+<li>
+<p>构造函数最好使用成员初值列赋值。</p>
+<pre><code> Construct():value1(),value2(),value3(){}
+</code></pre>
+</li>
+<li>
+<p>C++编译器会自动给空类创建构造函数、赋值函数和析构函数。（当这些函数被调用时）</p>
+<pre><code> class Empty{};
+</code></pre>
+<p>等价于</p>
+<pre><code> class Empty
+ {
+     public:
+         Empty(){...}
+         Empty(const Empty&amp; rhs){...}
+         ~Empty(){...}
+
+         Empty&amp; operator=(const Empty&amp; rhs){...}
+ }
+</code></pre>
+</li>
+</ol>
+<p>想要阻止这一自动创建，可以将这些函数声明为<code>private</code>，并且故意不实现他们。</p>
+<ol start="6">
+<li>函数中通过值传递传递对象时，若一个派生类被视为基类传递，基类的构造函数会被调用，派生的特化性质被切掉。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>butterfly修改</title>
+    <url>/posts/2020-07-003.html</url>
+    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
+<h3 id="评论"><a class="markdownIt-Anchor" href="#评论"></a> 评论</h3>
+<p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br />
+如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
+<pre><code>---
+title: butterfly修改
+date: 2020-07-05 21:11:42
+comments: false
+---
+</code></pre>
+<h3 id="valine评论添加qq提醒"><a class="markdownIt-Anchor" href="#valine评论添加qq提醒"></a> valine评论添加QQ提醒</h3>
+<p>butterfly主题把下列js代码修改后添加到butterfly.yml中的inject后面就好了。<br />
+其他的需要将下列代码添加到一个位置，使每个有valine评论的页面有下列代码。</p>
+<div class="note warning">
+            <p>要先加Qmsg酱为好友。</p>
+          </div>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var title2&#x3D;&quot;msg&#x3D;您的博客又有新评论啦~ \n&quot;;</span><br><span class="line">var SCKEY_Qmsg&#x3D;&quot; &quot;;</span><br><span class="line">function send_valine_Qmsg()&#123;</span><br><span class="line">    var pagename&#x3D;document.title;</span><br><span class="line">    var wz&#x3D;pagename.indexOf(&#39;|&#39;);</span><br><span class="line">    var res&#x3D;pagename.substring(0,wz);</span><br><span class="line">    var pageurl&#x3D;document.URL;</span><br><span class="line">    var ptime&#x3D;new Date();</span><br><span class="line">    var vnick&#x3D;document.getElementsByClassName(&quot;vnick vinput&quot;)[0].value;</span><br><span class="line">    var vmail&#x3D;document.getElementsByClassName(&quot;vmail vinput&quot;)[0].value;</span><br><span class="line">    var vlink&#x3D;document.getElementsByClassName(&quot;vlink vinput&quot;)[0].value;</span><br><span class="line">    var veditor&#x3D;document.getElementsByClassName(&quot;veditor vinput&quot;)[0].value;</span><br><span class="line">    var data&#x3D;&quot;昵称：&quot;+vnick+&quot;\n邮箱：&quot;+vmail+&quot;\n网站地址：&quot;+vlink+&quot;\n当前页面：&quot;+pagename+&quot;\n评论内容：&quot;+veditor+&quot;\n跳转链接：&quot;+pageurl+&quot;\n评论时间：&quot;+ptime.toLocaleString();</span><br><span class="line">    var httpRequest &#x3D; new XMLHttpRequest();</span><br><span class="line">    httpRequest.open(&#39;POST&#39;,SCKEY_Qmsg, true); </span><br><span class="line">    httpRequest.setRequestHeader(&quot;Content-type&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;);</span><br><span class="line">    httpRequest.send(title2+data);</span><br><span class="line">&#125;;</span><br><span class="line">var ValineButton&#x3D;document.getElementsByClassName(&quot;vsubmit vbtn&quot;)[0];</span><br><span class="line">ValineButton.onclick&#x3D;send_valine_Qmsg;</span><br></pre></td></tr></table></figure>
+<p>SCKEY_Qmsg设置为Qmsg酱的接口地址。<br />
+转自<a href="https://www.zyskys.com/posts/bd75.html" target="_blank" rel="noopener">零奇</a></p>
+<h3 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h3>
+<p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，</p>
+<div class="note warning">
+            <p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
+          </div>
+<h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3>
+<p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
+<h3 id="引入katex"><a class="markdownIt-Anchor" href="#引入katex"></a> 引入Katex</h3>
+<p>使用时需要在<code>front-matter</code>里加入： <code>katex: true</code><br />
+具体使用方法见<a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">katex</a>。</p>
+<h3 id="subtitle"><a class="markdownIt-Anchor" href="#subtitle"></a> Subtitle</h3>
+<p>主页面的subtitle，在设置 <code>source : 3</code> 的 <a href="http://yijuzhan.com/" target="_blank" rel="noopener">一句</a> 接口时出现了https错误。</p>
+<pre><code>Mixed Content: xxx This request has been blocked; the content must be served over HTTPS.
+</code></pre>
+<p>原因是在HTTPS页面中引入了HTTP的资源，解决方案实在页面头部插入</p>
+<pre><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;upgrade-insecure-requests&quot;&gt;
+</code></pre>
+<p>可以在 <code>butterfly.yml</code> 找到<code>inject:head</code>,在后面加入上述代码即可。</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>butterfly</tag>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown语法</title>
     <url>/posts/2020-06-001.html</url>
     <content><![CDATA[<h2 id="主要内容"><a class="markdownIt-Anchor" href="#主要内容"></a> 主要内容</h2>
@@ -629,186 +807,29 @@ printf(“Hello, Markdown.”);<br />
         <category>blog</category>
       </categories>
       <tags>
+        <tag>blog</tag>
         <tag>markdown</tag>
-        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
-    <title>butterfly修改</title>
-    <url>/posts/2020-07-003.html</url>
-    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
-<h3 id="评论"><a class="markdownIt-Anchor" href="#评论"></a> 评论</h3>
-<p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br />
-如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
-<pre><code>---
-title: butterfly修改
-date: 2020-07-05 21:11:42
-comments: false
----
-</code></pre>
-<h3 id="valine评论添加qq提醒"><a class="markdownIt-Anchor" href="#valine评论添加qq提醒"></a> valine评论添加QQ提醒</h3>
-<p>butterfly主题把下列js代码修改后添加到butterfly.yml中的inject后面就好了。<br />
-其他的需要将下列代码添加到一个位置，使每个有valine评论的页面有下列代码。</p>
-<div class="note warning">
-            <p>要先加Qmsg酱为好友。</p>
-          </div>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var title2&#x3D;&quot;msg&#x3D;您的博客又有新评论啦~ \n&quot;;</span><br><span class="line">var SCKEY_Qmsg&#x3D;&quot; &quot;;</span><br><span class="line">function send_valine_Qmsg()&#123;</span><br><span class="line">    var pagename&#x3D;document.title;</span><br><span class="line">    var wz&#x3D;pagename.indexOf(&#39;|&#39;);</span><br><span class="line">    var res&#x3D;pagename.substring(0,wz);</span><br><span class="line">    var pageurl&#x3D;document.URL;</span><br><span class="line">    var ptime&#x3D;new Date();</span><br><span class="line">    var vnick&#x3D;document.getElementsByClassName(&quot;vnick vinput&quot;)[0].value;</span><br><span class="line">    var vmail&#x3D;document.getElementsByClassName(&quot;vmail vinput&quot;)[0].value;</span><br><span class="line">    var vlink&#x3D;document.getElementsByClassName(&quot;vlink vinput&quot;)[0].value;</span><br><span class="line">    var veditor&#x3D;document.getElementsByClassName(&quot;veditor vinput&quot;)[0].value;</span><br><span class="line">    var data&#x3D;&quot;昵称：&quot;+vnick+&quot;\n邮箱：&quot;+vmail+&quot;\n网站地址：&quot;+vlink+&quot;\n当前页面：&quot;+pagename+&quot;\n评论内容：&quot;+veditor+&quot;\n跳转链接：&quot;+pageurl+&quot;\n评论时间：&quot;+ptime.toLocaleString();</span><br><span class="line">    var httpRequest &#x3D; new XMLHttpRequest();</span><br><span class="line">    httpRequest.open(&#39;POST&#39;,SCKEY_Qmsg, true); </span><br><span class="line">    httpRequest.setRequestHeader(&quot;Content-type&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;);</span><br><span class="line">    httpRequest.send(title2+data);</span><br><span class="line">&#125;;</span><br><span class="line">var ValineButton&#x3D;document.getElementsByClassName(&quot;vsubmit vbtn&quot;)[0];</span><br><span class="line">ValineButton.onclick&#x3D;send_valine_Qmsg;</span><br></pre></td></tr></table></figure>
-<p>SCKEY_Qmsg设置为Qmsg酱的接口地址。<br />
-转自<a href="https://www.zyskys.com/posts/bd75.html" target="_blank" rel="noopener">零奇</a></p>
-<h3 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h3>
-<p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，</p>
-<div class="note warning">
-            <p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
-          </div>
-<h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3>
-<p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
-<h3 id="引入katex"><a class="markdownIt-Anchor" href="#引入katex"></a> 引入Katex</h3>
-<p>使用时需要在<code>front-matter</code>里加入： <code>katex: true</code><br />
-具体使用方法见<a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">katex</a>。</p>
-<h3 id="subtitle"><a class="markdownIt-Anchor" href="#subtitle"></a> Subtitle</h3>
-<p>主页面的subtitle，在设置 <code>source : 3</code> 的 <a href="http://yijuzhan.com/" target="_blank" rel="noopener">一句</a> 接口时出现了https错误。</p>
-<pre><code>Mixed Content: xxx This request has been blocked; the content must be served over HTTPS.
-</code></pre>
-<p>原因是在HTTPS页面中引入了HTTP的资源，解决方案实在页面头部插入</p>
-<pre><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;upgrade-insecure-requests&quot;&gt;
-</code></pre>
-<p>可以在 <code>butterfly.yml</code> 找到<code>inject:head</code>,在后面加入上述代码即可。</p>
+    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
+    <url>/posts/2020-07-002.html</url>
+    <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
+<h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg2.png" alt="解压" /></p>
+<h3 id="解压完成后会将所有文件默认放入同目录下的output文件中"><a class="markdownIt-Anchor" href="#解压完成后会将所有文件默认放入同目录下的output文件中"></a> 解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3>
+<h3 id="想要了解更多可以查看源仓库-notscuffedrepkg说明"><a class="markdownIt-Anchor" href="#想要了解更多可以查看源仓库-notscuffedrepkg说明"></a> 想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>
 ]]></content>
       <categories>
-        <category>blog</category>
+        <category>others</category>
       </categories>
       <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>c++学习</title>
-    <url>/posts/2020-07-009.html</url>
-    <content><![CDATA[<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
-<p>虚函数是指一个类中你希望重写(override)的成员函数，当你用一个基类指针或引用,指向一个继承类对象的时候，调用一个虚函数时, 实际调用的是继承类的版本。</p>
-<pre><code>class Animal {
-public :
-    void  Print()
-    { 
-        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
-    }
-};
-class Dog: public Animal
-{
-public:
-    void  Print() 
-    {
-        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
-    }
-private:
-};
-int main(int argc, char** argv)
-{
-    Animal* d = new Dog();
-    d-&gt;Print();
-}
-</code></pre>
-<p>没有使用<code>virtual</code>时，函数的输出的是<code>Animal</code></p>
-<pre><code>class Animal {
-public :
-    virtual void  Print()
-    { 
-        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
-    }
-};
-class Dog: public Animal
-{
-public:
-    void  Print() 
-    {
-        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
-    }
-private:
-};
-int main(int argc, char** argv)
-{
-    Animal* d = new Dog();	
-    d-&gt;Print();
-}
-</code></pre>
-<p>使用<code>virtual</code>后，函数的输出是<code>Dog</code></p>
-<p>没有使用virtual之前，C++对成员函数使用静态绑定，函数的调用地址在运行前就已经固定。不考虑指针指向的内容，对于什么类型的指针就调用什么类型的函数。<br />
-对于虚函数，每个派生类对象都有一个指向虚函数表的指针，访问任何虚函数都是间接通过这个指针进行的，之所以要用虚函数表，是因为调用一个虚函数的哪个版本是在运行过程（调用时指针所指的对象）才能确定的（动态绑定）。</p>
-<div class="note warning">
-            <p>因此特性，若基类的析构函数是non-virtual的，容易造成局部销毁，导致资源泄漏。非常危险。</p>
-          </div>
-<h3 id="const"><a class="markdownIt-Anchor" href="#const"></a> <code>const</code></h3>
-<ul>
-<li>
-<p>const在指针左边时，指针指向的内容是const。</p>
-</li>
-<li>
-<p>const在指针右边时，指针是const指针</p>
-</li>
-<li>
-<p>当const在函数名前面的时候修饰的是函数返回值。</p>
-</li>
-<li>
-<p>在函数名后面表示是常成员函数，该函数不能修改对象内的任何成员的值，如果需要修改，要在变量前面加<code>mutable</code>关键字。</p>
-</li>
-<li>
-<p>事实上，在某种条件下，<code>const</code>仍可能被修改，可见Effective C++ P22。</p>
-</li>
-</ul>
-<h3 id="explicit"><a class="markdownIt-Anchor" href="#explicit"></a> <code>explicit</code></h3>
-<p>explicit关键字的作用就是防止类构造函数的隐式自动转换，只能用于修饰只有一个参数的类构造函数，与默认的implicit（隐式）相对。构造函数只有一个参数时, 那么在编译的时候就会有一个缺省的转换操作：将该构造函数对应数据类型的数据转换为该类对象。</p>
-<pre><code>class Demo { Demo(param) };
-Demo d1(param);
-Demo d2 = param;    //可行，相当于Demo d1(param);
-
-class Demo { Demo(param) };
-Demo d1(param);
-Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
-</code></pre>
-<h3 id="others"><a class="markdownIt-Anchor" href="#others"></a> Others</h3>
-<ol>
-<li>
-<p>C++规定，对象的成员变量的初始化动作发生在进入构造函数本体之前。</p>
-</li>
-<li>
-<p>类内成员变量总是以其声明顺序被初始化，</p>
-</li>
-<li>
-<p>C++对于不同编译单元（源文件）的non-local static（文件内，所有函数以外的定义的对象）对象的初始化顺序无明确定义。为了避免这个问题，可以通过函数调用的方式（返回一个local static对象），将non-local static对象改为函数内部的static对象。</p>
-</li>
-<li>
-<p>构造函数最好使用成员初值列赋值。</p>
-<pre><code> Construct():value1(),value2(),value3(){}
-</code></pre>
-</li>
-<li>
-<p>C++编译器会自动给空类创建构造函数、赋值函数和析构函数。（当这些函数被调用时）</p>
-<pre><code> class Empty{};
-</code></pre>
-<p>等价于</p>
-<pre><code> class Empty
- {
-     public:
-         Empty(){...}
-         Empty(const Empty&amp; rhs){...}
-         ~Empty(){...}
-
-         Empty&amp; operator=(const Empty&amp; rhs){...}
- }
-</code></pre>
-</li>
-</ol>
-<p>想要阻止这一自动创建，可以将这些函数声明为<code>private</code>，并且故意不实现他们。</p>
-<ol start="6">
-<li></li>
-</ol>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
+        <tag>wallpapper engine</tag>
+        <tag>github</tag>
+        <tag>steam</tag>
+        <tag>repkg</tag>
       </tags>
   </entry>
   <entry>
@@ -978,27 +999,6 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
       <tags>
         <tag>machine learning</tag>
         <tag>吴达恩</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
-    <url>/posts/2020-07-002.html</url>
-    <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
-<h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg2.png" alt="解压" /></p>
-<h3 id="解压完成后会将所有文件默认放入同目录下的output文件中"><a class="markdownIt-Anchor" href="#解压完成后会将所有文件默认放入同目录下的output文件中"></a> 解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3>
-<h3 id="想要了解更多可以查看源仓库-notscuffedrepkg说明"><a class="markdownIt-Anchor" href="#想要了解更多可以查看源仓库-notscuffedrepkg说明"></a> 想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>wallpapper engine</tag>
-        <tag>github</tag>
-        <tag>steam</tag>
-        <tag>repkg</tag>
       </tags>
   </entry>
   <entry>
@@ -1243,8 +1243,8 @@ draft	source/_drafts
         <category>blog</category>
       </categories>
       <tags>
-        <tag>blog</tag>
         <tag>butterfly</tag>
+        <tag>blog</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
