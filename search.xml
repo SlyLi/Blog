@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>C学习</title>
+    <url>/posts/2020-08-001.html</url>
+    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
+<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
+<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
+<ul>
+<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
+<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
+<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
+<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
+</ul>
+<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
+<p>链接属性一共有三种：external,internal和none。</p>
+<ul>
+<li>
+<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
+</li>
+<li>
+<p>internal：只有同一文件内才为同一实体；</p>
+</li>
+<li>
+<p>none：多个声明被当作独立不同的实体；</p>
+</li>
+<li>
+<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
+<pre><code>  static int a;
+</code></pre>
+</li>
+</ul>
+<p>那么变量a就是这个源文件所私有。</p>
+<ul>
+<li>
+<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
+</li>
+<li>
+<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
+<pre><code>  int a;
+  extern int b;
+  extern int c=10;
+</code></pre>
+</li>
+</ul>
+<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
+<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
+<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
+<ul>
+<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
+<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
+<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
+当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LinearRegression--python</title>
     <url>/posts/2020-07-008.html</url>
     <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
@@ -73,66 +133,6 @@ if __name__ == &quot;__main__&quot;:
       <tags>
         <tag>machine learning</tag>
         <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C学习</title>
-    <url>/posts/2020-08-001.html</url>
-    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
-<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
-<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
-<ul>
-<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
-<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
-<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
-<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
-</ul>
-<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
-<p>链接属性一共有三种：external,internal和none。</p>
-<ul>
-<li>
-<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
-</li>
-<li>
-<p>internal：只有同一文件内才为同一实体；</p>
-</li>
-<li>
-<p>none：多个声明被当作独立不同的实体；</p>
-</li>
-<li>
-<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
-<pre><code>  static int a;
-</code></pre>
-</li>
-</ul>
-<p>那么变量a就是这个源文件所私有。</p>
-<ul>
-<li>
-<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
-</li>
-<li>
-<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
-<pre><code>  int a;
-  extern int b;
-  extern int c=10;
-</code></pre>
-</li>
-</ul>
-<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
-<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
-<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
-<ul>
-<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
-<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
-<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
-当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
       </tags>
   </entry>
   <entry>
@@ -634,6 +634,21 @@ printf(“Hello, Markdown.”);<br />
       </tags>
   </entry>
   <entry>
+    <title>android</title>
+    <url>/posts/2020-08-003.html</url>
+    <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
+具体是Unknown host ‘<a href="http://d29vzk4ow07wi7.cloudfront.net" target="_blank" rel="noopener">d29vzk4ow07wi7.cloudfront.net</a>’. You may need to adjust the proxy settings in Gradle.<br />
+把 build.gradle 中的两个 jcenter() 用 maven{ url “<a href="http://maven.aliyun.com/nexus/content/groups/public/" target="_blank" rel="noopener">http://maven.aliyun.com/nexus/content/groups/public/</a>”} 代替，然后等待下载安装完成就好了。<br />
+开这个项目，目前是想做一个古文阅读的app，等我把安卓开发的基础知识过一遍就来更新。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>butterfly修改</title>
     <url>/posts/2020-07-003.html</url>
     <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
@@ -680,21 +695,6 @@ comments: false
       <tags>
         <tag>blog</tag>
         <tag>butterfly</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>android</title>
-    <url>/posts/2020-08-003.html</url>
-    <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
-具体是Unknown host ‘<a href="http://d29vzk4ow07wi7.cloudfront.net" target="_blank" rel="noopener">d29vzk4ow07wi7.cloudfront.net</a>’. You may need to adjust the proxy settings in Gradle.<br />
-把 build.gradle 中的两个 jcenter() 用 maven{ url “<a href="http://maven.aliyun.com/nexus/content/groups/public/" target="_blank" rel="noopener">http://maven.aliyun.com/nexus/content/groups/public/</a>”} 代替，然后等待下载安装完成就好了。<br />
-开这个项目，目前是想做一个古文阅读的app，等我把安卓开发的基础知识过一遍就来更新。</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -827,27 +827,6 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
       </tags>
   </entry>
   <entry>
-    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
-    <url>/posts/2020-07-002.html</url>
-    <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
-<h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg2.png" alt="解压" /></p>
-<h3 id="解压完成后会将所有文件默认放入同目录下的output文件中"><a class="markdownIt-Anchor" href="#解压完成后会将所有文件默认放入同目录下的output文件中"></a> 解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3>
-<h3 id="想要了解更多可以查看源仓库-notscuffedrepkg说明"><a class="markdownIt-Anchor" href="#想要了解更多可以查看源仓库-notscuffedrepkg说明"></a> 想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>wallpapper engine</tag>
-        <tag>github</tag>
-        <tag>steam</tag>
-        <tag>repkg</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode</title>
     <url>/posts/2020-08-002.html</url>
     <content><![CDATA[<h2 id="每日一题"><a class="markdownIt-Anchor" href="#每日一题"></a> 每日一题</h2>
@@ -959,6 +938,27 @@ public:
       </categories>
       <tags>
         <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
+    <url>/posts/2020-07-002.html</url>
+    <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
+<h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg2.png" alt="解压" /></p>
+<h3 id="解压完成后会将所有文件默认放入同目录下的output文件中"><a class="markdownIt-Anchor" href="#解压完成后会将所有文件默认放入同目录下的output文件中"></a> 解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3>
+<h3 id="想要了解更多可以查看源仓库-notscuffedrepkg说明"><a class="markdownIt-Anchor" href="#想要了解更多可以查看源仓库-notscuffedrepkg说明"></a> 想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>wallpapper engine</tag>
+        <tag>github</tag>
+        <tag>steam</tag>
+        <tag>repkg</tag>
       </tags>
   </entry>
   <entry>
@@ -1259,6 +1259,77 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
+    <title>全国大学生智能汽车竞赛记录</title>
+    <url>/posts/2020-07-005.html</url>
+    <content><![CDATA[<h3 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h3>
+<p>18年下半年，也就是我大三的上半学期，是第二年的全国大学生智能汽车竞赛的校内报名时间。同学来邀请我参加，我也想做点东西，就一起参加了。我们一组三人，自己主要负责相关代码的编写。</p>
+<h3 id="准备"><a class="markdownIt-Anchor" href="#准备"></a> 准备</h3>
+<p>报名后就临近放假了，而且当时课程还挺多的，就没怎么准备，最后放假前拿着参赛的摄像头去学校实验室跑道上采集了下赛道数据,一边自己在寒假的时候开始准备，写写如何处理。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/path.jpg" alt="path" /></p>
+<p>采集回来的赛道信息就是这样的二进制黑白图，每一列是一部分的采集变化图，就在整个过程中随意截取了几段，（黑色：1、白色：0）。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/graph.png" alt="path" /></p>
+<h3 id="过程"><a class="markdownIt-Anchor" href="#过程"></a> 过程</h3>
+<h4 id="首先让小车跑起来"><a class="markdownIt-Anchor" href="#首先让小车跑起来"></a> 首先让小车跑起来</h4>
+<p>简单来说就是用单片机生成pwm给驱动板来驱动电机和舵机。最开始可以给一个固定的值让小车直接往前走。</p>
+<h4 id="提取赛道的中线让小车巡中线前进"><a class="markdownIt-Anchor" href="#提取赛道的中线让小车巡中线前进"></a> 提取赛道的中线，让小车巡中线前进</h4>
+<p>整个赛道在单片机看来就是上图所示的0和1，所以0和1的分界线就是赛道的边界。首先将整个边界提取出来，（左边界+右边界）/2 就基本上是赛道的中线了，然后小车巡中线前进即可。思路：给不同高度的中线上的不同点以不同的权值，加权计算出来后得到一个中点的位置，然后将这个终点与摄像头的中点比较，看偏差的位置和多少，然后再给舵机不同的打角方向和幅度。每次都是按照这个中点来前进，整个流程下来就是按照中线前进了。</p>
+<h4 id="十字路口"><a class="markdownIt-Anchor" href="#十字路口"></a> 十字路口</h4>
+<p>这是个老元素了，首先得判断出来这是个十字路口，过程中要注意和圆环元素的区别，我判断的依据是两边边界的边线都在某个高度丢失。然后需要对十字路口进行补线，先找到边界丢失的拐角处，对于丢线的部分可以按照未丢线部分的斜率延长边线。当然还有其他方法，我在这就不说了。</p>
+<h4 id="圆环"><a class="markdownIt-Anchor" href="#圆环"></a> 圆环</h4>
+<p>这也是个老元素了，同样首先要判断出来这是圆环，可以使用电磁信号辅助判断。然后进行各种补线使小车进去一次圆环后出来，并且不再进这个圆环。我的方法是一个阶段一个阶段的进行判断、补线、判断、 补线。。。直到完成整个元素，具体的我就不在这里详细描述了。</p>
+<h4 id="断路"><a class="markdownIt-Anchor" href="#断路"></a> 断路</h4>
+<p>这个简单，直接巡电磁线前进就好了，注意的的进短路前要减速，因为小车尺寸限制，前瞻不能很长，所以短路转弯速度快了容易冲出去。</p>
+<h4 id="路障"><a class="markdownIt-Anchor" href="#路障"></a> 路障</h4>
+<p>我们使用的超声波配合摄像头一起识别，识别到后可以固定打角出去，然后定时，再固定打角回来。这是一种比较简单而且速度快的方法，但是参数不太好调。另外可以在侧面装一个摄像头，识别到后，系统切换到侧面的摄像头，然后按照摄像头采集的赛道边线数据前进。这种方法可能速度比较慢，但是稳定性较好，我们是这两种都完成了，摄像头的方案留作备用，在省赛决赛时，路障前后直道的长度较短，备用方法很有效。</p>
+<h4 id="结束"><a class="markdownIt-Anchor" href="#结束"></a> 结束</h4>
+<p>各个元素处理完后，就开始了漫长的调参优化过程了，由于组员没有用过Git，所以我们代码都是以QQ群的方式共享的。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/code2.png" alt="code1" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/code1.png" alt="code2" /></p>
+<p>最后放一段主循环的代码吧。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">while (1)</span><br><span class="line">    &#123;</span><br><span class="line">        GearSelect();</span><br><span class="line">        CameraGetImg(&amp;buff, img, cam_type);</span><br><span class="line">        LCD_Img_Binary_Z(site, size, buff, imgsize);</span><br><span class="line">        ReadADC();</span><br><span class="line">        stop &#x3D; 0;</span><br><span class="line">        if (Stop() &#x3D;&#x3D; 1 &amp;&amp; road_type !&#x3D; OBSTALE &amp;&amp; in_obs &#x3D;&#x3D; 0) &#x2F;&#x2F;(Stop() &#x3D;&#x3D; 1 || distance &lt; 20)</span><br><span class="line">        &#123;</span><br><span class="line">            road_type &#x3D; STOP;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (road_type &#x3D;&#x3D; STOP &amp;&amp; Stop() &#x3D;&#x3D; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            if (LengthOfX(40, img) &gt; 15)</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; NORMAL;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; ELECTROMAGNETIC;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        switch (road_type)</span><br><span class="line">        &#123;</span><br><span class="line">        case NORMAL:</span><br><span class="line">            roundabout_flag &#x3D; 0;</span><br><span class="line">            road_flag &#x3D; GetMiddleLine(img, mid_line, left_line, right_line, &amp;roundabout_flag);</span><br><span class="line">            stop &#x3D; StartLine(img);</span><br><span class="line">            if (road_flag &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line">                distance1 &#x3D; GetUltrasnoic();</span><br><span class="line">                distance &#x3D; GetUltrasnoic();</span><br><span class="line">                if (speed_param.obs_pit &#x3D;&#x3D; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    distance +&#x3D; 100;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (distance &lt; 1100 &amp;&amp; distance &gt; 500 &amp;&amp; distance1 &lt; 1150 &amp;&amp; distance1 &gt; 500)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (speed_param.obs_pit &#x3D;&#x3D; 1)</span><br><span class="line">                    &#123;</span><br><span class="line">                        set_vector_handler(PIT3_VECTORn, PIT3_IRQHandler);</span><br><span class="line">                        ave_speed &#x3D; AveSpeed();</span><br><span class="line">                        &#x2F;&#x2F; 定时后的固定速度</span><br><span class="line">                        duty &#x3D; 725 + 0.09 * (ave_speed);</span><br><span class="line">                        uint32 pit_time &#x3D; 275 - 0.1 * ave_speed;</span><br><span class="line">                        pit_init_ms(PIT3, pit_time);</span><br><span class="line">                        enable_irq(PIT3_IRQn);</span><br><span class="line">                        road_type &#x3D; OBSTALE;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        cam_type &#x3D; SUB_CAM;</span><br><span class="line">                        delay &#x3D; speed_param.switch_delay;</span><br><span class="line">                        road_type &#x3D; OBSTALE;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (road_flag &#x3D;&#x3D; 2)</span><br><span class="line">            &#123;</span><br><span class="line">                delay &#x3D; speed_param.switch_delay-10;</span><br><span class="line">                road_type &#x3D; ELECTROMAGNETIC;</span><br><span class="line">                MotorLpid(0);</span><br><span class="line">                MotorRpid(0);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            for (int q &#x3D; 0; q &lt; HEIGHT; q++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (mid_line[q] &lt; WIDTH)</span><br><span class="line">                    LCD_point((Site_t)&#123;(int)(mid_line[q] * 1.6), (int)(q * 1.6)&#125;, RED);</span><br><span class="line">            &#125;</span><br><span class="line">            for (int q &#x3D; 0; q &lt; HEIGHT; q++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (left_line[q] &lt; WIDTH)</span><br><span class="line">                    LCD_point((Site_t)&#123;(int)(left_line[q] * 1.6), (int)(q * 1.6)&#125;, BLUE);</span><br><span class="line">            &#125;</span><br><span class="line">            for (int q &#x3D; 0; q &lt; HEIGHT; q++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (right_line[q] &lt; WIDTH)</span><br><span class="line">                    LCD_point((Site_t)&#123;(int)(right_line[q] * 1.6), (int)(q * 1.6)&#125;, BLUE);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            error &#x3D; Error(mid_line);</span><br><span class="line">            far_error &#x3D; FarError(mid_line);</span><br><span class="line"></span><br><span class="line">            if (roundabout_flag &gt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                if (AveSpeed() &gt; 580)</span><br><span class="line">                &#123;</span><br><span class="line">                    speed_param.speed -&#x3D; 100;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(speed_param.func_error_control!&#x3D;NULL)</span><br><span class="line">            &#123;</span><br><span class="line">              speed_param.func_error_control(error, far_error, mid_line);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            Steerpid(error);</span><br><span class="line"></span><br><span class="line">            if (mid_line[HEIGHT] &gt; HEIGHT - 5)</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; STOP;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (stop &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line">                MotorStop();</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (error &lt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.speed + speed_param.speed_error * error);</span><br><span class="line">                    MotorRpid(speed_param.speed);</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.speed);</span><br><span class="line">                    MotorRpid(speed_param.speed - speed_param.speed_error * error);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        case ELECTROMAGNETIC:</span><br><span class="line">            stop &#x3D; StartLine(img);</span><br><span class="line">            error_elect &#x3D; ADCControl(delay);</span><br><span class="line">            if (delay &gt; 0)</span><br><span class="line">            &#123;   </span><br><span class="line">              if(error_elect&lt;0) &#x2F;&#x2F;向右转弯</span><br><span class="line">              &#123;</span><br><span class="line">                 MotorLpid(100);</span><br><span class="line">                 MotorRpid(100+200 * error_elect);   </span><br><span class="line">              &#125;else</span><br><span class="line">              &#123;</span><br><span class="line">                 MotorLpid(100- 200 * error_elect);</span><br><span class="line">                 MotorRpid(100 );   </span><br><span class="line">              &#125;</span><br><span class="line">                delay--;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (stop &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line">                MotorStop();</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (speed_param.elec_speed &gt; 300)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (error_elect &lt; 0)</span><br><span class="line">                    &#123;</span><br><span class="line">                        MotorLpid(speed_param.elec_speed);</span><br><span class="line">                        MotorRpid(speed_param.elec_speed + speed_param.speed_error * error_elect);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        MotorLpid(speed_param.elec_speed - speed_param.speed_error * error_elect);</span><br><span class="line">                        MotorRpid(speed_param.elec_speed);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.elec_speed);</span><br><span class="line">                    MotorRpid(speed_param.elec_speed);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (LengthOfX(40, img) &gt; 25)</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; NORMAL;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        case OBSTALE:</span><br><span class="line">            if (speed_param.obs_pit &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line"></span><br><span class="line">                if (in_obs++ &gt; 60)</span><br><span class="line">                &#123;</span><br><span class="line">                    in_obs &#x3D; 0;</span><br><span class="line">                    road_type &#x3D; STOP;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                SteerDuty(duty);</span><br><span class="line">                if (obs_delay &gt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    obs_delay--;</span><br><span class="line">                &#125;</span><br><span class="line">                if (duty &#x3D;&#x3D; 700 &amp;&amp; obs_delay &#x3D;&#x3D; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    duty &#x3D; 685;</span><br><span class="line">                &#125;</span><br><span class="line">                if (duty &#x3D;&#x3D; 685 &amp;&amp; RetUsual(img) &#x3D;&#x3D; 1 &amp;&amp; LengthOfX(66, img) &gt; 15 &amp;&amp; in_obs &gt; 20)</span><br><span class="line">                &#123;</span><br><span class="line">                    in_obs &#x3D; 0;</span><br><span class="line">                    road_type &#x3D; NORMAL;</span><br><span class="line">                &#125;</span><br><span class="line">                &#x2F;&#x2F;全固定</span><br><span class="line">                MotorLpid(500);</span><br><span class="line">                MotorRpid(500);</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (CamProsObstale(img, side_line) &#x3D;&#x3D; 1)</span><br><span class="line">                &#123;</span><br><span class="line">                    road_type &#x3D; NORMAL;</span><br><span class="line">                    cam_type &#x3D; MAIN_CAM;</span><br><span class="line">                &#125;</span><br><span class="line">                if (delay &gt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(50);</span><br><span class="line">                    MotorRpid(50);</span><br><span class="line">                    delay--;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.obs_speed);</span><br><span class="line">                    MotorRpid(speed_param.obs_speed);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            break;</span><br><span class="line">        case STOP:</span><br><span class="line">            MotorStop();</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="各个阶段调车记录"><a class="markdownIt-Anchor" href="#各个阶段调车记录"></a> 各个阶段调车记录</h3>
+<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"video":{"url":"https://slyli.cn/video/2020-07/school.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+<h3 id="小车成品"><a class="markdownIt-Anchor" href="#小车成品"></a> 小车成品</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/car1.jpg" alt="car" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/car2.jpg" alt="car" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/car3.jpg" alt="car" /></p>
+<h3 id="安徽省赛"><a class="markdownIt-Anchor" href="#安徽省赛"></a> 安徽省赛</h3>
+<p>我们这次比赛在安徽省是由淮南联合大学承办的。说到这必须得吐槽一下了，7月份，选择铁皮房做比赛场地，一个大的比赛场地只有角落有几台空调之外也就算了，竟然还限制队员进场人数。</p>
+<h4 id="参赛证"><a class="markdownIt-Anchor" href="#参赛证"></a> 参赛证</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/record2.png" alt="code1" /></p>
+<h4 id="决赛视频"><a class="markdownIt-Anchor" href="#决赛视频"></a> 决赛视频</h4>
+<p>从其他地方找到的我们车的视频。</p>
+<div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"video":{"url":"https://slyli.cn/video/2020-07/anhui.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+<h4 id="成绩"><a class="markdownIt-Anchor" href="#成绩"></a> 成绩</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/record1.png" alt="code1" /></p>
+<h3 id="国赛"><a class="markdownIt-Anchor" href="#国赛"></a> 国赛</h3>
+<p>这次国赛在山东大学（威海）举办的，不得不说威海的气候确实舒服啊，夏天夜晚海风迎面吹来，清凉却不潮湿。</p>
+<h4 id="参赛证-2"><a class="markdownIt-Anchor" href="#参赛证-2"></a> 参赛证</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/record4.png" alt="code1" /></p>
+<h4 id="决赛视频-2"><a class="markdownIt-Anchor" href="#决赛视频-2"></a> 决赛视频</h4>
+<div id="dplayer2" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer2"),"video":{"url":"https://slyli.cn/video/2020-07/weihai.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+<h4 id="成绩-2"><a class="markdownIt-Anchor" href="#成绩-2"></a> 成绩</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/record3.png" alt="code1" /></p>
+<h3 id="遇到的问题"><a class="markdownIt-Anchor" href="#遇到的问题"></a> 遇到的问题</h3>
+<ol>
+<li>有段时间调车的时候会偶尔遇到卡死的问题，小调试屏也是白屏。开始以为是硬件接触不好的问题，就没在意，后面出现情况多了之后才开始重视，查找问题原因，一直耽搁了几天才找出来，用的是注释大法 hhhh。最后原因是<code>while循环</code>的问题，跳出循环的条件有点漏洞，导致while循环可能运行到一个未定义的状况，导致循环一直跳不出来。</li>
+</ol>
+<h3 id="总结与其他"><a class="markdownIt-Anchor" href="#总结与其他"></a> 总结与其他</h3>
+<ol>
+<li>这次比赛对我来说确实是一次十分有用的经历，在准备的过程中学到了很多真实有用的东西，增加了自己的技能，不管是找工作还是什么，使没有多少内容的简历增加了点可写的项目。</li>
+<li>遗憾的是，当时我们队伍里三人都是大三的，而且都是准备考研的，所以在省赛之后的一段时间内，一直是一边准备考研一边准备比赛的，没能全力以赴在国赛中获得一个令人满意的成绩。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>HFUT</tag>
+        <tag>全国大学生智能汽车竞赛</tag>
+        <tag>恩智浦杯</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>博客说明</title>
     <url>/posts/2020-07-001.html</url>
     <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -1540,6 +1611,11 @@ $y = d \times cos \left( \theta \right)$
 <p>由于毕业设计时间和经费有限，因此整个系统还有许多可以优化和改进的地方，比如可以对SLAM算法的精确度和速度做进一步优化，可以选择精度、稳定性和速度更好的激光雷达，选择性能更好的WIFI模块，从而提升整个系统精确度和稳定性。<br />
 识。</p>
 <h2 id="对于演示视频之后如能找到好用的视频解决方案再上传"><a class="markdownIt-Anchor" href="#对于演示视频之后如能找到好用的视频解决方案再上传"></a> 对于演示视频，之后如能找到好用的视频解决方案再上传。</h2>
+<h2 id="更新因为是直接用的github直链想要加速请挂vpn"><a class="markdownIt-Anchor" href="#更新因为是直接用的github直链想要加速请挂vpn"></a> 更新（因为是直接用的github直链，想要加速请挂vpn）</h2>
+<h3 id="上位机演示"><a class="markdownIt-Anchor" href="#上位机演示"></a> 上位机演示</h3>
+<div id="dplayer3" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer3"),"video":{"url":"https://slyli.cn/video/2020-07/上位机演示视频.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+<h3 id="下位机演示"><a class="markdownIt-Anchor" href="#下位机演示"></a> 下位机演示</h3>
+<div id="dplayer4" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer4"),"video":{"url":"https://slyli.cn/video/2020-07/下位机演示视频.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
 ]]></content>
       <categories>
         <category>C#</category>
@@ -1549,77 +1625,6 @@ $y = d \times cos \left( \theta \right)$
         <tag>HFUT</tag>
         <tag>STM32</tag>
         <tag>RPLIDAR A1 激光雷达</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>全国大学生智能汽车竞赛记录</title>
-    <url>/posts/2020-07-005.html</url>
-    <content><![CDATA[<h3 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h3>
-<p>18年下半年，也就是我大三的上半学期，是第二年的全国大学生智能汽车竞赛的校内报名时间。同学来邀请我参加，我也想做点东西，就一起参加了。我们一组三人，自己主要负责相关代码的编写。</p>
-<h3 id="准备"><a class="markdownIt-Anchor" href="#准备"></a> 准备</h3>
-<p>报名后就临近放假了，而且当时课程还挺多的，就没怎么准备，最后放假前拿着参赛的摄像头去学校实验室跑道上采集了下赛道数据,一边自己在寒假的时候开始准备，写写如何处理。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/path.jpg" alt="path" /></p>
-<p>采集回来的赛道信息就是这样的二进制黑白图，每一列是一部分的采集变化图，就在整个过程中随意截取了几段，（黑色：1、白色：0）。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/graph.png" alt="path" /></p>
-<h3 id="过程"><a class="markdownIt-Anchor" href="#过程"></a> 过程</h3>
-<h4 id="首先让小车跑起来"><a class="markdownIt-Anchor" href="#首先让小车跑起来"></a> 首先让小车跑起来</h4>
-<p>简单来说就是用单片机生成pwm给驱动板来驱动电机和舵机。最开始可以给一个固定的值让小车直接往前走。</p>
-<h4 id="提取赛道的中线让小车巡中线前进"><a class="markdownIt-Anchor" href="#提取赛道的中线让小车巡中线前进"></a> 提取赛道的中线，让小车巡中线前进</h4>
-<p>整个赛道在单片机看来就是上图所示的0和1，所以0和1的分界线就是赛道的边界。首先将整个边界提取出来，（左边界+右边界）/2 就基本上是赛道的中线了，然后小车巡中线前进即可。思路：给不同高度的中线上的不同点以不同的权值，加权计算出来后得到一个中点的位置，然后将这个终点与摄像头的中点比较，看偏差的位置和多少，然后再给舵机不同的打角方向和幅度。每次都是按照这个中点来前进，整个流程下来就是按照中线前进了。</p>
-<h4 id="十字路口"><a class="markdownIt-Anchor" href="#十字路口"></a> 十字路口</h4>
-<p>这是个老元素了，首先得判断出来这是个十字路口，过程中要注意和圆环元素的区别，我判断的依据是两边边界的边线都在某个高度丢失。然后需要对十字路口进行补线，先找到边界丢失的拐角处，对于丢线的部分可以按照未丢线部分的斜率延长边线。当然还有其他方法，我在这就不说了。</p>
-<h4 id="圆环"><a class="markdownIt-Anchor" href="#圆环"></a> 圆环</h4>
-<p>这也是个老元素了，同样首先要判断出来这是圆环，可以使用电磁信号辅助判断。然后进行各种补线使小车进去一次圆环后出来，并且不再进这个圆环。我的方法是一个阶段一个阶段的进行判断、补线、判断、 补线。。。直到完成整个元素，具体的我就不在这里详细描述了。</p>
-<h4 id="断路"><a class="markdownIt-Anchor" href="#断路"></a> 断路</h4>
-<p>这个简单，直接巡电磁线前进就好了，注意的的进短路前要减速，因为小车尺寸限制，前瞻不能很长，所以短路转弯速度快了容易冲出去。</p>
-<h4 id="路障"><a class="markdownIt-Anchor" href="#路障"></a> 路障</h4>
-<p>我们使用的超声波配合摄像头一起识别，识别到后可以固定打角出去，然后定时，再固定打角回来。这是一种比较简单而且速度快的方法，但是参数不太好调。另外可以在侧面装一个摄像头，识别到后，系统切换到侧面的摄像头，然后按照摄像头采集的赛道边线数据前进。这种方法可能速度比较慢，但是稳定性较好，我们是这两种都完成了，摄像头的方案留作备用，在省赛决赛时，路障前后直道的长度较短，备用方法很有效。</p>
-<h4 id="结束"><a class="markdownIt-Anchor" href="#结束"></a> 结束</h4>
-<p>各个元素处理完后，就开始了漫长的调参优化过程了，由于组员没有用过Git，所以我们代码都是以QQ群的方式共享的。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/code2.png" alt="code1" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/code1.png" alt="code2" /></p>
-<p>最后放一段主循环的代码吧。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">while (1)</span><br><span class="line">    &#123;</span><br><span class="line">        GearSelect();</span><br><span class="line">        CameraGetImg(&amp;buff, img, cam_type);</span><br><span class="line">        LCD_Img_Binary_Z(site, size, buff, imgsize);</span><br><span class="line">        ReadADC();</span><br><span class="line">        stop &#x3D; 0;</span><br><span class="line">        if (Stop() &#x3D;&#x3D; 1 &amp;&amp; road_type !&#x3D; OBSTALE &amp;&amp; in_obs &#x3D;&#x3D; 0) &#x2F;&#x2F;(Stop() &#x3D;&#x3D; 1 || distance &lt; 20)</span><br><span class="line">        &#123;</span><br><span class="line">            road_type &#x3D; STOP;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (road_type &#x3D;&#x3D; STOP &amp;&amp; Stop() &#x3D;&#x3D; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            if (LengthOfX(40, img) &gt; 15)</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; NORMAL;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; ELECTROMAGNETIC;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        switch (road_type)</span><br><span class="line">        &#123;</span><br><span class="line">        case NORMAL:</span><br><span class="line">            roundabout_flag &#x3D; 0;</span><br><span class="line">            road_flag &#x3D; GetMiddleLine(img, mid_line, left_line, right_line, &amp;roundabout_flag);</span><br><span class="line">            stop &#x3D; StartLine(img);</span><br><span class="line">            if (road_flag &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line">                distance1 &#x3D; GetUltrasnoic();</span><br><span class="line">                distance &#x3D; GetUltrasnoic();</span><br><span class="line">                if (speed_param.obs_pit &#x3D;&#x3D; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    distance +&#x3D; 100;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (distance &lt; 1100 &amp;&amp; distance &gt; 500 &amp;&amp; distance1 &lt; 1150 &amp;&amp; distance1 &gt; 500)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (speed_param.obs_pit &#x3D;&#x3D; 1)</span><br><span class="line">                    &#123;</span><br><span class="line">                        set_vector_handler(PIT3_VECTORn, PIT3_IRQHandler);</span><br><span class="line">                        ave_speed &#x3D; AveSpeed();</span><br><span class="line">                        &#x2F;&#x2F; 定时后的固定速度</span><br><span class="line">                        duty &#x3D; 725 + 0.09 * (ave_speed);</span><br><span class="line">                        uint32 pit_time &#x3D; 275 - 0.1 * ave_speed;</span><br><span class="line">                        pit_init_ms(PIT3, pit_time);</span><br><span class="line">                        enable_irq(PIT3_IRQn);</span><br><span class="line">                        road_type &#x3D; OBSTALE;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        cam_type &#x3D; SUB_CAM;</span><br><span class="line">                        delay &#x3D; speed_param.switch_delay;</span><br><span class="line">                        road_type &#x3D; OBSTALE;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (road_flag &#x3D;&#x3D; 2)</span><br><span class="line">            &#123;</span><br><span class="line">                delay &#x3D; speed_param.switch_delay-10;</span><br><span class="line">                road_type &#x3D; ELECTROMAGNETIC;</span><br><span class="line">                MotorLpid(0);</span><br><span class="line">                MotorRpid(0);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            for (int q &#x3D; 0; q &lt; HEIGHT; q++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (mid_line[q] &lt; WIDTH)</span><br><span class="line">                    LCD_point((Site_t)&#123;(int)(mid_line[q] * 1.6), (int)(q * 1.6)&#125;, RED);</span><br><span class="line">            &#125;</span><br><span class="line">            for (int q &#x3D; 0; q &lt; HEIGHT; q++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (left_line[q] &lt; WIDTH)</span><br><span class="line">                    LCD_point((Site_t)&#123;(int)(left_line[q] * 1.6), (int)(q * 1.6)&#125;, BLUE);</span><br><span class="line">            &#125;</span><br><span class="line">            for (int q &#x3D; 0; q &lt; HEIGHT; q++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (right_line[q] &lt; WIDTH)</span><br><span class="line">                    LCD_point((Site_t)&#123;(int)(right_line[q] * 1.6), (int)(q * 1.6)&#125;, BLUE);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            error &#x3D; Error(mid_line);</span><br><span class="line">            far_error &#x3D; FarError(mid_line);</span><br><span class="line"></span><br><span class="line">            if (roundabout_flag &gt; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                if (AveSpeed() &gt; 580)</span><br><span class="line">                &#123;</span><br><span class="line">                    speed_param.speed -&#x3D; 100;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(speed_param.func_error_control!&#x3D;NULL)</span><br><span class="line">            &#123;</span><br><span class="line">              speed_param.func_error_control(error, far_error, mid_line);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            Steerpid(error);</span><br><span class="line"></span><br><span class="line">            if (mid_line[HEIGHT] &gt; HEIGHT - 5)</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; STOP;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (stop &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line">                MotorStop();</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (error &lt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.speed + speed_param.speed_error * error);</span><br><span class="line">                    MotorRpid(speed_param.speed);</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.speed);</span><br><span class="line">                    MotorRpid(speed_param.speed - speed_param.speed_error * error);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        case ELECTROMAGNETIC:</span><br><span class="line">            stop &#x3D; StartLine(img);</span><br><span class="line">            error_elect &#x3D; ADCControl(delay);</span><br><span class="line">            if (delay &gt; 0)</span><br><span class="line">            &#123;   </span><br><span class="line">              if(error_elect&lt;0) &#x2F;&#x2F;向右转弯</span><br><span class="line">              &#123;</span><br><span class="line">                 MotorLpid(100);</span><br><span class="line">                 MotorRpid(100+200 * error_elect);   </span><br><span class="line">              &#125;else</span><br><span class="line">              &#123;</span><br><span class="line">                 MotorLpid(100- 200 * error_elect);</span><br><span class="line">                 MotorRpid(100 );   </span><br><span class="line">              &#125;</span><br><span class="line">                delay--;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (stop &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line">                MotorStop();</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (speed_param.elec_speed &gt; 300)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (error_elect &lt; 0)</span><br><span class="line">                    &#123;</span><br><span class="line">                        MotorLpid(speed_param.elec_speed);</span><br><span class="line">                        MotorRpid(speed_param.elec_speed + speed_param.speed_error * error_elect);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        MotorLpid(speed_param.elec_speed - speed_param.speed_error * error_elect);</span><br><span class="line">                        MotorRpid(speed_param.elec_speed);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.elec_speed);</span><br><span class="line">                    MotorRpid(speed_param.elec_speed);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (LengthOfX(40, img) &gt; 25)</span><br><span class="line">            &#123;</span><br><span class="line">                road_type &#x3D; NORMAL;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        case OBSTALE:</span><br><span class="line">            if (speed_param.obs_pit &#x3D;&#x3D; 1)</span><br><span class="line">            &#123;</span><br><span class="line"></span><br><span class="line">                if (in_obs++ &gt; 60)</span><br><span class="line">                &#123;</span><br><span class="line">                    in_obs &#x3D; 0;</span><br><span class="line">                    road_type &#x3D; STOP;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                SteerDuty(duty);</span><br><span class="line">                if (obs_delay &gt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    obs_delay--;</span><br><span class="line">                &#125;</span><br><span class="line">                if (duty &#x3D;&#x3D; 700 &amp;&amp; obs_delay &#x3D;&#x3D; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    duty &#x3D; 685;</span><br><span class="line">                &#125;</span><br><span class="line">                if (duty &#x3D;&#x3D; 685 &amp;&amp; RetUsual(img) &#x3D;&#x3D; 1 &amp;&amp; LengthOfX(66, img) &gt; 15 &amp;&amp; in_obs &gt; 20)</span><br><span class="line">                &#123;</span><br><span class="line">                    in_obs &#x3D; 0;</span><br><span class="line">                    road_type &#x3D; NORMAL;</span><br><span class="line">                &#125;</span><br><span class="line">                &#x2F;&#x2F;全固定</span><br><span class="line">                MotorLpid(500);</span><br><span class="line">                MotorRpid(500);</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (CamProsObstale(img, side_line) &#x3D;&#x3D; 1)</span><br><span class="line">                &#123;</span><br><span class="line">                    road_type &#x3D; NORMAL;</span><br><span class="line">                    cam_type &#x3D; MAIN_CAM;</span><br><span class="line">                &#125;</span><br><span class="line">                if (delay &gt; 0)</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(50);</span><br><span class="line">                    MotorRpid(50);</span><br><span class="line">                    delay--;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    MotorLpid(speed_param.obs_speed);</span><br><span class="line">                    MotorRpid(speed_param.obs_speed);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            break;</span><br><span class="line">        case STOP:</span><br><span class="line">            MotorStop();</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="各个阶段调车记录"><a class="markdownIt-Anchor" href="#各个阶段调车记录"></a> 各个阶段调车记录</h3>
-<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"video":{"url":"https://slyli.cn/video/2020-07/school.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
-<h3 id="小车成品"><a class="markdownIt-Anchor" href="#小车成品"></a> 小车成品</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/car1.jpg" alt="car" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/car2.jpg" alt="car" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/car3.jpg" alt="car" /></p>
-<h3 id="安徽省赛"><a class="markdownIt-Anchor" href="#安徽省赛"></a> 安徽省赛</h3>
-<p>我们这次比赛在安徽省是由淮南联合大学承办的。说到这必须得吐槽一下了，7月份，选择铁皮房做比赛场地，一个大的比赛场地只有角落有几台空调之外也就算了，竟然还限制队员进场人数。</p>
-<h4 id="参赛证"><a class="markdownIt-Anchor" href="#参赛证"></a> 参赛证</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/record2.png" alt="code1" /></p>
-<h4 id="决赛视频"><a class="markdownIt-Anchor" href="#决赛视频"></a> 决赛视频</h4>
-<p>从其他地方找到的我们车的视频。</p>
-<div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"video":{"url":"https://slyli.cn/video/2020-07/anhui.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
-<h4 id="成绩"><a class="markdownIt-Anchor" href="#成绩"></a> 成绩</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/record1.png" alt="code1" /></p>
-<h3 id="国赛"><a class="markdownIt-Anchor" href="#国赛"></a> 国赛</h3>
-<p>这次国赛在山东大学（威海）举办的，不得不说威海的气候确实舒服啊，夏天夜晚海风迎面吹来，清凉却不潮湿。</p>
-<h4 id="参赛证-2"><a class="markdownIt-Anchor" href="#参赛证-2"></a> 参赛证</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/record4.png" alt="code1" /></p>
-<h4 id="决赛视频-2"><a class="markdownIt-Anchor" href="#决赛视频-2"></a> 决赛视频</h4>
-<div id="dplayer2" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer2"),"video":{"url":"https://slyli.cn/video/2020-07/weihai.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
-<h4 id="成绩-2"><a class="markdownIt-Anchor" href="#成绩-2"></a> 成绩</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/record3.png" alt="code1" /></p>
-<h3 id="遇到的问题"><a class="markdownIt-Anchor" href="#遇到的问题"></a> 遇到的问题</h3>
-<ol>
-<li>有段时间调车的时候会偶尔遇到卡死的问题，小调试屏也是白屏。开始以为是硬件接触不好的问题，就没在意，后面出现情况多了之后才开始重视，查找问题原因，一直耽搁了几天才找出来，用的是注释大法 hhhh。最后原因是<code>while循环</code>的问题，跳出循环的条件有点漏洞，导致while循环可能运行到一个未定义的状况，导致循环一直跳不出来。</li>
-</ol>
-<h3 id="总结与其他"><a class="markdownIt-Anchor" href="#总结与其他"></a> 总结与其他</h3>
-<ol>
-<li>这次比赛对我来说确实是一次十分有用的经历，在准备的过程中学到了很多真实有用的东西，增加了自己的技能，不管是找工作还是什么，使没有多少内容的简历增加了点可写的项目。</li>
-<li>遗憾的是，当时我们队伍里三人都是大三的，而且都是准备考研的，所以在省赛之后的一段时间内，一直是一边准备考研一边准备比赛的，没能全力以赴在国赛中获得一个令人满意的成绩。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>HFUT</tag>
-        <tag>全国大学生智能汽车竞赛</tag>
-        <tag>恩智浦杯</tag>
       </tags>
   </entry>
 </search>
