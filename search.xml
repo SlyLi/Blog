@@ -1,64 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>C学习</title>
-    <url>/posts/2020-08-001.html</url>
-    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
-<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
-<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
-<ul>
-<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
-<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
-<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
-<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
-</ul>
-<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
-<p>链接属性一共有三种：external,internal和none。</p>
-<ul>
+    <title>OneDrive云盘搭建</title>
+    <url>/posts/2020-08-006.html</url>
+    <content><![CDATA[<h3 id="拥有一个onedrive账号"><a class="markdownIt-Anchor" href="#拥有一个onedrive账号"></a> 拥有一个OneDrive账号</h3>
+<ol>
+<li>打开微软的<a href="https://signup.microsoft.com/" target="_blank" rel="noopener">注册/登录页面</a>，选择合适的按照流程注册。</li>
+<li>个人免费账户是5G，学生版是1T或5T。</li>
+</ol>
+<h3 id="下载onemanager"><a class="markdownIt-Anchor" href="#下载onemanager"></a> 下载OneManager</h3>
+<ol>
+<li>前往 <a href="https://github.com/qkqpttgf/OneManager-php" target="_blank" rel="noopener">OneManager项目地址</a>下载并完成解压，为之后准备。</li>
+</ol>
+<h3 id="部署"><a class="markdownIt-Anchor" href="#部署"></a> 部署</h3>
+<p>选择腾讯云函数，有免费额度，一般来说够用了。</p>
+<ol>
 <li>
-<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
+<p>新建函数，输入名称，运行环境选择php7.2，创建方式选择空白函数<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud1.png" alt="" /></p>
 </li>
 <li>
-<p>internal：只有同一文件内才为同一实体；</p>
+<p>通过本地上传文件夹方式，上传之前解压后的OneManager文件夹<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud2.png" alt="" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud3.png" alt="" /></p>
 </li>
 <li>
-<p>none：多个声明被当作独立不同的实体；</p>
+<p>创建触发器，选择API网关触发器<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud4.png" alt="" /></p>
 </li>
 <li>
-<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
-<pre><code>  static int a;
-</code></pre>
+<p>（可选）点击触发器的API服务名 <code>SCF_API_SERVICE</code>，可以自定义域名。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud5.png" alt="" /></p>
 </li>
-</ul>
-<p>那么变量a就是这个源文件所私有。</p>
-<ul>
-<li>
-<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
-</li>
-<li>
-<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
-<pre><code>  int a;
-  extern int b;
-  extern int c=10;
-</code></pre>
-</li>
-</ul>
-<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
-<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
-<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
-<ul>
-<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
-<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
-<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
-当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
-</ul>
+</ol>
+<h3 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h3>
+<ol start="5">
+<li>点击触发器下方访问路径，后安装项目，选择新建 SecretId &amp; SecretKey，返回腾讯云新建密钥，完成后将 SecretId &amp; SecretKey填入其中。</li>
+</ol>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud6.png" alt="" /></p>
+<ol start="6">
+<li>设置完密码后登录，通过管理-设置，点击 <code>添加Onedrive盘</code>，然后再填写相关内容就ok了。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud7.png" alt="" /></li>
+</ol>
+<div class="note warning">
+            <ul><li>个人账号选择  MS: 国际版（商业版与个人版）</li><li>学生账号只能选择 ShareUrl: 共享链接， 对一个Onedrive文件夹共享进行使用</li></ul>
+          </div>
+<p>本人网盘链接 <a href="http://cloud.slyli.cn/cloud" target="_blank" rel="noopener">http://cloud.slyli.cn/cloud</a></p>
+<p>目前上传了一部剧：《如此可爱的我们》。然后把之前博客中需要的视频也搬到这上面了。</p>
 ]]></content>
       <categories>
-        <category>C/C++</category>
+        <category>others</category>
       </categories>
-      <tags>
-        <tag>C</tag>
-      </tags>
   </entry>
   <entry>
     <title>LinearRegression--python</title>
@@ -136,56 +128,303 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>OneDrive云盘搭建</title>
-    <url>/posts/2020-08-006.html</url>
-    <content><![CDATA[<h3 id="拥有一个onedrive账号"><a class="markdownIt-Anchor" href="#拥有一个onedrive账号"></a> 拥有一个OneDrive账号</h3>
-<ol>
-<li>打开微软的<a href="https://signup.microsoft.com/" target="_blank" rel="noopener">注册/登录页面</a>，选择合适的按照流程注册。</li>
-<li>个人免费账户是5G，学生版是1T或5T。</li>
-</ol>
-<h3 id="下载onemanager"><a class="markdownIt-Anchor" href="#下载onemanager"></a> 下载OneManager</h3>
-<ol>
-<li>前往 <a href="https://github.com/qkqpttgf/OneManager-php" target="_blank" rel="noopener">OneManager项目地址</a>下载并完成解压，为之后准备。</li>
-</ol>
-<h3 id="部署"><a class="markdownIt-Anchor" href="#部署"></a> 部署</h3>
-<p>选择腾讯云函数，有免费额度，一般来说够用了。</p>
-<ol>
+    <title>C学习</title>
+    <url>/posts/2020-08-001.html</url>
+    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
+<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
+<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
+<ul>
+<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
+<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
+<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
+<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
+</ul>
+<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
+<p>链接属性一共有三种：external,internal和none。</p>
+<ul>
 <li>
-<p>新建函数，输入名称，运行环境选择php7.2，创建方式选择空白函数<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud1.png" alt="" /></p>
+<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
 </li>
 <li>
-<p>通过本地上传文件夹方式，上传之前解压后的OneManager文件夹<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud2.png" alt="" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud3.png" alt="" /></p>
+<p>internal：只有同一文件内才为同一实体；</p>
 </li>
 <li>
-<p>创建触发器，选择API网关触发器<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud4.png" alt="" /></p>
+<p>none：多个声明被当作独立不同的实体；</p>
 </li>
 <li>
-<p>（可选）点击触发器的API服务名 <code>SCF_API_SERVICE</code>，可以自定义域名。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud5.png" alt="" /></p>
+<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
+<pre><code>  static int a;
+</code></pre>
 </li>
-</ol>
-<h3 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h3>
-<ol start="5">
-<li>点击触发器下方访问路径，后安装项目，选择新建 SecretId &amp; SecretKey，返回腾讯云新建密钥，完成后将 SecretId &amp; SecretKey填入其中。</li>
-</ol>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud6.png" alt="" /></p>
-<ol start="6">
-<li>设置完密码后登录，通过管理-设置，点击 <code>添加Onedrive盘</code>，然后再填写相关内容就ok了。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud7.png" alt="" /></li>
-</ol>
-<div class="note warning">
-            <ul><li>个人账号选择  MS: 国际版（商业版与个人版）</li><li>学生账号只能选择 ShareUrl: 共享链接， 对一个Onedrive文件夹共享进行使用</li></ul>
-          </div>
-<p>本人网盘链接 <a href="http://cloud.slyli.cn/cloud" target="_blank" rel="noopener">http://cloud.slyli.cn/cloud</a></p>
-<p>目前上传了一部剧：《如此可爱的我们》。然后把之前博客中需要的视频也搬到这上面了。</p>
+</ul>
+<p>那么变量a就是这个源文件所私有。</p>
+<ul>
+<li>
+<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
+</li>
+<li>
+<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
+<pre><code>  int a;
+  extern int b;
+  extern int c=10;
+</code></pre>
+</li>
+</ul>
+<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
+<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
+<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
+<ul>
+<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
+<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
+<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
+当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
+</ul>
 ]]></content>
       <categories>
-        <category>others</category>
+        <category>C/C++</category>
       </categories>
+      <tags>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown语法</title>
+    <url>/posts/2020-06-001.html</url>
+    <content><![CDATA[<h2 id="主要内容"><a class="markdownIt-Anchor" href="#主要内容"></a> 主要内容</h2>
+<blockquote>
+<h4 id="markdown是什么"><a class="markdownIt-Anchor" href="#markdown是什么"></a> Markdown<em>是什么</em>？</h4>
+<h4 id="谁创造了它"><a class="markdownIt-Anchor" href="#谁创造了它"></a> <em>谁</em>创造了它？</h4>
+<h4 id="为什么要使用它"><a class="markdownIt-Anchor" href="#为什么要使用它"></a> <em>为什么</em>要使用它？</h4>
+<h4 id="怎么使用"><a class="markdownIt-Anchor" href="#怎么使用"></a> <em>怎么</em>使用？</h4>
+<h4 id="谁在用"><a class="markdownIt-Anchor" href="#谁在用"></a> <em>谁</em>在用？</h4>
+<h4 id="尝试一下"><a class="markdownIt-Anchor" href="#尝试一下"></a> 尝试一下</h4>
+</blockquote>
+<h2 id="正文"><a class="markdownIt-Anchor" href="#正文"></a> 正文</h2>
+<h3 id="1-markdown是什么"><a class="markdownIt-Anchor" href="#1-markdown是什么"></a> 1. Markdown<em>是什么</em>？</h3>
+<p><strong>Markdown</strong>是一种轻量级<strong>标记语言</strong>，它以纯文本形式(<em>易读、易写、易更改</em>)编写文档，并最终以HTML格式发布。<br />
+<strong>Markdown</strong>也可以理解为将以MARKDOWN语法编写的语言转换成HTML内容的工具。</p>
+<h3 id="2-谁创造了它"><a class="markdownIt-Anchor" href="#2-谁创造了它"></a> 2. <em>谁</em>创造了它？</h3>
+<p>它由<a href="http://www.aaronsw.com/" target="_blank" rel="noopener"><strong>Aaron Swartz</strong></a>和<strong>John Gruber</strong>共同设计，<strong>Aaron Swartz</strong>就是那位于去年（<em>2013年1月11日</em>）自杀,有着<strong>开挂</strong>一般人生经历的程序员。维基百科对他的<a href="http://zh.wikipedia.org/wiki/%E4%BA%9A%E4%BC%A6%C2%B7%E6%96%AF%E6%B2%83%E8%8C%A8" target="_blank" rel="noopener">介绍</a>是：<strong>软件工程师、作家、政治组织者、互联网活动家、维基百科人</strong>。</p>
+<p>他有着足以让你跪拜的人生经历：</p>
+<ul>
+<li><strong>14岁</strong>参与RSS 1.0规格标准的制订。</li>
+<li><strong>2004</strong>年入读<strong>斯坦福</strong>，之后退学。</li>
+<li><strong>2005</strong>年创建<a href="http://infogami.org/" target="_blank" rel="noopener">Infogami</a>，之后与<a href="http://www.reddit.com/" target="_blank" rel="noopener">Reddit</a>合并成为其合伙人。</li>
+<li><strong>2010</strong>年创立求进会（Demand Progress），积极参与禁止网络盗版法案（SOPA）活动，最终该提案被撤回。</li>
+<li><strong>2011</strong>年7月19日，因被控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕。</li>
+<li><strong>2013</strong>年1月自杀身亡。</li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg" alt="Aaron Swartz" /></p>
+<p>天才都有早逝的归途。</p>
+<h3 id="3-为什么要使用它"><a class="markdownIt-Anchor" href="#3-为什么要使用它"></a> 3. <em>为什么</em>要使用它？</h3>
+<ul>
+<li>它是易读（看起来舒服）、易写（语法简单）、易更改<strong>纯文本</strong>。处处体现着<strong>极简主义</strong>的影子。</li>
+<li>兼容HTML，可以转换为HTML格式发布。</li>
+<li>跨平台使用。</li>
+<li>越来越多的网站支持Markdown。</li>
+<li>更方便清晰地组织你的电子邮件。（Markdown-here, Airmail）</li>
+<li>摆脱Word（我不是认真的）。</li>
+</ul>
+<h3 id="4-怎么使用"><a class="markdownIt-Anchor" href="#4-怎么使用"></a> 4. <em>怎么</em>使用？</h3>
+<p>如果不算<strong>扩展</strong>，Markdown的语法绝对<strong>简单</strong>到让你爱不释手。</p>
+<p>Markdown语法主要分为如下几大部分：<br />
+<strong>标题</strong>，<strong>段落</strong>，<strong>区块引用</strong>，<strong>代码区块</strong>，<strong>强调</strong>，<strong>列表</strong>，<strong>分割线</strong>，<strong>链接</strong>，<strong>图片</strong>，<strong>反斜杠 <code>\</code></strong>，<strong>符号’`’</strong>。</p>
+<h4 id="41-标题"><a class="markdownIt-Anchor" href="#41-标题"></a> 4.1 标题</h4>
+<p>两种形式：<br />
+1）使用<code>=</code>和<code>-</code>标记一级和二级标题。</p>
+<blockquote>
+<p>一级标题<br />
+<code>=========</code><br />
+二级标题<br />
+<code>---------</code></p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<h1 id="一级标题"><a class="markdownIt-Anchor" href="#一级标题"></a> 一级标题</h1>
+<h2 id="二级标题"><a class="markdownIt-Anchor" href="#二级标题"></a> 二级标题</h2>
+</blockquote>
+<p>2）使用<code>#</code>，可表示1-6级标题。</p>
+<blockquote>
+<p># 一级标题<br />
+## 二级标题<br />
+### 三级标题<br />
+#### 四级标题<br />
+##### 五级标题<br />
+###### 六级标题</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<h1 id="一级标题-2"><a class="markdownIt-Anchor" href="#一级标题-2"></a> 一级标题</h1>
+<h2 id="二级标题-2"><a class="markdownIt-Anchor" href="#二级标题-2"></a> 二级标题</h2>
+<h3 id="三级标题"><a class="markdownIt-Anchor" href="#三级标题"></a> 三级标题</h3>
+<h4 id="四级标题"><a class="markdownIt-Anchor" href="#四级标题"></a> 四级标题</h4>
+<h5 id="五级标题"><a class="markdownIt-Anchor" href="#五级标题"></a> 五级标题</h5>
+<h6 id="六级标题"><a class="markdownIt-Anchor" href="#六级标题"></a> 六级标题</h6>
+</blockquote>
+<h4 id="42-段落"><a class="markdownIt-Anchor" href="#42-段落"></a> 4.2 段落</h4>
+<p>段落的前后要有空行，所谓的空行是指没有文字内容。若想在段内强制换行的方式是使用<strong>两个以上</strong>空格加上回车（引用中换行省略回车）。</p>
+<h4 id="43-区块引用"><a class="markdownIt-Anchor" href="#43-区块引用"></a> 4.3 区块引用</h4>
+<p>在段落的每行或者只在第一行使用符号<code>&gt;</code>,还可使用多个嵌套引用，如：</p>
+<blockquote>
+<p>&gt; 区块引用<br />
+&gt;&gt; 嵌套引用</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p>区块引用</p>
+<blockquote>
+<p>嵌套引用</p>
+</blockquote>
+</blockquote>
+<h4 id="44-代码区块"><a class="markdownIt-Anchor" href="#44-代码区块"></a> 4.4 代码区块</h4>
+<p>代码区块的建立是在每行加上4个空格或者一个制表符（如同写代码一样）。如<br />
+普通段落：</p>
+<p>void main()<br />
+{<br />
+printf(“Hello, Markdown.”);<br />
+}</p>
+<p>代码区块：</p>
+<pre><code>void main()
+{
+    printf(&quot;Hello, Markdown.&quot;);
+}
+</code></pre>
+<p><strong>注意</strong>:需要和普通段落之间存在空行。</p>
+<h4 id="45-强调"><a class="markdownIt-Anchor" href="#45-强调"></a> 4.5 强调</h4>
+<p>在强调内容两侧分别加上<code>*</code>或者<code>_</code>，如：</p>
+<blockquote>
+<p>*斜体*，_斜体_<br />
+**粗体**，__粗体__</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><em>斜体</em>，<em>斜体</em><br />
+<strong>粗体</strong>，<strong>粗体</strong></p>
+</blockquote>
+<h4 id="46-列表"><a class="markdownIt-Anchor" href="#46-列表"></a> 4.6 列表</h4>
+<p>使用<code>·</code>、<code>+</code>、或<code>-</code>标记无序列表，如：</p>
+<blockquote>
+<p>-（+*） 第一项<br />
+-（+*） 第二项<br />
+- （+*）第三项</p>
+</blockquote>
+<p><strong>注意</strong>：标记后面最少有一个_空格_或_制表符_。若不在引用区块中，必须和前方段落之间存在空行。</p>
+<p>效果：</p>
+<blockquote>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+</blockquote>
+<p>有序列表的标记方式是将上述的符号换成数字,并辅以<code>.</code>，如：</p>
+<blockquote>
+<p>1 . 第一项<br />
+2 . 第二项<br />
+3 . 第三项</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<ol>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ol>
+</blockquote>
+<h4 id="47-分割线"><a class="markdownIt-Anchor" href="#47-分割线"></a> 4.7 分割线</h4>
+<p>分割线最常使用就是三个或以上<code>*</code>，还可以使用<code>-</code>和<code>_</code>。</p>
+<h4 id="48-链接"><a class="markdownIt-Anchor" href="#48-链接"></a> 4.8 链接</h4>
+<p>链接可以由两种形式生成：<strong>行内式</strong>和<strong>参考式</strong>。<br />
+<strong>行内式</strong>：</p>
+<blockquote>
+<p>[younghz的Markdown库](https:😕/github.com/younghz/Markdown “Markdown”)。</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库</a>。</p>
+</blockquote>
+<p><strong>参考式</strong>：</p>
+<blockquote>
+<p>[younghz的Markdown库1][1]<br />
+[younghz的Markdown库2][2]<br />
+[1]:https:😕/github.com/younghz/Markdown “Markdown”<br />
+[2]:https:😕/github.com/younghz/Markdown “Markdown”</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库1</a><br />
+<a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库2</a></p>
+</blockquote>
+<p><strong>注意</strong>：上述的<code>[1]:https:://github.com/younghz/Markdown &quot;Markdown&quot;</code>不出现在区块中。</p>
+<h4 id="49-图片"><a class="markdownIt-Anchor" href="#49-图片"></a> 4.9 图片</h4>
+<p>添加图片的形式和链接相似，只需在链接的基础上前方加一个<code>！</code>。</p>
+<h4 id="410-反斜杠"><a class="markdownIt-Anchor" href="#410-反斜杠"></a> 4.10 反斜杠<code>\</code></h4>
+<p>相当于<strong>反转义</strong>作用。使符号成为普通符号。</p>
+<h4 id="411-符号"><a class="markdownIt-Anchor" href="#411-符号"></a> 4.11 符号’`’</h4>
+<p>起到标记作用。如：</p>
+<blockquote>
+<p>`ctrl+a`</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><code>ctrl+a</code></p>
+</blockquote>
+<h4 id="5-谁在用"><a class="markdownIt-Anchor" href="#5-谁在用"></a> 5. <em>谁</em>在用？</h4>
+<p>Markdown的使用者：</p>
+<ul>
+<li>GitHub</li>
+<li>简书</li>
+<li>Stack Overflow</li>
+<li>Apollo</li>
+<li>Moodle</li>
+<li>Reddit</li>
+<li>等等</li>
+</ul>
+<h4 id="6-尝试一下"><a class="markdownIt-Anchor" href="#6-尝试一下"></a> 6. 尝试一下</h4>
+<ul>
+<li><strong>Chrome</strong>下的插件诸如<code>stackedit</code>与<code>markdown-here</code>等非常方便，也不用担心平台受限。</li>
+<li><strong>在线</strong>的dillinger.io评价也不错</li>
+<li><strong>Windowns</strong>下的MarkdownPad也用过，不过免费版的体验不是很好。</li>
+<li><strong>Mac</strong>下的Mou是国人贡献的，口碑很好。</li>
+<li><strong>Linux</strong>下的ReText不错。</li>
+</ul>
+<p><strong>当然，最终境界永远都是笔下是语法，心中格式化 😃。</strong></p>
+<hr />
+<p><strong>注意</strong>：不同的Markdown解释器或工具对相应语法（扩展语法）的解释效果不尽相同，具体可参见工具的使用说明。<br />
+虽然有人想出面搞一个所谓的标准化的Markdown，[没想到还惹怒了健在的创始人John Gruber]<br />
+(<a href="http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/" target="_blank" rel="noopener">http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/</a> )。</p>
+<hr />
+<p>以上基本是所有traditonal markdown的语法。</p>
+<h3 id="其它"><a class="markdownIt-Anchor" href="#其它"></a> 其它：</h3>
+<p>列表的使用(非traditonal markdown)：</p>
+<p>用<code>|</code>表示表格纵向边界，表头和表内容用<code>-</code>隔开，并可用<code>:</code>进行对齐设置，两边都有<code>:</code>则表示居中，若不加<code>:</code>则默认左对齐。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">代码库</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">MarkDown</td>
+<td><a href="https://github.com/younghz/Markdown" target="_blank" rel="noopener" title="Markdown">https://github.com/younghz/Markdown</a></td>
+</tr>
+<tr>
+<td style="text-align:center">MarkDownCopy</td>
+<td><a href="https://github.com/younghz/Markdown" target="_blank" rel="noopener" title="Markdown">https://github.com/younghz/Markdown</a></td>
+</tr>
+</tbody>
+</table>
+<p>关于其它扩展语法可参见具体工具的使用说明。</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>blog</tag>
+      </tags>
   </entry>
   <entry>
     <title>LogisticRegression--python</title>
@@ -581,8 +820,8 @@ comments: false
         <category>blog</category>
       </categories>
       <tags>
-        <tag>butterfly</tag>
         <tag>blog</tag>
+        <tag>butterfly</tag>
       </tags>
   </entry>
   <entry>
@@ -741,6 +980,120 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
         <tag>github</tag>
         <tag>steam</tag>
         <tag>repkg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode</title>
+    <url>/posts/2020-08-002.html</url>
+    <content><![CDATA[<h2 id="每日一题"><a class="markdownIt-Anchor" href="#每日一题"></a> 每日一题</h2>
+<h3 id="336回文对"><a class="markdownIt-Anchor" href="#336回文对"></a> 336.回文对</h3>
+<p>题目比较简单，上来可以先判断两个拼接好的字符串是否符合，然后遍历判断。</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; palindromePairs(vector&lt;string&gt;&amp; words) {
+        int len=words.size();
+        vector&lt;vector&lt;int&gt;&gt; all;
+        for(int i=0;i&lt;len;i++)
+        {
+            for(int j=0;j&lt;len;j++)
+            {
+                if(i!=j&amp;&amp;Judge(words[i],words[j]))
+                {
+                    vector&lt;int&gt; temp;
+                    temp.push_back(i);
+                    temp.push_back(j);
+                    all.push_back(temp);
+                }
+            }
+            
+        }
+        return all;
+
+
+    }
+    bool Judge(string&amp; w1,string&amp; w2)
+    {
+        string str = w1+w2;
+        int len = str.size();
+        for(int i=0;i&lt;len;i++)
+        {
+            if(str[i]!=str[len-1-i])
+                return false;
+        }
+        return true;
+    }
+};
+</code></pre>
+<p>提交结果，有一半能够通过，其他的超出了时间限制。看到题解说不能直接用<code>str = w1+w2;</code>，移动指针会快一些。</p>
+<pre><code>bool Judge(string&amp; w1,string&amp; w2)
+{
+    int len1 = w1.size();
+    int len2 = w2.size();
+    int len = len1 +len2;
+    int i;
+    
+    for(i=0;i&lt;len/2;i++)
+    {
+        if(len1&gt;len2)
+        {
+            if(i&lt;len2)
+            {
+                if(w1[i]!=w2[len2-1-i])
+                return false;
+            }
+            else
+            {
+                if(w1[i]!=w1[len-1-i])
+                return false;
+            }
+        }
+        else
+        {
+            if(i&lt;len1)
+            {
+                if(w1[i]!=w2[len2-1-i])
+                return false;
+            }
+            else
+            {
+                if(w2[i-len1]!=w2[len2-1-i])
+                return false;
+            }
+        }
+            
+    }
+    return true;
+}
+</code></pre>
+<p>执行结果：通过<br />
+执行用时：1528 ms, 在所有 C++ 提交中击败了7.14%的用户。<br />
+内存消耗：21.6 MB, 在所有 C++ 提交中击败了100.00%的用户。</p>
+<p>另一个方法使用 manacher算法，竞赛难度就算了。只能做人下人了，哈哈。</p>
+<p>后面评论实在太逗了。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc1.png" alt="" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc2.png" alt="" /></p>
+<h3 id="100-相同的树"><a class="markdownIt-Anchor" href="#100-相同的树"></a> 100. 相同的树</h3>
+<p>很简单的一道题，没什么好多的递归调用判断就行</p>
+<pre><code>class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(p!=nullptr&amp;&amp; q!=nullptr)
+        {
+            return p-&gt;val==q-&gt;val&amp;&amp;isSameTree(p-&gt;left,q-&gt;left)&amp;&amp;isSameTree(p-&gt;right,q-&gt;right);             
+        }
+        else if(p==nullptr &amp;&amp; q== nullptr)
+            return true;
+        else 
+            return false; 
+    }
+};
+</code></pre>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -913,118 +1266,14 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
       </tags>
   </entry>
   <entry>
-    <title>leetcode</title>
-    <url>/posts/2020-08-002.html</url>
-    <content><![CDATA[<h2 id="每日一题"><a class="markdownIt-Anchor" href="#每日一题"></a> 每日一题</h2>
-<h3 id="336回文对"><a class="markdownIt-Anchor" href="#336回文对"></a> 336.回文对</h3>
-<p>题目比较简单，上来可以先判断两个拼接好的字符串是否符合，然后遍历判断。</p>
-<pre><code>class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; palindromePairs(vector&lt;string&gt;&amp; words) {
-        int len=words.size();
-        vector&lt;vector&lt;int&gt;&gt; all;
-        for(int i=0;i&lt;len;i++)
-        {
-            for(int j=0;j&lt;len;j++)
-            {
-                if(i!=j&amp;&amp;Judge(words[i],words[j]))
-                {
-                    vector&lt;int&gt; temp;
-                    temp.push_back(i);
-                    temp.push_back(j);
-                    all.push_back(temp);
-                }
-            }
-            
-        }
-        return all;
-
-
-    }
-    bool Judge(string&amp; w1,string&amp; w2)
-    {
-        string str = w1+w2;
-        int len = str.size();
-        for(int i=0;i&lt;len;i++)
-        {
-            if(str[i]!=str[len-1-i])
-                return false;
-        }
-        return true;
-    }
-};
-</code></pre>
-<p>提交结果，有一半能够通过，其他的超出了时间限制。看到题解说不能直接用<code>str = w1+w2;</code>，移动指针会快一些。</p>
-<pre><code>bool Judge(string&amp; w1,string&amp; w2)
-{
-    int len1 = w1.size();
-    int len2 = w2.size();
-    int len = len1 +len2;
-    int i;
-    
-    for(i=0;i&lt;len/2;i++)
-    {
-        if(len1&gt;len2)
-        {
-            if(i&lt;len2)
-            {
-                if(w1[i]!=w2[len2-1-i])
-                return false;
-            }
-            else
-            {
-                if(w1[i]!=w1[len-1-i])
-                return false;
-            }
-        }
-        else
-        {
-            if(i&lt;len1)
-            {
-                if(w1[i]!=w2[len2-1-i])
-                return false;
-            }
-            else
-            {
-                if(w2[i-len1]!=w2[len2-1-i])
-                return false;
-            }
-        }
-            
-    }
-    return true;
-}
-</code></pre>
-<p>执行结果：通过<br />
-执行用时：1528 ms, 在所有 C++ 提交中击败了7.14%的用户。<br />
-内存消耗：21.6 MB, 在所有 C++ 提交中击败了100.00%的用户。</p>
-<p>另一个方法使用 manacher算法，竞赛难度就算了。只能做人下人了，哈哈。</p>
-<p>后面评论实在太逗了。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc1.png" alt="" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc2.png" alt="" /></p>
-<h3 id="100-相同的树"><a class="markdownIt-Anchor" href="#100-相同的树"></a> 100. 相同的树</h3>
-<p>很简单的一道题，没什么好多的递归调用判断就行</p>
-<pre><code>class Solution {
-public:
-    bool isSameTree(TreeNode* p, TreeNode* q) {
-        if(p!=nullptr&amp;&amp; q!=nullptr)
-        {
-            return p-&gt;val==q-&gt;val&amp;&amp;isSameTree(p-&gt;left,q-&gt;left)&amp;&amp;isSameTree(p-&gt;right,q-&gt;right);             
-        }
-        else if(p==nullptr &amp;&amp; q== nullptr)
-            return true;
-        else 
-            return false; 
-    }
-};
-</code></pre>
+    <title>wallpapper</title>
+    <url>/posts/2020-08-007.html</url>
+    <content><![CDATA[<div class="justified-gallery"><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/1108.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/118.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/873441.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/988021.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/1398373247tumblr_n3rl3fUsnJ1rsdpaso1_500.gif" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/colorstream.gif" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/digitalart-1518055361254-315.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/Fiora.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/full.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/Genji.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/papers.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/rocks_surf_canal_123163_3840x2160.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/wallhaven-72198.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/Wallpaper.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/%E6%98%9F%E6%9E%81.jpg" alt="" /></p>
+          </div>
 ]]></content>
       <categories>
-        <category>C/C++</category>
+        <category>others</category>
       </categories>
-      <tags>
-        <tag>leetcode</tag>
-      </tags>
   </entry>
   <entry>
     <title>小说网站爬虫</title>
@@ -1116,16 +1365,6 @@ if __name__ == &quot;__main__&quot;:
         <tag>Python</tag>
         <tag>爬虫</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>wallpapper</title>
-    <url>/posts/2020-08-007.html</url>
-    <content><![CDATA[<div class="justified-gallery"><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/1108.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/118.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/873441.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/988021.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/1398373247tumblr_n3rl3fUsnJ1rsdpaso1_500.gif" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/colorstream.gif" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/digitalart-1518055361254-315.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/Fiora.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/full.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/Genji.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/papers.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/rocks_surf_canal_123163_3840x2160.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/wallhaven-72198.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/Wallpaper.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/%E6%98%9F%E6%9E%81.jpg" alt="" /></p>
-          </div>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
   </entry>
   <entry>
     <title>伽马兽王</title>
@@ -1308,8 +1547,8 @@ draft	source/_drafts
         <category>blog</category>
       </categories>
       <tags>
-        <tag>butterfly</tag>
         <tag>blog</tag>
+        <tag>butterfly</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
@@ -1322,23 +1561,6 @@ draft	source/_drafts
 ]]></content>
       <categories>
         <category>C/C++</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>记录</title>
-    <url>/posts/2020-08-005.html</url>
-    <content><![CDATA[<ol>
-<li>
-<p>楼下一个男人病得要死，那间壁的一家唱着留声机；对面是弄孩子。楼上有两人狂笑；还有打牌声。河中的船上有女人哭着她死去的母亲。 人类的悲欢并不相通，我只觉得他们吵闹。  —鲁迅《而已集》的《小杂感》</p>
-</li>
-<li>
-<p>We used to look up at the sky and wonder at our place in the stars, now we just look down and worry about our place in the dirt. —《Interstellar》<br />
-我们曾经仰望星空，思考我们在宇宙中的位置，而现在我们只会低着头，担心如何在这片土地上活下去。—《星际穿越》</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>others</category>
       </categories>
   </entry>
   <entry>
@@ -1580,242 +1802,20 @@ $y = d \times cos \left( \theta \right)$
       </tags>
   </entry>
   <entry>
-    <title>Markdown语法</title>
-    <url>/posts/2020-06-001.html</url>
-    <content><![CDATA[<h2 id="主要内容"><a class="markdownIt-Anchor" href="#主要内容"></a> 主要内容</h2>
-<blockquote>
-<h4 id="markdown是什么"><a class="markdownIt-Anchor" href="#markdown是什么"></a> Markdown<em>是什么</em>？</h4>
-<h4 id="谁创造了它"><a class="markdownIt-Anchor" href="#谁创造了它"></a> <em>谁</em>创造了它？</h4>
-<h4 id="为什么要使用它"><a class="markdownIt-Anchor" href="#为什么要使用它"></a> <em>为什么</em>要使用它？</h4>
-<h4 id="怎么使用"><a class="markdownIt-Anchor" href="#怎么使用"></a> <em>怎么</em>使用？</h4>
-<h4 id="谁在用"><a class="markdownIt-Anchor" href="#谁在用"></a> <em>谁</em>在用？</h4>
-<h4 id="尝试一下"><a class="markdownIt-Anchor" href="#尝试一下"></a> 尝试一下</h4>
-</blockquote>
-<h2 id="正文"><a class="markdownIt-Anchor" href="#正文"></a> 正文</h2>
-<h3 id="1-markdown是什么"><a class="markdownIt-Anchor" href="#1-markdown是什么"></a> 1. Markdown<em>是什么</em>？</h3>
-<p><strong>Markdown</strong>是一种轻量级<strong>标记语言</strong>，它以纯文本形式(<em>易读、易写、易更改</em>)编写文档，并最终以HTML格式发布。<br />
-<strong>Markdown</strong>也可以理解为将以MARKDOWN语法编写的语言转换成HTML内容的工具。</p>
-<h3 id="2-谁创造了它"><a class="markdownIt-Anchor" href="#2-谁创造了它"></a> 2. <em>谁</em>创造了它？</h3>
-<p>它由<a href="http://www.aaronsw.com/" target="_blank" rel="noopener"><strong>Aaron Swartz</strong></a>和<strong>John Gruber</strong>共同设计，<strong>Aaron Swartz</strong>就是那位于去年（<em>2013年1月11日</em>）自杀,有着<strong>开挂</strong>一般人生经历的程序员。维基百科对他的<a href="http://zh.wikipedia.org/wiki/%E4%BA%9A%E4%BC%A6%C2%B7%E6%96%AF%E6%B2%83%E8%8C%A8" target="_blank" rel="noopener">介绍</a>是：<strong>软件工程师、作家、政治组织者、互联网活动家、维基百科人</strong>。</p>
-<p>他有着足以让你跪拜的人生经历：</p>
-<ul>
-<li><strong>14岁</strong>参与RSS 1.0规格标准的制订。</li>
-<li><strong>2004</strong>年入读<strong>斯坦福</strong>，之后退学。</li>
-<li><strong>2005</strong>年创建<a href="http://infogami.org/" target="_blank" rel="noopener">Infogami</a>，之后与<a href="http://www.reddit.com/" target="_blank" rel="noopener">Reddit</a>合并成为其合伙人。</li>
-<li><strong>2010</strong>年创立求进会（Demand Progress），积极参与禁止网络盗版法案（SOPA）活动，最终该提案被撤回。</li>
-<li><strong>2011</strong>年7月19日，因被控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕。</li>
-<li><strong>2013</strong>年1月自杀身亡。</li>
-</ul>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg" alt="Aaron Swartz" /></p>
-<p>天才都有早逝的归途。</p>
-<h3 id="3-为什么要使用它"><a class="markdownIt-Anchor" href="#3-为什么要使用它"></a> 3. <em>为什么</em>要使用它？</h3>
-<ul>
-<li>它是易读（看起来舒服）、易写（语法简单）、易更改<strong>纯文本</strong>。处处体现着<strong>极简主义</strong>的影子。</li>
-<li>兼容HTML，可以转换为HTML格式发布。</li>
-<li>跨平台使用。</li>
-<li>越来越多的网站支持Markdown。</li>
-<li>更方便清晰地组织你的电子邮件。（Markdown-here, Airmail）</li>
-<li>摆脱Word（我不是认真的）。</li>
-</ul>
-<h3 id="4-怎么使用"><a class="markdownIt-Anchor" href="#4-怎么使用"></a> 4. <em>怎么</em>使用？</h3>
-<p>如果不算<strong>扩展</strong>，Markdown的语法绝对<strong>简单</strong>到让你爱不释手。</p>
-<p>Markdown语法主要分为如下几大部分：<br />
-<strong>标题</strong>，<strong>段落</strong>，<strong>区块引用</strong>，<strong>代码区块</strong>，<strong>强调</strong>，<strong>列表</strong>，<strong>分割线</strong>，<strong>链接</strong>，<strong>图片</strong>，<strong>反斜杠 <code>\</code></strong>，<strong>符号’`’</strong>。</p>
-<h4 id="41-标题"><a class="markdownIt-Anchor" href="#41-标题"></a> 4.1 标题</h4>
-<p>两种形式：<br />
-1）使用<code>=</code>和<code>-</code>标记一级和二级标题。</p>
-<blockquote>
-<p>一级标题<br />
-<code>=========</code><br />
-二级标题<br />
-<code>---------</code></p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<h1 id="一级标题"><a class="markdownIt-Anchor" href="#一级标题"></a> 一级标题</h1>
-<h2 id="二级标题"><a class="markdownIt-Anchor" href="#二级标题"></a> 二级标题</h2>
-</blockquote>
-<p>2）使用<code>#</code>，可表示1-6级标题。</p>
-<blockquote>
-<p># 一级标题<br />
-## 二级标题<br />
-### 三级标题<br />
-#### 四级标题<br />
-##### 五级标题<br />
-###### 六级标题</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<h1 id="一级标题-2"><a class="markdownIt-Anchor" href="#一级标题-2"></a> 一级标题</h1>
-<h2 id="二级标题-2"><a class="markdownIt-Anchor" href="#二级标题-2"></a> 二级标题</h2>
-<h3 id="三级标题"><a class="markdownIt-Anchor" href="#三级标题"></a> 三级标题</h3>
-<h4 id="四级标题"><a class="markdownIt-Anchor" href="#四级标题"></a> 四级标题</h4>
-<h5 id="五级标题"><a class="markdownIt-Anchor" href="#五级标题"></a> 五级标题</h5>
-<h6 id="六级标题"><a class="markdownIt-Anchor" href="#六级标题"></a> 六级标题</h6>
-</blockquote>
-<h4 id="42-段落"><a class="markdownIt-Anchor" href="#42-段落"></a> 4.2 段落</h4>
-<p>段落的前后要有空行，所谓的空行是指没有文字内容。若想在段内强制换行的方式是使用<strong>两个以上</strong>空格加上回车（引用中换行省略回车）。</p>
-<h4 id="43-区块引用"><a class="markdownIt-Anchor" href="#43-区块引用"></a> 4.3 区块引用</h4>
-<p>在段落的每行或者只在第一行使用符号<code>&gt;</code>,还可使用多个嵌套引用，如：</p>
-<blockquote>
-<p>&gt; 区块引用<br />
-&gt;&gt; 嵌套引用</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p>区块引用</p>
-<blockquote>
-<p>嵌套引用</p>
-</blockquote>
-</blockquote>
-<h4 id="44-代码区块"><a class="markdownIt-Anchor" href="#44-代码区块"></a> 4.4 代码区块</h4>
-<p>代码区块的建立是在每行加上4个空格或者一个制表符（如同写代码一样）。如<br />
-普通段落：</p>
-<p>void main()<br />
-{<br />
-printf(“Hello, Markdown.”);<br />
-}</p>
-<p>代码区块：</p>
-<pre><code>void main()
-{
-    printf(&quot;Hello, Markdown.&quot;);
-}
-</code></pre>
-<p><strong>注意</strong>:需要和普通段落之间存在空行。</p>
-<h4 id="45-强调"><a class="markdownIt-Anchor" href="#45-强调"></a> 4.5 强调</h4>
-<p>在强调内容两侧分别加上<code>*</code>或者<code>_</code>，如：</p>
-<blockquote>
-<p>*斜体*，_斜体_<br />
-**粗体**，__粗体__</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><em>斜体</em>，<em>斜体</em><br />
-<strong>粗体</strong>，<strong>粗体</strong></p>
-</blockquote>
-<h4 id="46-列表"><a class="markdownIt-Anchor" href="#46-列表"></a> 4.6 列表</h4>
-<p>使用<code>·</code>、<code>+</code>、或<code>-</code>标记无序列表，如：</p>
-<blockquote>
-<p>-（+*） 第一项<br />
--（+*） 第二项<br />
-- （+*）第三项</p>
-</blockquote>
-<p><strong>注意</strong>：标记后面最少有一个_空格_或_制表符_。若不在引用区块中，必须和前方段落之间存在空行。</p>
-<p>效果：</p>
-<blockquote>
-<ul>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项</li>
-</ul>
-</blockquote>
-<p>有序列表的标记方式是将上述的符号换成数字,并辅以<code>.</code>，如：</p>
-<blockquote>
-<p>1 . 第一项<br />
-2 . 第二项<br />
-3 . 第三项</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<ol>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项</li>
+    <title>记录</title>
+    <url>/posts/2020-08-005.html</url>
+    <content><![CDATA[<ol>
+<li>
+<p>楼下一个男人病得要死，那间壁的一家唱着留声机；对面是弄孩子。楼上有两人狂笑；还有打牌声。河中的船上有女人哭着她死去的母亲。 人类的悲欢并不相通，我只觉得他们吵闹。  —鲁迅《而已集》的《小杂感》</p>
+</li>
+<li>
+<p>We used to look up at the sky and wonder at our place in the stars, now we just look down and worry about our place in the dirt. —《Interstellar》<br />
+我们曾经仰望星空，思考我们在宇宙中的位置，而现在我们只会低着头，担心如何在这片土地上活下去。—《星际穿越》</p>
+</li>
 </ol>
-</blockquote>
-<h4 id="47-分割线"><a class="markdownIt-Anchor" href="#47-分割线"></a> 4.7 分割线</h4>
-<p>分割线最常使用就是三个或以上<code>*</code>，还可以使用<code>-</code>和<code>_</code>。</p>
-<h4 id="48-链接"><a class="markdownIt-Anchor" href="#48-链接"></a> 4.8 链接</h4>
-<p>链接可以由两种形式生成：<strong>行内式</strong>和<strong>参考式</strong>。<br />
-<strong>行内式</strong>：</p>
-<blockquote>
-<p>[younghz的Markdown库](https:😕/github.com/younghz/Markdown “Markdown”)。</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库</a>。</p>
-</blockquote>
-<p><strong>参考式</strong>：</p>
-<blockquote>
-<p>[younghz的Markdown库1][1]<br />
-[younghz的Markdown库2][2]<br />
-[1]:https:😕/github.com/younghz/Markdown “Markdown”<br />
-[2]:https:😕/github.com/younghz/Markdown “Markdown”</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库1</a><br />
-<a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库2</a></p>
-</blockquote>
-<p><strong>注意</strong>：上述的<code>[1]:https:://github.com/younghz/Markdown &quot;Markdown&quot;</code>不出现在区块中。</p>
-<h4 id="49-图片"><a class="markdownIt-Anchor" href="#49-图片"></a> 4.9 图片</h4>
-<p>添加图片的形式和链接相似，只需在链接的基础上前方加一个<code>！</code>。</p>
-<h4 id="410-反斜杠"><a class="markdownIt-Anchor" href="#410-反斜杠"></a> 4.10 反斜杠<code>\</code></h4>
-<p>相当于<strong>反转义</strong>作用。使符号成为普通符号。</p>
-<h4 id="411-符号"><a class="markdownIt-Anchor" href="#411-符号"></a> 4.11 符号’`’</h4>
-<p>起到标记作用。如：</p>
-<blockquote>
-<p>`ctrl+a`</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><code>ctrl+a</code></p>
-</blockquote>
-<h4 id="5-谁在用"><a class="markdownIt-Anchor" href="#5-谁在用"></a> 5. <em>谁</em>在用？</h4>
-<p>Markdown的使用者：</p>
-<ul>
-<li>GitHub</li>
-<li>简书</li>
-<li>Stack Overflow</li>
-<li>Apollo</li>
-<li>Moodle</li>
-<li>Reddit</li>
-<li>等等</li>
-</ul>
-<h4 id="6-尝试一下"><a class="markdownIt-Anchor" href="#6-尝试一下"></a> 6. 尝试一下</h4>
-<ul>
-<li><strong>Chrome</strong>下的插件诸如<code>stackedit</code>与<code>markdown-here</code>等非常方便，也不用担心平台受限。</li>
-<li><strong>在线</strong>的dillinger.io评价也不错</li>
-<li><strong>Windowns</strong>下的MarkdownPad也用过，不过免费版的体验不是很好。</li>
-<li><strong>Mac</strong>下的Mou是国人贡献的，口碑很好。</li>
-<li><strong>Linux</strong>下的ReText不错。</li>
-</ul>
-<p><strong>当然，最终境界永远都是笔下是语法，心中格式化 😃。</strong></p>
-<hr />
-<p><strong>注意</strong>：不同的Markdown解释器或工具对相应语法（扩展语法）的解释效果不尽相同，具体可参见工具的使用说明。<br />
-虽然有人想出面搞一个所谓的标准化的Markdown，[没想到还惹怒了健在的创始人John Gruber]<br />
-(<a href="http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/" target="_blank" rel="noopener">http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/</a> )。</p>
-<hr />
-<p>以上基本是所有traditonal markdown的语法。</p>
-<h3 id="其它"><a class="markdownIt-Anchor" href="#其它"></a> 其它：</h3>
-<p>列表的使用(非traditonal markdown)：</p>
-<p>用<code>|</code>表示表格纵向边界，表头和表内容用<code>-</code>隔开，并可用<code>:</code>进行对齐设置，两边都有<code>:</code>则表示居中，若不加<code>:</code>则默认左对齐。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">代码库</th>
-<th>链接</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">MarkDown</td>
-<td><a href="https://github.com/younghz/Markdown" target="_blank" rel="noopener" title="Markdown">https://github.com/younghz/Markdown</a></td>
-</tr>
-<tr>
-<td style="text-align:center">MarkDownCopy</td>
-<td><a href="https://github.com/younghz/Markdown" target="_blank" rel="noopener" title="Markdown">https://github.com/younghz/Markdown</a></td>
-</tr>
-</tbody>
-</table>
-<p>关于其它扩展语法可参见具体工具的使用说明。</p>
 ]]></content>
       <categories>
-        <category>blog</category>
+        <category>others</category>
       </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>markdown</tag>
-      </tags>
   </entry>
 </search>
