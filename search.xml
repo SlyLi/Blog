@@ -891,7 +891,15 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
 </ol>
 <p>想要阻止这一自动创建，可以将这些函数声明为<code>private</code>，并且故意不实现他们。</p>
 <ol start="6">
-<li>函数中通过值传递传递对象时，若一个派生类被视为基类传递，基类的构造函数会被调用，派生的特化性质被切掉。</li>
+<li>
+<p>函数中通过值传递传递对象时，若一个派生类被视为基类传递，基类的构造函数会被调用，派生的特化性质被切掉。</p>
+</li>
+<li>
+<p>函数调用，名称查找法则以及实参取决值查找规则。</p>
+</li>
+<li>
+<p>用户可以全特化std内容template，但不允许添加任何新的其他东西，在调用时，优先选择特化版本。</p>
+</li>
 </ol>
 ]]></content>
       <categories>
@@ -1743,6 +1751,58 @@ $y = d \times cos \left( \theta \right)$
 我们曾经仰望星空，思考我们在宇宙中的位置，而现在我们只会低着头，担心如何在这片土地上活下去。—《星际穿越》</p>
 </li>
 </ol>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>OneDrive云盘搭建</title>
+    <url>/posts/2020-08-006.html</url>
+    <content><![CDATA[<h3 id="拥有一个onedrive账号"><a class="markdownIt-Anchor" href="#拥有一个onedrive账号"></a> 拥有一个OneDrive账号</h3>
+<ol>
+<li>打开微软的<a href="https://signup.microsoft.com/" target="_blank" rel="noopener">注册/登录页面</a>，选择合适的按照流程注册。</li>
+<li>个人免费账户是5G，学生版是1T或5T。</li>
+</ol>
+<h3 id="下载onemanager"><a class="markdownIt-Anchor" href="#下载onemanager"></a> 下载OneManager</h3>
+<ol>
+<li>前往 <a href="https://github.com/qkqpttgf/OneManager-php" target="_blank" rel="noopener">OneManager项目地址</a>下载并完成解压，为之后准备。</li>
+</ol>
+<h3 id="部署"><a class="markdownIt-Anchor" href="#部署"></a> 部署</h3>
+<p>选择腾讯云函数，有免费额度，一般来说够用了。</p>
+<ol>
+<li>
+<p>新建函数，输入名称，运行环境选择php7.2，创建方式选择空白函数<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud1.png" alt="" /></p>
+</li>
+<li>
+<p>通过本地上传文件夹方式，上传之前解压后的OneManager文件夹<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud2.png" alt="" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud3.png" alt="" /></p>
+</li>
+<li>
+<p>创建触发器，选择API网关触发器<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud4.png" alt="" /></p>
+</li>
+<li>
+<p>（可选）点击触发器的API服务名 <code>SCF_API_SERVICE</code>，可以自定义域名。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud5.png" alt="" /></p>
+</li>
+</ol>
+<h3 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h3>
+<ol start="5">
+<li>点击触发器下方访问路径，后安装项目，选择新建 SecretId &amp; SecretKey，返回腾讯云新建密钥，完成后将 SecretId &amp; SecretKey填入其中。</li>
+</ol>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud6.png" alt="" /></p>
+<ol start="6">
+<li>设置完密码后登录，通过管理-设置，点击 <code>添加Onedrive盘</code>，然后再填写相关内容就ok了。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud7.png" alt="" /></li>
+</ol>
+<div class="note warning">
+            <ul><li>个人账号选择  MS: 国际版（商业版与个人版）</li><li>学生账号只能选择 ShareUrl: 共享链接， 对一个Onedrive文件夹共享进行使用</li></ul>
+          </div>
+<p>本人网盘链接 <a href="http://cloud.slyli.cn/cloud" target="_blank" rel="noopener">http://cloud.slyli.cn/cloud</a></p>
+<p>目前上传了一部剧：《如此可爱的我们》。然后把之前博客中需要的视频也搬到这上面了。</p>
 ]]></content>
       <categories>
         <category>others</category>
