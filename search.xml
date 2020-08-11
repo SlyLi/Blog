@@ -53,6 +53,141 @@
       </categories>
   </entry>
   <entry>
+    <title>C学习</title>
+    <url>/posts/2020-08-001.html</url>
+    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
+<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
+<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
+<ul>
+<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
+<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
+<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
+<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
+</ul>
+<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
+<p>链接属性一共有三种：external,internal和none。</p>
+<ul>
+<li>
+<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
+</li>
+<li>
+<p>internal：只有同一文件内才为同一实体；</p>
+</li>
+<li>
+<p>none：多个声明被当作独立不同的实体；</p>
+</li>
+<li>
+<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
+<pre><code>  static int a;
+</code></pre>
+</li>
+</ul>
+<p>那么变量a就是这个源文件所私有。</p>
+<ul>
+<li>
+<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
+</li>
+<li>
+<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
+<pre><code>  int a;
+  extern int b;
+  extern int c=10;
+</code></pre>
+</li>
+</ul>
+<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
+<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
+<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
+<ul>
+<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
+<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
+<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
+当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LinearRegression--python</title>
+    <url>/posts/2020-07-008.html</url>
+    <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
+<pre><code>import numpy as np
+from matplotlib import pyplot as plt
+# 线性回归
+# X是矩阵，每一行是一组输入数据；theta是列向量；y也是列向量
+def ComputeCost(X, y, theta):
+    m = len(y)
+    J = 0
+    t = np.dot(X, theta)-y
+    J = np.dot(t.T, t)/(2*m)
+    return J
+
+# 计算代价函数
+# alpaa是学习率；num_iters是迭代次数
+def GradientDescent(X, y, theta, alpha, num_iters):
+    m = len(y)
+    n = len(theta)
+    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
+    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
+
+    for i in range(num_iters):  # 遍历迭代次数
+        h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
+        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
+        theta = temp[:, i]
+        J_history[i] = ComputeCost(X, y, theta)  # 调用计算代价函数
+        # print(J_history[i])
+    return theta, J_history
+
+def featureNormaliza(X):
+    X_norm = np.array(X)  # 将X转化为numpy数组对象，才可以进行矩阵的运算
+    # 定义所需变量
+    mu = np.zeros((1, X.shape[1]))
+    sigma = np.zeros((1, X.shape[1]))
+    mu = np.mean(X_norm, 0)          # 求每一列的平均值（0指定为列，1代表行）
+    sigma = np.std(X_norm, 0)        # 求每一列的标准差
+    for i in range(X.shape[1]):     # 遍历列
+        X_norm[:, i] = (X_norm[:, i]-mu[i])/sigma[i]  # 归一化
+    return X_norm, mu, sigma
+
+# 逻辑回归
+if __name__ == &quot;__main__&quot;:
+    alpha = 0.01
+    num_iters = 400
+
+    # 取消归一化需要的参数
+    #alpha = 0.0000001
+    #num_iters = 4000
+
+    data = np.loadtxt('data.txt', delimiter=',', dtype=np.float64)
+    X = data[:, 0:-1]
+    y = data[:, -1].reshape(-1, 1)
+    X, mu, s = featureNormaliza(X)
+    #plt.scatter(X_norm[:, 0], X_norm[:, 1])
+    # plt.show()
+    X = np.hstack((np.ones((X.shape[0], 1)), X))
+    theta = np.zeros((X.shape[1], 1))
+    theta, J_history = GradientDescent(X, y, theta, alpha, num_iters)
+
+    x = np.arange(1, num_iters+1)
+    plt.plot(x, J_history)
+    plt.show()
+</code></pre>
+<p>虽然算法理解起来不算很难，等到了自己动手是实现的时候还是有很多问题的。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>machine learning</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LogisticRegression--python</title>
     <url>/posts/2020-07-011.html</url>
     <content><![CDATA[<p>逻辑回归</p>
@@ -309,231 +444,6 @@ if __name__ == &quot;__main__&quot;:
       <tags>
         <tag>machine learning</tag>
         <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C学习</title>
-    <url>/posts/2020-08-001.html</url>
-    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
-<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
-<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
-<ul>
-<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
-<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
-<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
-<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
-</ul>
-<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
-<p>链接属性一共有三种：external,internal和none。</p>
-<ul>
-<li>
-<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
-</li>
-<li>
-<p>internal：只有同一文件内才为同一实体；</p>
-</li>
-<li>
-<p>none：多个声明被当作独立不同的实体；</p>
-</li>
-<li>
-<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
-<pre><code>  static int a;
-</code></pre>
-</li>
-</ul>
-<p>那么变量a就是这个源文件所私有。</p>
-<ul>
-<li>
-<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
-</li>
-<li>
-<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
-<pre><code>  int a;
-  extern int b;
-  extern int c=10;
-</code></pre>
-</li>
-</ul>
-<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
-<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
-<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
-<ul>
-<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
-<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
-<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
-当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LinearRegression--python</title>
-    <url>/posts/2020-07-008.html</url>
-    <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
-<pre><code>import numpy as np
-from matplotlib import pyplot as plt
-# 线性回归
-# X是矩阵，每一行是一组输入数据；theta是列向量；y也是列向量
-def ComputeCost(X, y, theta):
-    m = len(y)
-    J = 0
-    t = np.dot(X, theta)-y
-    J = np.dot(t.T, t)/(2*m)
-    return J
-
-# 计算代价函数
-# alpaa是学习率；num_iters是迭代次数
-def GradientDescent(X, y, theta, alpha, num_iters):
-    m = len(y)
-    n = len(theta)
-    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
-    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
-
-    for i in range(num_iters):  # 遍历迭代次数
-        h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
-        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
-        theta = temp[:, i]
-        J_history[i] = ComputeCost(X, y, theta)  # 调用计算代价函数
-        # print(J_history[i])
-    return theta, J_history
-
-def featureNormaliza(X):
-    X_norm = np.array(X)  # 将X转化为numpy数组对象，才可以进行矩阵的运算
-    # 定义所需变量
-    mu = np.zeros((1, X.shape[1]))
-    sigma = np.zeros((1, X.shape[1]))
-    mu = np.mean(X_norm, 0)          # 求每一列的平均值（0指定为列，1代表行）
-    sigma = np.std(X_norm, 0)        # 求每一列的标准差
-    for i in range(X.shape[1]):     # 遍历列
-        X_norm[:, i] = (X_norm[:, i]-mu[i])/sigma[i]  # 归一化
-    return X_norm, mu, sigma
-
-# 逻辑回归
-if __name__ == &quot;__main__&quot;:
-    alpha = 0.01
-    num_iters = 400
-
-    # 取消归一化需要的参数
-    #alpha = 0.0000001
-    #num_iters = 4000
-
-    data = np.loadtxt('data.txt', delimiter=',', dtype=np.float64)
-    X = data[:, 0:-1]
-    y = data[:, -1].reshape(-1, 1)
-    X, mu, s = featureNormaliza(X)
-    #plt.scatter(X_norm[:, 0], X_norm[:, 1])
-    # plt.show()
-    X = np.hstack((np.ones((X.shape[0], 1)), X))
-    theta = np.zeros((X.shape[1], 1))
-    theta, J_history = GradientDescent(X, y, theta, alpha, num_iters)
-
-    x = np.arange(1, num_iters+1)
-    plt.plot(x, J_history)
-    plt.show()
-</code></pre>
-<p>虽然算法理解起来不算很难，等到了自己动手是实现的时候还是有很多问题的。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>machine learning</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>android</title>
-    <url>/posts/2020-08-003.html</url>
-    <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
-具体是Unknown host ‘<a href="http://d29vzk4ow07wi7.cloudfront.net" target="_blank" rel="noopener">d29vzk4ow07wi7.cloudfront.net</a>’. You may need to adjust the proxy settings in Gradle.<br />
-把 build.gradle 中的两个 jcenter() 用 maven{ url “<a href="http://maven.aliyun.com/nexus/content/groups/public/" target="_blank" rel="noopener">http://maven.aliyun.com/nexus/content/groups/public/</a>”} 代替，然后等待下载安装完成就好了。<br />
-开这个项目，目前是想做一个古文阅读的app，等我把安卓开发的基础知识过一遍就来更新。</p>
-<h3 id="更新"><a class="markdownIt-Anchor" href="#更新"></a> 更新</h3>
-<p>虽然安卓的基础知识还没怎么弄明白，还是靠这自己的底子，硬着头皮给写出来了。对我来说，最难的部分应该就是对Android项目结构还不熟，所以对项目的实现方式就会变的很粗暴。。。</p>
-<h3 id="界面"><a class="markdownIt-Anchor" href="#界面"></a> 界面</h3>
-<p>这个项目里主要的需要实现的东西不多。基本上最重要的就是UI了。</p>
-<ol>
-<li>需要一个主要的文本显示区，用来可以切换的显示文章，注释，译文等。</li>
-<li>需要几个按钮，可以切换文本显示区显示的内容。</li>
-<li>需要一个目录，用来选择书籍的章节。</li>
-</ol>
-<h3 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h3>
-<p>内容方面主要的就是把爬虫获取的文章通过某种方式处理，格式化，可以让我们可以方便的显示在文本区。<br />
-对于爬虫的详细内容可以看<a href="https://slyli.cn/posts/2020-07-010.html">小说网站爬虫</a>，这篇文章中的<code>标题2</code>。</p>
-<pre><code>private String[][] ReadBook() {
-        String[][] book=new String[81][4];
-        StringBuilder termsString = new StringBuilder();
-        BufferedReader reader;
-        int ch_num=-1;
-        int temp=0;
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open(&quot;daodejing.txt&quot;),&quot;UTF-8&quot;));
-            String str;
-            while ((str = reader.readLine()) != null) {
-                str=str.replaceAll(&quot; &quot;,&quot;&quot;);
-                if(str.length()&gt;0)
-                {
-                    if(str.equals(&quot;【原文】&quot;))
-                    {
-                        ch_num++;
-                        temp =0;
-                        book[ch_num][temp]=&quot;第&quot;+String.valueOf(ch_num+1)+&quot;章&quot;+'\n';
-                    }
-                    else if(str.equals(&quot;【注释】&quot;))
-                    {
-                        temp=1;
-                    }
-                    else if(str.equals(&quot;【译文】&quot;))
-                    {
-                        temp=2;
-                    }
-                    else if(str.equals(&quot;【解析】&quot;))
-                    {
-                        temp=3;
-                    }
-                    else if(str.equals(&quot;【导读】&quot;))
-                    {
-                        temp=2;
-                    }
-                    if(book[ch_num][temp]==null)
-                        book[ch_num][temp]=str+'\n';
-                    else
-                        book[ch_num][temp]+=str+'\n';
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return book;
-    }
-</code></pre>
-<p>以上就是处理的方式，对内容处理完成后，把它们按照约定设置在文本显示区就完成了。</p>
-<h3 id="成品"><a class="markdownIt-Anchor" href="#成品"></a> 成品</h3>
-<p>丑是丑了点，主要想做的功能算是完成了。</p>
-<h4 id="目录"><a class="markdownIt-Anchor" href="#目录"></a> 目录</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131030_com.example.helloworld.jpg" alt="cat" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131105_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="原文"><a class="markdownIt-Anchor" href="#原文"></a> 原文</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131046_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="注释"><a class="markdownIt-Anchor" href="#注释"></a> 注释</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131051_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="译文"><a class="markdownIt-Anchor" href="#译文"></a> 译文</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131055_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="解析"><a class="markdownIt-Anchor" href="#解析"></a> 解析</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131059_com.example.helloworld.jpg" alt="cat" /></p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -825,6 +735,96 @@ comments: false
       </tags>
   </entry>
   <entry>
+    <title>android</title>
+    <url>/posts/2020-08-003.html</url>
+    <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
+具体是Unknown host ‘<a href="http://d29vzk4ow07wi7.cloudfront.net" target="_blank" rel="noopener">d29vzk4ow07wi7.cloudfront.net</a>’. You may need to adjust the proxy settings in Gradle.<br />
+把 build.gradle 中的两个 jcenter() 用 maven{ url “<a href="http://maven.aliyun.com/nexus/content/groups/public/" target="_blank" rel="noopener">http://maven.aliyun.com/nexus/content/groups/public/</a>”} 代替，然后等待下载安装完成就好了。<br />
+开这个项目，目前是想做一个古文阅读的app，等我把安卓开发的基础知识过一遍就来更新。</p>
+<h3 id="更新"><a class="markdownIt-Anchor" href="#更新"></a> 更新</h3>
+<p>虽然安卓的基础知识还没怎么弄明白，还是靠这自己的底子，硬着头皮给写出来了。对我来说，最难的部分应该就是对Android项目结构还不熟，所以对项目的实现方式就会变的很粗暴。。。</p>
+<h3 id="界面"><a class="markdownIt-Anchor" href="#界面"></a> 界面</h3>
+<p>这个项目里主要的需要实现的东西不多。基本上最重要的就是UI了。</p>
+<ol>
+<li>需要一个主要的文本显示区，用来可以切换的显示文章，注释，译文等。</li>
+<li>需要几个按钮，可以切换文本显示区显示的内容。</li>
+<li>需要一个目录，用来选择书籍的章节。</li>
+</ol>
+<h3 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h3>
+<p>内容方面主要的就是把爬虫获取的文章通过某种方式处理，格式化，可以让我们可以方便的显示在文本区。<br />
+对于爬虫的详细内容可以看<a href="https://slyli.cn/posts/2020-07-010.html">小说网站爬虫</a>，这篇文章中的<code>标题2</code>。</p>
+<pre><code>private String[][] ReadBook() {
+        String[][] book=new String[81][4];
+        StringBuilder termsString = new StringBuilder();
+        BufferedReader reader;
+        int ch_num=-1;
+        int temp=0;
+        try {
+            reader = new BufferedReader(
+                    new InputStreamReader(getAssets().open(&quot;daodejing.txt&quot;),&quot;UTF-8&quot;));
+            String str;
+            while ((str = reader.readLine()) != null) {
+                str=str.replaceAll(&quot; &quot;,&quot;&quot;);
+                if(str.length()&gt;0)
+                {
+                    if(str.equals(&quot;【原文】&quot;))
+                    {
+                        ch_num++;
+                        temp =0;
+                        book[ch_num][temp]=&quot;第&quot;+String.valueOf(ch_num+1)+&quot;章&quot;+'\n';
+                    }
+                    else if(str.equals(&quot;【注释】&quot;))
+                    {
+                        temp=1;
+                    }
+                    else if(str.equals(&quot;【译文】&quot;))
+                    {
+                        temp=2;
+                    }
+                    else if(str.equals(&quot;【解析】&quot;))
+                    {
+                        temp=3;
+                    }
+                    else if(str.equals(&quot;【导读】&quot;))
+                    {
+                        temp=2;
+                    }
+                    if(book[ch_num][temp]==null)
+                        book[ch_num][temp]=str+'\n';
+                    else
+                        book[ch_num][temp]+=str+'\n';
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return book;
+    }
+</code></pre>
+<p>以上就是处理的方式，对内容处理完成后，把它们按照约定设置在文本显示区就完成了。</p>
+<h3 id="成品"><a class="markdownIt-Anchor" href="#成品"></a> 成品</h3>
+<p>丑是丑了点，主要想做的功能算是完成了。</p>
+<h4 id="目录"><a class="markdownIt-Anchor" href="#目录"></a> 目录</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131030_com.example.helloworld.jpg" alt="cat" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131105_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="原文"><a class="markdownIt-Anchor" href="#原文"></a> 原文</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131046_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="注释"><a class="markdownIt-Anchor" href="#注释"></a> 注释</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131051_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="译文"><a class="markdownIt-Anchor" href="#译文"></a> 译文</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131055_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="解析"><a class="markdownIt-Anchor" href="#解析"></a> 解析</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131059_com.example.helloworld.jpg" alt="cat" /></p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>c++学习</title>
     <url>/posts/2020-07-009.html</url>
     <content><![CDATA[<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
@@ -983,6 +983,97 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
       </tags>
   </entry>
   <entry>
+    <title>小说网站爬虫</title>
+    <url>/posts/2020-07-010.html</url>
+    <content><![CDATA[<h3 id="1小说爬虫简易模板"><a class="markdownIt-Anchor" href="#1小说爬虫简易模板"></a> 1.小说爬虫简易模板</h3>
+<pre><code>import requests
+from bs4 import BeautifulSoup
+import re
+import os
+
+# 本脚本无普适性，请具体网站具体分析
+root = ''  # 文章首页链接
+art_id = ''  # 文章链接id
+
+fname = './txts/'+art_id[5:-1]+'.txt'
+encode = 'gbk'
+
+
+def GetAllSection(root, id):
+    r = requests.get(root + id)
+    r.encoding = encode
+    bs = BeautifulSoup(r.text, 'html.parser')
+    url_a = bs.find_all('a')
+    urls = []
+    for u in url_a:
+        href = u.get('href')
+        if href and re.match(id, href):
+            urls.append(root+href)
+
+    del urls[0]
+    return urls
+
+
+def SaveArticle(root, id, fname):
+    i = 1
+    urls = GetAllSection(root, id)
+    for url in urls:
+        r = requests.get(url)
+        r.encoding = encode
+        bs = BeautifulSoup(r.text, 'html.parser')
+        text = bs.find_all('p')[1].text
+        text = text.replace('\xa0', ' ')
+        text = text.replace('\ufffd', ' ')
+        text = text.replace('\n\r\n', '\n')
+        with open(fname, 'a', encoding=encode) as file:
+            if i == 1:
+                file.write(bs.h1.text+'\n')
+                i = 0
+            file.write(text+'\n')
+
+
+if __name__ == &quot;__main__&quot;:
+    SaveArticle(root, art_id, fname)
+    # print(fname)
+</code></pre>
+<h3 id="2道德经爬虫"><a class="markdownIt-Anchor" href="#2道德经爬虫"></a> 2.道德经爬虫</h3>
+<p>自己想做一个古文阅读类的安卓app，所以文章素材的话就只能自己去网上爬了。通过分析网站链接逻辑，和网站内文章内容的布局，很容易就可以写出来。<br />
+文章保存在当前目录下。</p>
+<pre><code>import requests
+from bs4 import BeautifulSoup
+import re
+import os
+encode = 'utf-8'
+cha_num = 81
+
+def SaveArticle(fname, urls):
+    for url in urls:
+        print('-', end='')
+        r = requests.get(url)
+        r.encoding = encode
+        bs = BeautifulSoup(r.text, 'html.parser')
+        text = bs.find_all('div', {&quot;class&quot;: &quot;grap&quot;})
+        with open(fname, 'a', encoding=encode) as file:
+            for t in text:
+                te = t.text.replace('\xa0', ' ').replace(
+                    '\u3000', ' ').replace('\ufffd', ' ')
+                file.write(te+'\n')
+
+if __name__ == &quot;__main__&quot;:
+    urls = ['https://www.5000yan.com/'+str(i)+'.html' for i in range(1, 82)]
+    SaveArticle('daodejing.txt', urls)
+    # print(urls)
+</code></pre>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode</title>
     <url>/posts/2020-08-002.html</url>
     <content><![CDATA[<h2 id="每日一题"><a class="markdownIt-Anchor" href="#每日一题"></a> 每日一题</h2>
@@ -1094,6 +1185,72 @@ public:
       </categories>
       <tags>
         <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>伽马兽王</title>
+    <url>/posts/2020-07-004.html</url>
+    <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b00.png" alt="兽王" /></p>
+<h3 id="加点"><a class="markdownIt-Anchor" href="#加点"></a> 加点</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b17.png" alt="bd" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b18.png" alt="bd" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b19.png" alt="bd" /></p>
+<h3 id="装备"><a class="markdownIt-Anchor" href="#装备"></a> 装备</h3>
+<div class="note success no-icon">
+            <p>没有dlc，以下只有本体中的武器。<br />攻击类武器受福统一选择 生命值低于50%时，造成额外150%辐射伤害，配合压血神器。</p>
+          </div>
+<h4 id="君王"><a class="markdownIt-Anchor" href="#君王"></a> 君王</h4>
+<p><strong>步枪</strong>，当前版本混10不刮痧的枪，子弹散射，近距离好用，基拉夫特掉落。</p>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b01.png" alt="君王" /></p>
+<h4 id="射弹循环"><a class="markdownIt-Anchor" href="#射弹循环"></a> 射弹循环</h4>
+<p><strong>散弹枪</strong>，发射后会在敌人之间弹射，在敌人多的时候很好用，每当发出的攻击多一种元素时该枪会多射出一发子弹，配合盾雷失效附加额外元素伤害使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b02.png" alt="射弹循环" /></p>
+<h4 id="瘟疫传播者"><a class="markdownIt-Anchor" href="#瘟疫传播者"></a> 瘟疫传播者</h4>
+<p><strong>重型武器</strong>，高伤害，发射前需要蓄力。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b03.png" alt="瘟疫传播者" /></p>
+<h4 id="梅尔加尼的爆发"><a class="markdownIt-Anchor" href="#梅尔加尼的爆发"></a> 梅尔加尼的爆发</h4>
+<p><strong>工具枪</strong>，过热后发射易伤弹，配合飞龙+1受福，用来触发盾雷技能失效受福。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b04.png" alt="梅尔加尼的爆发" /></p>
+<h4 id="考桑"><a class="markdownIt-Anchor" href="#考桑"></a> 考桑</h4>
+<p><strong>冲锋枪</strong>，单体伤害，射速快。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b05.png" alt="考桑" /></p>
+<h4 id="沙鹰"><a class="markdownIt-Anchor" href="#沙鹰"></a> 沙鹰</h4>
+<p><strong>狙击枪</strong>，与其说是狙击枪，更像散弹枪，子弹微散射，远距离也可使用，射速极快，兽王来说子弹根本不够用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b06.png" alt="沙鹰" /></p>
+<h4 id="备胎"><a class="markdownIt-Anchor" href="#备胎"></a> 备胎</h4>
+<p><strong>重型武器</strong>，不用蓄力，伤害还不错。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b07.png" alt="备胎" /></p>
+<h4 id="头脑风暴者"><a class="markdownIt-Anchor" href="#头脑风暴者"></a> 头脑风暴者</h4>
+<p><strong>散弹枪</strong>，多弹片工具枪，可以利用加点中的被动<code>清点人数</code>有效的缩短主动技能的冷却时间。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b08.png" alt="头脑风暴者" /></p>
+<h4 id="不可饶恕"><a class="markdownIt-Anchor" href="#不可饶恕"></a> 不可饶恕</h4>
+<p><strong>手枪</strong>，工具枪，有高额的暴击伤害，配和高伤、弹速慢的武器切枪使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b09.png" alt="不可饶恕" /></p>
+<h4 id="变形金刚"><a class="markdownIt-Anchor" href="#变形金刚"></a> 变形金刚</h4>
+<p><strong>护盾</strong>，免疫电属性伤害并吸收为护盾，受福选择技能失效附加额外属性伤害。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b11.png" alt="变形金刚" /></p>
+<h4 id="赤红之牙"><a class="markdownIt-Anchor" href="#赤红之牙"></a> 赤红之牙</h4>
+<p><strong>模组</strong>，伽马爆发时嘲讽所有敌人，伽马流<code>核心</code>装备，不可缺少，属性看自己选择。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b12.png" alt="赤红之牙" /></p>
+<h4 id="六角"><a class="markdownIt-Anchor" href="#六角"></a> 六角</h4>
+<p><strong>手雷</strong>，受福选择技能失效附加额外属性伤害。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b13.png" alt="六角" /></p>
+<h4 id="吹雪不死"><a class="markdownIt-Anchor" href="#吹雪不死"></a> 吹雪不死</h4>
+<p><strong>神器</strong>，吹雪可以提高滑铲速度，跑路快；不死可以是自己保留<code>1</code>点生命值，用来触发武器受福<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b14.png" alt="吹雪不死" /></p>
+<h4 id="吹雪胜利突袭"><a class="markdownIt-Anchor" href="#吹雪胜利突袭"></a> 吹雪胜利突袭</h4>
+<p><strong>神器</strong> 备用神器，不采用压血流时使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b10.png" alt="吹雪胜利突袭" /></p>
+<h3 id="玩法"><a class="markdownIt-Anchor" href="#玩法"></a> 玩法</h3>
+<p>伽马兽王应该时兽王职业中最安逸的流派了，伽马爆发时儿子的全图嘲讽可以给兽王提供良好的输出环境，输出时配合切飞龙，可以大幅提高伤害。技能冷却时，配合头脑风暴/射弹循环可以迅速使下一次技能准备就绪，然后继续输出。</p>
+]]></content>
+      <categories>
+        <category>games</category>
+      </categories>
+      <tags>
+        <tag>伽马兽王</tag>
+        <tag>borderlands3</tag>
       </tags>
   </entry>
   <entry>
@@ -1266,173 +1423,6 @@ public:
       </tags>
   </entry>
   <entry>
-    <title>小说网站爬虫</title>
-    <url>/posts/2020-07-010.html</url>
-    <content><![CDATA[<h3 id="1小说爬虫简易模板"><a class="markdownIt-Anchor" href="#1小说爬虫简易模板"></a> 1.小说爬虫简易模板</h3>
-<pre><code>import requests
-from bs4 import BeautifulSoup
-import re
-import os
-
-# 本脚本无普适性，请具体网站具体分析
-root = ''  # 文章首页链接
-art_id = ''  # 文章链接id
-
-fname = './txts/'+art_id[5:-1]+'.txt'
-encode = 'gbk'
-
-
-def GetAllSection(root, id):
-    r = requests.get(root + id)
-    r.encoding = encode
-    bs = BeautifulSoup(r.text, 'html.parser')
-    url_a = bs.find_all('a')
-    urls = []
-    for u in url_a:
-        href = u.get('href')
-        if href and re.match(id, href):
-            urls.append(root+href)
-
-    del urls[0]
-    return urls
-
-
-def SaveArticle(root, id, fname):
-    i = 1
-    urls = GetAllSection(root, id)
-    for url in urls:
-        r = requests.get(url)
-        r.encoding = encode
-        bs = BeautifulSoup(r.text, 'html.parser')
-        text = bs.find_all('p')[1].text
-        text = text.replace('\xa0', ' ')
-        text = text.replace('\ufffd', ' ')
-        text = text.replace('\n\r\n', '\n')
-        with open(fname, 'a', encoding=encode) as file:
-            if i == 1:
-                file.write(bs.h1.text+'\n')
-                i = 0
-            file.write(text+'\n')
-
-
-if __name__ == &quot;__main__&quot;:
-    SaveArticle(root, art_id, fname)
-    # print(fname)
-</code></pre>
-<h3 id="2道德经爬虫"><a class="markdownIt-Anchor" href="#2道德经爬虫"></a> 2.道德经爬虫</h3>
-<p>自己想做一个古文阅读类的安卓app，所以文章素材的话就只能自己去网上爬了。通过分析网站链接逻辑，和网站内文章内容的布局，很容易就可以写出来。<br />
-文章保存在当前目录下。</p>
-<pre><code>import requests
-from bs4 import BeautifulSoup
-import re
-import os
-encode = 'utf-8'
-cha_num = 81
-
-def SaveArticle(fname, urls):
-    for url in urls:
-        print('-', end='')
-        r = requests.get(url)
-        r.encoding = encode
-        bs = BeautifulSoup(r.text, 'html.parser')
-        text = bs.find_all('div', {&quot;class&quot;: &quot;grap&quot;})
-        with open(fname, 'a', encoding=encode) as file:
-            for t in text:
-                te = t.text.replace('\xa0', ' ').replace(
-                    '\u3000', ' ').replace('\ufffd', ' ')
-                file.write(te+'\n')
-
-if __name__ == &quot;__main__&quot;:
-    urls = ['https://www.5000yan.com/'+str(i)+'.html' for i in range(1, 82)]
-    SaveArticle('daodejing.txt', urls)
-    # print(urls)
-</code></pre>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>wallpapper</title>
-    <url>/posts/2020-08-007.html</url>
-    <content><![CDATA[<div class="justified-gallery"><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/1108.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/118.jpg" alt="" /></p><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/673234.png" alt="" /></p><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/873441.png" alt="" /></p>
-          </div>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>伽马兽王</title>
-    <url>/posts/2020-07-004.html</url>
-    <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b00.png" alt="兽王" /></p>
-<h3 id="加点"><a class="markdownIt-Anchor" href="#加点"></a> 加点</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b17.png" alt="bd" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b18.png" alt="bd" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b19.png" alt="bd" /></p>
-<h3 id="装备"><a class="markdownIt-Anchor" href="#装备"></a> 装备</h3>
-<div class="note success no-icon">
-            <p>没有dlc，以下只有本体中的武器。<br />攻击类武器受福统一选择 生命值低于50%时，造成额外150%辐射伤害，配合压血神器。</p>
-          </div>
-<h4 id="君王"><a class="markdownIt-Anchor" href="#君王"></a> 君王</h4>
-<p><strong>步枪</strong>，当前版本混10不刮痧的枪，子弹散射，近距离好用，基拉夫特掉落。</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b01.png" alt="君王" /></p>
-<h4 id="射弹循环"><a class="markdownIt-Anchor" href="#射弹循环"></a> 射弹循环</h4>
-<p><strong>散弹枪</strong>，发射后会在敌人之间弹射，在敌人多的时候很好用，每当发出的攻击多一种元素时该枪会多射出一发子弹，配合盾雷失效附加额外元素伤害使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b02.png" alt="射弹循环" /></p>
-<h4 id="瘟疫传播者"><a class="markdownIt-Anchor" href="#瘟疫传播者"></a> 瘟疫传播者</h4>
-<p><strong>重型武器</strong>，高伤害，发射前需要蓄力。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b03.png" alt="瘟疫传播者" /></p>
-<h4 id="梅尔加尼的爆发"><a class="markdownIt-Anchor" href="#梅尔加尼的爆发"></a> 梅尔加尼的爆发</h4>
-<p><strong>工具枪</strong>，过热后发射易伤弹，配合飞龙+1受福，用来触发盾雷技能失效受福。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b04.png" alt="梅尔加尼的爆发" /></p>
-<h4 id="考桑"><a class="markdownIt-Anchor" href="#考桑"></a> 考桑</h4>
-<p><strong>冲锋枪</strong>，单体伤害，射速快。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b05.png" alt="考桑" /></p>
-<h4 id="沙鹰"><a class="markdownIt-Anchor" href="#沙鹰"></a> 沙鹰</h4>
-<p><strong>狙击枪</strong>，与其说是狙击枪，更像散弹枪，子弹微散射，远距离也可使用，射速极快，兽王来说子弹根本不够用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b06.png" alt="沙鹰" /></p>
-<h4 id="备胎"><a class="markdownIt-Anchor" href="#备胎"></a> 备胎</h4>
-<p><strong>重型武器</strong>，不用蓄力，伤害还不错。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b07.png" alt="备胎" /></p>
-<h4 id="头脑风暴者"><a class="markdownIt-Anchor" href="#头脑风暴者"></a> 头脑风暴者</h4>
-<p><strong>散弹枪</strong>，多弹片工具枪，可以利用加点中的被动<code>清点人数</code>有效的缩短主动技能的冷却时间。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b08.png" alt="头脑风暴者" /></p>
-<h4 id="不可饶恕"><a class="markdownIt-Anchor" href="#不可饶恕"></a> 不可饶恕</h4>
-<p><strong>手枪</strong>，工具枪，有高额的暴击伤害，配和高伤、弹速慢的武器切枪使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b09.png" alt="不可饶恕" /></p>
-<h4 id="变形金刚"><a class="markdownIt-Anchor" href="#变形金刚"></a> 变形金刚</h4>
-<p><strong>护盾</strong>，免疫电属性伤害并吸收为护盾，受福选择技能失效附加额外属性伤害。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b11.png" alt="变形金刚" /></p>
-<h4 id="赤红之牙"><a class="markdownIt-Anchor" href="#赤红之牙"></a> 赤红之牙</h4>
-<p><strong>模组</strong>，伽马爆发时嘲讽所有敌人，伽马流<code>核心</code>装备，不可缺少，属性看自己选择。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b12.png" alt="赤红之牙" /></p>
-<h4 id="六角"><a class="markdownIt-Anchor" href="#六角"></a> 六角</h4>
-<p><strong>手雷</strong>，受福选择技能失效附加额外属性伤害。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b13.png" alt="六角" /></p>
-<h4 id="吹雪不死"><a class="markdownIt-Anchor" href="#吹雪不死"></a> 吹雪不死</h4>
-<p><strong>神器</strong>，吹雪可以提高滑铲速度，跑路快；不死可以是自己保留<code>1</code>点生命值，用来触发武器受福<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b14.png" alt="吹雪不死" /></p>
-<h4 id="吹雪胜利突袭"><a class="markdownIt-Anchor" href="#吹雪胜利突袭"></a> 吹雪胜利突袭</h4>
-<p><strong>神器</strong> 备用神器，不采用压血流时使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b10.png" alt="吹雪胜利突袭" /></p>
-<h3 id="玩法"><a class="markdownIt-Anchor" href="#玩法"></a> 玩法</h3>
-<p>伽马兽王应该时兽王职业中最安逸的流派了，伽马爆发时儿子的全图嘲讽可以给兽王提供良好的输出环境，输出时配合切飞龙，可以大幅提高伤害。技能冷却时，配合头脑风暴/射弹循环可以迅速使下一次技能准备就绪，然后继续输出。</p>
-]]></content>
-      <categories>
-        <category>games</category>
-      </categories>
-      <tags>
-        <tag>伽马兽王</tag>
-        <tag>borderlands3</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>全国大学生智能汽车竞赛记录</title>
     <url>/posts/2020-07-005.html</url>
     <content><![CDATA[<h3 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h3>
@@ -1551,6 +1541,17 @@ draft	source/_drafts
         <tag>butterfly</tag>
         <tag>hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>小四轴飞行器</title>
+    <url>/posts/2020-08-004.html</url>
+    <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
+<p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
   </entry>
   <entry>
     <title>基于雷达探测技术和stm32平台的自动避障智能车</title>
@@ -1791,17 +1792,6 @@ $y = d \times cos \left( \theta \right)$
       </tags>
   </entry>
   <entry>
-    <title>小四轴飞行器</title>
-    <url>/posts/2020-08-004.html</url>
-    <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
-<p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-  </entry>
-  <entry>
     <title>记录</title>
     <url>/posts/2020-08-005.html</url>
     <content><![CDATA[<ol>
@@ -1813,6 +1803,16 @@ $y = d \times cos \left( \theta \right)$
 我们曾经仰望星空，思考我们在宇宙中的位置，而现在我们只会低着头，担心如何在这片土地上活下去。—《星际穿越》</p>
 </li>
 </ol>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>wallpapper</title>
+    <url>/posts/2020-08-007.html</url>
+    <content><![CDATA[<div class="justified-gallery"><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/1108.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/118.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/873441.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/988021.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/1398373247tumblr_n3rl3fUsnJ1rsdpaso1_500.gif" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/colorstream.gif" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/digitalart-1518055361254-315.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/Fiora.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/full.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/Genji.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/papers.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/rocks_surf_canal_123163_3840x2160.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/wallhaven-72198.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/Wallpaper.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/wallpapper/%E6%98%9F%E6%9E%81.jpg" alt="" /></p>
+          </div>
 ]]></content>
       <categories>
         <category>others</category>
