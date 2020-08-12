@@ -61,6 +61,58 @@
       </tags>
   </entry>
   <entry>
+    <title>OneDrive云盘搭建</title>
+    <url>/posts/2020-08-006.html</url>
+    <content><![CDATA[<h3 id="拥有一个onedrive账号"><a class="markdownIt-Anchor" href="#拥有一个onedrive账号"></a> 拥有一个OneDrive账号</h3>
+<ol>
+<li>打开微软的<a href="https://signup.microsoft.com/" target="_blank" rel="noopener">注册/登录页面</a>，选择合适的按照流程注册。</li>
+<li>个人免费账户是5G，学生版是1T或5T。</li>
+</ol>
+<h3 id="下载onemanager"><a class="markdownIt-Anchor" href="#下载onemanager"></a> 下载OneManager</h3>
+<ol>
+<li>前往 <a href="https://github.com/qkqpttgf/OneManager-php" target="_blank" rel="noopener">OneManager项目地址</a>下载并完成解压，为之后准备。</li>
+</ol>
+<h3 id="部署"><a class="markdownIt-Anchor" href="#部署"></a> 部署</h3>
+<p>选择腾讯云函数，有免费额度，一般来说够用了。</p>
+<ol>
+<li>
+<p>新建函数，输入名称，运行环境选择php7.2，创建方式选择空白函数<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud1.png" alt="" /></p>
+</li>
+<li>
+<p>通过本地上传文件夹方式，上传之前解压后的OneManager文件夹<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud2.png" alt="" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud3.png" alt="" /></p>
+</li>
+<li>
+<p>创建触发器，选择API网关触发器<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud4.png" alt="" /></p>
+</li>
+<li>
+<p>（可选）点击触发器的API服务名 <code>SCF_API_SERVICE</code>，可以自定义域名。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud5.png" alt="" /></p>
+</li>
+</ol>
+<h3 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h3>
+<ol start="5">
+<li>点击触发器下方访问路径，后安装项目，选择新建 SecretId &amp; SecretKey，返回腾讯云新建密钥，完成后将 SecretId &amp; SecretKey填入其中。</li>
+</ol>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud6.png" alt="" /></p>
+<ol start="6">
+<li>设置完密码后登录，通过管理-设置，点击 <code>添加Onedrive盘</code>，然后再填写相关内容就ok了。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud7.png" alt="" /></li>
+</ol>
+<div class="note warning">
+            <ul><li>个人账号选择  MS: 国际版（商业版与个人版）</li><li>学生账号只能选择 ShareUrl: 共享链接， 对一个Onedrive文件夹共享进行使用</li></ul>
+          </div>
+<p>本人网盘链接 <a href="http://cloud.slyli.cn/cloud" target="_blank" rel="noopener">http://cloud.slyli.cn/cloud</a></p>
+<p>目前上传了一部剧：《如此可爱的我们》。然后把之前博客中需要的视频也搬到这上面了。</p>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
     <title>LinearRegression--python</title>
     <url>/posts/2020-07-008.html</url>
     <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
@@ -136,56 +188,333 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>OneDrive云盘搭建</title>
-    <url>/posts/2020-08-006.html</url>
-    <content><![CDATA[<h3 id="拥有一个onedrive账号"><a class="markdownIt-Anchor" href="#拥有一个onedrive账号"></a> 拥有一个OneDrive账号</h3>
+    <title>Markdown语法</title>
+    <url>/posts/2020-06-001.html</url>
+    <content><![CDATA[<h2 id="主要内容"><a class="markdownIt-Anchor" href="#主要内容"></a> 主要内容</h2>
+<blockquote>
+<h4 id="markdown是什么"><a class="markdownIt-Anchor" href="#markdown是什么"></a> Markdown<em>是什么</em>？</h4>
+<h4 id="谁创造了它"><a class="markdownIt-Anchor" href="#谁创造了它"></a> <em>谁</em>创造了它？</h4>
+<h4 id="为什么要使用它"><a class="markdownIt-Anchor" href="#为什么要使用它"></a> <em>为什么</em>要使用它？</h4>
+<h4 id="怎么使用"><a class="markdownIt-Anchor" href="#怎么使用"></a> <em>怎么</em>使用？</h4>
+<h4 id="谁在用"><a class="markdownIt-Anchor" href="#谁在用"></a> <em>谁</em>在用？</h4>
+<h4 id="尝试一下"><a class="markdownIt-Anchor" href="#尝试一下"></a> 尝试一下</h4>
+</blockquote>
+<h2 id="正文"><a class="markdownIt-Anchor" href="#正文"></a> 正文</h2>
+<h3 id="1-markdown是什么"><a class="markdownIt-Anchor" href="#1-markdown是什么"></a> 1. Markdown<em>是什么</em>？</h3>
+<p><strong>Markdown</strong>是一种轻量级<strong>标记语言</strong>，它以纯文本形式(<em>易读、易写、易更改</em>)编写文档，并最终以HTML格式发布。<br />
+<strong>Markdown</strong>也可以理解为将以MARKDOWN语法编写的语言转换成HTML内容的工具。</p>
+<h3 id="2-谁创造了它"><a class="markdownIt-Anchor" href="#2-谁创造了它"></a> 2. <em>谁</em>创造了它？</h3>
+<p>它由<a href="http://www.aaronsw.com/" target="_blank" rel="noopener"><strong>Aaron Swartz</strong></a>和<strong>John Gruber</strong>共同设计，<strong>Aaron Swartz</strong>就是那位于去年（<em>2013年1月11日</em>）自杀,有着<strong>开挂</strong>一般人生经历的程序员。维基百科对他的<a href="http://zh.wikipedia.org/wiki/%E4%BA%9A%E4%BC%A6%C2%B7%E6%96%AF%E6%B2%83%E8%8C%A8" target="_blank" rel="noopener">介绍</a>是：<strong>软件工程师、作家、政治组织者、互联网活动家、维基百科人</strong>。</p>
+<p>他有着足以让你跪拜的人生经历：</p>
+<ul>
+<li><strong>14岁</strong>参与RSS 1.0规格标准的制订。</li>
+<li><strong>2004</strong>年入读<strong>斯坦福</strong>，之后退学。</li>
+<li><strong>2005</strong>年创建<a href="http://infogami.org/" target="_blank" rel="noopener">Infogami</a>，之后与<a href="http://www.reddit.com/" target="_blank" rel="noopener">Reddit</a>合并成为其合伙人。</li>
+<li><strong>2010</strong>年创立求进会（Demand Progress），积极参与禁止网络盗版法案（SOPA）活动，最终该提案被撤回。</li>
+<li><strong>2011</strong>年7月19日，因被控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕。</li>
+<li><strong>2013</strong>年1月自杀身亡。</li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg" alt="Aaron Swartz" /></p>
+<p>天才都有早逝的归途。</p>
+<h3 id="3-为什么要使用它"><a class="markdownIt-Anchor" href="#3-为什么要使用它"></a> 3. <em>为什么</em>要使用它？</h3>
+<ul>
+<li>它是易读（看起来舒服）、易写（语法简单）、易更改<strong>纯文本</strong>。处处体现着<strong>极简主义</strong>的影子。</li>
+<li>兼容HTML，可以转换为HTML格式发布。</li>
+<li>跨平台使用。</li>
+<li>越来越多的网站支持Markdown。</li>
+<li>更方便清晰地组织你的电子邮件。（Markdown-here, Airmail）</li>
+<li>摆脱Word（我不是认真的）。</li>
+</ul>
+<h3 id="4-怎么使用"><a class="markdownIt-Anchor" href="#4-怎么使用"></a> 4. <em>怎么</em>使用？</h3>
+<p>如果不算<strong>扩展</strong>，Markdown的语法绝对<strong>简单</strong>到让你爱不释手。</p>
+<p>Markdown语法主要分为如下几大部分：<br />
+<strong>标题</strong>，<strong>段落</strong>，<strong>区块引用</strong>，<strong>代码区块</strong>，<strong>强调</strong>，<strong>列表</strong>，<strong>分割线</strong>，<strong>链接</strong>，<strong>图片</strong>，<strong>反斜杠 <code>\</code></strong>，<strong>符号’`’</strong>。</p>
+<h4 id="41-标题"><a class="markdownIt-Anchor" href="#41-标题"></a> 4.1 标题</h4>
+<p>两种形式：<br />
+1）使用<code>=</code>和<code>-</code>标记一级和二级标题。</p>
+<blockquote>
+<p>一级标题<br />
+<code>=========</code><br />
+二级标题<br />
+<code>---------</code></p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<h1 id="一级标题"><a class="markdownIt-Anchor" href="#一级标题"></a> 一级标题</h1>
+<h2 id="二级标题"><a class="markdownIt-Anchor" href="#二级标题"></a> 二级标题</h2>
+</blockquote>
+<p>2）使用<code>#</code>，可表示1-6级标题。</p>
+<blockquote>
+<p># 一级标题<br />
+## 二级标题<br />
+### 三级标题<br />
+#### 四级标题<br />
+##### 五级标题<br />
+###### 六级标题</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<h1 id="一级标题-2"><a class="markdownIt-Anchor" href="#一级标题-2"></a> 一级标题</h1>
+<h2 id="二级标题-2"><a class="markdownIt-Anchor" href="#二级标题-2"></a> 二级标题</h2>
+<h3 id="三级标题"><a class="markdownIt-Anchor" href="#三级标题"></a> 三级标题</h3>
+<h4 id="四级标题"><a class="markdownIt-Anchor" href="#四级标题"></a> 四级标题</h4>
+<h5 id="五级标题"><a class="markdownIt-Anchor" href="#五级标题"></a> 五级标题</h5>
+<h6 id="六级标题"><a class="markdownIt-Anchor" href="#六级标题"></a> 六级标题</h6>
+</blockquote>
+<h4 id="42-段落"><a class="markdownIt-Anchor" href="#42-段落"></a> 4.2 段落</h4>
+<p>段落的前后要有空行，所谓的空行是指没有文字内容。若想在段内强制换行的方式是使用<strong>两个以上</strong>空格加上回车（引用中换行省略回车）。</p>
+<h4 id="43-区块引用"><a class="markdownIt-Anchor" href="#43-区块引用"></a> 4.3 区块引用</h4>
+<p>在段落的每行或者只在第一行使用符号<code>&gt;</code>,还可使用多个嵌套引用，如：</p>
+<blockquote>
+<p>&gt; 区块引用<br />
+&gt;&gt; 嵌套引用</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p>区块引用</p>
+<blockquote>
+<p>嵌套引用</p>
+</blockquote>
+</blockquote>
+<h4 id="44-代码区块"><a class="markdownIt-Anchor" href="#44-代码区块"></a> 4.4 代码区块</h4>
+<p>代码区块的建立是在每行加上4个空格或者一个制表符（如同写代码一样）。如<br />
+普通段落：</p>
+<p>void main()<br />
+{<br />
+printf(“Hello, Markdown.”);<br />
+}</p>
+<p>代码区块：</p>
+<pre><code>void main()
+{
+    printf(&quot;Hello, Markdown.&quot;);
+}
+</code></pre>
+<p><strong>注意</strong>:需要和普通段落之间存在空行。</p>
+<h4 id="45-强调"><a class="markdownIt-Anchor" href="#45-强调"></a> 4.5 强调</h4>
+<p>在强调内容两侧分别加上<code>*</code>或者<code>_</code>，如：</p>
+<blockquote>
+<p>*斜体*，_斜体_<br />
+**粗体**，__粗体__</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><em>斜体</em>，<em>斜体</em><br />
+<strong>粗体</strong>，<strong>粗体</strong></p>
+</blockquote>
+<h4 id="46-列表"><a class="markdownIt-Anchor" href="#46-列表"></a> 4.6 列表</h4>
+<p>使用<code>·</code>、<code>+</code>、或<code>-</code>标记无序列表，如：</p>
+<blockquote>
+<p>-（+*） 第一项<br />
+-（+*） 第二项<br />
+- （+*）第三项</p>
+</blockquote>
+<p><strong>注意</strong>：标记后面最少有一个_空格_或_制表符_。若不在引用区块中，必须和前方段落之间存在空行。</p>
+<p>效果：</p>
+<blockquote>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+</blockquote>
+<p>有序列表的标记方式是将上述的符号换成数字,并辅以<code>.</code>，如：</p>
+<blockquote>
+<p>1 . 第一项<br />
+2 . 第二项<br />
+3 . 第三项</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
 <ol>
-<li>打开微软的<a href="https://signup.microsoft.com/" target="_blank" rel="noopener">注册/登录页面</a>，选择合适的按照流程注册。</li>
-<li>个人免费账户是5G，学生版是1T或5T。</li>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
 </ol>
-<h3 id="下载onemanager"><a class="markdownIt-Anchor" href="#下载onemanager"></a> 下载OneManager</h3>
-<ol>
-<li>前往 <a href="https://github.com/qkqpttgf/OneManager-php" target="_blank" rel="noopener">OneManager项目地址</a>下载并完成解压，为之后准备。</li>
-</ol>
-<h3 id="部署"><a class="markdownIt-Anchor" href="#部署"></a> 部署</h3>
-<p>选择腾讯云函数，有免费额度，一般来说够用了。</p>
-<ol>
-<li>
-<p>新建函数，输入名称，运行环境选择php7.2，创建方式选择空白函数<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud1.png" alt="" /></p>
-</li>
-<li>
-<p>通过本地上传文件夹方式，上传之前解压后的OneManager文件夹<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud2.png" alt="" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud3.png" alt="" /></p>
-</li>
-<li>
-<p>创建触发器，选择API网关触发器<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud4.png" alt="" /></p>
-</li>
-<li>
-<p>（可选）点击触发器的API服务名 <code>SCF_API_SERVICE</code>，可以自定义域名。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud5.png" alt="" /></p>
-</li>
-</ol>
-<h3 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h3>
-<ol start="5">
-<li>点击触发器下方访问路径，后安装项目，选择新建 SecretId &amp; SecretKey，返回腾讯云新建密钥，完成后将 SecretId &amp; SecretKey填入其中。</li>
-</ol>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud6.png" alt="" /></p>
-<ol start="6">
-<li>设置完密码后登录，通过管理-设置，点击 <code>添加Onedrive盘</code>，然后再填写相关内容就ok了。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud7.png" alt="" /></li>
-</ol>
-<div class="note warning">
-            <ul><li>个人账号选择  MS: 国际版（商业版与个人版）</li><li>学生账号只能选择 ShareUrl: 共享链接， 对一个Onedrive文件夹共享进行使用</li></ul>
-          </div>
-<p>本人网盘链接 <a href="http://cloud.slyli.cn/cloud" target="_blank" rel="noopener">http://cloud.slyli.cn/cloud</a></p>
-<p>目前上传了一部剧：《如此可爱的我们》。然后把之前博客中需要的视频也搬到这上面了。</p>
+</blockquote>
+<h4 id="47-分割线"><a class="markdownIt-Anchor" href="#47-分割线"></a> 4.7 分割线</h4>
+<p>分割线最常使用就是三个或以上<code>*</code>，还可以使用<code>-</code>和<code>_</code>。</p>
+<h4 id="48-链接"><a class="markdownIt-Anchor" href="#48-链接"></a> 4.8 链接</h4>
+<p>链接可以由两种形式生成：<strong>行内式</strong>和<strong>参考式</strong>。<br />
+<strong>行内式</strong>：</p>
+<blockquote>
+<p>[younghz的Markdown库](https:😕/github.com/younghz/Markdown “Markdown”)。</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库</a>。</p>
+</blockquote>
+<p><strong>参考式</strong>：</p>
+<blockquote>
+<p>[younghz的Markdown库1][1]<br />
+[younghz的Markdown库2][2]<br />
+[1]:https:😕/github.com/younghz/Markdown “Markdown”<br />
+[2]:https:😕/github.com/younghz/Markdown “Markdown”</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库1</a><br />
+<a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库2</a></p>
+</blockquote>
+<p><strong>注意</strong>：上述的<code>[1]:https:://github.com/younghz/Markdown &quot;Markdown&quot;</code>不出现在区块中。</p>
+<h4 id="49-图片"><a class="markdownIt-Anchor" href="#49-图片"></a> 4.9 图片</h4>
+<p>添加图片的形式和链接相似，只需在链接的基础上前方加一个<code>！</code>。</p>
+<h4 id="410-反斜杠"><a class="markdownIt-Anchor" href="#410-反斜杠"></a> 4.10 反斜杠<code>\</code></h4>
+<p>相当于<strong>反转义</strong>作用。使符号成为普通符号。</p>
+<h4 id="411-符号"><a class="markdownIt-Anchor" href="#411-符号"></a> 4.11 符号’`’</h4>
+<p>起到标记作用。如：</p>
+<blockquote>
+<p>`ctrl+a`</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><code>ctrl+a</code></p>
+</blockquote>
+<h4 id="5-谁在用"><a class="markdownIt-Anchor" href="#5-谁在用"></a> 5. <em>谁</em>在用？</h4>
+<p>Markdown的使用者：</p>
+<ul>
+<li>GitHub</li>
+<li>简书</li>
+<li>Stack Overflow</li>
+<li>Apollo</li>
+<li>Moodle</li>
+<li>Reddit</li>
+<li>等等</li>
+</ul>
+<h4 id="6-尝试一下"><a class="markdownIt-Anchor" href="#6-尝试一下"></a> 6. 尝试一下</h4>
+<ul>
+<li><strong>Chrome</strong>下的插件诸如<code>stackedit</code>与<code>markdown-here</code>等非常方便，也不用担心平台受限。</li>
+<li><strong>在线</strong>的dillinger.io评价也不错</li>
+<li><strong>Windowns</strong>下的MarkdownPad也用过，不过免费版的体验不是很好。</li>
+<li><strong>Mac</strong>下的Mou是国人贡献的，口碑很好。</li>
+<li><strong>Linux</strong>下的ReText不错。</li>
+</ul>
+<p><strong>当然，最终境界永远都是笔下是语法，心中格式化 😃。</strong></p>
+<hr />
+<p><strong>注意</strong>：不同的Markdown解释器或工具对相应语法（扩展语法）的解释效果不尽相同，具体可参见工具的使用说明。<br />
+虽然有人想出面搞一个所谓的标准化的Markdown，[没想到还惹怒了健在的创始人John Gruber]<br />
+(<a href="http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/" target="_blank" rel="noopener">http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/</a> )。</p>
+<hr />
+<p>以上基本是所有traditonal markdown的语法。</p>
+<h3 id="其它"><a class="markdownIt-Anchor" href="#其它"></a> 其它：</h3>
+<p>列表的使用(非traditonal markdown)：</p>
+<p>用<code>|</code>表示表格纵向边界，表头和表内容用<code>-</code>隔开，并可用<code>:</code>进行对齐设置，两边都有<code>:</code>则表示居中，若不加<code>:</code>则默认左对齐。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">代码库</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">MarkDown</td>
+<td><a href="https://github.com/younghz/Markdown" target="_blank" rel="noopener" title="Markdown">https://github.com/younghz/Markdown</a></td>
+</tr>
+<tr>
+<td style="text-align:center">MarkDownCopy</td>
+<td><a href="https://github.com/younghz/Markdown" target="_blank" rel="noopener" title="Markdown">https://github.com/younghz/Markdown</a></td>
+</tr>
+</tbody>
+</table>
+<p>关于其它扩展语法可参见具体工具的使用说明。</p>
 ]]></content>
       <categories>
-        <category>others</category>
+        <category>blog</category>
       </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>android</title>
+    <url>/posts/2020-08-003.html</url>
+    <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
+具体是Unknown host ‘<a href="http://d29vzk4ow07wi7.cloudfront.net" target="_blank" rel="noopener">d29vzk4ow07wi7.cloudfront.net</a>’. You may need to adjust the proxy settings in Gradle.<br />
+把 build.gradle 中的两个 jcenter() 用 maven{ url “<a href="http://maven.aliyun.com/nexus/content/groups/public/" target="_blank" rel="noopener">http://maven.aliyun.com/nexus/content/groups/public/</a>”} 代替，然后等待下载安装完成就好了。<br />
+开这个项目，目前是想做一个古文阅读的app，等我把安卓开发的基础知识过一遍就来更新。</p>
+<h3 id="更新"><a class="markdownIt-Anchor" href="#更新"></a> 更新</h3>
+<p>虽然安卓的基础知识还没怎么弄明白，还是靠这自己的底子，硬着头皮给写出来了。对我来说，最难的部分应该就是对Android项目结构还不熟，所以对项目的实现方式就会变的很粗暴。。。</p>
+<h3 id="界面"><a class="markdownIt-Anchor" href="#界面"></a> 界面</h3>
+<p>这个项目里主要的需要实现的东西不多。基本上最重要的就是UI了。</p>
+<ol>
+<li>需要一个主要的文本显示区，用来可以切换的显示文章，注释，译文等。</li>
+<li>需要几个按钮，可以切换文本显示区显示的内容。</li>
+<li>需要一个目录，用来选择书籍的章节。</li>
+</ol>
+<h3 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h3>
+<p>内容方面主要的就是把爬虫获取的文章通过某种方式处理，格式化，可以让我们可以方便的显示在文本区。<br />
+对于爬虫的详细内容可以看<a href="https://slyli.cn/posts/2020-07-010.html">小说网站爬虫</a>，这篇文章中的<code>标题2</code>。</p>
+<pre><code>private String[][] ReadBook() {
+        String[][] book=new String[81][4];
+        StringBuilder termsString = new StringBuilder();
+        BufferedReader reader;
+        int ch_num=-1;
+        int temp=0;
+        try {
+            reader = new BufferedReader(
+                    new InputStreamReader(getAssets().open(&quot;daodejing.txt&quot;),&quot;UTF-8&quot;));
+            String str;
+            while ((str = reader.readLine()) != null) {
+                str=str.replaceAll(&quot; &quot;,&quot;&quot;);
+                if(str.length()&gt;0)
+                {
+                    if(str.equals(&quot;【原文】&quot;))
+                    {
+                        ch_num++;
+                        temp =0;
+                        book[ch_num][temp]=&quot;第&quot;+String.valueOf(ch_num+1)+&quot;章&quot;+'\n';
+                    }
+                    else if(str.equals(&quot;【注释】&quot;))
+                    {
+                        temp=1;
+                    }
+                    else if(str.equals(&quot;【译文】&quot;))
+                    {
+                        temp=2;
+                    }
+                    else if(str.equals(&quot;【解析】&quot;))
+                    {
+                        temp=3;
+                    }
+                    else if(str.equals(&quot;【导读】&quot;))
+                    {
+                        temp=2;
+                    }
+                    if(book[ch_num][temp]==null)
+                        book[ch_num][temp]=str+'\n';
+                    else
+                        book[ch_num][temp]+=str+'\n';
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return book;
+    }
+</code></pre>
+<p>以上就是处理的方式，对内容处理完成后，把它们按照约定设置在文本显示区就完成了。</p>
+<h3 id="成品"><a class="markdownIt-Anchor" href="#成品"></a> 成品</h3>
+<p>丑是丑了点，主要想做的功能算是完成了。</p>
+<h4 id="目录"><a class="markdownIt-Anchor" href="#目录"></a> 目录</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131030_com.example.helloworld.jpg" alt="cat" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131105_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="原文"><a class="markdownIt-Anchor" href="#原文"></a> 原文</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131046_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="注释"><a class="markdownIt-Anchor" href="#注释"></a> 注释</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131051_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="译文"><a class="markdownIt-Anchor" href="#译文"></a> 译文</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131055_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="解析"><a class="markdownIt-Anchor" href="#解析"></a> 解析</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131059_com.example.helloworld.jpg" alt="cat" /></p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>android</tag>
+      </tags>
   </entry>
   <entry>
     <title>LogisticRegression--python</title>
@@ -447,384 +776,6 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>Markdown语法</title>
-    <url>/posts/2020-06-001.html</url>
-    <content><![CDATA[<h2 id="主要内容"><a class="markdownIt-Anchor" href="#主要内容"></a> 主要内容</h2>
-<blockquote>
-<h4 id="markdown是什么"><a class="markdownIt-Anchor" href="#markdown是什么"></a> Markdown<em>是什么</em>？</h4>
-<h4 id="谁创造了它"><a class="markdownIt-Anchor" href="#谁创造了它"></a> <em>谁</em>创造了它？</h4>
-<h4 id="为什么要使用它"><a class="markdownIt-Anchor" href="#为什么要使用它"></a> <em>为什么</em>要使用它？</h4>
-<h4 id="怎么使用"><a class="markdownIt-Anchor" href="#怎么使用"></a> <em>怎么</em>使用？</h4>
-<h4 id="谁在用"><a class="markdownIt-Anchor" href="#谁在用"></a> <em>谁</em>在用？</h4>
-<h4 id="尝试一下"><a class="markdownIt-Anchor" href="#尝试一下"></a> 尝试一下</h4>
-</blockquote>
-<h2 id="正文"><a class="markdownIt-Anchor" href="#正文"></a> 正文</h2>
-<h3 id="1-markdown是什么"><a class="markdownIt-Anchor" href="#1-markdown是什么"></a> 1. Markdown<em>是什么</em>？</h3>
-<p><strong>Markdown</strong>是一种轻量级<strong>标记语言</strong>，它以纯文本形式(<em>易读、易写、易更改</em>)编写文档，并最终以HTML格式发布。<br />
-<strong>Markdown</strong>也可以理解为将以MARKDOWN语法编写的语言转换成HTML内容的工具。</p>
-<h3 id="2-谁创造了它"><a class="markdownIt-Anchor" href="#2-谁创造了它"></a> 2. <em>谁</em>创造了它？</h3>
-<p>它由<a href="http://www.aaronsw.com/" target="_blank" rel="noopener"><strong>Aaron Swartz</strong></a>和<strong>John Gruber</strong>共同设计，<strong>Aaron Swartz</strong>就是那位于去年（<em>2013年1月11日</em>）自杀,有着<strong>开挂</strong>一般人生经历的程序员。维基百科对他的<a href="http://zh.wikipedia.org/wiki/%E4%BA%9A%E4%BC%A6%C2%B7%E6%96%AF%E6%B2%83%E8%8C%A8" target="_blank" rel="noopener">介绍</a>是：<strong>软件工程师、作家、政治组织者、互联网活动家、维基百科人</strong>。</p>
-<p>他有着足以让你跪拜的人生经历：</p>
-<ul>
-<li><strong>14岁</strong>参与RSS 1.0规格标准的制订。</li>
-<li><strong>2004</strong>年入读<strong>斯坦福</strong>，之后退学。</li>
-<li><strong>2005</strong>年创建<a href="http://infogami.org/" target="_blank" rel="noopener">Infogami</a>，之后与<a href="http://www.reddit.com/" target="_blank" rel="noopener">Reddit</a>合并成为其合伙人。</li>
-<li><strong>2010</strong>年创立求进会（Demand Progress），积极参与禁止网络盗版法案（SOPA）活动，最终该提案被撤回。</li>
-<li><strong>2011</strong>年7月19日，因被控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕。</li>
-<li><strong>2013</strong>年1月自杀身亡。</li>
-</ul>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg" alt="Aaron Swartz" /></p>
-<p>天才都有早逝的归途。</p>
-<h3 id="3-为什么要使用它"><a class="markdownIt-Anchor" href="#3-为什么要使用它"></a> 3. <em>为什么</em>要使用它？</h3>
-<ul>
-<li>它是易读（看起来舒服）、易写（语法简单）、易更改<strong>纯文本</strong>。处处体现着<strong>极简主义</strong>的影子。</li>
-<li>兼容HTML，可以转换为HTML格式发布。</li>
-<li>跨平台使用。</li>
-<li>越来越多的网站支持Markdown。</li>
-<li>更方便清晰地组织你的电子邮件。（Markdown-here, Airmail）</li>
-<li>摆脱Word（我不是认真的）。</li>
-</ul>
-<h3 id="4-怎么使用"><a class="markdownIt-Anchor" href="#4-怎么使用"></a> 4. <em>怎么</em>使用？</h3>
-<p>如果不算<strong>扩展</strong>，Markdown的语法绝对<strong>简单</strong>到让你爱不释手。</p>
-<p>Markdown语法主要分为如下几大部分：<br />
-<strong>标题</strong>，<strong>段落</strong>，<strong>区块引用</strong>，<strong>代码区块</strong>，<strong>强调</strong>，<strong>列表</strong>，<strong>分割线</strong>，<strong>链接</strong>，<strong>图片</strong>，<strong>反斜杠 <code>\</code></strong>，<strong>符号’`’</strong>。</p>
-<h4 id="41-标题"><a class="markdownIt-Anchor" href="#41-标题"></a> 4.1 标题</h4>
-<p>两种形式：<br />
-1）使用<code>=</code>和<code>-</code>标记一级和二级标题。</p>
-<blockquote>
-<p>一级标题<br />
-<code>=========</code><br />
-二级标题<br />
-<code>---------</code></p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<h1 id="一级标题"><a class="markdownIt-Anchor" href="#一级标题"></a> 一级标题</h1>
-<h2 id="二级标题"><a class="markdownIt-Anchor" href="#二级标题"></a> 二级标题</h2>
-</blockquote>
-<p>2）使用<code>#</code>，可表示1-6级标题。</p>
-<blockquote>
-<p># 一级标题<br />
-## 二级标题<br />
-### 三级标题<br />
-#### 四级标题<br />
-##### 五级标题<br />
-###### 六级标题</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<h1 id="一级标题-2"><a class="markdownIt-Anchor" href="#一级标题-2"></a> 一级标题</h1>
-<h2 id="二级标题-2"><a class="markdownIt-Anchor" href="#二级标题-2"></a> 二级标题</h2>
-<h3 id="三级标题"><a class="markdownIt-Anchor" href="#三级标题"></a> 三级标题</h3>
-<h4 id="四级标题"><a class="markdownIt-Anchor" href="#四级标题"></a> 四级标题</h4>
-<h5 id="五级标题"><a class="markdownIt-Anchor" href="#五级标题"></a> 五级标题</h5>
-<h6 id="六级标题"><a class="markdownIt-Anchor" href="#六级标题"></a> 六级标题</h6>
-</blockquote>
-<h4 id="42-段落"><a class="markdownIt-Anchor" href="#42-段落"></a> 4.2 段落</h4>
-<p>段落的前后要有空行，所谓的空行是指没有文字内容。若想在段内强制换行的方式是使用<strong>两个以上</strong>空格加上回车（引用中换行省略回车）。</p>
-<h4 id="43-区块引用"><a class="markdownIt-Anchor" href="#43-区块引用"></a> 4.3 区块引用</h4>
-<p>在段落的每行或者只在第一行使用符号<code>&gt;</code>,还可使用多个嵌套引用，如：</p>
-<blockquote>
-<p>&gt; 区块引用<br />
-&gt;&gt; 嵌套引用</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p>区块引用</p>
-<blockquote>
-<p>嵌套引用</p>
-</blockquote>
-</blockquote>
-<h4 id="44-代码区块"><a class="markdownIt-Anchor" href="#44-代码区块"></a> 4.4 代码区块</h4>
-<p>代码区块的建立是在每行加上4个空格或者一个制表符（如同写代码一样）。如<br />
-普通段落：</p>
-<p>void main()<br />
-{<br />
-printf(“Hello, Markdown.”);<br />
-}</p>
-<p>代码区块：</p>
-<pre><code>void main()
-{
-    printf(&quot;Hello, Markdown.&quot;);
-}
-</code></pre>
-<p><strong>注意</strong>:需要和普通段落之间存在空行。</p>
-<h4 id="45-强调"><a class="markdownIt-Anchor" href="#45-强调"></a> 4.5 强调</h4>
-<p>在强调内容两侧分别加上<code>*</code>或者<code>_</code>，如：</p>
-<blockquote>
-<p>*斜体*，_斜体_<br />
-**粗体**，__粗体__</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><em>斜体</em>，<em>斜体</em><br />
-<strong>粗体</strong>，<strong>粗体</strong></p>
-</blockquote>
-<h4 id="46-列表"><a class="markdownIt-Anchor" href="#46-列表"></a> 4.6 列表</h4>
-<p>使用<code>·</code>、<code>+</code>、或<code>-</code>标记无序列表，如：</p>
-<blockquote>
-<p>-（+*） 第一项<br />
--（+*） 第二项<br />
-- （+*）第三项</p>
-</blockquote>
-<p><strong>注意</strong>：标记后面最少有一个_空格_或_制表符_。若不在引用区块中，必须和前方段落之间存在空行。</p>
-<p>效果：</p>
-<blockquote>
-<ul>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项</li>
-</ul>
-</blockquote>
-<p>有序列表的标记方式是将上述的符号换成数字,并辅以<code>.</code>，如：</p>
-<blockquote>
-<p>1 . 第一项<br />
-2 . 第二项<br />
-3 . 第三项</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<ol>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项</li>
-</ol>
-</blockquote>
-<h4 id="47-分割线"><a class="markdownIt-Anchor" href="#47-分割线"></a> 4.7 分割线</h4>
-<p>分割线最常使用就是三个或以上<code>*</code>，还可以使用<code>-</code>和<code>_</code>。</p>
-<h4 id="48-链接"><a class="markdownIt-Anchor" href="#48-链接"></a> 4.8 链接</h4>
-<p>链接可以由两种形式生成：<strong>行内式</strong>和<strong>参考式</strong>。<br />
-<strong>行内式</strong>：</p>
-<blockquote>
-<p>[younghz的Markdown库](https:😕/github.com/younghz/Markdown “Markdown”)。</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库</a>。</p>
-</blockquote>
-<p><strong>参考式</strong>：</p>
-<blockquote>
-<p>[younghz的Markdown库1][1]<br />
-[younghz的Markdown库2][2]<br />
-[1]:https:😕/github.com/younghz/Markdown “Markdown”<br />
-[2]:https:😕/github.com/younghz/Markdown “Markdown”</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库1</a><br />
-<a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库2</a></p>
-</blockquote>
-<p><strong>注意</strong>：上述的<code>[1]:https:://github.com/younghz/Markdown &quot;Markdown&quot;</code>不出现在区块中。</p>
-<h4 id="49-图片"><a class="markdownIt-Anchor" href="#49-图片"></a> 4.9 图片</h4>
-<p>添加图片的形式和链接相似，只需在链接的基础上前方加一个<code>！</code>。</p>
-<h4 id="410-反斜杠"><a class="markdownIt-Anchor" href="#410-反斜杠"></a> 4.10 反斜杠<code>\</code></h4>
-<p>相当于<strong>反转义</strong>作用。使符号成为普通符号。</p>
-<h4 id="411-符号"><a class="markdownIt-Anchor" href="#411-符号"></a> 4.11 符号’`’</h4>
-<p>起到标记作用。如：</p>
-<blockquote>
-<p>`ctrl+a`</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><code>ctrl+a</code></p>
-</blockquote>
-<h4 id="5-谁在用"><a class="markdownIt-Anchor" href="#5-谁在用"></a> 5. <em>谁</em>在用？</h4>
-<p>Markdown的使用者：</p>
-<ul>
-<li>GitHub</li>
-<li>简书</li>
-<li>Stack Overflow</li>
-<li>Apollo</li>
-<li>Moodle</li>
-<li>Reddit</li>
-<li>等等</li>
-</ul>
-<h4 id="6-尝试一下"><a class="markdownIt-Anchor" href="#6-尝试一下"></a> 6. 尝试一下</h4>
-<ul>
-<li><strong>Chrome</strong>下的插件诸如<code>stackedit</code>与<code>markdown-here</code>等非常方便，也不用担心平台受限。</li>
-<li><strong>在线</strong>的dillinger.io评价也不错</li>
-<li><strong>Windowns</strong>下的MarkdownPad也用过，不过免费版的体验不是很好。</li>
-<li><strong>Mac</strong>下的Mou是国人贡献的，口碑很好。</li>
-<li><strong>Linux</strong>下的ReText不错。</li>
-</ul>
-<p><strong>当然，最终境界永远都是笔下是语法，心中格式化 😃。</strong></p>
-<hr />
-<p><strong>注意</strong>：不同的Markdown解释器或工具对相应语法（扩展语法）的解释效果不尽相同，具体可参见工具的使用说明。<br />
-虽然有人想出面搞一个所谓的标准化的Markdown，[没想到还惹怒了健在的创始人John Gruber]<br />
-(<a href="http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/" target="_blank" rel="noopener">http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/</a> )。</p>
-<hr />
-<p>以上基本是所有traditonal markdown的语法。</p>
-<h3 id="其它"><a class="markdownIt-Anchor" href="#其它"></a> 其它：</h3>
-<p>列表的使用(非traditonal markdown)：</p>
-<p>用<code>|</code>表示表格纵向边界，表头和表内容用<code>-</code>隔开，并可用<code>:</code>进行对齐设置，两边都有<code>:</code>则表示居中，若不加<code>:</code>则默认左对齐。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">代码库</th>
-<th>链接</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">MarkDown</td>
-<td><a href="https://github.com/younghz/Markdown" target="_blank" rel="noopener" title="Markdown">https://github.com/younghz/Markdown</a></td>
-</tr>
-<tr>
-<td style="text-align:center">MarkDownCopy</td>
-<td><a href="https://github.com/younghz/Markdown" target="_blank" rel="noopener" title="Markdown">https://github.com/younghz/Markdown</a></td>
-</tr>
-</tbody>
-</table>
-<p>关于其它扩展语法可参见具体工具的使用说明。</p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>butterfly修改</title>
-    <url>/posts/2020-07-003.html</url>
-    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
-<h3 id="评论"><a class="markdownIt-Anchor" href="#评论"></a> 评论</h3>
-<p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br />
-如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
-<pre><code>---
-title: butterfly修改
-date: 2020-07-05 21:11:42
-comments: false
----
-</code></pre>
-<h3 id="valine评论添加qq提醒"><a class="markdownIt-Anchor" href="#valine评论添加qq提醒"></a> valine评论添加QQ提醒</h3>
-<p>butterfly主题把下列js代码修改后添加到butterfly.yml中的inject后面就好了。<br />
-其他的需要将下列代码添加到一个位置，使每个有valine评论的页面有下列代码。</p>
-<div class="note warning">
-            <p>要先加Qmsg酱为好友。</p>
-          </div>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var title2&#x3D;&quot;msg&#x3D;您的博客又有新评论啦~ \n&quot;;</span><br><span class="line">var SCKEY_Qmsg&#x3D;&quot; &quot;;</span><br><span class="line">function send_valine_Qmsg()&#123;</span><br><span class="line">    var pagename&#x3D;document.title;</span><br><span class="line">    var wz&#x3D;pagename.indexOf(&#39;|&#39;);</span><br><span class="line">    var res&#x3D;pagename.substring(0,wz);</span><br><span class="line">    var pageurl&#x3D;document.URL;</span><br><span class="line">    var ptime&#x3D;new Date();</span><br><span class="line">    var vnick&#x3D;document.getElementsByClassName(&quot;vnick vinput&quot;)[0].value;</span><br><span class="line">    var vmail&#x3D;document.getElementsByClassName(&quot;vmail vinput&quot;)[0].value;</span><br><span class="line">    var vlink&#x3D;document.getElementsByClassName(&quot;vlink vinput&quot;)[0].value;</span><br><span class="line">    var veditor&#x3D;document.getElementsByClassName(&quot;veditor vinput&quot;)[0].value;</span><br><span class="line">    var data&#x3D;&quot;昵称：&quot;+vnick+&quot;\n邮箱：&quot;+vmail+&quot;\n网站地址：&quot;+vlink+&quot;\n当前页面：&quot;+pagename+&quot;\n评论内容：&quot;+veditor+&quot;\n跳转链接：&quot;+pageurl+&quot;\n评论时间：&quot;+ptime.toLocaleString();</span><br><span class="line">    var httpRequest &#x3D; new XMLHttpRequest();</span><br><span class="line">    httpRequest.open(&#39;POST&#39;,SCKEY_Qmsg, true); </span><br><span class="line">    httpRequest.setRequestHeader(&quot;Content-type&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;);</span><br><span class="line">    httpRequest.send(title2+data);</span><br><span class="line">&#125;;</span><br><span class="line">var ValineButton&#x3D;document.getElementsByClassName(&quot;vsubmit vbtn&quot;)[0];</span><br><span class="line">ValineButton.onclick&#x3D;send_valine_Qmsg;</span><br></pre></td></tr></table></figure>
-<p>SCKEY_Qmsg设置为Qmsg酱的接口地址。<br />
-转自<a href="https://www.zyskys.com/posts/bd75.html" target="_blank" rel="noopener">零奇</a></p>
-<h3 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h3>
-<p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，</p>
-<div class="note warning">
-            <p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
-          </div>
-<h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3>
-<p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
-<h3 id="引入katex"><a class="markdownIt-Anchor" href="#引入katex"></a> 引入Katex</h3>
-<p>使用时需要在<code>front-matter</code>里加入： <code>katex: true</code><br />
-具体使用方法见<a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">katex</a>。</p>
-<h3 id="subtitle"><a class="markdownIt-Anchor" href="#subtitle"></a> Subtitle</h3>
-<p>主页面的subtitle，在设置 <code>source : 3</code> 的 <a href="http://yijuzhan.com/" target="_blank" rel="noopener">一句</a> 接口时出现了https错误。</p>
-<pre><code>Mixed Content: xxx This request has been blocked; the content must be served over HTTPS.
-</code></pre>
-<p>原因是在HTTPS页面中引入了HTTP的资源，解决方案实在页面头部插入</p>
-<pre><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;upgrade-insecure-requests&quot;&gt;
-</code></pre>
-<p>可以在 <code>butterfly.yml</code> 找到<code>inject:head</code>,在后面加入上述代码即可。</p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>android</title>
-    <url>/posts/2020-08-003.html</url>
-    <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
-具体是Unknown host ‘<a href="http://d29vzk4ow07wi7.cloudfront.net" target="_blank" rel="noopener">d29vzk4ow07wi7.cloudfront.net</a>’. You may need to adjust the proxy settings in Gradle.<br />
-把 build.gradle 中的两个 jcenter() 用 maven{ url “<a href="http://maven.aliyun.com/nexus/content/groups/public/" target="_blank" rel="noopener">http://maven.aliyun.com/nexus/content/groups/public/</a>”} 代替，然后等待下载安装完成就好了。<br />
-开这个项目，目前是想做一个古文阅读的app，等我把安卓开发的基础知识过一遍就来更新。</p>
-<h3 id="更新"><a class="markdownIt-Anchor" href="#更新"></a> 更新</h3>
-<p>虽然安卓的基础知识还没怎么弄明白，还是靠这自己的底子，硬着头皮给写出来了。对我来说，最难的部分应该就是对Android项目结构还不熟，所以对项目的实现方式就会变的很粗暴。。。</p>
-<h3 id="界面"><a class="markdownIt-Anchor" href="#界面"></a> 界面</h3>
-<p>这个项目里主要的需要实现的东西不多。基本上最重要的就是UI了。</p>
-<ol>
-<li>需要一个主要的文本显示区，用来可以切换的显示文章，注释，译文等。</li>
-<li>需要几个按钮，可以切换文本显示区显示的内容。</li>
-<li>需要一个目录，用来选择书籍的章节。</li>
-</ol>
-<h3 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h3>
-<p>内容方面主要的就是把爬虫获取的文章通过某种方式处理，格式化，可以让我们可以方便的显示在文本区。<br />
-对于爬虫的详细内容可以看<a href="https://slyli.cn/posts/2020-07-010.html">小说网站爬虫</a>，这篇文章中的<code>标题2</code>。</p>
-<pre><code>private String[][] ReadBook() {
-        String[][] book=new String[81][4];
-        StringBuilder termsString = new StringBuilder();
-        BufferedReader reader;
-        int ch_num=-1;
-        int temp=0;
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open(&quot;daodejing.txt&quot;),&quot;UTF-8&quot;));
-            String str;
-            while ((str = reader.readLine()) != null) {
-                str=str.replaceAll(&quot; &quot;,&quot;&quot;);
-                if(str.length()&gt;0)
-                {
-                    if(str.equals(&quot;【原文】&quot;))
-                    {
-                        ch_num++;
-                        temp =0;
-                        book[ch_num][temp]=&quot;第&quot;+String.valueOf(ch_num+1)+&quot;章&quot;+'\n';
-                    }
-                    else if(str.equals(&quot;【注释】&quot;))
-                    {
-                        temp=1;
-                    }
-                    else if(str.equals(&quot;【译文】&quot;))
-                    {
-                        temp=2;
-                    }
-                    else if(str.equals(&quot;【解析】&quot;))
-                    {
-                        temp=3;
-                    }
-                    else if(str.equals(&quot;【导读】&quot;))
-                    {
-                        temp=2;
-                    }
-                    if(book[ch_num][temp]==null)
-                        book[ch_num][temp]=str+'\n';
-                    else
-                        book[ch_num][temp]+=str+'\n';
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return book;
-    }
-</code></pre>
-<p>以上就是处理的方式，对内容处理完成后，把它们按照约定设置在文本显示区就完成了。</p>
-<h3 id="成品"><a class="markdownIt-Anchor" href="#成品"></a> 成品</h3>
-<p>丑是丑了点，主要想做的功能算是完成了。</p>
-<h4 id="目录"><a class="markdownIt-Anchor" href="#目录"></a> 目录</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131030_com.example.helloworld.jpg" alt="cat" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131105_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="原文"><a class="markdownIt-Anchor" href="#原文"></a> 原文</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131046_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="注释"><a class="markdownIt-Anchor" href="#注释"></a> 注释</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131051_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="译文"><a class="markdownIt-Anchor" href="#译文"></a> 译文</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131055_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="解析"><a class="markdownIt-Anchor" href="#解析"></a> 解析</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131059_com.example.helloworld.jpg" alt="cat" /></p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>c++学习</title>
     <url>/posts/2020-07-009.html</url>
     <content><![CDATA[<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
@@ -962,6 +913,55 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
       </tags>
   </entry>
   <entry>
+    <title>butterfly修改</title>
+    <url>/posts/2020-07-003.html</url>
+    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
+<h3 id="评论"><a class="markdownIt-Anchor" href="#评论"></a> 评论</h3>
+<p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br />
+如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
+<pre><code>---
+title: butterfly修改
+date: 2020-07-05 21:11:42
+comments: false
+---
+</code></pre>
+<h3 id="valine评论添加qq提醒"><a class="markdownIt-Anchor" href="#valine评论添加qq提醒"></a> valine评论添加QQ提醒</h3>
+<p>butterfly主题把下列js代码修改后添加到butterfly.yml中的inject后面就好了。<br />
+其他的需要将下列代码添加到一个位置，使每个有valine评论的页面有下列代码。</p>
+<div class="note warning">
+            <p>要先加Qmsg酱为好友。</p>
+          </div>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var title2&#x3D;&quot;msg&#x3D;您的博客又有新评论啦~ \n&quot;;</span><br><span class="line">var SCKEY_Qmsg&#x3D;&quot; &quot;;</span><br><span class="line">function send_valine_Qmsg()&#123;</span><br><span class="line">    var pagename&#x3D;document.title;</span><br><span class="line">    var wz&#x3D;pagename.indexOf(&#39;|&#39;);</span><br><span class="line">    var res&#x3D;pagename.substring(0,wz);</span><br><span class="line">    var pageurl&#x3D;document.URL;</span><br><span class="line">    var ptime&#x3D;new Date();</span><br><span class="line">    var vnick&#x3D;document.getElementsByClassName(&quot;vnick vinput&quot;)[0].value;</span><br><span class="line">    var vmail&#x3D;document.getElementsByClassName(&quot;vmail vinput&quot;)[0].value;</span><br><span class="line">    var vlink&#x3D;document.getElementsByClassName(&quot;vlink vinput&quot;)[0].value;</span><br><span class="line">    var veditor&#x3D;document.getElementsByClassName(&quot;veditor vinput&quot;)[0].value;</span><br><span class="line">    var data&#x3D;&quot;昵称：&quot;+vnick+&quot;\n邮箱：&quot;+vmail+&quot;\n网站地址：&quot;+vlink+&quot;\n当前页面：&quot;+pagename+&quot;\n评论内容：&quot;+veditor+&quot;\n跳转链接：&quot;+pageurl+&quot;\n评论时间：&quot;+ptime.toLocaleString();</span><br><span class="line">    var httpRequest &#x3D; new XMLHttpRequest();</span><br><span class="line">    httpRequest.open(&#39;POST&#39;,SCKEY_Qmsg, true); </span><br><span class="line">    httpRequest.setRequestHeader(&quot;Content-type&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;);</span><br><span class="line">    httpRequest.send(title2+data);</span><br><span class="line">&#125;;</span><br><span class="line">var ValineButton&#x3D;document.getElementsByClassName(&quot;vsubmit vbtn&quot;)[0];</span><br><span class="line">ValineButton.onclick&#x3D;send_valine_Qmsg;</span><br></pre></td></tr></table></figure>
+<p>SCKEY_Qmsg设置为Qmsg酱的接口地址。<br />
+转自<a href="https://www.zyskys.com/posts/bd75.html" target="_blank" rel="noopener">零奇</a></p>
+<h3 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h3>
+<p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，</p>
+<div class="note warning">
+            <p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
+          </div>
+<h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3>
+<p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
+<h3 id="引入katex"><a class="markdownIt-Anchor" href="#引入katex"></a> 引入Katex</h3>
+<p>使用时需要在<code>front-matter</code>里加入： <code>katex: true</code><br />
+具体使用方法见<a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">katex</a>。</p>
+<h3 id="subtitle"><a class="markdownIt-Anchor" href="#subtitle"></a> Subtitle</h3>
+<p>主页面的subtitle，在设置 <code>source : 3</code> 的 <a href="http://yijuzhan.com/" target="_blank" rel="noopener">一句</a> 接口时出现了https错误。</p>
+<pre><code>Mixed Content: xxx This request has been blocked; the content must be served over HTTPS.
+</code></pre>
+<p>原因是在HTTPS页面中引入了HTTP的资源，解决方案实在页面头部插入</p>
+<pre><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;upgrade-insecure-requests&quot;&gt;
+</code></pre>
+<p>可以在 <code>butterfly.yml</code> 找到<code>inject:head</code>,在后面加入上述代码即可。</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
     <url>/posts/2020-07-002.html</url>
     <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
@@ -980,120 +980,6 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
         <tag>github</tag>
         <tag>steam</tag>
         <tag>repkg</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode</title>
-    <url>/posts/2020-08-002.html</url>
-    <content><![CDATA[<h2 id="每日一题"><a class="markdownIt-Anchor" href="#每日一题"></a> 每日一题</h2>
-<h3 id="336回文对"><a class="markdownIt-Anchor" href="#336回文对"></a> 336.回文对</h3>
-<p>题目比较简单，上来可以先判断两个拼接好的字符串是否符合，然后遍历判断。</p>
-<pre><code>class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; palindromePairs(vector&lt;string&gt;&amp; words) {
-        int len=words.size();
-        vector&lt;vector&lt;int&gt;&gt; all;
-        for(int i=0;i&lt;len;i++)
-        {
-            for(int j=0;j&lt;len;j++)
-            {
-                if(i!=j&amp;&amp;Judge(words[i],words[j]))
-                {
-                    vector&lt;int&gt; temp;
-                    temp.push_back(i);
-                    temp.push_back(j);
-                    all.push_back(temp);
-                }
-            }
-            
-        }
-        return all;
-
-
-    }
-    bool Judge(string&amp; w1,string&amp; w2)
-    {
-        string str = w1+w2;
-        int len = str.size();
-        for(int i=0;i&lt;len;i++)
-        {
-            if(str[i]!=str[len-1-i])
-                return false;
-        }
-        return true;
-    }
-};
-</code></pre>
-<p>提交结果，有一半能够通过，其他的超出了时间限制。看到题解说不能直接用<code>str = w1+w2;</code>，移动指针会快一些。</p>
-<pre><code>bool Judge(string&amp; w1,string&amp; w2)
-{
-    int len1 = w1.size();
-    int len2 = w2.size();
-    int len = len1 +len2;
-    int i;
-    
-    for(i=0;i&lt;len/2;i++)
-    {
-        if(len1&gt;len2)
-        {
-            if(i&lt;len2)
-            {
-                if(w1[i]!=w2[len2-1-i])
-                return false;
-            }
-            else
-            {
-                if(w1[i]!=w1[len-1-i])
-                return false;
-            }
-        }
-        else
-        {
-            if(i&lt;len1)
-            {
-                if(w1[i]!=w2[len2-1-i])
-                return false;
-            }
-            else
-            {
-                if(w2[i-len1]!=w2[len2-1-i])
-                return false;
-            }
-        }
-            
-    }
-    return true;
-}
-</code></pre>
-<p>执行结果：通过<br />
-执行用时：1528 ms, 在所有 C++ 提交中击败了7.14%的用户。<br />
-内存消耗：21.6 MB, 在所有 C++ 提交中击败了100.00%的用户。</p>
-<p>另一个方法使用 manacher算法，竞赛难度就算了。只能做人下人了，哈哈。</p>
-<p>后面评论实在太逗了。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc1.png" alt="" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc2.png" alt="" /></p>
-<h3 id="100-相同的树"><a class="markdownIt-Anchor" href="#100-相同的树"></a> 100. 相同的树</h3>
-<p>很简单的一道题，没什么好多的递归调用判断就行</p>
-<pre><code>class Solution {
-public:
-    bool isSameTree(TreeNode* p, TreeNode* q) {
-        if(p!=nullptr&amp;&amp; q!=nullptr)
-        {
-            return p-&gt;val==q-&gt;val&amp;&amp;isSameTree(p-&gt;left,q-&gt;left)&amp;&amp;isSameTree(p-&gt;right,q-&gt;right);             
-        }
-        else if(p==nullptr &amp;&amp; q== nullptr)
-            return true;
-        else 
-            return false; 
-    }
-};
-</code></pre>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -1357,82 +1243,6 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>wallpapper</title>
-    <url>/posts/2020-08-007.html</url>
-    <content><![CDATA[<div class="justified-gallery"><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/1108.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/118.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/873441.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/988021.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/digitalart-1518055361254-315.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/Fiora.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/full.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/Genji.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/papers.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/rocks_surf_canal_123163_3840x2160.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/wallhaven-72198.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/Wallpaper.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/%E6%98%9F%E6%9E%81.jpg" alt="" /></p><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-2emoyy.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-2emx69.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-5we787.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-73zm9o.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-dgr2qo.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-dgrdzm.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-ey5rzr.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-lm6d2r.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-dgryeg.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-vgkdd3.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-xlq1rv.jpg" alt="" /></p><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ey/wallhaven-eymzjk.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/lm/wallhaven-lmxmxy.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/x1/wallhaven-x1wroo.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/p8/wallhaven-p8e53m.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/g8/wallhaven-g8yk2d.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/g8/wallhaven-g8y1pd.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ym/wallhaven-ym1m8l.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/r2/wallhaven-r28vlq.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ym/wallhaven-ymdodd.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/zm/wallhaven-zmwv9y.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/r2/wallhaven-r286jq.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/r2/wallhaven-r28ejq.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/q6/wallhaven-q67z9d.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/6k/wallhaven-6k8vww.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ey/wallhaven-ey51el.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ym/wallhaven-ymdylk.jpg" alt="" /></p>
-          </div>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>伽马兽王</title>
-    <url>/posts/2020-07-004.html</url>
-    <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b00.png" alt="兽王" /></p>
-<h3 id="加点"><a class="markdownIt-Anchor" href="#加点"></a> 加点</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b17.png" alt="bd" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b18.png" alt="bd" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b19.png" alt="bd" /></p>
-<h3 id="装备"><a class="markdownIt-Anchor" href="#装备"></a> 装备</h3>
-<div class="note success no-icon">
-            <p>没有dlc，以下只有本体中的武器。<br />攻击类武器受福统一选择 生命值低于50%时，造成额外150%辐射伤害，配合压血神器。</p>
-          </div>
-<h4 id="君王"><a class="markdownIt-Anchor" href="#君王"></a> 君王</h4>
-<p><strong>步枪</strong>，当前版本混10不刮痧的枪，子弹散射，近距离好用，基拉夫特掉落。</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b01.png" alt="君王" /></p>
-<h4 id="射弹循环"><a class="markdownIt-Anchor" href="#射弹循环"></a> 射弹循环</h4>
-<p><strong>散弹枪</strong>，发射后会在敌人之间弹射，在敌人多的时候很好用，每当发出的攻击多一种元素时该枪会多射出一发子弹，配合盾雷失效附加额外元素伤害使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b02.png" alt="射弹循环" /></p>
-<h4 id="瘟疫传播者"><a class="markdownIt-Anchor" href="#瘟疫传播者"></a> 瘟疫传播者</h4>
-<p><strong>重型武器</strong>，高伤害，发射前需要蓄力。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b03.png" alt="瘟疫传播者" /></p>
-<h4 id="梅尔加尼的爆发"><a class="markdownIt-Anchor" href="#梅尔加尼的爆发"></a> 梅尔加尼的爆发</h4>
-<p><strong>工具枪</strong>，过热后发射易伤弹，配合飞龙+1受福，用来触发盾雷技能失效受福。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b04.png" alt="梅尔加尼的爆发" /></p>
-<h4 id="考桑"><a class="markdownIt-Anchor" href="#考桑"></a> 考桑</h4>
-<p><strong>冲锋枪</strong>，单体伤害，射速快。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b05.png" alt="考桑" /></p>
-<h4 id="沙鹰"><a class="markdownIt-Anchor" href="#沙鹰"></a> 沙鹰</h4>
-<p><strong>狙击枪</strong>，与其说是狙击枪，更像散弹枪，子弹微散射，远距离也可使用，射速极快，兽王来说子弹根本不够用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b06.png" alt="沙鹰" /></p>
-<h4 id="备胎"><a class="markdownIt-Anchor" href="#备胎"></a> 备胎</h4>
-<p><strong>重型武器</strong>，不用蓄力，伤害还不错。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b07.png" alt="备胎" /></p>
-<h4 id="头脑风暴者"><a class="markdownIt-Anchor" href="#头脑风暴者"></a> 头脑风暴者</h4>
-<p><strong>散弹枪</strong>，多弹片工具枪，可以利用加点中的被动<code>清点人数</code>有效的缩短主动技能的冷却时间。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b08.png" alt="头脑风暴者" /></p>
-<h4 id="不可饶恕"><a class="markdownIt-Anchor" href="#不可饶恕"></a> 不可饶恕</h4>
-<p><strong>手枪</strong>，工具枪，有高额的暴击伤害，配和高伤、弹速慢的武器切枪使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b09.png" alt="不可饶恕" /></p>
-<h4 id="变形金刚"><a class="markdownIt-Anchor" href="#变形金刚"></a> 变形金刚</h4>
-<p><strong>护盾</strong>，免疫电属性伤害并吸收为护盾，受福选择技能失效附加额外属性伤害。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b11.png" alt="变形金刚" /></p>
-<h4 id="赤红之牙"><a class="markdownIt-Anchor" href="#赤红之牙"></a> 赤红之牙</h4>
-<p><strong>模组</strong>，伽马爆发时嘲讽所有敌人，伽马流<code>核心</code>装备，不可缺少，属性看自己选择。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b12.png" alt="赤红之牙" /></p>
-<h4 id="六角"><a class="markdownIt-Anchor" href="#六角"></a> 六角</h4>
-<p><strong>手雷</strong>，受福选择技能失效附加额外属性伤害。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b13.png" alt="六角" /></p>
-<h4 id="吹雪不死"><a class="markdownIt-Anchor" href="#吹雪不死"></a> 吹雪不死</h4>
-<p><strong>神器</strong>，吹雪可以提高滑铲速度，跑路快；不死可以是自己保留<code>1</code>点生命值，用来触发武器受福<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b14.png" alt="吹雪不死" /></p>
-<h4 id="吹雪胜利突袭"><a class="markdownIt-Anchor" href="#吹雪胜利突袭"></a> 吹雪胜利突袭</h4>
-<p><strong>神器</strong> 备用神器，不采用压血流时使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b10.png" alt="吹雪胜利突袭" /></p>
-<h3 id="玩法"><a class="markdownIt-Anchor" href="#玩法"></a> 玩法</h3>
-<p>伽马兽王应该时兽王职业中最安逸的流派了，伽马爆发时儿子的全图嘲讽可以给兽王提供良好的输出环境，输出时配合切飞龙，可以大幅提高伤害。技能冷却时，配合头脑风暴/射弹循环可以迅速使下一次技能准备就绪，然后继续输出。</p>
-]]></content>
-      <categories>
-        <category>games</category>
-      </categories>
-      <tags>
-        <tag>伽马兽王</tag>
-        <tag>borderlands3</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>全国大学生智能汽车竞赛记录</title>
     <url>/posts/2020-07-005.html</url>
     <content><![CDATA[<h3 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h3>
@@ -1504,6 +1314,16 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
+    <title>wallpapper</title>
+    <url>/posts/2020-08-007.html</url>
+    <content><![CDATA[<div class="justified-gallery"><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/1108.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/118.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/873441.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/988021.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/digitalart-1518055361254-315.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/Fiora.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/full.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/Genji.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/papers.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/rocks_surf_canal_123163_3840x2160.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/wallhaven-72198.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/Wallpaper.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/%E6%98%9F%E6%9E%81.jpg" alt="" /></p><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-2emoyy.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-2emx69.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-5we787.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-73zm9o.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-dgr2qo.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-dgrdzm.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-ey5rzr.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-lm6d2r.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-dgryeg.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-vgkdd3.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-xlq1rv.jpg" alt="" /></p><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ey/wallhaven-eymzjk.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/lm/wallhaven-lmxmxy.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/x1/wallhaven-x1wroo.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/p8/wallhaven-p8e53m.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/g8/wallhaven-g8yk2d.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/g8/wallhaven-g8y1pd.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ym/wallhaven-ym1m8l.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/r2/wallhaven-r28vlq.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ym/wallhaven-ymdodd.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/zm/wallhaven-zmwv9y.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/r2/wallhaven-r286jq.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/r2/wallhaven-r28ejq.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/q6/wallhaven-q67z9d.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/6k/wallhaven-6k8vww.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ey/wallhaven-ey51el.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ym/wallhaven-ymdylk.jpg" alt="" /></p>
+          </div>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
     <title>博客说明</title>
     <url>/posts/2020-07-001.html</url>
     <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -1553,6 +1373,186 @@ draft	source/_drafts
       </tags>
   </entry>
   <entry>
+    <title>伽马兽王</title>
+    <url>/posts/2020-07-004.html</url>
+    <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b00.png" alt="兽王" /></p>
+<h3 id="加点"><a class="markdownIt-Anchor" href="#加点"></a> 加点</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b17.png" alt="bd" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b18.png" alt="bd" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b19.png" alt="bd" /></p>
+<h3 id="装备"><a class="markdownIt-Anchor" href="#装备"></a> 装备</h3>
+<div class="note success no-icon">
+            <p>没有dlc，以下只有本体中的武器。<br />攻击类武器受福统一选择 生命值低于50%时，造成额外150%辐射伤害，配合压血神器。</p>
+          </div>
+<h4 id="君王"><a class="markdownIt-Anchor" href="#君王"></a> 君王</h4>
+<p><strong>步枪</strong>，当前版本混10不刮痧的枪，子弹散射，近距离好用，基拉夫特掉落。</p>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b01.png" alt="君王" /></p>
+<h4 id="射弹循环"><a class="markdownIt-Anchor" href="#射弹循环"></a> 射弹循环</h4>
+<p><strong>散弹枪</strong>，发射后会在敌人之间弹射，在敌人多的时候很好用，每当发出的攻击多一种元素时该枪会多射出一发子弹，配合盾雷失效附加额外元素伤害使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b02.png" alt="射弹循环" /></p>
+<h4 id="瘟疫传播者"><a class="markdownIt-Anchor" href="#瘟疫传播者"></a> 瘟疫传播者</h4>
+<p><strong>重型武器</strong>，高伤害，发射前需要蓄力。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b03.png" alt="瘟疫传播者" /></p>
+<h4 id="梅尔加尼的爆发"><a class="markdownIt-Anchor" href="#梅尔加尼的爆发"></a> 梅尔加尼的爆发</h4>
+<p><strong>工具枪</strong>，过热后发射易伤弹，配合飞龙+1受福，用来触发盾雷技能失效受福。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b04.png" alt="梅尔加尼的爆发" /></p>
+<h4 id="考桑"><a class="markdownIt-Anchor" href="#考桑"></a> 考桑</h4>
+<p><strong>冲锋枪</strong>，单体伤害，射速快。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b05.png" alt="考桑" /></p>
+<h4 id="沙鹰"><a class="markdownIt-Anchor" href="#沙鹰"></a> 沙鹰</h4>
+<p><strong>狙击枪</strong>，与其说是狙击枪，更像散弹枪，子弹微散射，远距离也可使用，射速极快，兽王来说子弹根本不够用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b06.png" alt="沙鹰" /></p>
+<h4 id="备胎"><a class="markdownIt-Anchor" href="#备胎"></a> 备胎</h4>
+<p><strong>重型武器</strong>，不用蓄力，伤害还不错。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b07.png" alt="备胎" /></p>
+<h4 id="头脑风暴者"><a class="markdownIt-Anchor" href="#头脑风暴者"></a> 头脑风暴者</h4>
+<p><strong>散弹枪</strong>，多弹片工具枪，可以利用加点中的被动<code>清点人数</code>有效的缩短主动技能的冷却时间。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b08.png" alt="头脑风暴者" /></p>
+<h4 id="不可饶恕"><a class="markdownIt-Anchor" href="#不可饶恕"></a> 不可饶恕</h4>
+<p><strong>手枪</strong>，工具枪，有高额的暴击伤害，配和高伤、弹速慢的武器切枪使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b09.png" alt="不可饶恕" /></p>
+<h4 id="变形金刚"><a class="markdownIt-Anchor" href="#变形金刚"></a> 变形金刚</h4>
+<p><strong>护盾</strong>，免疫电属性伤害并吸收为护盾，受福选择技能失效附加额外属性伤害。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b11.png" alt="变形金刚" /></p>
+<h4 id="赤红之牙"><a class="markdownIt-Anchor" href="#赤红之牙"></a> 赤红之牙</h4>
+<p><strong>模组</strong>，伽马爆发时嘲讽所有敌人，伽马流<code>核心</code>装备，不可缺少，属性看自己选择。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b12.png" alt="赤红之牙" /></p>
+<h4 id="六角"><a class="markdownIt-Anchor" href="#六角"></a> 六角</h4>
+<p><strong>手雷</strong>，受福选择技能失效附加额外属性伤害。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b13.png" alt="六角" /></p>
+<h4 id="吹雪不死"><a class="markdownIt-Anchor" href="#吹雪不死"></a> 吹雪不死</h4>
+<p><strong>神器</strong>，吹雪可以提高滑铲速度，跑路快；不死可以是自己保留<code>1</code>点生命值，用来触发武器受福<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b14.png" alt="吹雪不死" /></p>
+<h4 id="吹雪胜利突袭"><a class="markdownIt-Anchor" href="#吹雪胜利突袭"></a> 吹雪胜利突袭</h4>
+<p><strong>神器</strong> 备用神器，不采用压血流时使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b10.png" alt="吹雪胜利突袭" /></p>
+<h3 id="玩法"><a class="markdownIt-Anchor" href="#玩法"></a> 玩法</h3>
+<p>伽马兽王应该时兽王职业中最安逸的流派了，伽马爆发时儿子的全图嘲讽可以给兽王提供良好的输出环境，输出时配合切飞龙，可以大幅提高伤害。技能冷却时，配合头脑风暴/射弹循环可以迅速使下一次技能准备就绪，然后继续输出。</p>
+]]></content>
+      <categories>
+        <category>games</category>
+      </categories>
+      <tags>
+        <tag>伽马兽王</tag>
+        <tag>borderlands3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode</title>
+    <url>/posts/2020-08-002.html</url>
+    <content><![CDATA[<h2 id="每日一题"><a class="markdownIt-Anchor" href="#每日一题"></a> 每日一题</h2>
+<h3 id="336回文对"><a class="markdownIt-Anchor" href="#336回文对"></a> 336.回文对</h3>
+<p>题目比较简单，上来可以先判断两个拼接好的字符串是否符合，然后遍历判断。</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; palindromePairs(vector&lt;string&gt;&amp; words) {
+        int len=words.size();
+        vector&lt;vector&lt;int&gt;&gt; all;
+        for(int i=0;i&lt;len;i++)
+        {
+            for(int j=0;j&lt;len;j++)
+            {
+                if(i!=j&amp;&amp;Judge(words[i],words[j]))
+                {
+                    vector&lt;int&gt; temp;
+                    temp.push_back(i);
+                    temp.push_back(j);
+                    all.push_back(temp);
+                }
+            }
+            
+        }
+        return all;
+
+
+    }
+    bool Judge(string&amp; w1,string&amp; w2)
+    {
+        string str = w1+w2;
+        int len = str.size();
+        for(int i=0;i&lt;len;i++)
+        {
+            if(str[i]!=str[len-1-i])
+                return false;
+        }
+        return true;
+    }
+};
+</code></pre>
+<p>提交结果，有一半能够通过，其他的超出了时间限制。看到题解说不能直接用<code>str = w1+w2;</code>，移动指针会快一些。</p>
+<pre><code>bool Judge(string&amp; w1,string&amp; w2)
+{
+    int len1 = w1.size();
+    int len2 = w2.size();
+    int len = len1 +len2;
+    int i;
+    
+    for(i=0;i&lt;len/2;i++)
+    {
+        if(len1&gt;len2)
+        {
+            if(i&lt;len2)
+            {
+                if(w1[i]!=w2[len2-1-i])
+                return false;
+            }
+            else
+            {
+                if(w1[i]!=w1[len-1-i])
+                return false;
+            }
+        }
+        else
+        {
+            if(i&lt;len1)
+            {
+                if(w1[i]!=w2[len2-1-i])
+                return false;
+            }
+            else
+            {
+                if(w2[i-len1]!=w2[len2-1-i])
+                return false;
+            }
+        }
+            
+    }
+    return true;
+}
+</code></pre>
+<p>执行结果：通过<br />
+执行用时：1528 ms, 在所有 C++ 提交中击败了7.14%的用户。<br />
+内存消耗：21.6 MB, 在所有 C++ 提交中击败了100.00%的用户。</p>
+<p>另一个方法使用 manacher算法，竞赛难度就算了。只能做人下人了，哈哈。</p>
+<p>后面评论实在太逗了。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc1.png" alt="" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc2.png" alt="" /></p>
+<h3 id="100-相同的树"><a class="markdownIt-Anchor" href="#100-相同的树"></a> 100. 相同的树</h3>
+<p>很简单的一道题，没什么好多的递归调用判断就行</p>
+<pre><code>class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(p!=nullptr&amp;&amp; q!=nullptr)
+        {
+            return p-&gt;val==q-&gt;val&amp;&amp;isSameTree(p-&gt;left,q-&gt;left)&amp;&amp;isSameTree(p-&gt;right,q-&gt;right);             
+        }
+        else if(p==nullptr &amp;&amp; q== nullptr)
+            return true;
+        else 
+            return false; 
+    }
+};
+</code></pre>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>小四轴飞行器</title>
     <url>/posts/2020-08-004.html</url>
     <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
@@ -1561,6 +1561,23 @@ draft	source/_drafts
 ]]></content>
       <categories>
         <category>C/C++</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>记录</title>
+    <url>/posts/2020-08-005.html</url>
+    <content><![CDATA[<ol>
+<li>
+<p>楼下一个男人病得要死，那间壁的一家唱着留声机；对面是弄孩子。楼上有两人狂笑；还有打牌声。河中的船上有女人哭着她死去的母亲。 人类的悲欢并不相通，我只觉得他们吵闹。  —鲁迅《而已集》的《小杂感》</p>
+</li>
+<li>
+<p>We used to look up at the sky and wonder at our place in the stars, now we just look down and worry about our place in the dirt. —《Interstellar》<br />
+我们曾经仰望星空，思考我们在宇宙中的位置，而现在我们只会低着头，担心如何在这片土地上活下去。—《星际穿越》</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>others</category>
       </categories>
   </entry>
   <entry>
@@ -1800,22 +1817,5 @@ $y = d \times cos \left( \theta \right)$
         <tag>STM32</tag>
         <tag>RPLIDAR A1 激光雷达</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>记录</title>
-    <url>/posts/2020-08-005.html</url>
-    <content><![CDATA[<ol>
-<li>
-<p>楼下一个男人病得要死，那间壁的一家唱着留声机；对面是弄孩子。楼上有两人狂笑；还有打牌声。河中的船上有女人哭着她死去的母亲。 人类的悲欢并不相通，我只觉得他们吵闹。  —鲁迅《而已集》的《小杂感》</p>
-</li>
-<li>
-<p>We used to look up at the sky and wonder at our place in the stars, now we just look down and worry about our place in the dirt. —《Interstellar》<br />
-我们曾经仰望星空，思考我们在宇宙中的位置，而现在我们只会低着头，担心如何在这片土地上活下去。—《星际穿越》</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
   </entry>
 </search>
