@@ -686,6 +686,55 @@ printf(“Hello, Markdown.”);<br />
       </tags>
   </entry>
   <entry>
+    <title>butterfly修改</title>
+    <url>/posts/2020-07-003.html</url>
+    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
+<h3 id="评论"><a class="markdownIt-Anchor" href="#评论"></a> 评论</h3>
+<p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br />
+如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
+<pre><code>---
+title: butterfly修改
+date: 2020-07-05 21:11:42
+comments: false
+---
+</code></pre>
+<h3 id="valine评论添加qq提醒"><a class="markdownIt-Anchor" href="#valine评论添加qq提醒"></a> valine评论添加QQ提醒</h3>
+<p>butterfly主题把下列js代码修改后添加到butterfly.yml中的inject后面就好了。<br />
+其他的需要将下列代码添加到一个位置，使每个有valine评论的页面有下列代码。</p>
+<div class="note warning">
+            <p>要先加Qmsg酱为好友。</p>
+          </div>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var title2&#x3D;&quot;msg&#x3D;您的博客又有新评论啦~ \n&quot;;</span><br><span class="line">var SCKEY_Qmsg&#x3D;&quot; &quot;;</span><br><span class="line">function send_valine_Qmsg()&#123;</span><br><span class="line">    var pagename&#x3D;document.title;</span><br><span class="line">    var wz&#x3D;pagename.indexOf(&#39;|&#39;);</span><br><span class="line">    var res&#x3D;pagename.substring(0,wz);</span><br><span class="line">    var pageurl&#x3D;document.URL;</span><br><span class="line">    var ptime&#x3D;new Date();</span><br><span class="line">    var vnick&#x3D;document.getElementsByClassName(&quot;vnick vinput&quot;)[0].value;</span><br><span class="line">    var vmail&#x3D;document.getElementsByClassName(&quot;vmail vinput&quot;)[0].value;</span><br><span class="line">    var vlink&#x3D;document.getElementsByClassName(&quot;vlink vinput&quot;)[0].value;</span><br><span class="line">    var veditor&#x3D;document.getElementsByClassName(&quot;veditor vinput&quot;)[0].value;</span><br><span class="line">    var data&#x3D;&quot;昵称：&quot;+vnick+&quot;\n邮箱：&quot;+vmail+&quot;\n网站地址：&quot;+vlink+&quot;\n当前页面：&quot;+pagename+&quot;\n评论内容：&quot;+veditor+&quot;\n跳转链接：&quot;+pageurl+&quot;\n评论时间：&quot;+ptime.toLocaleString();</span><br><span class="line">    var httpRequest &#x3D; new XMLHttpRequest();</span><br><span class="line">    httpRequest.open(&#39;POST&#39;,SCKEY_Qmsg, true); </span><br><span class="line">    httpRequest.setRequestHeader(&quot;Content-type&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;);</span><br><span class="line">    httpRequest.send(title2+data);</span><br><span class="line">&#125;;</span><br><span class="line">var ValineButton&#x3D;document.getElementsByClassName(&quot;vsubmit vbtn&quot;)[0];</span><br><span class="line">ValineButton.onclick&#x3D;send_valine_Qmsg;</span><br></pre></td></tr></table></figure>
+<p>SCKEY_Qmsg设置为Qmsg酱的接口地址。<br />
+转自<a href="https://www.zyskys.com/posts/bd75.html" target="_blank" rel="noopener">零奇</a></p>
+<h3 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h3>
+<p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，</p>
+<div class="note warning">
+            <p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
+          </div>
+<h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3>
+<p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
+<h3 id="引入katex"><a class="markdownIt-Anchor" href="#引入katex"></a> 引入Katex</h3>
+<p>使用时需要在<code>front-matter</code>里加入： <code>katex: true</code><br />
+具体使用方法见<a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">katex</a>。</p>
+<h3 id="subtitle"><a class="markdownIt-Anchor" href="#subtitle"></a> Subtitle</h3>
+<p>主页面的subtitle，在设置 <code>source : 3</code> 的 <a href="http://yijuzhan.com/" target="_blank" rel="noopener">一句</a> 接口时出现了https错误。</p>
+<pre><code>Mixed Content: xxx This request has been blocked; the content must be served over HTTPS.
+</code></pre>
+<p>原因是在HTTPS页面中引入了HTTP的资源，解决方案实在页面头部插入</p>
+<pre><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;upgrade-insecure-requests&quot;&gt;
+</code></pre>
+<p>可以在 <code>butterfly.yml</code> 找到<code>inject:head</code>,在后面加入上述代码即可。</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>android</title>
     <url>/posts/2020-08-003.html</url>
     <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
@@ -773,55 +822,6 @@ printf(“Hello, Markdown.”);<br />
       </categories>
       <tags>
         <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>butterfly修改</title>
-    <url>/posts/2020-07-003.html</url>
-    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
-<h3 id="评论"><a class="markdownIt-Anchor" href="#评论"></a> 评论</h3>
-<p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br />
-如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
-<pre><code>---
-title: butterfly修改
-date: 2020-07-05 21:11:42
-comments: false
----
-</code></pre>
-<h3 id="valine评论添加qq提醒"><a class="markdownIt-Anchor" href="#valine评论添加qq提醒"></a> valine评论添加QQ提醒</h3>
-<p>butterfly主题把下列js代码修改后添加到butterfly.yml中的inject后面就好了。<br />
-其他的需要将下列代码添加到一个位置，使每个有valine评论的页面有下列代码。</p>
-<div class="note warning">
-            <p>要先加Qmsg酱为好友。</p>
-          </div>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var title2&#x3D;&quot;msg&#x3D;您的博客又有新评论啦~ \n&quot;;</span><br><span class="line">var SCKEY_Qmsg&#x3D;&quot; &quot;;</span><br><span class="line">function send_valine_Qmsg()&#123;</span><br><span class="line">    var pagename&#x3D;document.title;</span><br><span class="line">    var wz&#x3D;pagename.indexOf(&#39;|&#39;);</span><br><span class="line">    var res&#x3D;pagename.substring(0,wz);</span><br><span class="line">    var pageurl&#x3D;document.URL;</span><br><span class="line">    var ptime&#x3D;new Date();</span><br><span class="line">    var vnick&#x3D;document.getElementsByClassName(&quot;vnick vinput&quot;)[0].value;</span><br><span class="line">    var vmail&#x3D;document.getElementsByClassName(&quot;vmail vinput&quot;)[0].value;</span><br><span class="line">    var vlink&#x3D;document.getElementsByClassName(&quot;vlink vinput&quot;)[0].value;</span><br><span class="line">    var veditor&#x3D;document.getElementsByClassName(&quot;veditor vinput&quot;)[0].value;</span><br><span class="line">    var data&#x3D;&quot;昵称：&quot;+vnick+&quot;\n邮箱：&quot;+vmail+&quot;\n网站地址：&quot;+vlink+&quot;\n当前页面：&quot;+pagename+&quot;\n评论内容：&quot;+veditor+&quot;\n跳转链接：&quot;+pageurl+&quot;\n评论时间：&quot;+ptime.toLocaleString();</span><br><span class="line">    var httpRequest &#x3D; new XMLHttpRequest();</span><br><span class="line">    httpRequest.open(&#39;POST&#39;,SCKEY_Qmsg, true); </span><br><span class="line">    httpRequest.setRequestHeader(&quot;Content-type&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;);</span><br><span class="line">    httpRequest.send(title2+data);</span><br><span class="line">&#125;;</span><br><span class="line">var ValineButton&#x3D;document.getElementsByClassName(&quot;vsubmit vbtn&quot;)[0];</span><br><span class="line">ValineButton.onclick&#x3D;send_valine_Qmsg;</span><br></pre></td></tr></table></figure>
-<p>SCKEY_Qmsg设置为Qmsg酱的接口地址。<br />
-转自<a href="https://www.zyskys.com/posts/bd75.html" target="_blank" rel="noopener">零奇</a></p>
-<h3 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h3>
-<p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，</p>
-<div class="note warning">
-            <p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
-          </div>
-<h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3>
-<p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
-<h3 id="引入katex"><a class="markdownIt-Anchor" href="#引入katex"></a> 引入Katex</h3>
-<p>使用时需要在<code>front-matter</code>里加入： <code>katex: true</code><br />
-具体使用方法见<a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">katex</a>。</p>
-<h3 id="subtitle"><a class="markdownIt-Anchor" href="#subtitle"></a> Subtitle</h3>
-<p>主页面的subtitle，在设置 <code>source : 3</code> 的 <a href="http://yijuzhan.com/" target="_blank" rel="noopener">一句</a> 接口时出现了https错误。</p>
-<pre><code>Mixed Content: xxx This request has been blocked; the content must be served over HTTPS.
-</code></pre>
-<p>原因是在HTTPS页面中引入了HTTP的资源，解决方案实在页面头部插入</p>
-<pre><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;upgrade-insecure-requests&quot;&gt;
-</code></pre>
-<p>可以在 <code>butterfly.yml</code> 找到<code>inject:head</code>,在后面加入上述代码即可。</p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
       </tags>
   </entry>
   <entry>
@@ -980,120 +980,6 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
         <tag>github</tag>
         <tag>steam</tag>
         <tag>repkg</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode</title>
-    <url>/posts/2020-08-002.html</url>
-    <content><![CDATA[<h2 id="每日一题"><a class="markdownIt-Anchor" href="#每日一题"></a> 每日一题</h2>
-<h3 id="336回文对"><a class="markdownIt-Anchor" href="#336回文对"></a> 336.回文对</h3>
-<p>题目比较简单，上来可以先判断两个拼接好的字符串是否符合，然后遍历判断。</p>
-<pre><code>class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; palindromePairs(vector&lt;string&gt;&amp; words) {
-        int len=words.size();
-        vector&lt;vector&lt;int&gt;&gt; all;
-        for(int i=0;i&lt;len;i++)
-        {
-            for(int j=0;j&lt;len;j++)
-            {
-                if(i!=j&amp;&amp;Judge(words[i],words[j]))
-                {
-                    vector&lt;int&gt; temp;
-                    temp.push_back(i);
-                    temp.push_back(j);
-                    all.push_back(temp);
-                }
-            }
-            
-        }
-        return all;
-
-
-    }
-    bool Judge(string&amp; w1,string&amp; w2)
-    {
-        string str = w1+w2;
-        int len = str.size();
-        for(int i=0;i&lt;len;i++)
-        {
-            if(str[i]!=str[len-1-i])
-                return false;
-        }
-        return true;
-    }
-};
-</code></pre>
-<p>提交结果，有一半能够通过，其他的超出了时间限制。看到题解说不能直接用<code>str = w1+w2;</code>，移动指针会快一些。</p>
-<pre><code>bool Judge(string&amp; w1,string&amp; w2)
-{
-    int len1 = w1.size();
-    int len2 = w2.size();
-    int len = len1 +len2;
-    int i;
-    
-    for(i=0;i&lt;len/2;i++)
-    {
-        if(len1&gt;len2)
-        {
-            if(i&lt;len2)
-            {
-                if(w1[i]!=w2[len2-1-i])
-                return false;
-            }
-            else
-            {
-                if(w1[i]!=w1[len-1-i])
-                return false;
-            }
-        }
-        else
-        {
-            if(i&lt;len1)
-            {
-                if(w1[i]!=w2[len2-1-i])
-                return false;
-            }
-            else
-            {
-                if(w2[i-len1]!=w2[len2-1-i])
-                return false;
-            }
-        }
-            
-    }
-    return true;
-}
-</code></pre>
-<p>执行结果：通过<br />
-执行用时：1528 ms, 在所有 C++ 提交中击败了7.14%的用户。<br />
-内存消耗：21.6 MB, 在所有 C++ 提交中击败了100.00%的用户。</p>
-<p>另一个方法使用 manacher算法，竞赛难度就算了。只能做人下人了，哈哈。</p>
-<p>后面评论实在太逗了。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc1.png" alt="" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc2.png" alt="" /></p>
-<h3 id="100-相同的树"><a class="markdownIt-Anchor" href="#100-相同的树"></a> 100. 相同的树</h3>
-<p>很简单的一道题，没什么好多的递归调用判断就行</p>
-<pre><code>class Solution {
-public:
-    bool isSameTree(TreeNode* p, TreeNode* q) {
-        if(p!=nullptr&amp;&amp; q!=nullptr)
-        {
-            return p-&gt;val==q-&gt;val&amp;&amp;isSameTree(p-&gt;left,q-&gt;left)&amp;&amp;isSameTree(p-&gt;right,q-&gt;right);             
-        }
-        else if(p==nullptr &amp;&amp; q== nullptr)
-            return true;
-        else 
-            return false; 
-    }
-};
-</code></pre>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -1263,6 +1149,120 @@ public:
       <tags>
         <tag>machine learning</tag>
         <tag>吴达恩</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode</title>
+    <url>/posts/2020-08-002.html</url>
+    <content><![CDATA[<h2 id="每日一题"><a class="markdownIt-Anchor" href="#每日一题"></a> 每日一题</h2>
+<h3 id="336回文对"><a class="markdownIt-Anchor" href="#336回文对"></a> 336.回文对</h3>
+<p>题目比较简单，上来可以先判断两个拼接好的字符串是否符合，然后遍历判断。</p>
+<pre><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; palindromePairs(vector&lt;string&gt;&amp; words) {
+        int len=words.size();
+        vector&lt;vector&lt;int&gt;&gt; all;
+        for(int i=0;i&lt;len;i++)
+        {
+            for(int j=0;j&lt;len;j++)
+            {
+                if(i!=j&amp;&amp;Judge(words[i],words[j]))
+                {
+                    vector&lt;int&gt; temp;
+                    temp.push_back(i);
+                    temp.push_back(j);
+                    all.push_back(temp);
+                }
+            }
+            
+        }
+        return all;
+
+
+    }
+    bool Judge(string&amp; w1,string&amp; w2)
+    {
+        string str = w1+w2;
+        int len = str.size();
+        for(int i=0;i&lt;len;i++)
+        {
+            if(str[i]!=str[len-1-i])
+                return false;
+        }
+        return true;
+    }
+};
+</code></pre>
+<p>提交结果，有一半能够通过，其他的超出了时间限制。看到题解说不能直接用<code>str = w1+w2;</code>，移动指针会快一些。</p>
+<pre><code>bool Judge(string&amp; w1,string&amp; w2)
+{
+    int len1 = w1.size();
+    int len2 = w2.size();
+    int len = len1 +len2;
+    int i;
+    
+    for(i=0;i&lt;len/2;i++)
+    {
+        if(len1&gt;len2)
+        {
+            if(i&lt;len2)
+            {
+                if(w1[i]!=w2[len2-1-i])
+                return false;
+            }
+            else
+            {
+                if(w1[i]!=w1[len-1-i])
+                return false;
+            }
+        }
+        else
+        {
+            if(i&lt;len1)
+            {
+                if(w1[i]!=w2[len2-1-i])
+                return false;
+            }
+            else
+            {
+                if(w2[i-len1]!=w2[len2-1-i])
+                return false;
+            }
+        }
+            
+    }
+    return true;
+}
+</code></pre>
+<p>执行结果：通过<br />
+执行用时：1528 ms, 在所有 C++ 提交中击败了7.14%的用户。<br />
+内存消耗：21.6 MB, 在所有 C++ 提交中击败了100.00%的用户。</p>
+<p>另一个方法使用 manacher算法，竞赛难度就算了。只能做人下人了，哈哈。</p>
+<p>后面评论实在太逗了。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc1.png" alt="" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc2.png" alt="" /></p>
+<h3 id="100-相同的树"><a class="markdownIt-Anchor" href="#100-相同的树"></a> 100. 相同的树</h3>
+<p>很简单的一道题，没什么好多的递归调用判断就行</p>
+<pre><code>class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(p!=nullptr&amp;&amp; q!=nullptr)
+        {
+            return p-&gt;val==q-&gt;val&amp;&amp;isSameTree(p-&gt;left,q-&gt;left)&amp;&amp;isSameTree(p-&gt;right,q-&gt;right);             
+        }
+        else if(p==nullptr &amp;&amp; q== nullptr)
+            return true;
+        else 
+            return false; 
+    }
+};
+</code></pre>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
