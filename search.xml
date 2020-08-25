@@ -900,11 +900,11 @@ int main(int argc, char** argv)
 </ul>
 <h3 id="explicit"><a class="markdownIt-Anchor" href="#explicit"></a> <code>explicit</code></h3>
 <p>explicit关键字的作用就是防止类构造函数的隐式自动转换，只能用于修饰只有一个参数的类构造函数，与默认的implicit（隐式）相对。构造函数只有一个参数时, 那么在编译的时候就会有一个缺省的转换操作：将该构造函数对应数据类型的数据转换为该类对象。</p>
-<pre><code>class Demo { Demo(param) };
+<pre><code>class Demo { public: Demo(param) };
 Demo d1(param);
 Demo d2 = param;    //可行，相当于Demo d1(param);
 
-class Demo { Demo(param) };
+class Demo { public: explicit Demo(param) };
 Demo d1(param);
 Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
 </code></pre>
