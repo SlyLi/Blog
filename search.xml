@@ -697,21 +697,19 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
 <p>C++编译器会自动给空类创建构造函数、赋值函数和析构函数。（当这些函数被调用时）</p>
 <pre><code> class Empty{};
 </code></pre>
-</li>
-</ol>
 <p>等价于</p>
-<pre><code>    class Empty
-    {
-        public:
-            Empty(){...}
-            Empty(const Empty&amp; rhs){...}
-            ~Empty(){...}
+<pre><code> class Empty
+ {
+     public:
+         Empty(){...}
+         Empty(const Empty&amp; rhs){...}
+         ~Empty(){...}
 
-            Empty&amp; operator=(const Empty&amp; rhs){...}
-    }
+         Empty&amp; operator=(const Empty&amp; rhs){...}
+ }
 </code></pre>
 <p>想要阻止这一自动创建，可以将这些函数声明为<code>private</code>，并且故意不实现他们。</p>
-<ol start="6">
+</li>
 <li>
 <p>函数中通过值传递传递对象时，若一个派生类被视为基类传递，基类的构造函数会被调用，派生的特化性质被切掉。</p>
 </li>
@@ -723,6 +721,9 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
 </li>
 <li>
 <p>在使用依赖于模板参数的嵌套从属类型时，要在它前面放置关键字<code>typename</code> （在使用嵌套从属类型时，这个名称被假设为非类型。在前面加上typename告诉C++，这个是类型），但不能在基类列或者成员初始列前加typename。</p>
+</li>
+<li>
+<p>C++往往拒接在继承的模板化基类内寻找继承来的名称（方法），因为模板化基类又可能被特化，而特化版本的基类可能不含有此名称。必须要使用时可以在基类函数调用前加上<code>this-&gt;</code> 或者<code>BaseClass&lt;TemplateName&gt;::</code> 或在使用前添加<code>using BaseClass&lt;TemplateName&gt;::FuncName;</code></p>
 </li>
 </ol>
 ]]></content>
