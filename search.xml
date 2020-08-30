@@ -956,19 +956,19 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
 <p>C++编译器会自动给空类创建构造函数、赋值函数和析构函数。（当这些函数被调用时）</p>
 <pre><code> class Empty{};
 </code></pre>
-<p>等价于</p>
-<pre><code> class Empty
- {
-     public:
-         Empty(){...}
-         Empty(const Empty&amp; rhs){...}
-         ~Empty(){...}
-
-         Empty&amp; operator=(const Empty&amp; rhs){...}
- }
-</code></pre>
 </li>
 </ol>
+<p>等价于</p>
+<pre><code>    class Empty
+    {
+        public:
+            Empty(){...}
+            Empty(const Empty&amp; rhs){...}
+            ~Empty(){...}
+
+            Empty&amp; operator=(const Empty&amp; rhs){...}
+    }
+</code></pre>
 <p>想要阻止这一自动创建，可以将这些函数声明为<code>private</code>，并且故意不实现他们。</p>
 <ol start="6">
 <li>
@@ -978,7 +978,10 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
 <p>函数调用，名称查找法则以及实参取决值查找规则。</p>
 </li>
 <li>
-<p>用户可以全特化std内容template，但不允许添加任何新的其他东西，在调用时，优先选择特化版本。</p>
+<p>用户可以全特化std内容template，但不允许添加任何新的其他东西，在调用时，优先选择特化版本。 见Effective C++ P107。</p>
+</li>
+<li>
+<p>在使用依赖于模板参数的嵌套从属类型时，要在它前面放置关键字<code>typename</code> （在使用嵌套从属类型时，这个名称被假设为非类型。在前面加上typename告诉C++，这个是类型），但不能在基类列或者成员初始列前加typename。</p>
 </li>
 </ol>
 ]]></content>
