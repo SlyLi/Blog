@@ -1890,5 +1890,9 @@ ImageLoad(void* dat, int width, int height,int size)
       <categories>
         <category>C/C++</category>
       </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>CreateDIBSection</tag>
+      </tags>
   </entry>
 </search>
