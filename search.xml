@@ -1981,7 +1981,7 @@ Sokolov从一个最简单的画点函数开始，一个小节一个小节地讲�
 <li>error和0.5比较，所以x2 消去了浮点比较。</li>
 </ul>
 <h4 id="wireframe-rendering"><a class="markdownIt-Anchor" href="#wireframe-rendering"></a> Wireframe rendering</h4>
-<p>这个模块，教程所给代码中并没有<code>model-&gt;face(i);</code> 这一函数。我们可以在model类中加入下面一行实现。</p>
+<p>在当前版本的代码中并没有<code>model-&gt;face(i);</code> 这一函数。我们可以在model类中加入下面一行实现。</p>
 <pre><code>std::vector&lt;int&gt; face(int i) { return std::vector&lt;int&gt;(facet_vrt_.begin() + i*3, facet_vrt_.begin() + i*3 + 3); }
 </code></pre>
 <p>阅读源码可知 facet_vrt_ 变量里面存储的是三角形的顶点坐标的索引，也就是我们需要画的线的端点的索引。</p>
