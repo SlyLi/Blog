@@ -2003,6 +2003,45 @@ for (int i = 0; i &lt; model-&gt;nfaces(); i++) {
 </code></pre>
 <p>实现效果<br />
 <img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/african_head.png" alt="face" /></p>
+<h3 id="lesson-2-triangle-rasterization-and-back-face-culling"><a class="markdownIt-Anchor" href="#lesson-2-triangle-rasterization-and-back-face-culling"></a> Lesson 2 Triangle rasterization and back face culling</h3>
+<p>这一节介绍了填充三角形的两种基本方法。</p>
+<h4 id="old-school-method-line-sweeping-即通过一条条的线段绘制成图形"><a class="markdownIt-Anchor" href="#old-school-method-line-sweeping-即通过一条条的线段绘制成图形"></a> Old-school method: Line sweeping 即通过一条条的线段绘制成图形</h4>
+<p>这种是原始的，我们自己能想到的代码，缺点是对多线程的支持较差。</p>
+<h4 id="the-method-i-adopt-for-my-code"><a class="markdownIt-Anchor" href="#the-method-i-adopt-for-my-code"></a> The method I adopt for my code</h4>
+<pre><code>Vec3f barycentric(Vec2i *pts, Vec2i P) { 
+    Vec3f u = cross(Vec3f(pts[2][0]-pts[0][0], pts[1][0]-pts[0][0], pts[0][0]-P[0]), Vec3f(pts[2][1]-pts[0][1], pts[1][1]-pts[0][1], pts[0][1]-P[1]));
+    /* `pts` and `P` has integer value as coordinates
+    so `abs(u[2])` &lt; 1 means `u[2]` is 0, that means
+    triangle is degenerate, in this case return something with negative coordinates */
+    if (std::abs(u[2])&lt;1) return Vec3f(-1,1,1);
+    return Vec3f(1.f-(u.x+u.y)/u.z, u.y/u.z, u.x/u.z); 
+} 
+
+void triangle(Vec2i *pts, TGAImage &amp;image, TGAColor color) { 
+    Vec2i bboxmin(image.get_width()-1,  image.get_height()-1); 
+    Vec2i bboxmax(0, 0); 
+    Vec2i clamp(image.get_width()-1, image.get_height()-1); 
+    for (int i=0; i&lt;3; i++) { 
+        for (int j=0; j&lt;2; j++) { 
+            bboxmin[j] = std::max(0,        std::min(bboxmin[j], pts[i][j])); 
+            bboxmax[j] = std::min(clamp[j], std::max(bboxmax[j], pts[i][j])); 
+        } 
+    } 
+    Vec2i P; 
+    for (P.x=bboxmin.x; P.x&lt;=bboxmax.x; P.x++) { 
+        for (P.y=bboxmin.y; P.y&lt;=bboxmax.y; P.y++) { 
+            Vec3f bc_screen  = barycentric(pts, P); 
+            if (bc_screen.x&lt;0 || bc_screen.y&lt;0 || bc_screen.z&lt;0) continue; 
+            image.set(P.x, P.y, color); 
+        } 
+    } 
+} 
+</code></pre>
+<p>barycentric函数的功能是，随机给定一个点P，判断这个点是否在这个三角形ABC内部，原理就是计算P点相对于三角形ABC的重心坐标（不同于我们原来学习认识到的重心坐标），通过重心坐标的值来判断是否在三角形ABC内部。具体公式见<a href="https://zhuanlan.zhihu.com/p/65495373" target="_blank" rel="noopener">三角形重心坐标</a><br />
+填充方法就是遍历所有三角形所在的正方形区域中的所有点，对于位于三角形内部的点进行上色填充。</p>
+<h4 id="flat-shading-render"><a class="markdownIt-Anchor" href="#flat-shading-render"></a> Flat shading render</h4>
+<p>光照强度（白色强度）等于光向量和给定三角形的法线的标量乘积。三角形的法线可以简单地计算为其两边的叉乘。<br />
+效果<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/flat_render.png" alt="face" /></p>
 ]]></content>
       <categories>
         <category>C/C++</category>
