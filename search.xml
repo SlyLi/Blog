@@ -677,6 +677,8 @@ class Demo { public: explicit Demo(param) };
 Demo d1(param);
 Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
 </code></pre>
+<h3 id="static"><a class="markdownIt-Anchor" href="#static"></a> static</h3>
+<p>在c++的类中，对于static成员变量是否是private数据并没有影响，因为设定static成员变量初值时，不受任何存取权限的束缚。static成员变量需要进行初始化操作。初始化时要带上类型名，并且不要带static。static成员变量是在初始化（而不是在类声明时候）才定义出来的。如果没有初始化操作，会产生链接错误：</p>
 <h3 id="others"><a class="markdownIt-Anchor" href="#others"></a> Others</h3>
 <ol>
 <li>
@@ -2042,6 +2044,51 @@ void triangle(Vec2i *pts, TGAImage &amp;image, TGAColor color) {
 <h4 id="flat-shading-render"><a class="markdownIt-Anchor" href="#flat-shading-render"></a> Flat shading render</h4>
 <p>光照强度（白色强度）等于光向量和给定三角形的法线的标量乘积。三角形的法线可以简单地计算为其两边的叉乘。<br />
 效果<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/flat_render.png" alt="face" /></p>
+<h3 id="lesson-3-hidden-faces-removal-z-buffer"><a class="markdownIt-Anchor" href="#lesson-3-hidden-faces-removal-z-buffer"></a> Lesson 3 Hidden faces removal (z buffer)</h3>
+<h4 id="even-simpler-let-us-lose-a-dimension-y-buffer"><a class="markdownIt-Anchor" href="#even-simpler-let-us-lose-a-dimension-y-buffer"></a> Even simpler: let us lose a dimension. Y-buffer!</h4>
+<p>这一节，展示如何通过1D图像和Y-buffer来演示2D图像。</p>
+<h4 id="back-to-3d"><a class="markdownIt-Anchor" href="#back-to-3d"></a> Back to 3D</h4>
+<pre><code>triangle(screen_coords, float *zbuffer, image, TGAColor(intensity*255, intensity*255, intensity*255, 255));
+
+[...]
+
+void triangle(Vec3f *pts, float *zbuffer, TGAImage &amp;image, TGAColor color) {
+    Vec2f bboxmin( std::numeric_limits&lt;float&gt;::max(),  std::numeric_limits&lt;float&gt;::max());
+    Vec2f bboxmax(-std::numeric_limits&lt;float&gt;::max(), -std::numeric_limits&lt;float&gt;::max());
+    Vec2f clamp(image.get_width()-1, image.get_height()-1);
+    for (int i=0; i&lt;3; i++) {
+        for (int j=0; j&lt;2; j++) {
+            bboxmin[j] = std::max(0.f,      std::min(bboxmin[j], pts[i][j]));
+            bboxmax[j] = std::min(clamp[j], std::max(bboxmax[j], pts[i][j]));
+        }
+    }
+    Vec3f P;
+    for (P.x=bboxmin.x; P.x&lt;=bboxmax.x; P.x++) {
+        for (P.y=bboxmin.y; P.y&lt;=bboxmax.y; P.y++) {
+            Vec3f bc_screen  = barycentric(pts[0], pts[1], pts[2], P);
+            if (bc_screen.x&lt;0 || bc_screen.y&lt;0 || bc_screen.z&lt;0) continue;
+            P.z = 0;
+            for (int i=0; i&lt;3; i++) P.z += pts[i][2]*bc_screen[i];
+             //未隐藏的部分会覆盖隐藏的部分，但隐藏的部分不会覆盖未隐藏的部分，这也是与上一节不同的地方。
+            if (zbuffer[int(P.x+P.y*width)]&lt;P.z) {  
+                zbuffer[int(P.x+P.y*width)] = P.z;
+                image.set(P.x, P.y, color);
+            }
+        }
+    }
+}
+</code></pre>
+<h4 id="diffuse-texture"><a class="markdownIt-Anchor" href="#diffuse-texture"></a> Diffuse texture</h4>
+<p>在.obj文件中有一行是以&quot;vt u v”开始的，这是纹理坐标数组。&quot;f x/x/x x/x/x x/x/x&quot;中间的x是这个三角形的纹理坐标，将其插入三角形内，乘以纹理图像的宽度和高度，你会得到你需要放到渲染器中的颜色。<br />
+上面比较难懂，以画一个三角形为例，我再说明一下，</p>
+<ul>
+<li>以vt开头的行，&quot;vt u v 0” 这是纹理坐标数组，也就是纹理图中缩小的相应的点(u,v)，我们读取后放到vex_t中</li>
+<li>以f开头的行，例如 “f a1/b1/c1 a2/b2/c2 a3/b3/c3” a1,a2,a3时三角形三个顶点坐标的索引，设vex为顶点坐标数组，vex[a1]=[x,y,z] (x,y,z)就是三角形一个顶点的坐标，就是a1索引对应的坐标。</li>
+<li>b1,b2,b3就是三个顶点a1,a2,a3对应的三角形的纹理坐标索引，例如vex_t[b1]=[u,v]，(u,v)就是a1对应的纹理坐标。</li>
+<li>再画一个点时，根据这个点在三角形内的位置，获得一个相对于三个纹理坐标的，相对应的点的纹理坐标。具体方法是三个纹理坐标分别乘这个点相对于三角形的三个顶点的重心坐标，再求和就得到了这个纹理坐标(u,v)，然后u乘以纹理图像的宽度,v乘以纹理图像的高度，即可获得该点在纹理图像中的坐标，通过纹理图像，也就获得了该点应该渲染的颜色。</li>
+</ul>
+<p>这个是画好的效果<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/head_texture.png" alt="face" /></p>
 ]]></content>
       <categories>
         <category>C/C++</category>
