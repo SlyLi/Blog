@@ -2088,7 +2088,8 @@ void triangle(Vec3f *pts, float *zbuffer, TGAImage &amp;image, TGAColor color) {
 <li>再画一个点时，根据这个点在三角形内的位置，获得一个相对于三个纹理坐标的，相对应的点的纹理坐标。具体方法是三个纹理坐标分别乘这个点相对于三角形的三个顶点的重心坐标，再求和就得到了这个纹理坐标(u,v)，然后u乘以纹理图像的宽度,v乘以纹理图像的高度，即可获得该点在纹理图像中的坐标，通过纹理图像，也就获得了该点应该渲染的颜色。</li>
 </ul>
 <p>这个是画好的效果<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/head_texture.png" alt="face" /></p>
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/head_texture.png" alt="face" /><br />
+如果想要得到和教程中图片一样的能够看到三角形边缘的效果可以将得到的RGB颜色乘上之前计算得到的光照强度intensity。</p>
 ]]></content>
       <categories>
         <category>C/C++</category>
