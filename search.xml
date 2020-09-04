@@ -2089,7 +2089,7 @@ void triangle(Vec3f *pts, float *zbuffer, TGAImage &amp;image, TGAColor color) {
 </ul>
 <p>这个是画好的效果<br />
 <img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/head_texture.png" alt="face" /><br />
-如果想要得到和教程中图片一样的能够看到三角形边缘的效果可以将得到的RGB颜色乘上之前计算得到的光照强度intensity。</p>
+如果想要得到和教程中图片一样的，能够看到三角形边缘的效果，可以将得到的RGB颜色乘上之前计算得到的光照强度intensity。</p>
 ]]></content>
       <categories>
         <category>C/C++</category>
