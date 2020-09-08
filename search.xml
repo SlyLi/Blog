@@ -2090,6 +2090,23 @@ void triangle(Vec3f *pts, float *zbuffer, TGAImage &amp;image, TGAColor color) {
 <p>这个是画好的效果<br />
 <img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/head_texture.png" alt="face" /><br />
 如果想要得到和教程中图片一样的，能够看到三角形边缘的效果，可以将得到的RGB颜色乘上之前计算得到的光照强度intensity。</p>
+<h3 id="lesson-4-perspective-projection"><a class="markdownIt-Anchor" href="#lesson-4-perspective-projection"></a> Lesson 4 Perspective projection</h3>
+<p>首要要明白其次坐标系，之后就简单了。</p>
+<p>先将3d坐标转化成其次坐标，然后左乘一个矩阵，这个矩阵就是投影作用，矩阵的值单位矩阵在第四行前三个值进行修改，分别对应x，y，z轴上的投影。</p>
+<h3 id="lesson-5-moving-the-camera"><a class="markdownIt-Anchor" href="#lesson-5-moving-the-camera"></a> Lesson 5 Moving the camera</h3>
+<h4 id="chain-of-coordinate-transformations"><a class="markdownIt-Anchor" href="#chain-of-coordinate-transformations"></a> Chain of coordinate transformations</h4>
+<pre><code>Vec3f v = model-&gt;vert(face[j]);
+//viewport 映射到图像上，projection 投影 modelview 摄像机
+pts[j] = m2v(viewport * projection * modelview * v2m(v));
+</code></pre>
+<ul>
+<li>modelview 将模型中的坐标转化成像机坐标系中的坐标。如果我们想移动摄像头，我们可以移动所有的场景，让摄像头不动。</li>
+<li>projection 上节的投影</li>
+<li>viewport 模型坐标的值的范围是[-1,1]，这样无法显示到屏幕上，通过这个变换，使模型能够贴合屏幕。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/chain.png" alt="face" /></li>
+</ul>
+<h4 id="在将坐标矩阵重新转化回坐标点进行显示的时候要注意浮点的变化也就是4舍5入否则可能出现黑线或者黑块"><a class="markdownIt-Anchor" href="#在将坐标矩阵重新转化回坐标点进行显示的时候要注意浮点的变化也就是4舍5入否则可能出现黑线或者黑块"></a> 在将坐标矩阵重新转化回坐标点进行显示的时候要注意浮点的变化，也就是4舍5入，否则可能出现黑线或者黑块。</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/chain_error.png" alt="face" /></p>
 ]]></content>
       <categories>
         <category>C/C++</category>
