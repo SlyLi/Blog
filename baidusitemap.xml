@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://slyli.cn/posts/2020-08-002.html</loc>
+    <lastmod>2020-09-15</lastmod>
+  </url>  <url>
     <loc>http://slyli.cn/posts/2020-09-002.html</loc>
-    <lastmod>2020-09-08</lastmod>
+    <lastmod>2020-09-15</lastmod>
   </url>  <url>
     <loc>http://slyli.cn/posts/2020-07-009.html</loc>
     <lastmod>2020-09-04</lastmod>
@@ -35,9 +38,6 @@
     <lastmod>2020-08-10</lastmod>
   </url>  <url>
     <loc>http://slyli.cn/posts/2020-07-007.html</loc>
-    <lastmod>2020-08-07</lastmod>
-  </url>  <url>
-    <loc>http://slyli.cn/posts/2020-08-002.html</loc>
     <lastmod>2020-08-07</lastmod>
   </url>  <url>
     <loc>http://slyli.cn/posts/2020-08-001.html</loc>

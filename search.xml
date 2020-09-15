@@ -842,6 +842,56 @@ public:
     }
 };
 </code></pre>
+<h3 id="5-最长回文子串"><a class="markdownIt-Anchor" href="#5-最长回文子串"></a> 5. 最长回文子串</h3>
+<p>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
+<ul>
+<li>暴力搜索，失败，耗费时间太长。</li>
+<li>动态规划，通过。</li>
+</ul>
+<p>使用动态规划时首先要找到题目的状态转移方程，以字符串的长度进行增长。</p>
+<p>方程： P(i,j) = P(i+1,j-1) &amp;&amp; s[i]==s[j] (s是字符串)</p>
+<pre><code>class Solution {
+public:
+    bool Is(string s,int st,int len)
+    {
+        for(int i=0;i&lt;len/2;i++)
+        {
+            if(s[st+i]!=s[st+len-i-1])
+                return false;
+        }
+        return true;
+    }
+    string longestPalindrome(string s) {
+        int len = s.length();
+        int max=-1;
+        string res;
+        vector&lt;vector&lt;bool&gt;&gt; dp(len,vector&lt;bool&gt;(len));
+        for(int l=0;l&lt;len;l++)
+        {
+            for(int i=0;i+l&lt;len;i++)
+            {
+                if(l==0)
+                {
+                    dp[i][i+l]=true;
+                }
+                else if(l==1)
+                {
+                    dp[i][i+l]= s[i]==s[i+l];
+                }
+                else
+                {
+                    dp[i][i+l] = dp[i+1][i+l-1] &amp;&amp; s[i]==s[i+l];
+                }
+                if(dp[i][i+l] &amp;&amp;l&gt;max)
+                {
+                    max=l;
+                    res=s.substr(i,max+1);
+                }
+            }
+        }
+        return res;         
+    }
+};</code></pre>
 ]]></content>
       <categories>
         <category>C/C++</category>
@@ -2107,6 +2157,9 @@ pts[j] = m2v(viewport * projection * modelview * v2m(v));
 </ul>
 <h4 id="在将坐标矩阵重新转化回坐标点进行显示的时候要注意浮点的变化也就是4舍5入否则可能出现黑线或者黑块"><a class="markdownIt-Anchor" href="#在将坐标矩阵重新转化回坐标点进行显示的时候要注意浮点的变化也就是4舍5入否则可能出现黑线或者黑块"></a> 在将坐标矩阵重新转化回坐标点进行显示的时候要注意浮点的变化，也就是4舍5入，否则可能出现黑线或者黑块。</h4>
 <p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/chain_error.png" alt="face" /></p>
+<h3 id="lesson-6-shaders-for-the-software-renderer"><a class="markdownIt-Anchor" href="#lesson-6-shaders-for-the-software-renderer"></a> Lesson 6 Shaders for the software renderer</h3>
+<p>这一节首先整理了之前的代码，然后把着色器这一块拿出来进行修改。</p>
+<p>最终的效果可以理解为几种纹理图像的叠加。</p>
 ]]></content>
       <categories>
         <category>C/C++</category>
