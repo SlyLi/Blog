@@ -2190,7 +2190,7 @@ pts[j] = m2v(viewport * projection * modelview * v2m(v));
   <entry>
     <title>cocos2dx</title>
     <url>/posts/2020-09-003.html</url>
-    <content><![CDATA[<h2 id="记录cocos2dx的学习例程和遇到的坑-版本40"><a class="markdownIt-Anchor" href="#记录cocos2dx的学习例程和遇到的坑-版本40"></a> 记录cocos2dx的学习例程和遇到的坑。 版本4.0</h2>
+    <content><![CDATA[<h2 id="记录cocos2dx的学习历程和遇到的坑-版本40"><a class="markdownIt-Anchor" href="#记录cocos2dx的学习历程和遇到的坑-版本40"></a> 记录cocos2dx的学习历程和遇到的坑。 版本4.0</h2>
 <h3 id="坐标系问题"><a class="markdownIt-Anchor" href="#坐标系问题"></a> 坐标系问题</h3>
 <ul>
 <li>对于精灵，坐标系从左下开始向右上增长，x轴从左向右。例如 sprite-&gt;setPosition(Vec2(0, 0)); 设置精灵为左下角。</li>
