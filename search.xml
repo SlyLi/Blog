@@ -53,6 +53,51 @@
       </categories>
   </entry>
   <entry>
+    <title>Win32显示图像</title>
+    <url>/posts/2020-09-001.html</url>
+    <content><![CDATA[<p>在windows下将数据以位图的方式显示：</p>
+<pre><code>//变量定义
+
+HWND hWnd;              //窗口句柄定义
+HDC hdc_mem;            //缓冲句柄
+HBITMAP screen_hb ;		// DIB
+HBITMAP screen_ob ;		// 老的 BITMAP
+void* buffer;           //数据存储区
+
+BITMAPINFO bi = { { sizeof(BITMAPINFOHEADER), 100, 100, 1, 24, BI_RGB,
+       100 * 100 * 3, 0, 0, 0, 0 } };
+//初始化配置
+HDC hdc = GetDC(hWnd);
+hdc_mem = CreateCompatibleDC(hdc);
+screen_hb = CreateDIBSection(hdc_mem, &amp;bi, DIB_RGB_COLORS, (void**)&amp;buffer, NULL, 0);   
+if (screen_hb == NULL) return -3;
+screen_ob = (HBITMAP)SelectObject(hdc_mem, screen_hb);
+ReleaseDC(hWnd, hdc);
+
+//显示数据  dat为位图数据指针，size为1像素所占字节大小
+ImageLoad(void* dat, int width, int height,int size)
+{
+    if (hdc_mem &amp;&amp; screen_hb)
+    {
+        HDC hDC = GetDC(hWnd);
+        memcpy(buffer, dat, width * height * size);
+        BitBlt(hDC, 0, 0, width, height, hdc_mem, 0, 0, SRCCOPY);
+        ReleaseDC(hWnd, hDC);
+    }
+}
+</code></pre>
+<p>CreateDIBSection函数中的第四个参数非常重要，这个参数是一个指针，指向存储位图数据的一块内存。我们传递给函数一个指针变量后，函数自动分配一块内存出来，这块内存自动分配，自动释放。在配置好后，我们将位图数据放置到这块内存中，在调用BitBlt就可以显示图像了。<br />
+做这个的原因是，自己准备学习3d render需要显示，如果加载QT\SDL库有点大材小用，并且网上一些其他的用来显示的加了很多其他功能代码，总体的代码量有点多。</p>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>CreateDIBSection</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LinearRegression--python</title>
     <url>/posts/2020-07-008.html</url>
     <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
@@ -128,6 +173,228 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
+    <title>3D-Render</title>
+    <url>/posts/2020-09-002.html</url>
+    <content><![CDATA[<p>选择Sokolov的<a href="https://github.com/ssloy/tinyrenderer" target="_blank" rel="noopener">Tiny Renderer</a>教程开始入门。<br />
+Sokolov从一个最简单的画点函数开始，一个小节一个小节地讲解怎么画出一条线，怎么填充一个面，怎么逐步加入背面剔除、深度测试、透视相机、着色器等高级功能。每个小节的课程都有详细的讲解以及完整的实现代码可供参考。这个教程一共有9个小节，只要学到第6个小节我们就已经可以实现一个具有可编程渲染管线的软件渲染器了，而这时候的总代码量只有500行而已，可以说是非常简洁适合入门了。</p>
+<p>本文只记录在学习过程中遇到的一些问题，和自己的一些想法</p>
+<h3 id="lesson-1-bresenhams-line-drawing-algorithm"><a class="markdownIt-Anchor" href="#lesson-1-bresenhams-line-drawing-algorithm"></a> Lesson 1 Bresenham’s Line Drawing Algorithm</h3>
+<h4 id="second-attempt中"><a class="markdownIt-Anchor" href="#second-attempt中"></a> Second attempt中</h4>
+<pre><code>void line(int x0, int y0, int x1, int y1, TGAImage &amp;image, TGAColor color) { 
+    for (int x=x0; x&lt;=x1; x++) { 
+        float t = (x-x0)/(float)(x1-x0); 
+        int y = y0*(1.-t) + y1*t; 
+        image.set(x, y, color); 
+    } 
+}
+</code></pre>
+<p>它默认从x0到x1递增画线，而没有考虑到x0和x1的大小。如果x0&gt;x1，此函数就没有作用。</p>
+<h4 id="从fourth-attempt-continued-到-fifth-and-final-attempt的优化中"><a class="markdownIt-Anchor" href="#从fourth-attempt-continued-到-fifth-and-final-attempt的优化中"></a> 从Fourth attempt continued 到 fifth and final attempt的优化中</h4>
+<p>Fourth attempt continued</p>
+<pre><code>void line(int x0, int y0, int x1, int y1, TGAImage &amp;image, TGAColor color) { 
+    bool steep = false; 
+    if (std::abs(x0-x1)&lt;std::abs(y0-y1)) { 
+        std::swap(x0, y0); 
+        std::swap(x1, y1); 
+        steep = true; 
+    } 
+    if (x0&gt;x1) { 
+        std::swap(x0, x1); 
+        std::swap(y0, y1); 
+    } 
+    int dx = x1-x0; 
+    int dy = y1-y0; 
+    float derror = std::abs(dy/float(dx)); 
+    float error = 0; 
+    int y = y0; 
+    for (int x=x0; x&lt;=x1; x++) { 
+        if (steep) { 
+            image.set(y, x, color); 
+        } else { 
+            image.set(x, y, color); 
+        } 
+        error += derror; 
+        if (error&gt;.5) { 
+            y += (y1&gt;y0?1:-1); 
+            error -= 1.; 
+        } 
+    } 
+} 
+</code></pre>
+<p>fifth and final attempt</p>
+<pre><code>void line(int x0, int y0, int x1, int y1, TGAImage &amp;image, TGAColor color) { 
+    bool steep = false; 
+    if (std::abs(x0-x1)&lt;std::abs(y0-y1)) { 
+        std::swap(x0, y0); 
+        std::swap(x1, y1); 
+        steep = true; 
+    } 
+    if (x0&gt;x1) { 
+        std::swap(x0, x1); 
+        std::swap(y0, y1); 
+    } 
+    int dx = x1-x0; 
+    int dy = y1-y0; 
+    int derror2 = std::abs(dy)*2; 
+    int error2 = 0; 
+    int y = y0; 
+    for (int x=x0; x&lt;=x1; x++) { 
+        if (steep) { 
+            image.set(y, x, color); 
+        } else { 
+            image.set(x, y, color); 
+        } 
+        error2 += derror2; 
+        if (error2 &gt; dx) { 
+            y += (y1&gt;y0?1:-1); 
+            error2 -= dx*2; 
+        } 
+    } 
+} 
+</code></pre>
+<p>这个过程去掉了浮点数的运算，在Fourth attempt 中，我们可以发现 derror和error只是起到的比较大小的作用，对于y的值没有影响。所以我们可以将derror乘上一个值 2dx 消去浮点数。至于为什么要乘 2dx，</p>
+<ul>
+<li>derror中有 /dx，所以×dx消去了derror中的浮点。</li>
+<li>error和0.5比较，所以x2 消去了浮点比较。</li>
+</ul>
+<h4 id="wireframe-rendering"><a class="markdownIt-Anchor" href="#wireframe-rendering"></a> Wireframe rendering</h4>
+<p>在当前版本的代码中并没有<code>model-&gt;face(i);</code> 这一函数。我们可以在model类中加入下面一行实现。</p>
+<pre><code>std::vector&lt;int&gt; face(int i) { return std::vector&lt;int&gt;(facet_vrt_.begin() + i*3, facet_vrt_.begin() + i*3 + 3); }
+</code></pre>
+<p>阅读源码可知 facet_vrt_ 变量里面存储的是三角形的顶点坐标的索引，也就是我们需要画的线的端点的索引。</p>
+<p>然后 <code>Vec3f</code> 改成 <code>vec3</code>。</p>
+<p>最终</p>
+<pre><code>Model *model = new Model(&quot;obj\\african_head\\african_head.obj&quot;);
+for (int i = 0; i &lt; model-&gt;nfaces(); i++) {
+    std::vector&lt;int&gt; face = model-&gt;face(i);
+    for (int j = 0; j &lt; 3; j++) {
+        vec3 v0 = model-&gt;vert(face[j]);
+        vec3 v1 = model-&gt;vert(face[(j + 1) % 3]);
+        int x0 = (v0.x + 1.) * width / 2.;
+        int y0 = (v0.y + 1.) * height / 2.;
+        int x1 = (v1.x + 1.) * width / 2.;
+        int y1 = (v1.y + 1.) * height / 2.;
+        line(x0, y0, x1, y1, image, white);
+    }
+}
+</code></pre>
+<p>实现效果<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/african_head.png" alt="face" /></p>
+<h3 id="lesson-2-triangle-rasterization-and-back-face-culling"><a class="markdownIt-Anchor" href="#lesson-2-triangle-rasterization-and-back-face-culling"></a> Lesson 2 Triangle rasterization and back face culling</h3>
+<p>这一节介绍了填充三角形的两种基本方法。</p>
+<h4 id="old-school-method-line-sweeping-即通过一条条的线段绘制成图形"><a class="markdownIt-Anchor" href="#old-school-method-line-sweeping-即通过一条条的线段绘制成图形"></a> Old-school method: Line sweeping 即通过一条条的线段绘制成图形</h4>
+<p>这种是原始的，我们自己能想到的代码，缺点是对多线程的支持较差。</p>
+<h4 id="the-method-i-adopt-for-my-code"><a class="markdownIt-Anchor" href="#the-method-i-adopt-for-my-code"></a> The method I adopt for my code</h4>
+<pre><code>Vec3f barycentric(Vec2i *pts, Vec2i P) { 
+    Vec3f u = cross(Vec3f(pts[2][0]-pts[0][0], pts[1][0]-pts[0][0], pts[0][0]-P[0]), Vec3f(pts[2][1]-pts[0][1], pts[1][1]-pts[0][1], pts[0][1]-P[1]));
+    /* `pts` and `P` has integer value as coordinates
+    so `abs(u[2])` &lt; 1 means `u[2]` is 0, that means
+    triangle is degenerate, in this case return something with negative coordinates */
+    if (std::abs(u[2])&lt;1) return Vec3f(-1,1,1);
+    return Vec3f(1.f-(u.x+u.y)/u.z, u.y/u.z, u.x/u.z); 
+} 
+
+void triangle(Vec2i *pts, TGAImage &amp;image, TGAColor color) { 
+    Vec2i bboxmin(image.get_width()-1,  image.get_height()-1); 
+    Vec2i bboxmax(0, 0); 
+    Vec2i clamp(image.get_width()-1, image.get_height()-1); 
+    for (int i=0; i&lt;3; i++) { 
+        for (int j=0; j&lt;2; j++) { 
+            bboxmin[j] = std::max(0,        std::min(bboxmin[j], pts[i][j])); 
+            bboxmax[j] = std::min(clamp[j], std::max(bboxmax[j], pts[i][j])); 
+        } 
+    } 
+    Vec2i P; 
+    for (P.x=bboxmin.x; P.x&lt;=bboxmax.x; P.x++) { 
+        for (P.y=bboxmin.y; P.y&lt;=bboxmax.y; P.y++) { 
+            Vec3f bc_screen  = barycentric(pts, P); 
+            if (bc_screen.x&lt;0 || bc_screen.y&lt;0 || bc_screen.z&lt;0) continue; 
+            image.set(P.x, P.y, color); 
+        } 
+    } 
+} 
+</code></pre>
+<p>barycentric函数的功能是，随机给定一个点P，判断这个点是否在这个三角形ABC内部，原理就是计算P点相对于三角形ABC的重心坐标（不同于我们原来学习认识到的重心坐标），通过重心坐标的值来判断是否在三角形ABC内部。具体公式见<a href="https://zhuanlan.zhihu.com/p/65495373" target="_blank" rel="noopener">三角形重心坐标</a><br />
+填充方法就是遍历所有三角形所在的正方形区域中的所有点，对于位于三角形内部的点进行上色填充。</p>
+<h4 id="flat-shading-render"><a class="markdownIt-Anchor" href="#flat-shading-render"></a> Flat shading render</h4>
+<p>光照强度（白色强度）等于光向量和给定三角形的法线的标量乘积。三角形的法线可以简单地计算为其两边的叉乘。<br />
+效果<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/flat_render.png" alt="face" /></p>
+<h3 id="lesson-3-hidden-faces-removal-z-buffer"><a class="markdownIt-Anchor" href="#lesson-3-hidden-faces-removal-z-buffer"></a> Lesson 3 Hidden faces removal (z buffer)</h3>
+<h4 id="even-simpler-let-us-lose-a-dimension-y-buffer"><a class="markdownIt-Anchor" href="#even-simpler-let-us-lose-a-dimension-y-buffer"></a> Even simpler: let us lose a dimension. Y-buffer!</h4>
+<p>这一节，展示如何通过1D图像和Y-buffer来演示2D图像。</p>
+<h4 id="back-to-3d"><a class="markdownIt-Anchor" href="#back-to-3d"></a> Back to 3D</h4>
+<pre><code>triangle(screen_coords, float *zbuffer, image, TGAColor(intensity*255, intensity*255, intensity*255, 255));
+
+[...]
+
+void triangle(Vec3f *pts, float *zbuffer, TGAImage &amp;image, TGAColor color) {
+    Vec2f bboxmin( std::numeric_limits&lt;float&gt;::max(),  std::numeric_limits&lt;float&gt;::max());
+    Vec2f bboxmax(-std::numeric_limits&lt;float&gt;::max(), -std::numeric_limits&lt;float&gt;::max());
+    Vec2f clamp(image.get_width()-1, image.get_height()-1);
+    for (int i=0; i&lt;3; i++) {
+        for (int j=0; j&lt;2; j++) {
+            bboxmin[j] = std::max(0.f,      std::min(bboxmin[j], pts[i][j]));
+            bboxmax[j] = std::min(clamp[j], std::max(bboxmax[j], pts[i][j]));
+        }
+    }
+    Vec3f P;
+    for (P.x=bboxmin.x; P.x&lt;=bboxmax.x; P.x++) {
+        for (P.y=bboxmin.y; P.y&lt;=bboxmax.y; P.y++) {
+            Vec3f bc_screen  = barycentric(pts[0], pts[1], pts[2], P);
+            if (bc_screen.x&lt;0 || bc_screen.y&lt;0 || bc_screen.z&lt;0) continue;
+            P.z = 0;
+            for (int i=0; i&lt;3; i++) P.z += pts[i][2]*bc_screen[i];
+             //未隐藏的部分会覆盖隐藏的部分，但隐藏的部分不会覆盖未隐藏的部分，这也是与上一节不同的地方。
+            if (zbuffer[int(P.x+P.y*width)]&lt;P.z) {  
+                zbuffer[int(P.x+P.y*width)] = P.z;
+                image.set(P.x, P.y, color);
+            }
+        }
+    }
+}
+</code></pre>
+<h4 id="diffuse-texture"><a class="markdownIt-Anchor" href="#diffuse-texture"></a> Diffuse texture</h4>
+<p>在.obj文件中有一行是以&quot;vt u v”开始的，这是纹理坐标数组。&quot;f x/x/x x/x/x x/x/x&quot;中间的x是这个三角形的纹理坐标，将其插入三角形内，乘以纹理图像的宽度和高度，你会得到你需要放到渲染器中的颜色。<br />
+上面比较难懂，以画一个三角形为例，我再说明一下，</p>
+<ul>
+<li>以vt开头的行，&quot;vt u v 0” 这是纹理坐标数组，也就是纹理图中缩小的相应的点(u,v)，我们读取后放到vex_t中</li>
+<li>以f开头的行，例如 “f a1/b1/c1 a2/b2/c2 a3/b3/c3” a1,a2,a3时三角形三个顶点坐标的索引，设vex为顶点坐标数组，vex[a1]=[x,y,z] (x,y,z)就是三角形一个顶点的坐标，就是a1索引对应的坐标。</li>
+<li>b1,b2,b3就是三个顶点a1,a2,a3对应的三角形的纹理坐标索引，例如vex_t[b1]=[u,v]，(u,v)就是a1对应的纹理坐标。</li>
+<li>再画一个点时，根据这个点在三角形内的位置，获得一个相对于三个纹理坐标的，相对应的点的纹理坐标。具体方法是三个纹理坐标分别乘这个点相对于三角形的三个顶点的重心坐标，再求和就得到了这个纹理坐标(u,v)，然后u乘以纹理图像的宽度,v乘以纹理图像的高度，即可获得该点在纹理图像中的坐标，通过纹理图像，也就获得了该点应该渲染的颜色。</li>
+</ul>
+<p>这个是画好的效果<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/head_texture.png" alt="face" /><br />
+如果想要得到和教程中图片一样的，能够看到三角形边缘的效果，可以将得到的RGB颜色乘上之前计算得到的光照强度intensity。</p>
+<h3 id="lesson-4-perspective-projection"><a class="markdownIt-Anchor" href="#lesson-4-perspective-projection"></a> Lesson 4 Perspective projection</h3>
+<p>首要要明白其次坐标系，之后就简单了。</p>
+<p>先将3d坐标转化成其次坐标，然后左乘一个矩阵，这个矩阵就是投影作用，矩阵的值单位矩阵在第四行前三个值进行修改，分别对应x，y，z轴上的投影。</p>
+<h3 id="lesson-5-moving-the-camera"><a class="markdownIt-Anchor" href="#lesson-5-moving-the-camera"></a> Lesson 5 Moving the camera</h3>
+<h4 id="chain-of-coordinate-transformations"><a class="markdownIt-Anchor" href="#chain-of-coordinate-transformations"></a> Chain of coordinate transformations</h4>
+<pre><code>Vec3f v = model-&gt;vert(face[j]);
+//viewport 映射到图像上，projection 投影 modelview 摄像机
+pts[j] = m2v(viewport * projection * modelview * v2m(v));
+</code></pre>
+<ul>
+<li>modelview 将模型中的坐标转化成像机坐标系中的坐标。如果我们想移动摄像头，我们可以移动所有的场景，让摄像头不动。</li>
+<li>projection 上节的投影</li>
+<li>viewport 模型坐标的值的范围是[-1,1]，这样无法显示到屏幕上，通过这个变换，使模型能够贴合屏幕。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/chain.png" alt="face" /></li>
+</ul>
+<h4 id="在将坐标矩阵重新转化回坐标点进行显示的时候要注意浮点的变化也就是4舍5入否则可能出现黑线或者黑块"><a class="markdownIt-Anchor" href="#在将坐标矩阵重新转化回坐标点进行显示的时候要注意浮点的变化也就是4舍5入否则可能出现黑线或者黑块"></a> 在将坐标矩阵重新转化回坐标点进行显示的时候要注意浮点的变化，也就是4舍5入，否则可能出现黑线或者黑块。</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/chain_error.png" alt="face" /></p>
+<h3 id="lesson-6-shaders-for-the-software-renderer"><a class="markdownIt-Anchor" href="#lesson-6-shaders-for-the-software-renderer"></a> Lesson 6 Shaders for the software renderer</h3>
+<p>这一节首先整理了之前的代码，然后把着色器这一块拿出来进行修改。</p>
+<p>最终的效果可以理解为几种纹理图像的叠加。</p>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>3D渲染</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C学习</title>
     <url>/posts/2020-08-001.html</url>
     <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
@@ -185,6 +452,355 @@ if __name__ == &quot;__main__&quot;:
       </categories>
       <tags>
         <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LogisticRegression--python</title>
+    <url>/posts/2020-07-011.html</url>
+    <content><![CDATA[<p>逻辑回归</p>
+<pre><code>import numpy as np
+from matplotlib import pyplot as plt
+
+def Sigmod(z):
+    return 1.0/(1.0+np.exp(-z))
+
+def ComputeCost(x, y, theta, lam):
+    m = len(y)
+    h = Sigmod(np.dot(x, theta))
+    the = theta.copy()
+    the[0] = 0
+    temp = np.dot(the.T, the)
+    J = (0-np.dot(y.T, np.log(h))-np.dot((1-y).T, np.log(1-h))+lam*temp/2)/m
+    return J
+
+# 映射为多项式，增加特征量
+def MapFeature(x1, x2):
+    deg = 2
+    out = np.ones((x1.shape[0], 1))
+    for i in np.arange(1, deg+1):
+        for j in range(i+1):
+            temp = x1**(i-j)*(x2**j)  # 矩阵直接乘相当于matlab中的点乘.*
+            out = np.hstack((out, temp.reshape(-1, 1)))
+    return out
+
+def GradientDescent(x, y, theta, alpha, lam, num_iters):
+    m = len(y)
+    n = len(theta)
+
+    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
+
+    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
+
+    for i in range(num_iters):  # 遍历迭代次数
+        h = Sigmod(np.dot(x, theta))
+        # h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
+        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
+        theta = temp[:, i]
+        J_history[i] = ComputeCost(X, y, theta, lam)  # 调用计算代价函数
+        # print(J_history[i])
+    return theta, J_history
+
+def predict(X, theta):
+    m = X.shape[0]
+    p = np.zeros((m, 1))
+    p = Sigmod(np.dot(X, theta))    # 预测的结果，是个概率值
+
+    for i in range(m):
+        if p[i] &gt; 0.5:  # 概率大于0.5预测为1，否则预测为0
+            p[i] = 1
+        else:
+            p[i] = 0
+    return p
+
+# 画决策边界
+def plotDecisionBoundary(theta, X, y):
+    pos = np.where(y == 1)  # 找到y==1的坐标位置
+    neg = np.where(y == 0)  # 找到y==0的坐标位置
+    # 作图
+    plt.figure(figsize=(15, 12))
+    plt.plot(X[pos, 0], X[pos, 1], 'ro')        # red o
+    plt.plot(X[neg, 0], X[neg, 1], 'bo')        # blue o
+    #plt.title(u&quot;决策边界&quot;, fontproperties=font)
+
+    #u = np.linspace(30,100,100)
+    #v = np.linspace(30,100,100)
+
+    u = np.linspace(-1, 1.5, 50)  # 根据具体的数据，这里需要调整
+    v = np.linspace(-1, 1.5, 50)
+
+    z = np.zeros((len(u), len(v)))
+    for i in range(len(u)):
+        for j in range(len(v)):
+            z[i, j] = np.dot(MapFeature(u[i].reshape(1, -1),
+                                        v[j].reshape(1, -1)), theta)    # 计算对应的值，需要map
+
+    z = np.transpose(z)
+    # 画等高线，范围在[0,0.01]，即近似为决策边界
+    plt.contour(u, v, z, [0, 0.01], linewidth=2.0)
+    # plt.legend()
+    plt.show()
+
+if __name__ == &quot;__main__&quot;:
+    data = np.loadtxt('data2.txt', delimiter=',', dtype=np.float64)
+    lam = 0.1
+    alpha = 0.1
+    X = data[:, 0:-1]
+    y = data[:, -1].reshape(-1, 1)
+    X = MapFeature(X[:, 0], X[:, 1])
+
+    theta = np.zeros((X.shape[1], 1))
+
+    print(ComputeCost(X, y, theta,  lam))
+    theta, J_his = GradientDescent(X, y, theta, alpha, lam, 5000)
+
+    print(theta)
+    p = predict(X, theta)  # 预测
+    # 与真实值比较，p==y返回True，转化为float
+    print(u'在训练集上的准确度为%f%%' % np.mean(np.float64(p == y)*100))
+    X = data[:, 0:-1]
+    y = data[:, -1]
+    plotDecisionBoundary(theta, X, y)  # 画决策边界
+</code></pre>
+<p>逻辑回归数字识别</p>
+<pre><code>import numpy as np
+from matplotlib import pyplot as plt
+import scipy.io as spio
+
+
+def Sigmod(z):
+    return 1.0/(1.0+np.exp(-z))
+
+
+def ComputeCost(x, y, theta, lam):
+    m = len(y)
+    h = Sigmod(np.dot(x, theta))
+    the = theta.copy()
+    the[0] = 0
+    temp = np.dot(the.T, the)
+    J = (0-np.dot(y.T, np.log(h))-np.dot((1-y).T, np.log(1-h))+lam*temp/2)/m
+    return J
+
+# 映射为多项式，增加特征量
+
+
+def MapFeature(x1, x2):
+    deg = 2
+    out = np.ones((x1.shape[0], 1))
+    for i in np.arange(1, deg+1):
+        for j in range(i+1):
+            temp = x1**(i-j)*(x2**j)  # 矩阵直接乘相当于matlab中的点乘.*
+            out = np.hstack((out, temp.reshape(-1, 1)))
+    return out
+
+
+def GradientDescent(X, y, theta, alpha, lam, num_iters):
+    m = len(y)
+    n = len(theta)
+
+    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
+
+    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
+
+    for i in range(num_iters):  # 遍历迭代次数
+        h = Sigmod(np.dot(X, theta))
+        # h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
+        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
+        theta = temp[:, i]
+        J_history[i] = ComputeCost(X, y, theta, lam)  # 调用计算代价函数
+        # print(J_history[i])
+    return theta, J_history
+
+
+def predict(X, theta):
+    m = X.shape[0]
+    p = np.zeros((m, 1))
+    p = Sigmod(np.dot(X, theta))    # 预测的结果，是个概率值
+
+    for i in range(m):
+        if p[i] &gt; 0.5:  # 概率大于0.5预测为1，否则预测为0
+            p[i] = 1
+        else:
+            p[i] = 0
+    return p
+
+
+# 显示100个数字
+
+
+def display_data(imgData):
+    sum = 0
+    '''
+    显示100个数（若是一个一个绘制将会非常慢，可以将要画的数字整理好，放到一个矩阵中，显示这个矩阵即可）
+    - 初始化一个二维数组
+    - 将每行的数据调整成图像的矩阵，放进二维数组
+    - 显示即可
+    '''
+    pad = 1
+    display_array = -np.ones((pad+10*(20+pad), pad+10*(20+pad)))
+    for i in range(10):
+        for j in range(10):
+            display_array[pad+i*(20+pad):pad+i*(20+pad)+20, pad+j*(20+pad):pad+j*(20+pad)+20] = (
+                imgData[sum, :].reshape(20, 20, order=&quot;F&quot;))    # order=F指定以列优先，在matlab中是这样的，python中需要指定，默认以行
+            sum += 1
+
+    plt.imshow(display_array, cmap='gray')  # 显示灰度图像
+    plt.axis('off')
+    plt.show()
+
+
+def OneAll(X, y, nums, alpha, lam, num_iters):
+    m, n = X.shape
+    theta_a = np.zeros((n+1, nums))
+    X = np.hstack((np.zeros((m, 1)), X))
+    class_y = np.zeros((m, nums))
+
+    for i in range(nums):
+        class_y[:, i] = np.int32(y == i).reshape(1, -1)
+
+    for i in range(nums):
+        init_theta = np.zeros((n+1, 1))
+        theta, _ = GradientDescent(
+            X, class_y[:, i].reshape(-1, 1), init_theta, alpha, lam, num_iters)
+        theta_a[:, i] = theta.reshape((1, -1))
+    return theta_a.T
+
+
+def predict_oneVsAll(all_theta, X):
+    m = X.shape[0]
+    p = np.zeros((m, 1))
+    X = np.hstack((np.ones((m, 1)), X))  # 在X最前面加一列1
+
+    h = Sigmod(np.dot(X, np.transpose(all_theta)))  # 预测
+
+    '''
+    返回h中每一行最大值所在的列号
+    - np.max(h, axis=1)返回h中每一行的最大值（是某个数字的最大概率）
+    - 最后where找到的最大概率所在的列号（列号即是对应的数字）
+    '''
+    p = np.array(np.where(h[0, :] == np.max(h, axis=1)[0]))
+    for i in np.arange(1, m):
+        t = np.array(np.where(h[i, :] == np.max(h, axis=1)[i]))
+        p = np.vstack((p, t))
+    return p
+
+
+if __name__ == &quot;__main__&quot;:
+    num_lables = 10
+    alpha = 0.1
+    lam = 0.1
+    num_iters = 1000
+
+    data = spio.loadmat(&quot;data_digits.mat&quot;)
+    X = data['X']  # 获取X数据，每一行对应一个数字20x20px
+    y = data['y']
+    m, n = X.shape
+    rand = [np.random.randint(0, m) for x in range(100)]
+    # display_data(X[rand, :])
+    theta_a = OneAll(X, y, num_lables, alpha, lam, num_iters)
+    p = predict_oneVsAll(theta_a, X)               # 预测
+    # 将预测结果和真实结果保存到文件中
+    res = np.hstack((p, y.reshape(-1, 1)))
+    np.savetxt(&quot;predict.csv&quot;, res, delimiter=',')
+
+    print(u&quot;预测准确度为：%f%%&quot; % np.mean(np.float64(p == y.reshape(-1, 1))*100))
+</code></pre>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>machine learning</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>android</title>
+    <url>/posts/2020-08-003.html</url>
+    <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
+具体是Unknown host ‘<a href="http://d29vzk4ow07wi7.cloudfront.net" target="_blank" rel="noopener">d29vzk4ow07wi7.cloudfront.net</a>’. You may need to adjust the proxy settings in Gradle.<br />
+把 build.gradle 中的两个 jcenter() 用 maven{ url “<a href="http://maven.aliyun.com/nexus/content/groups/public/" target="_blank" rel="noopener">http://maven.aliyun.com/nexus/content/groups/public/</a>”} 代替，然后等待下载安装完成就好了。<br />
+开这个项目，目前是想做一个古文阅读的app，等我把安卓开发的基础知识过一遍就来更新。</p>
+<h3 id="更新"><a class="markdownIt-Anchor" href="#更新"></a> 更新</h3>
+<p>虽然安卓的基础知识还没怎么弄明白，还是靠这自己的底子，硬着头皮给写出来了。对我来说，最难的部分应该就是对Android项目结构还不熟，所以对项目的实现方式就会变的很粗暴。。。</p>
+<h3 id="界面"><a class="markdownIt-Anchor" href="#界面"></a> 界面</h3>
+<p>这个项目里主要的需要实现的东西不多。基本上最重要的就是UI了。</p>
+<ol>
+<li>需要一个主要的文本显示区，用来可以切换的显示文章，注释，译文等。</li>
+<li>需要几个按钮，可以切换文本显示区显示的内容。</li>
+<li>需要一个目录，用来选择书籍的章节。</li>
+</ol>
+<h3 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h3>
+<p>内容方面主要的就是把爬虫获取的文章通过某种方式处理，格式化，可以让我们可以方便的显示在文本区。<br />
+对于爬虫的详细内容可以看<a href="https://slyli.cn/posts/2020-07-010.html">小说网站爬虫</a>，这篇文章中的<code>标题2</code>。</p>
+<pre><code>private String[][] ReadBook() {
+        String[][] book=new String[81][4];
+        StringBuilder termsString = new StringBuilder();
+        BufferedReader reader;
+        int ch_num=-1;
+        int temp=0;
+        try {
+            reader = new BufferedReader(
+                    new InputStreamReader(getAssets().open(&quot;daodejing.txt&quot;),&quot;UTF-8&quot;));
+            String str;
+            while ((str = reader.readLine()) != null) {
+                str=str.replaceAll(&quot; &quot;,&quot;&quot;);
+                if(str.length()&gt;0)
+                {
+                    if(str.equals(&quot;【原文】&quot;))
+                    {
+                        ch_num++;
+                        temp =0;
+                        book[ch_num][temp]=&quot;第&quot;+String.valueOf(ch_num+1)+&quot;章&quot;+'\n';
+                    }
+                    else if(str.equals(&quot;【注释】&quot;))
+                    {
+                        temp=1;
+                    }
+                    else if(str.equals(&quot;【译文】&quot;))
+                    {
+                        temp=2;
+                    }
+                    else if(str.equals(&quot;【解析】&quot;))
+                    {
+                        temp=3;
+                    }
+                    else if(str.equals(&quot;【导读】&quot;))
+                    {
+                        temp=2;
+                    }
+                    if(book[ch_num][temp]==null)
+                        book[ch_num][temp]=str+'\n';
+                    else
+                        book[ch_num][temp]+=str+'\n';
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return book;
+    }
+</code></pre>
+<p>以上就是处理的方式，对内容处理完成后，把它们按照约定设置在文本显示区就完成了。</p>
+<h3 id="成品"><a class="markdownIt-Anchor" href="#成品"></a> 成品</h3>
+<p>丑是丑了点，主要想做的功能算是完成了。</p>
+<h4 id="目录"><a class="markdownIt-Anchor" href="#目录"></a> 目录</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131030_com.example.helloworld.jpg" alt="cat" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131105_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="原文"><a class="markdownIt-Anchor" href="#原文"></a> 原文</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131046_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="注释"><a class="markdownIt-Anchor" href="#注释"></a> 注释</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131051_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="译文"><a class="markdownIt-Anchor" href="#译文"></a> 译文</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131055_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="解析"><a class="markdownIt-Anchor" href="#解析"></a> 解析</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131059_com.example.helloworld.jpg" alt="cat" /></p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -427,96 +1043,6 @@ printf(“Hello, Markdown.”);<br />
       </tags>
   </entry>
   <entry>
-    <title>android</title>
-    <url>/posts/2020-08-003.html</url>
-    <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
-具体是Unknown host ‘<a href="http://d29vzk4ow07wi7.cloudfront.net" target="_blank" rel="noopener">d29vzk4ow07wi7.cloudfront.net</a>’. You may need to adjust the proxy settings in Gradle.<br />
-把 build.gradle 中的两个 jcenter() 用 maven{ url “<a href="http://maven.aliyun.com/nexus/content/groups/public/" target="_blank" rel="noopener">http://maven.aliyun.com/nexus/content/groups/public/</a>”} 代替，然后等待下载安装完成就好了。<br />
-开这个项目，目前是想做一个古文阅读的app，等我把安卓开发的基础知识过一遍就来更新。</p>
-<h3 id="更新"><a class="markdownIt-Anchor" href="#更新"></a> 更新</h3>
-<p>虽然安卓的基础知识还没怎么弄明白，还是靠这自己的底子，硬着头皮给写出来了。对我来说，最难的部分应该就是对Android项目结构还不熟，所以对项目的实现方式就会变的很粗暴。。。</p>
-<h3 id="界面"><a class="markdownIt-Anchor" href="#界面"></a> 界面</h3>
-<p>这个项目里主要的需要实现的东西不多。基本上最重要的就是UI了。</p>
-<ol>
-<li>需要一个主要的文本显示区，用来可以切换的显示文章，注释，译文等。</li>
-<li>需要几个按钮，可以切换文本显示区显示的内容。</li>
-<li>需要一个目录，用来选择书籍的章节。</li>
-</ol>
-<h3 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h3>
-<p>内容方面主要的就是把爬虫获取的文章通过某种方式处理，格式化，可以让我们可以方便的显示在文本区。<br />
-对于爬虫的详细内容可以看<a href="https://slyli.cn/posts/2020-07-010.html">小说网站爬虫</a>，这篇文章中的<code>标题2</code>。</p>
-<pre><code>private String[][] ReadBook() {
-        String[][] book=new String[81][4];
-        StringBuilder termsString = new StringBuilder();
-        BufferedReader reader;
-        int ch_num=-1;
-        int temp=0;
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open(&quot;daodejing.txt&quot;),&quot;UTF-8&quot;));
-            String str;
-            while ((str = reader.readLine()) != null) {
-                str=str.replaceAll(&quot; &quot;,&quot;&quot;);
-                if(str.length()&gt;0)
-                {
-                    if(str.equals(&quot;【原文】&quot;))
-                    {
-                        ch_num++;
-                        temp =0;
-                        book[ch_num][temp]=&quot;第&quot;+String.valueOf(ch_num+1)+&quot;章&quot;+'\n';
-                    }
-                    else if(str.equals(&quot;【注释】&quot;))
-                    {
-                        temp=1;
-                    }
-                    else if(str.equals(&quot;【译文】&quot;))
-                    {
-                        temp=2;
-                    }
-                    else if(str.equals(&quot;【解析】&quot;))
-                    {
-                        temp=3;
-                    }
-                    else if(str.equals(&quot;【导读】&quot;))
-                    {
-                        temp=2;
-                    }
-                    if(book[ch_num][temp]==null)
-                        book[ch_num][temp]=str+'\n';
-                    else
-                        book[ch_num][temp]+=str+'\n';
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return book;
-    }
-</code></pre>
-<p>以上就是处理的方式，对内容处理完成后，把它们按照约定设置在文本显示区就完成了。</p>
-<h3 id="成品"><a class="markdownIt-Anchor" href="#成品"></a> 成品</h3>
-<p>丑是丑了点，主要想做的功能算是完成了。</p>
-<h4 id="目录"><a class="markdownIt-Anchor" href="#目录"></a> 目录</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131030_com.example.helloworld.jpg" alt="cat" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131105_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="原文"><a class="markdownIt-Anchor" href="#原文"></a> 原文</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131046_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="注释"><a class="markdownIt-Anchor" href="#注释"></a> 注释</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131051_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="译文"><a class="markdownIt-Anchor" href="#译文"></a> 译文</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131055_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="解析"><a class="markdownIt-Anchor" href="#解析"></a> 解析</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131059_com.example.helloworld.jpg" alt="cat" /></p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>butterfly修改</title>
     <url>/posts/2020-07-003.html</url>
     <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
@@ -563,6 +1089,85 @@ comments: false
       <tags>
         <tag>blog</tag>
         <tag>butterfly</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cocos2dx</title>
+    <url>/posts/2020-09-003.html</url>
+    <content><![CDATA[<h2 id="记录cocos2dx的学习历程和遇到的坑-版本40"><a class="markdownIt-Anchor" href="#记录cocos2dx的学习历程和遇到的坑-版本40"></a> 记录cocos2dx的学习历程和遇到的坑。 版本4.0</h2>
+<h3 id="坐标系问题"><a class="markdownIt-Anchor" href="#坐标系问题"></a> 坐标系问题</h3>
+<ul>
+<li>对于精灵，坐标系从左下开始向右上增长，x轴从左向右。例如 sprite-&gt;setPosition(Vec2(0, 0)); 设置精灵为左下角。</li>
+<li>对于鼠标，坐标系从左上方开始向右下增长，x轴从左向右。例如 Point pt = e-&gt;getLocation(); pt={0,0}代表鼠标位于左上角。</li>
+</ul>
+<h3 id="鼠标控制事件"><a class="markdownIt-Anchor" href="#鼠标控制事件"></a> 鼠标控制事件</h3>
+<p>对于鼠标事件，cocos官方文档中对于4.0版本中还未更新。我们可以同过如下方式实现鼠标对于精灵的控制。</p>
+<pre><code>static bool mouse_down = false;
+auto myMouseListener = EventListenerMouse::create();
+myMouseListener-&gt;onMouseDown = [=](Event* event)
+{
+    EventMouse* e = (EventMouse*)event;
+    Point pt = e-&gt;getLocation();
+    pt.y = visibleSize.height - pt.y;
+    Rect rect = charac-&gt;getBoundingBox();
+    //log(&quot;point x:%f,y%f&quot;, pt.x, pt.y);
+
+    if (rect.containsPoint(pt))
+    {
+      //  log(&quot;rect x:%f,y%f&quot;, rect.origin.x, rect.origin.y);
+        mouse_down = true;
+        charac-&gt;setPosition(pt);
+
+    }
+   
+};
+myMouseListener-&gt;onMouseUp = [=](Event* event)
+{
+    mouse_down = false;
+};
+//鼠标移动
+myMouseListener-&gt;onMouseMove = [=](Event* event)
+{
+    EventMouse* e = (EventMouse*)event;
+    Point pt = e-&gt;getLocation();
+    pt.y = visibleSize.height - pt.y;
+
+    if (mouse_down )
+    {
+       charac-&gt;setPosition( pt);
+    }
+};
+_eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, this);
+</code></pre>
+<h3 id="setuserobject"><a class="markdownIt-Anchor" href="#setuserobject"></a> setUserObject</h3>
+<p>在使用setUserObject传值时，对应的参数要new，否则会出现莫名其妙的bug。</p>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>cocos2dx鼠标控制精灵</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
+    <url>/posts/2020-07-002.html</url>
+    <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
+<h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg2.png" alt="解压" /></p>
+<h3 id="解压完成后会将所有文件默认放入同目录下的output文件中"><a class="markdownIt-Anchor" href="#解压完成后会将所有文件默认放入同目录下的output文件中"></a> 解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3>
+<h3 id="想要了解更多可以查看源仓库-notscuffedrepkg说明"><a class="markdownIt-Anchor" href="#想要了解更多可以查看源仓库-notscuffedrepkg说明"></a> 想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>wallpapper engine</tag>
+        <tag>github</tag>
+        <tag>steam</tag>
+        <tag>repkg</tag>
       </tags>
   </entry>
   <entry>
@@ -919,286 +1524,6 @@ public:
       </tags>
   </entry>
   <entry>
-    <title>LogisticRegression--python</title>
-    <url>/posts/2020-07-011.html</url>
-    <content><![CDATA[<p>逻辑回归</p>
-<pre><code>import numpy as np
-from matplotlib import pyplot as plt
-
-def Sigmod(z):
-    return 1.0/(1.0+np.exp(-z))
-
-def ComputeCost(x, y, theta, lam):
-    m = len(y)
-    h = Sigmod(np.dot(x, theta))
-    the = theta.copy()
-    the[0] = 0
-    temp = np.dot(the.T, the)
-    J = (0-np.dot(y.T, np.log(h))-np.dot((1-y).T, np.log(1-h))+lam*temp/2)/m
-    return J
-
-# 映射为多项式，增加特征量
-def MapFeature(x1, x2):
-    deg = 2
-    out = np.ones((x1.shape[0], 1))
-    for i in np.arange(1, deg+1):
-        for j in range(i+1):
-            temp = x1**(i-j)*(x2**j)  # 矩阵直接乘相当于matlab中的点乘.*
-            out = np.hstack((out, temp.reshape(-1, 1)))
-    return out
-
-def GradientDescent(x, y, theta, alpha, lam, num_iters):
-    m = len(y)
-    n = len(theta)
-
-    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
-
-    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
-
-    for i in range(num_iters):  # 遍历迭代次数
-        h = Sigmod(np.dot(x, theta))
-        # h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
-        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
-        theta = temp[:, i]
-        J_history[i] = ComputeCost(X, y, theta, lam)  # 调用计算代价函数
-        # print(J_history[i])
-    return theta, J_history
-
-def predict(X, theta):
-    m = X.shape[0]
-    p = np.zeros((m, 1))
-    p = Sigmod(np.dot(X, theta))    # 预测的结果，是个概率值
-
-    for i in range(m):
-        if p[i] &gt; 0.5:  # 概率大于0.5预测为1，否则预测为0
-            p[i] = 1
-        else:
-            p[i] = 0
-    return p
-
-# 画决策边界
-def plotDecisionBoundary(theta, X, y):
-    pos = np.where(y == 1)  # 找到y==1的坐标位置
-    neg = np.where(y == 0)  # 找到y==0的坐标位置
-    # 作图
-    plt.figure(figsize=(15, 12))
-    plt.plot(X[pos, 0], X[pos, 1], 'ro')        # red o
-    plt.plot(X[neg, 0], X[neg, 1], 'bo')        # blue o
-    #plt.title(u&quot;决策边界&quot;, fontproperties=font)
-
-    #u = np.linspace(30,100,100)
-    #v = np.linspace(30,100,100)
-
-    u = np.linspace(-1, 1.5, 50)  # 根据具体的数据，这里需要调整
-    v = np.linspace(-1, 1.5, 50)
-
-    z = np.zeros((len(u), len(v)))
-    for i in range(len(u)):
-        for j in range(len(v)):
-            z[i, j] = np.dot(MapFeature(u[i].reshape(1, -1),
-                                        v[j].reshape(1, -1)), theta)    # 计算对应的值，需要map
-
-    z = np.transpose(z)
-    # 画等高线，范围在[0,0.01]，即近似为决策边界
-    plt.contour(u, v, z, [0, 0.01], linewidth=2.0)
-    # plt.legend()
-    plt.show()
-
-if __name__ == &quot;__main__&quot;:
-    data = np.loadtxt('data2.txt', delimiter=',', dtype=np.float64)
-    lam = 0.1
-    alpha = 0.1
-    X = data[:, 0:-1]
-    y = data[:, -1].reshape(-1, 1)
-    X = MapFeature(X[:, 0], X[:, 1])
-
-    theta = np.zeros((X.shape[1], 1))
-
-    print(ComputeCost(X, y, theta,  lam))
-    theta, J_his = GradientDescent(X, y, theta, alpha, lam, 5000)
-
-    print(theta)
-    p = predict(X, theta)  # 预测
-    # 与真实值比较，p==y返回True，转化为float
-    print(u'在训练集上的准确度为%f%%' % np.mean(np.float64(p == y)*100))
-    X = data[:, 0:-1]
-    y = data[:, -1]
-    plotDecisionBoundary(theta, X, y)  # 画决策边界
-</code></pre>
-<p>逻辑回归数字识别</p>
-<pre><code>import numpy as np
-from matplotlib import pyplot as plt
-import scipy.io as spio
-
-
-def Sigmod(z):
-    return 1.0/(1.0+np.exp(-z))
-
-
-def ComputeCost(x, y, theta, lam):
-    m = len(y)
-    h = Sigmod(np.dot(x, theta))
-    the = theta.copy()
-    the[0] = 0
-    temp = np.dot(the.T, the)
-    J = (0-np.dot(y.T, np.log(h))-np.dot((1-y).T, np.log(1-h))+lam*temp/2)/m
-    return J
-
-# 映射为多项式，增加特征量
-
-
-def MapFeature(x1, x2):
-    deg = 2
-    out = np.ones((x1.shape[0], 1))
-    for i in np.arange(1, deg+1):
-        for j in range(i+1):
-            temp = x1**(i-j)*(x2**j)  # 矩阵直接乘相当于matlab中的点乘.*
-            out = np.hstack((out, temp.reshape(-1, 1)))
-    return out
-
-
-def GradientDescent(X, y, theta, alpha, lam, num_iters):
-    m = len(y)
-    n = len(theta)
-
-    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
-
-    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
-
-    for i in range(num_iters):  # 遍历迭代次数
-        h = Sigmod(np.dot(X, theta))
-        # h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
-        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
-        theta = temp[:, i]
-        J_history[i] = ComputeCost(X, y, theta, lam)  # 调用计算代价函数
-        # print(J_history[i])
-    return theta, J_history
-
-
-def predict(X, theta):
-    m = X.shape[0]
-    p = np.zeros((m, 1))
-    p = Sigmod(np.dot(X, theta))    # 预测的结果，是个概率值
-
-    for i in range(m):
-        if p[i] &gt; 0.5:  # 概率大于0.5预测为1，否则预测为0
-            p[i] = 1
-        else:
-            p[i] = 0
-    return p
-
-
-# 显示100个数字
-
-
-def display_data(imgData):
-    sum = 0
-    '''
-    显示100个数（若是一个一个绘制将会非常慢，可以将要画的数字整理好，放到一个矩阵中，显示这个矩阵即可）
-    - 初始化一个二维数组
-    - 将每行的数据调整成图像的矩阵，放进二维数组
-    - 显示即可
-    '''
-    pad = 1
-    display_array = -np.ones((pad+10*(20+pad), pad+10*(20+pad)))
-    for i in range(10):
-        for j in range(10):
-            display_array[pad+i*(20+pad):pad+i*(20+pad)+20, pad+j*(20+pad):pad+j*(20+pad)+20] = (
-                imgData[sum, :].reshape(20, 20, order=&quot;F&quot;))    # order=F指定以列优先，在matlab中是这样的，python中需要指定，默认以行
-            sum += 1
-
-    plt.imshow(display_array, cmap='gray')  # 显示灰度图像
-    plt.axis('off')
-    plt.show()
-
-
-def OneAll(X, y, nums, alpha, lam, num_iters):
-    m, n = X.shape
-    theta_a = np.zeros((n+1, nums))
-    X = np.hstack((np.zeros((m, 1)), X))
-    class_y = np.zeros((m, nums))
-
-    for i in range(nums):
-        class_y[:, i] = np.int32(y == i).reshape(1, -1)
-
-    for i in range(nums):
-        init_theta = np.zeros((n+1, 1))
-        theta, _ = GradientDescent(
-            X, class_y[:, i].reshape(-1, 1), init_theta, alpha, lam, num_iters)
-        theta_a[:, i] = theta.reshape((1, -1))
-    return theta_a.T
-
-
-def predict_oneVsAll(all_theta, X):
-    m = X.shape[0]
-    p = np.zeros((m, 1))
-    X = np.hstack((np.ones((m, 1)), X))  # 在X最前面加一列1
-
-    h = Sigmod(np.dot(X, np.transpose(all_theta)))  # 预测
-
-    '''
-    返回h中每一行最大值所在的列号
-    - np.max(h, axis=1)返回h中每一行的最大值（是某个数字的最大概率）
-    - 最后where找到的最大概率所在的列号（列号即是对应的数字）
-    '''
-    p = np.array(np.where(h[0, :] == np.max(h, axis=1)[0]))
-    for i in np.arange(1, m):
-        t = np.array(np.where(h[i, :] == np.max(h, axis=1)[i]))
-        p = np.vstack((p, t))
-    return p
-
-
-if __name__ == &quot;__main__&quot;:
-    num_lables = 10
-    alpha = 0.1
-    lam = 0.1
-    num_iters = 1000
-
-    data = spio.loadmat(&quot;data_digits.mat&quot;)
-    X = data['X']  # 获取X数据，每一行对应一个数字20x20px
-    y = data['y']
-    m, n = X.shape
-    rand = [np.random.randint(0, m) for x in range(100)]
-    # display_data(X[rand, :])
-    theta_a = OneAll(X, y, num_lables, alpha, lam, num_iters)
-    p = predict_oneVsAll(theta_a, X)               # 预测
-    # 将预测结果和真实结果保存到文件中
-    res = np.hstack((p, y.reshape(-1, 1)))
-    np.savetxt(&quot;predict.csv&quot;, res, delimiter=',')
-
-    print(u&quot;预测准确度为：%f%%&quot; % np.mean(np.float64(p == y.reshape(-1, 1))*100))
-</code></pre>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>machine learning</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
-    <url>/posts/2020-07-002.html</url>
-    <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
-<h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg2.png" alt="解压" /></p>
-<h3 id="解压完成后会将所有文件默认放入同目录下的output文件中"><a class="markdownIt-Anchor" href="#解压完成后会将所有文件默认放入同目录下的output文件中"></a> 解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3>
-<h3 id="想要了解更多可以查看源仓库-notscuffedrepkg说明"><a class="markdownIt-Anchor" href="#想要了解更多可以查看源仓库-notscuffedrepkg说明"></a> 想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">notscuffed/repkg</a>说明。</h3>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>wallpapper engine</tag>
-        <tag>github</tag>
-        <tag>steam</tag>
-        <tag>repkg</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>machine-learning 知识点总结</title>
     <url>/posts/2020-07-006.html</url>
     <content><![CDATA[<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
@@ -1368,6 +1693,65 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
+    <title>wallpapper</title>
+    <url>/posts/2020-08-007.html</url>
+    <content><![CDATA[<div class="justified-gallery"><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/1108.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/118.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/873441.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/988021.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/digitalart-1518055361254-315.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/Fiora.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/full.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/Genji.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/papers.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/rocks_surf_canal_123163_3840x2160.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/wallhaven-72198.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/Wallpaper.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/%E6%98%9F%E6%9E%81.jpg" alt="" /></p><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-2emoyy.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-2emx69.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-5we787.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-73zm9o.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-dgr2qo.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-dgrdzm.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-ey5rzr.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-lm6d2r.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-dgryeg.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-vgkdd3.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-xlq1rv.jpg" alt="" /></p><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ey/wallhaven-eymzjk.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/lm/wallhaven-lmxmxy.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/x1/wallhaven-x1wroo.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/p8/wallhaven-p8e53m.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/g8/wallhaven-g8yk2d.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/g8/wallhaven-g8y1pd.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ym/wallhaven-ym1m8l.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/r2/wallhaven-r28vlq.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ym/wallhaven-ymdodd.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/zm/wallhaven-zmwv9y.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/r2/wallhaven-r286jq.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/r2/wallhaven-r28ejq.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/q6/wallhaven-q67z9d.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/6k/wallhaven-6k8vww.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ey/wallhaven-ey51el.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ym/wallhaven-ymdylk.jpg" alt="" /></p>
+          </div>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>博客说明</title>
+    <url>/posts/2020-07-001.html</url>
+    <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
+<p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
+<h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
+<h3 id="创建一个新的文章或页面"><a class="markdownIt-Anchor" href="#创建一个新的文章或页面"></a> 创建一个新的文章或页面</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] [title]</span><br></pre></td></tr></table></figure>
+<h4 id="布局layout"><a class="markdownIt-Anchor" href="#布局layout"></a> 布局（Layout）</h4>
+<p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
+<pre><code>布局	路径
+post	source/_posts
+page	source
+draft	source/_drafts
+</code></pre>
+<h4 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h4>
+<p>创建一个标题为exp的文章，默认布局为post，在命令中可以省略。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new exp</span><br></pre></td></tr></table></figure>
+<p>创建一个名为exp的页面。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new page exp</span><br></pre></td></tr></table></figure>
+<h3 id="本地运行服务器可以在localhost4000中查看"><a class="markdownIt-Anchor" href="#本地运行服务器可以在localhost4000中查看"></a> 本地运行服务器，可以在<a href="http://localhost:4000" target="_blank" rel="noopener">localhost:4000</a>中查看</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="重新渲染博客"><a class="markdownIt-Anchor" href="#重新渲染博客"></a> 重新渲染博客</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="将项目更新到github-pages上"><a class="markdownIt-Anchor" href="#将项目更新到github-pages上"></a> 将项目更新到GitHub Pages上</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo doc</a></p>
+<h3 id="git的使用"><a class="markdownIt-Anchor" href="#git的使用"></a> git的使用</h3>
+<h4 id="git初始化仓库"><a class="markdownIt-Anchor" href="#git初始化仓库"></a> git初始化仓库</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<h4 id="git添加到缓冲区"><a class="markdownIt-Anchor" href="#git添加到缓冲区"></a> git添加到缓冲区</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add *</span><br></pre></td></tr></table></figure>
+<h4 id="git提交改动"><a class="markdownIt-Anchor" href="#git提交改动"></a> git提交改动</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">"msg"</span></span><br></pre></td></tr></table></figure>
+<h4 id="git推送到远程仓库"><a class="markdownIt-Anchor" href="#git推送到远程仓库"></a> git推送到远程仓库</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<h4 id="如果没有远程仓库可以先添加"><a class="markdownIt-Anchor" href="#如果没有远程仓库可以先添加"></a> 如果没有远程仓库，可以先添加</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin server</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>小说网站爬虫</title>
     <url>/posts/2020-07-010.html</url>
     <content><![CDATA[<h3 id="1小说爬虫简易模板"><a class="markdownIt-Anchor" href="#1小说爬虫简易模板"></a> 1.小说爬虫简易模板</h3>
@@ -1459,82 +1843,6 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>wallpapper</title>
-    <url>/posts/2020-08-007.html</url>
-    <content><![CDATA[<div class="justified-gallery"><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/1108.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/118.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/873441.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/988021.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/digitalart-1518055361254-315.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/Fiora.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/full.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/Genji.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/papers.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/rocks_surf_canal_123163_3840x2160.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/wallhaven-72198.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/Wallpaper.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/%E6%98%9F%E6%9E%81.jpg" alt="" /></p><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-2emoyy.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-2emx69.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-5we787.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-73zm9o.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-dgr2qo.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-dgrdzm.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-ey5rzr.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-lm6d2r.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-dgryeg.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-vgkdd3.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-xlq1rv.jpg" alt="" /></p><p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ey/wallhaven-eymzjk.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/lm/wallhaven-lmxmxy.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/x1/wallhaven-x1wroo.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/p8/wallhaven-p8e53m.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/g8/wallhaven-g8yk2d.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/g8/wallhaven-g8y1pd.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ym/wallhaven-ym1m8l.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/r2/wallhaven-r28vlq.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ym/wallhaven-ymdodd.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/zm/wallhaven-zmwv9y.png" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/r2/wallhaven-r286jq.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/r2/wallhaven-r28ejq.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/q6/wallhaven-q67z9d.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/6k/wallhaven-6k8vww.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ey/wallhaven-ey51el.jpg" alt="" /><br /><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://w.wallhaven.cc/full/ym/wallhaven-ymdylk.jpg" alt="" /></p>
-          </div>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>伽马兽王</title>
-    <url>/posts/2020-07-004.html</url>
-    <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b00.png" alt="兽王" /></p>
-<h3 id="加点"><a class="markdownIt-Anchor" href="#加点"></a> 加点</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b17.png" alt="bd" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b18.png" alt="bd" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b19.png" alt="bd" /></p>
-<h3 id="装备"><a class="markdownIt-Anchor" href="#装备"></a> 装备</h3>
-<div class="note success no-icon">
-            <p>没有dlc，以下只有本体中的武器。<br />攻击类武器受福统一选择 生命值低于50%时，造成额外150%辐射伤害，配合压血神器。</p>
-          </div>
-<h4 id="君王"><a class="markdownIt-Anchor" href="#君王"></a> 君王</h4>
-<p><strong>步枪</strong>，当前版本混10不刮痧的枪，子弹散射，近距离好用，基拉夫特掉落。</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b01.png" alt="君王" /></p>
-<h4 id="射弹循环"><a class="markdownIt-Anchor" href="#射弹循环"></a> 射弹循环</h4>
-<p><strong>散弹枪</strong>，发射后会在敌人之间弹射，在敌人多的时候很好用，每当发出的攻击多一种元素时该枪会多射出一发子弹，配合盾雷失效附加额外元素伤害使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b02.png" alt="射弹循环" /></p>
-<h4 id="瘟疫传播者"><a class="markdownIt-Anchor" href="#瘟疫传播者"></a> 瘟疫传播者</h4>
-<p><strong>重型武器</strong>，高伤害，发射前需要蓄力。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b03.png" alt="瘟疫传播者" /></p>
-<h4 id="梅尔加尼的爆发"><a class="markdownIt-Anchor" href="#梅尔加尼的爆发"></a> 梅尔加尼的爆发</h4>
-<p><strong>工具枪</strong>，过热后发射易伤弹，配合飞龙+1受福，用来触发盾雷技能失效受福。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b04.png" alt="梅尔加尼的爆发" /></p>
-<h4 id="考桑"><a class="markdownIt-Anchor" href="#考桑"></a> 考桑</h4>
-<p><strong>冲锋枪</strong>，单体伤害，射速快。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b05.png" alt="考桑" /></p>
-<h4 id="沙鹰"><a class="markdownIt-Anchor" href="#沙鹰"></a> 沙鹰</h4>
-<p><strong>狙击枪</strong>，与其说是狙击枪，更像散弹枪，子弹微散射，远距离也可使用，射速极快，兽王来说子弹根本不够用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b06.png" alt="沙鹰" /></p>
-<h4 id="备胎"><a class="markdownIt-Anchor" href="#备胎"></a> 备胎</h4>
-<p><strong>重型武器</strong>，不用蓄力，伤害还不错。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b07.png" alt="备胎" /></p>
-<h4 id="头脑风暴者"><a class="markdownIt-Anchor" href="#头脑风暴者"></a> 头脑风暴者</h4>
-<p><strong>散弹枪</strong>，多弹片工具枪，可以利用加点中的被动<code>清点人数</code>有效的缩短主动技能的冷却时间。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b08.png" alt="头脑风暴者" /></p>
-<h4 id="不可饶恕"><a class="markdownIt-Anchor" href="#不可饶恕"></a> 不可饶恕</h4>
-<p><strong>手枪</strong>，工具枪，有高额的暴击伤害，配和高伤、弹速慢的武器切枪使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b09.png" alt="不可饶恕" /></p>
-<h4 id="变形金刚"><a class="markdownIt-Anchor" href="#变形金刚"></a> 变形金刚</h4>
-<p><strong>护盾</strong>，免疫电属性伤害并吸收为护盾，受福选择技能失效附加额外属性伤害。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b11.png" alt="变形金刚" /></p>
-<h4 id="赤红之牙"><a class="markdownIt-Anchor" href="#赤红之牙"></a> 赤红之牙</h4>
-<p><strong>模组</strong>，伽马爆发时嘲讽所有敌人，伽马流<code>核心</code>装备，不可缺少，属性看自己选择。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b12.png" alt="赤红之牙" /></p>
-<h4 id="六角"><a class="markdownIt-Anchor" href="#六角"></a> 六角</h4>
-<p><strong>手雷</strong>，受福选择技能失效附加额外属性伤害。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b13.png" alt="六角" /></p>
-<h4 id="吹雪不死"><a class="markdownIt-Anchor" href="#吹雪不死"></a> 吹雪不死</h4>
-<p><strong>神器</strong>，吹雪可以提高滑铲速度，跑路快；不死可以是自己保留<code>1</code>点生命值，用来触发武器受福<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b14.png" alt="吹雪不死" /></p>
-<h4 id="吹雪胜利突袭"><a class="markdownIt-Anchor" href="#吹雪胜利突袭"></a> 吹雪胜利突袭</h4>
-<p><strong>神器</strong> 备用神器，不采用压血流时使用。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b10.png" alt="吹雪胜利突袭" /></p>
-<h3 id="玩法"><a class="markdownIt-Anchor" href="#玩法"></a> 玩法</h3>
-<p>伽马兽王应该时兽王职业中最安逸的流派了，伽马爆发时儿子的全图嘲讽可以给兽王提供良好的输出环境，输出时配合切飞龙，可以大幅提高伤害。技能冷却时，配合头脑风暴/射弹循环可以迅速使下一次技能准备就绪，然后继续输出。</p>
-]]></content>
-      <categories>
-        <category>games</category>
-      </categories>
-      <tags>
-        <tag>伽马兽王</tag>
-        <tag>borderlands3</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>小四轴飞行器</title>
     <url>/posts/2020-08-004.html</url>
     <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
@@ -1617,70 +1925,70 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>博客说明</title>
-    <url>/posts/2020-07-001.html</url>
-    <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
-<p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
-<h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
-<h3 id="创建一个新的文章或页面"><a class="markdownIt-Anchor" href="#创建一个新的文章或页面"></a> 创建一个新的文章或页面</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] [title]</span><br></pre></td></tr></table></figure>
-<h4 id="布局layout"><a class="markdownIt-Anchor" href="#布局layout"></a> 布局（Layout）</h4>
-<p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
-<pre><code>布局	路径
-post	source/_posts
-page	source
-draft	source/_drafts
-</code></pre>
-<h4 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h4>
-<p>创建一个标题为exp的文章，默认布局为post，在命令中可以省略。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new exp</span><br></pre></td></tr></table></figure>
-<p>创建一个名为exp的页面。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new page exp</span><br></pre></td></tr></table></figure>
-<h3 id="本地运行服务器可以在localhost4000中查看"><a class="markdownIt-Anchor" href="#本地运行服务器可以在localhost4000中查看"></a> 本地运行服务器，可以在<a href="http://localhost:4000" target="_blank" rel="noopener">localhost:4000</a>中查看</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<h3 id="重新渲染博客"><a class="markdownIt-Anchor" href="#重新渲染博客"></a> 重新渲染博客</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
-<h3 id="将项目更新到github-pages上"><a class="markdownIt-Anchor" href="#将项目更新到github-pages上"></a> 将项目更新到GitHub Pages上</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo doc</a></p>
-<h3 id="git的使用"><a class="markdownIt-Anchor" href="#git的使用"></a> git的使用</h3>
-<h4 id="git初始化仓库"><a class="markdownIt-Anchor" href="#git初始化仓库"></a> git初始化仓库</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
-<h4 id="git添加到缓冲区"><a class="markdownIt-Anchor" href="#git添加到缓冲区"></a> git添加到缓冲区</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add *</span><br></pre></td></tr></table></figure>
-<h4 id="git提交改动"><a class="markdownIt-Anchor" href="#git提交改动"></a> git提交改动</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">"msg"</span></span><br></pre></td></tr></table></figure>
-<h4 id="git推送到远程仓库"><a class="markdownIt-Anchor" href="#git推送到远程仓库"></a> git推送到远程仓库</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
-<h4 id="如果没有远程仓库可以先添加"><a class="markdownIt-Anchor" href="#如果没有远程仓库可以先添加"></a> 如果没有远程仓库，可以先添加</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin server</span><br></pre></td></tr></table></figure>
+    <title>伽马兽王</title>
+    <url>/posts/2020-07-004.html</url>
+    <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b00.png" alt="兽王" /></p>
+<h3 id="加点"><a class="markdownIt-Anchor" href="#加点"></a> 加点</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b17.png" alt="bd" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b18.png" alt="bd" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b19.png" alt="bd" /></p>
+<h3 id="装备"><a class="markdownIt-Anchor" href="#装备"></a> 装备</h3>
+<div class="note success no-icon">
+            <p>没有dlc，以下只有本体中的武器。<br />攻击类武器受福统一选择 生命值低于50%时，造成额外150%辐射伤害，配合压血神器。</p>
+          </div>
+<h4 id="君王"><a class="markdownIt-Anchor" href="#君王"></a> 君王</h4>
+<p><strong>步枪</strong>，当前版本混10不刮痧的枪，子弹散射，近距离好用，基拉夫特掉落。</p>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b01.png" alt="君王" /></p>
+<h4 id="射弹循环"><a class="markdownIt-Anchor" href="#射弹循环"></a> 射弹循环</h4>
+<p><strong>散弹枪</strong>，发射后会在敌人之间弹射，在敌人多的时候很好用，每当发出的攻击多一种元素时该枪会多射出一发子弹，配合盾雷失效附加额外元素伤害使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b02.png" alt="射弹循环" /></p>
+<h4 id="瘟疫传播者"><a class="markdownIt-Anchor" href="#瘟疫传播者"></a> 瘟疫传播者</h4>
+<p><strong>重型武器</strong>，高伤害，发射前需要蓄力。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b03.png" alt="瘟疫传播者" /></p>
+<h4 id="梅尔加尼的爆发"><a class="markdownIt-Anchor" href="#梅尔加尼的爆发"></a> 梅尔加尼的爆发</h4>
+<p><strong>工具枪</strong>，过热后发射易伤弹，配合飞龙+1受福，用来触发盾雷技能失效受福。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b04.png" alt="梅尔加尼的爆发" /></p>
+<h4 id="考桑"><a class="markdownIt-Anchor" href="#考桑"></a> 考桑</h4>
+<p><strong>冲锋枪</strong>，单体伤害，射速快。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b05.png" alt="考桑" /></p>
+<h4 id="沙鹰"><a class="markdownIt-Anchor" href="#沙鹰"></a> 沙鹰</h4>
+<p><strong>狙击枪</strong>，与其说是狙击枪，更像散弹枪，子弹微散射，远距离也可使用，射速极快，兽王来说子弹根本不够用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b06.png" alt="沙鹰" /></p>
+<h4 id="备胎"><a class="markdownIt-Anchor" href="#备胎"></a> 备胎</h4>
+<p><strong>重型武器</strong>，不用蓄力，伤害还不错。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b07.png" alt="备胎" /></p>
+<h4 id="头脑风暴者"><a class="markdownIt-Anchor" href="#头脑风暴者"></a> 头脑风暴者</h4>
+<p><strong>散弹枪</strong>，多弹片工具枪，可以利用加点中的被动<code>清点人数</code>有效的缩短主动技能的冷却时间。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b08.png" alt="头脑风暴者" /></p>
+<h4 id="不可饶恕"><a class="markdownIt-Anchor" href="#不可饶恕"></a> 不可饶恕</h4>
+<p><strong>手枪</strong>，工具枪，有高额的暴击伤害，配和高伤、弹速慢的武器切枪使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b09.png" alt="不可饶恕" /></p>
+<h4 id="变形金刚"><a class="markdownIt-Anchor" href="#变形金刚"></a> 变形金刚</h4>
+<p><strong>护盾</strong>，免疫电属性伤害并吸收为护盾，受福选择技能失效附加额外属性伤害。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b11.png" alt="变形金刚" /></p>
+<h4 id="赤红之牙"><a class="markdownIt-Anchor" href="#赤红之牙"></a> 赤红之牙</h4>
+<p><strong>模组</strong>，伽马爆发时嘲讽所有敌人，伽马流<code>核心</code>装备，不可缺少，属性看自己选择。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b12.png" alt="赤红之牙" /></p>
+<h4 id="六角"><a class="markdownIt-Anchor" href="#六角"></a> 六角</h4>
+<p><strong>手雷</strong>，受福选择技能失效附加额外属性伤害。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b13.png" alt="六角" /></p>
+<h4 id="吹雪不死"><a class="markdownIt-Anchor" href="#吹雪不死"></a> 吹雪不死</h4>
+<p><strong>神器</strong>，吹雪可以提高滑铲速度，跑路快；不死可以是自己保留<code>1</code>点生命值，用来触发武器受福<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b14.png" alt="吹雪不死" /></p>
+<h4 id="吹雪胜利突袭"><a class="markdownIt-Anchor" href="#吹雪胜利突袭"></a> 吹雪胜利突袭</h4>
+<p><strong>神器</strong> 备用神器，不采用压血流时使用。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b10.png" alt="吹雪胜利突袭" /></p>
+<h3 id="玩法"><a class="markdownIt-Anchor" href="#玩法"></a> 玩法</h3>
+<p>伽马兽王应该时兽王职业中最安逸的流派了，伽马爆发时儿子的全图嘲讽可以给兽王提供良好的输出环境，输出时配合切飞龙，可以大幅提高伤害。技能冷却时，配合头脑风暴/射弹循环可以迅速使下一次技能准备就绪，然后继续输出。</p>
 ]]></content>
       <categories>
-        <category>blog</category>
+        <category>games</category>
       </categories>
       <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
-        <tag>hexo</tag>
+        <tag>伽马兽王</tag>
+        <tag>borderlands3</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>记录</title>
-    <url>/posts/2020-08-005.html</url>
-    <content><![CDATA[<ol>
-<li>
-<p>楼下一个男人病得要死，那间壁的一家唱着留声机；对面是弄孩子。楼上有两人狂笑；还有打牌声。河中的船上有女人哭着她死去的母亲。 人类的悲欢并不相通，我只觉得他们吵闹。  —鲁迅《而已集》的《小杂感》</p>
-</li>
-<li>
-<p>We used to look up at the sky and wonder at our place in the stars, now we just look down and worry about our place in the dirt. —《Interstellar》<br />
-我们曾经仰望星空，思考我们在宇宙中的位置，而现在我们只会低着头，担心如何在这片土地上活下去。—《星际穿越》</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
   </entry>
   <entry>
     <title>基于雷达探测技术和stm32平台的自动避障智能车</title>
@@ -1921,328 +2229,23 @@ $y = d \times cos \left( \theta \right)$
       </tags>
   </entry>
   <entry>
-    <title>Win32显示图像</title>
-    <url>/posts/2020-09-001.html</url>
-    <content><![CDATA[<p>在windows下将数据以位图的方式显示：</p>
-<pre><code>//变量定义
-
-HWND hWnd;              //窗口句柄定义
-HDC hdc_mem;            //缓冲句柄
-HBITMAP screen_hb ;		// DIB
-HBITMAP screen_ob ;		// 老的 BITMAP
-void* buffer;           //数据存储区
-
-BITMAPINFO bi = { { sizeof(BITMAPINFOHEADER), 100, 100, 1, 24, BI_RGB,
-       100 * 100 * 3, 0, 0, 0, 0 } };
-//初始化配置
-HDC hdc = GetDC(hWnd);
-hdc_mem = CreateCompatibleDC(hdc);
-screen_hb = CreateDIBSection(hdc_mem, &amp;bi, DIB_RGB_COLORS, (void**)&amp;buffer, NULL, 0);   
-if (screen_hb == NULL) return -3;
-screen_ob = (HBITMAP)SelectObject(hdc_mem, screen_hb);
-ReleaseDC(hWnd, hdc);
-
-//显示数据  dat为位图数据指针，size为1像素所占字节大小
-ImageLoad(void* dat, int width, int height,int size)
-{
-    if (hdc_mem &amp;&amp; screen_hb)
-    {
-        HDC hDC = GetDC(hWnd);
-        memcpy(buffer, dat, width * height * size);
-        BitBlt(hDC, 0, 0, width, height, hdc_mem, 0, 0, SRCCOPY);
-        ReleaseDC(hWnd, hDC);
-    }
-}
-</code></pre>
-<p>CreateDIBSection函数中的第四个参数非常重要，这个参数是一个指针，指向存储位图数据的一块内存。我们传递给函数一个指针变量后，函数自动分配一块内存出来，这块内存自动分配，自动释放。在配置好后，我们将位图数据放置到这块内存中，在调用BitBlt就可以显示图像了。<br />
-做这个的原因是，自己准备学习3d render需要显示，如果加载QT\SDL库有点大材小用，并且网上一些其他的用来显示的加了很多其他功能代码，总体的代码量有点多。</p>
+    <title>记录</title>
+    <url>/posts/2020-08-005.html</url>
+    <content><![CDATA[<ol>
+<li>
+<p>楼下一个男人病得要死，那间壁的一家唱着留声机；对面是弄孩子。楼上有两人狂笑；还有打牌声。河中的船上有女人哭着她死去的母亲。 人类的悲欢并不相通，我只觉得他们吵闹。  —鲁迅《而已集》《小杂感》</p>
+</li>
+<li>
+<p>We used to look up at the sky and wonder at our place in the stars, now we just look down and worry about our place in the dirt. —《Interstellar》<br />
+我们曾经仰望星空，思考我们在宇宙中的位置，而现在我们只会低着头，担心如何在这片土地上活下去。—《星际穿越》</p>
+</li>
+<li>
+<p>弱小和无知不是生存的障碍，傲慢才是。 —《三体》</p>
+</li>
+</ol>
 ]]></content>
       <categories>
-        <category>C/C++</category>
+        <category>others</category>
       </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>CreateDIBSection</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>3D-Render</title>
-    <url>/posts/2020-09-002.html</url>
-    <content><![CDATA[<p>选择Sokolov的<a href="https://github.com/ssloy/tinyrenderer" target="_blank" rel="noopener">Tiny Renderer</a>教程开始入门。<br />
-Sokolov从一个最简单的画点函数开始，一个小节一个小节地讲解怎么画出一条线，怎么填充一个面，怎么逐步加入背面剔除、深度测试、透视相机、着色器等高级功能。每个小节的课程都有详细的讲解以及完整的实现代码可供参考。这个教程一共有9个小节，只要学到第6个小节我们就已经可以实现一个具有可编程渲染管线的软件渲染器了，而这时候的总代码量只有500行而已，可以说是非常简洁适合入门了。</p>
-<p>本文只记录在学习过程中遇到的一些问题，和自己的一些想法</p>
-<h3 id="lesson-1-bresenhams-line-drawing-algorithm"><a class="markdownIt-Anchor" href="#lesson-1-bresenhams-line-drawing-algorithm"></a> Lesson 1 Bresenham’s Line Drawing Algorithm</h3>
-<h4 id="second-attempt中"><a class="markdownIt-Anchor" href="#second-attempt中"></a> Second attempt中</h4>
-<pre><code>void line(int x0, int y0, int x1, int y1, TGAImage &amp;image, TGAColor color) { 
-    for (int x=x0; x&lt;=x1; x++) { 
-        float t = (x-x0)/(float)(x1-x0); 
-        int y = y0*(1.-t) + y1*t; 
-        image.set(x, y, color); 
-    } 
-}
-</code></pre>
-<p>它默认从x0到x1递增画线，而没有考虑到x0和x1的大小。如果x0&gt;x1，此函数就没有作用。</p>
-<h4 id="从fourth-attempt-continued-到-fifth-and-final-attempt的优化中"><a class="markdownIt-Anchor" href="#从fourth-attempt-continued-到-fifth-and-final-attempt的优化中"></a> 从Fourth attempt continued 到 fifth and final attempt的优化中</h4>
-<p>Fourth attempt continued</p>
-<pre><code>void line(int x0, int y0, int x1, int y1, TGAImage &amp;image, TGAColor color) { 
-    bool steep = false; 
-    if (std::abs(x0-x1)&lt;std::abs(y0-y1)) { 
-        std::swap(x0, y0); 
-        std::swap(x1, y1); 
-        steep = true; 
-    } 
-    if (x0&gt;x1) { 
-        std::swap(x0, x1); 
-        std::swap(y0, y1); 
-    } 
-    int dx = x1-x0; 
-    int dy = y1-y0; 
-    float derror = std::abs(dy/float(dx)); 
-    float error = 0; 
-    int y = y0; 
-    for (int x=x0; x&lt;=x1; x++) { 
-        if (steep) { 
-            image.set(y, x, color); 
-        } else { 
-            image.set(x, y, color); 
-        } 
-        error += derror; 
-        if (error&gt;.5) { 
-            y += (y1&gt;y0?1:-1); 
-            error -= 1.; 
-        } 
-    } 
-} 
-</code></pre>
-<p>fifth and final attempt</p>
-<pre><code>void line(int x0, int y0, int x1, int y1, TGAImage &amp;image, TGAColor color) { 
-    bool steep = false; 
-    if (std::abs(x0-x1)&lt;std::abs(y0-y1)) { 
-        std::swap(x0, y0); 
-        std::swap(x1, y1); 
-        steep = true; 
-    } 
-    if (x0&gt;x1) { 
-        std::swap(x0, x1); 
-        std::swap(y0, y1); 
-    } 
-    int dx = x1-x0; 
-    int dy = y1-y0; 
-    int derror2 = std::abs(dy)*2; 
-    int error2 = 0; 
-    int y = y0; 
-    for (int x=x0; x&lt;=x1; x++) { 
-        if (steep) { 
-            image.set(y, x, color); 
-        } else { 
-            image.set(x, y, color); 
-        } 
-        error2 += derror2; 
-        if (error2 &gt; dx) { 
-            y += (y1&gt;y0?1:-1); 
-            error2 -= dx*2; 
-        } 
-    } 
-} 
-</code></pre>
-<p>这个过程去掉了浮点数的运算，在Fourth attempt 中，我们可以发现 derror和error只是起到的比较大小的作用，对于y的值没有影响。所以我们可以将derror乘上一个值 2dx 消去浮点数。至于为什么要乘 2dx，</p>
-<ul>
-<li>derror中有 /dx，所以×dx消去了derror中的浮点。</li>
-<li>error和0.5比较，所以x2 消去了浮点比较。</li>
-</ul>
-<h4 id="wireframe-rendering"><a class="markdownIt-Anchor" href="#wireframe-rendering"></a> Wireframe rendering</h4>
-<p>在当前版本的代码中并没有<code>model-&gt;face(i);</code> 这一函数。我们可以在model类中加入下面一行实现。</p>
-<pre><code>std::vector&lt;int&gt; face(int i) { return std::vector&lt;int&gt;(facet_vrt_.begin() + i*3, facet_vrt_.begin() + i*3 + 3); }
-</code></pre>
-<p>阅读源码可知 facet_vrt_ 变量里面存储的是三角形的顶点坐标的索引，也就是我们需要画的线的端点的索引。</p>
-<p>然后 <code>Vec3f</code> 改成 <code>vec3</code>。</p>
-<p>最终</p>
-<pre><code>Model *model = new Model(&quot;obj\\african_head\\african_head.obj&quot;);
-for (int i = 0; i &lt; model-&gt;nfaces(); i++) {
-    std::vector&lt;int&gt; face = model-&gt;face(i);
-    for (int j = 0; j &lt; 3; j++) {
-        vec3 v0 = model-&gt;vert(face[j]);
-        vec3 v1 = model-&gt;vert(face[(j + 1) % 3]);
-        int x0 = (v0.x + 1.) * width / 2.;
-        int y0 = (v0.y + 1.) * height / 2.;
-        int x1 = (v1.x + 1.) * width / 2.;
-        int y1 = (v1.y + 1.) * height / 2.;
-        line(x0, y0, x1, y1, image, white);
-    }
-}
-</code></pre>
-<p>实现效果<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/african_head.png" alt="face" /></p>
-<h3 id="lesson-2-triangle-rasterization-and-back-face-culling"><a class="markdownIt-Anchor" href="#lesson-2-triangle-rasterization-and-back-face-culling"></a> Lesson 2 Triangle rasterization and back face culling</h3>
-<p>这一节介绍了填充三角形的两种基本方法。</p>
-<h4 id="old-school-method-line-sweeping-即通过一条条的线段绘制成图形"><a class="markdownIt-Anchor" href="#old-school-method-line-sweeping-即通过一条条的线段绘制成图形"></a> Old-school method: Line sweeping 即通过一条条的线段绘制成图形</h4>
-<p>这种是原始的，我们自己能想到的代码，缺点是对多线程的支持较差。</p>
-<h4 id="the-method-i-adopt-for-my-code"><a class="markdownIt-Anchor" href="#the-method-i-adopt-for-my-code"></a> The method I adopt for my code</h4>
-<pre><code>Vec3f barycentric(Vec2i *pts, Vec2i P) { 
-    Vec3f u = cross(Vec3f(pts[2][0]-pts[0][0], pts[1][0]-pts[0][0], pts[0][0]-P[0]), Vec3f(pts[2][1]-pts[0][1], pts[1][1]-pts[0][1], pts[0][1]-P[1]));
-    /* `pts` and `P` has integer value as coordinates
-    so `abs(u[2])` &lt; 1 means `u[2]` is 0, that means
-    triangle is degenerate, in this case return something with negative coordinates */
-    if (std::abs(u[2])&lt;1) return Vec3f(-1,1,1);
-    return Vec3f(1.f-(u.x+u.y)/u.z, u.y/u.z, u.x/u.z); 
-} 
-
-void triangle(Vec2i *pts, TGAImage &amp;image, TGAColor color) { 
-    Vec2i bboxmin(image.get_width()-1,  image.get_height()-1); 
-    Vec2i bboxmax(0, 0); 
-    Vec2i clamp(image.get_width()-1, image.get_height()-1); 
-    for (int i=0; i&lt;3; i++) { 
-        for (int j=0; j&lt;2; j++) { 
-            bboxmin[j] = std::max(0,        std::min(bboxmin[j], pts[i][j])); 
-            bboxmax[j] = std::min(clamp[j], std::max(bboxmax[j], pts[i][j])); 
-        } 
-    } 
-    Vec2i P; 
-    for (P.x=bboxmin.x; P.x&lt;=bboxmax.x; P.x++) { 
-        for (P.y=bboxmin.y; P.y&lt;=bboxmax.y; P.y++) { 
-            Vec3f bc_screen  = barycentric(pts, P); 
-            if (bc_screen.x&lt;0 || bc_screen.y&lt;0 || bc_screen.z&lt;0) continue; 
-            image.set(P.x, P.y, color); 
-        } 
-    } 
-} 
-</code></pre>
-<p>barycentric函数的功能是，随机给定一个点P，判断这个点是否在这个三角形ABC内部，原理就是计算P点相对于三角形ABC的重心坐标（不同于我们原来学习认识到的重心坐标），通过重心坐标的值来判断是否在三角形ABC内部。具体公式见<a href="https://zhuanlan.zhihu.com/p/65495373" target="_blank" rel="noopener">三角形重心坐标</a><br />
-填充方法就是遍历所有三角形所在的正方形区域中的所有点，对于位于三角形内部的点进行上色填充。</p>
-<h4 id="flat-shading-render"><a class="markdownIt-Anchor" href="#flat-shading-render"></a> Flat shading render</h4>
-<p>光照强度（白色强度）等于光向量和给定三角形的法线的标量乘积。三角形的法线可以简单地计算为其两边的叉乘。<br />
-效果<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/flat_render.png" alt="face" /></p>
-<h3 id="lesson-3-hidden-faces-removal-z-buffer"><a class="markdownIt-Anchor" href="#lesson-3-hidden-faces-removal-z-buffer"></a> Lesson 3 Hidden faces removal (z buffer)</h3>
-<h4 id="even-simpler-let-us-lose-a-dimension-y-buffer"><a class="markdownIt-Anchor" href="#even-simpler-let-us-lose-a-dimension-y-buffer"></a> Even simpler: let us lose a dimension. Y-buffer!</h4>
-<p>这一节，展示如何通过1D图像和Y-buffer来演示2D图像。</p>
-<h4 id="back-to-3d"><a class="markdownIt-Anchor" href="#back-to-3d"></a> Back to 3D</h4>
-<pre><code>triangle(screen_coords, float *zbuffer, image, TGAColor(intensity*255, intensity*255, intensity*255, 255));
-
-[...]
-
-void triangle(Vec3f *pts, float *zbuffer, TGAImage &amp;image, TGAColor color) {
-    Vec2f bboxmin( std::numeric_limits&lt;float&gt;::max(),  std::numeric_limits&lt;float&gt;::max());
-    Vec2f bboxmax(-std::numeric_limits&lt;float&gt;::max(), -std::numeric_limits&lt;float&gt;::max());
-    Vec2f clamp(image.get_width()-1, image.get_height()-1);
-    for (int i=0; i&lt;3; i++) {
-        for (int j=0; j&lt;2; j++) {
-            bboxmin[j] = std::max(0.f,      std::min(bboxmin[j], pts[i][j]));
-            bboxmax[j] = std::min(clamp[j], std::max(bboxmax[j], pts[i][j]));
-        }
-    }
-    Vec3f P;
-    for (P.x=bboxmin.x; P.x&lt;=bboxmax.x; P.x++) {
-        for (P.y=bboxmin.y; P.y&lt;=bboxmax.y; P.y++) {
-            Vec3f bc_screen  = barycentric(pts[0], pts[1], pts[2], P);
-            if (bc_screen.x&lt;0 || bc_screen.y&lt;0 || bc_screen.z&lt;0) continue;
-            P.z = 0;
-            for (int i=0; i&lt;3; i++) P.z += pts[i][2]*bc_screen[i];
-             //未隐藏的部分会覆盖隐藏的部分，但隐藏的部分不会覆盖未隐藏的部分，这也是与上一节不同的地方。
-            if (zbuffer[int(P.x+P.y*width)]&lt;P.z) {  
-                zbuffer[int(P.x+P.y*width)] = P.z;
-                image.set(P.x, P.y, color);
-            }
-        }
-    }
-}
-</code></pre>
-<h4 id="diffuse-texture"><a class="markdownIt-Anchor" href="#diffuse-texture"></a> Diffuse texture</h4>
-<p>在.obj文件中有一行是以&quot;vt u v”开始的，这是纹理坐标数组。&quot;f x/x/x x/x/x x/x/x&quot;中间的x是这个三角形的纹理坐标，将其插入三角形内，乘以纹理图像的宽度和高度，你会得到你需要放到渲染器中的颜色。<br />
-上面比较难懂，以画一个三角形为例，我再说明一下，</p>
-<ul>
-<li>以vt开头的行，&quot;vt u v 0” 这是纹理坐标数组，也就是纹理图中缩小的相应的点(u,v)，我们读取后放到vex_t中</li>
-<li>以f开头的行，例如 “f a1/b1/c1 a2/b2/c2 a3/b3/c3” a1,a2,a3时三角形三个顶点坐标的索引，设vex为顶点坐标数组，vex[a1]=[x,y,z] (x,y,z)就是三角形一个顶点的坐标，就是a1索引对应的坐标。</li>
-<li>b1,b2,b3就是三个顶点a1,a2,a3对应的三角形的纹理坐标索引，例如vex_t[b1]=[u,v]，(u,v)就是a1对应的纹理坐标。</li>
-<li>再画一个点时，根据这个点在三角形内的位置，获得一个相对于三个纹理坐标的，相对应的点的纹理坐标。具体方法是三个纹理坐标分别乘这个点相对于三角形的三个顶点的重心坐标，再求和就得到了这个纹理坐标(u,v)，然后u乘以纹理图像的宽度,v乘以纹理图像的高度，即可获得该点在纹理图像中的坐标，通过纹理图像，也就获得了该点应该渲染的颜色。</li>
-</ul>
-<p>这个是画好的效果<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/head_texture.png" alt="face" /><br />
-如果想要得到和教程中图片一样的，能够看到三角形边缘的效果，可以将得到的RGB颜色乘上之前计算得到的光照强度intensity。</p>
-<h3 id="lesson-4-perspective-projection"><a class="markdownIt-Anchor" href="#lesson-4-perspective-projection"></a> Lesson 4 Perspective projection</h3>
-<p>首要要明白其次坐标系，之后就简单了。</p>
-<p>先将3d坐标转化成其次坐标，然后左乘一个矩阵，这个矩阵就是投影作用，矩阵的值单位矩阵在第四行前三个值进行修改，分别对应x，y，z轴上的投影。</p>
-<h3 id="lesson-5-moving-the-camera"><a class="markdownIt-Anchor" href="#lesson-5-moving-the-camera"></a> Lesson 5 Moving the camera</h3>
-<h4 id="chain-of-coordinate-transformations"><a class="markdownIt-Anchor" href="#chain-of-coordinate-transformations"></a> Chain of coordinate transformations</h4>
-<pre><code>Vec3f v = model-&gt;vert(face[j]);
-//viewport 映射到图像上，projection 投影 modelview 摄像机
-pts[j] = m2v(viewport * projection * modelview * v2m(v));
-</code></pre>
-<ul>
-<li>modelview 将模型中的坐标转化成像机坐标系中的坐标。如果我们想移动摄像头，我们可以移动所有的场景，让摄像头不动。</li>
-<li>projection 上节的投影</li>
-<li>viewport 模型坐标的值的范围是[-1,1]，这样无法显示到屏幕上，通过这个变换，使模型能够贴合屏幕。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/chain.png" alt="face" /></li>
-</ul>
-<h4 id="在将坐标矩阵重新转化回坐标点进行显示的时候要注意浮点的变化也就是4舍5入否则可能出现黑线或者黑块"><a class="markdownIt-Anchor" href="#在将坐标矩阵重新转化回坐标点进行显示的时候要注意浮点的变化也就是4舍5入否则可能出现黑线或者黑块"></a> 在将坐标矩阵重新转化回坐标点进行显示的时候要注意浮点的变化，也就是4舍5入，否则可能出现黑线或者黑块。</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/chain_error.png" alt="face" /></p>
-<h3 id="lesson-6-shaders-for-the-software-renderer"><a class="markdownIt-Anchor" href="#lesson-6-shaders-for-the-software-renderer"></a> Lesson 6 Shaders for the software renderer</h3>
-<p>这一节首先整理了之前的代码，然后把着色器这一块拿出来进行修改。</p>
-<p>最终的效果可以理解为几种纹理图像的叠加。</p>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C/C++</tag>
-        <tag>3D渲染</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cocos2dx</title>
-    <url>/posts/2020-09-003.html</url>
-    <content><![CDATA[<h2 id="记录cocos2dx的学习历程和遇到的坑-版本40"><a class="markdownIt-Anchor" href="#记录cocos2dx的学习历程和遇到的坑-版本40"></a> 记录cocos2dx的学习历程和遇到的坑。 版本4.0</h2>
-<h3 id="坐标系问题"><a class="markdownIt-Anchor" href="#坐标系问题"></a> 坐标系问题</h3>
-<ul>
-<li>对于精灵，坐标系从左下开始向右上增长，x轴从左向右。例如 sprite-&gt;setPosition(Vec2(0, 0)); 设置精灵为左下角。</li>
-<li>对于鼠标，坐标系从左上方开始向右下增长，x轴从左向右。例如 Point pt = e-&gt;getLocation(); pt={0,0}代表鼠标位于左上角。</li>
-</ul>
-<h3 id="鼠标控制事件"><a class="markdownIt-Anchor" href="#鼠标控制事件"></a> 鼠标控制事件</h3>
-<p>对于鼠标事件，cocos官方文档中对于4.0版本中还未更新。我们可以同过如下方式实现鼠标对于精灵的控制。</p>
-<pre><code>static bool mouse_down = false;
-auto myMouseListener = EventListenerMouse::create();
-myMouseListener-&gt;onMouseDown = [=](Event* event)
-{
-    EventMouse* e = (EventMouse*)event;
-    Point pt = e-&gt;getLocation();
-    pt.y = visibleSize.height - pt.y;
-    Rect rect = charac-&gt;getBoundingBox();
-    //log(&quot;point x:%f,y%f&quot;, pt.x, pt.y);
-
-    if (rect.containsPoint(pt))
-    {
-      //  log(&quot;rect x:%f,y%f&quot;, rect.origin.x, rect.origin.y);
-        mouse_down = true;
-        charac-&gt;setPosition(pt);
-
-    }
-   
-};
-myMouseListener-&gt;onMouseUp = [=](Event* event)
-{
-    mouse_down = false;
-};
-//鼠标移动
-myMouseListener-&gt;onMouseMove = [=](Event* event)
-{
-    EventMouse* e = (EventMouse*)event;
-    Point pt = e-&gt;getLocation();
-    pt.y = visibleSize.height - pt.y;
-
-    if (mouse_down )
-    {
-       charac-&gt;setPosition( pt);
-    }
-};
-_eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, this);
-</code></pre>
-<h3 id="setuserobject"><a class="markdownIt-Anchor" href="#setuserobject"></a> setUserObject</h3>
-<p>在使用setUserObject传值时，对应的参数要new，否则会出现莫名其妙的bug。</p>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>cocos2dx鼠标控制精灵</tag>
-      </tags>
   </entry>
 </search>
