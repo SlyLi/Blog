@@ -2235,6 +2235,8 @@ myMouseListener-&gt;onMouseMove = [=](Event* event)
 };
 _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, this);
 </code></pre>
+<h3 id="setuserobject"><a class="markdownIt-Anchor" href="#setuserobject"></a> setUserObject</h3>
+<p>在使用setUserObject传值时，对应的参数要new，否则会出现莫名其妙的bug。</p>
 ]]></content>
       <categories>
         <category>C/C++</category>
