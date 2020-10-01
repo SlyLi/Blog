@@ -1423,7 +1423,7 @@ Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
 </code></pre>
 <h3 id="static"><a class="markdownIt-Anchor" href="#static"></a> static</h3>
 <p>在c++的类中，<s>对于static成员变量是否是private数据并没有影响，因为设定static成员变量初值时，不受任何存取权限的束缚</s>。在VS2019中对于类内的静态成员变量是由访问控制的，对于private的静态成员变量，只能在初始化时在类外操作。<br />
-static成员变量需要进行初始化操作。初始化时要带上类型名，并且不要带static。static成员变量是在初始化（而不是在类声明时候）才定义出来的。如果没有初始化操作，会产生链接错误。例如 ~ typename classname:: ~</p>
+static成员变量需要进行初始化操作。初始化时要带上类型名，并且不要带static。static成员变量是在初始化（而不是在类声明时候）才定义出来的。如果没有初始化操作，会产生链接错误。例如 ~ typename classname::membername; ~</p>
 <h3 id="lambda"><a class="markdownIt-Anchor" href="#lambda"></a> lambda</h3>
 <p>语法形式如下：<br />
 [capture](parameters)-&gt;return-type {body}<br />
