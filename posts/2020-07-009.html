@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ch-ZN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>c++学习 | Sly Li</title><meta name="description" content="virtual 虚函数 虚函数是指一个类中你希望重写(override)的成员函数，当你用一个基类指针或引用,指向一个继承类对象的时候，调用一个虚函数时, 实际调用的是继承类的版本。 class Animal { public :     void  Print()     {          cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl;"><meta name="keywords" content="C++,vitrual多态"><meta name="author" content="Sly Li"><meta name="copyright" content="Sly Li"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/favicon.png"><link rel="canonical" href="http://slyli.cn/posts/2020-07-009.html"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta name="msvalidate.01" content="40800d7ddbfe4bc789367280a8addd52"/><meta name="baidu-site-verification" content="G9pFOrKi8Sw1jxpS"/><meta property="og:type" content="article"><meta property="og:title" content="c++学习"><meta property="og:url" content="http://slyli.cn/posts/2020-07-009.html"><meta property="og:site_name" content="Sly Li"><meta property="og:description" content="virtual 虚函数 虚函数是指一个类中你希望重写(override)的成员函数，当你用一个基类指针或引用,指向一个继承类对象的时候，调用一个虚函数时, 实际调用的是继承类的版本。 class Animal { public :     void  Print()     {          cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl;"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cpplanguage.png"><meta property="article:published_time" content="2020-07-21T07:32:00.000Z"><meta property="article:modified_time" content="2020-09-29T13:53:20.687Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="ch-ZN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>c++学习 | Sly Li</title><meta name="description" content="virtural继承 class AAAA { int  a; }; class BBBB :public virtual AAAA { int b; char a; }; class CCCC :public virtual AAAA { int c; }; class DDDD :public BBBB, public CCCC { int d; };  内存分布：  AAAA 1&gt;c"><meta name="keywords" content="C++,vitrual多态"><meta name="author" content="Sly Li"><meta name="copyright" content="Sly Li"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/favicon.png"><link rel="canonical" href="http://slyli.cn/posts/2020-07-009.html"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta name="msvalidate.01" content="40800d7ddbfe4bc789367280a8addd52"/><meta name="baidu-site-verification" content="G9pFOrKi8Sw1jxpS"/><meta property="og:type" content="article"><meta property="og:title" content="c++学习"><meta property="og:url" content="http://slyli.cn/posts/2020-07-009.html"><meta property="og:site_name" content="Sly Li"><meta property="og:description" content="virtural继承 class AAAA { int  a; }; class BBBB :public virtual AAAA { int b; char a; }; class CCCC :public virtual AAAA { int c; }; class DDDD :public BBBB, public CCCC { int d; };  内存分布：  AAAA 1&gt;c"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cpplanguage.png"><meta property="article:published_time" content="2020-07-21T07:32:00.000Z"><meta property="article:modified_time" content="2020-10-01T15:55:57.195Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -102,7 +102,82 @@ if (autoChangeMode === '1') {
 .justified-gallery img{
   opacity: 1
 }
-</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/873441.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">22</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">28</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> Game</span></a></li><li><a class="site-page" href="https://cloud.slyli.cn/cloud/" target="_blank" rel="noopener"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#virtual-虚函数"><span class="toc-number">1.</span> <span class="toc-text"> virtual 虚函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#const"><span class="toc-number">2.</span> <span class="toc-text"> const</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#explicit"><span class="toc-number">3.</span> <span class="toc-text"> explicit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#static"><span class="toc-number">4.</span> <span class="toc-text"> static</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lambda"><span class="toc-number">5.</span> <span class="toc-text"> lambda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#others"><span class="toc-number">6.</span> <span class="toc-text"> Others</span></a></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cpplanguage.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Sly Li</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> Game</span></a></li><li><a class="site-page" href="https://cloud.slyli.cn/cloud/" target="_blank" rel="noopener"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">c++学习</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-07-21 15:32:00"><i class="far fa-calendar-alt fa-fw"></i> Created 2020-07-21</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-09-29 21:53:20"><i class="fas fa-history fa-fw"></i> Updated 2020-09-29</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/C-C/">C/C++</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>Word count:</span><span class="word-count">1.9k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>Reading time: 6 min</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"><span class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>Comments:</span><a href="/posts/2020-07-009.html#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/posts/2020-07-009.html" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/873441.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">22</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">28</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> Game</span></a></li><li><a class="site-page" href="https://cloud.slyli.cn/cloud/" target="_blank" rel="noopener"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#virtural继承"><span class="toc-number">1.</span> <span class="toc-text"> virtural继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#aaaa"><span class="toc-number">1.1.</span> <span class="toc-text"> AAAA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bbbb"><span class="toc-number">1.2.</span> <span class="toc-text"> BBBB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cccc"><span class="toc-number">1.3.</span> <span class="toc-text"> CCCC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dddd"><span class="toc-number">1.4.</span> <span class="toc-text"> DDDD</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#virtual-虚函数"><span class="toc-number">2.</span> <span class="toc-text"> virtual 虚函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#virtural继承下的虚函数"><span class="toc-number">3.</span> <span class="toc-text"> virtural继承下的虚函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#const"><span class="toc-number">4.</span> <span class="toc-text"> const</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#explicit"><span class="toc-number">5.</span> <span class="toc-text"> explicit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#static"><span class="toc-number">6.</span> <span class="toc-text"> static</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lambda"><span class="toc-number">7.</span> <span class="toc-text"> lambda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#others"><span class="toc-number">8.</span> <span class="toc-text"> Others</span></a></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cpplanguage.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Sly Li</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> Game</span></a></li><li><a class="site-page" href="https://cloud.slyli.cn/cloud/" target="_blank" rel="noopener"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">c++学习</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-07-21 15:32:00"><i class="far fa-calendar-alt fa-fw"></i> Created 2020-07-21</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-10-01 23:55:57"><i class="fas fa-history fa-fw"></i> Updated 2020-10-01</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/C-C/">C/C++</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>Word count:</span><span class="word-count">2.7k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>Reading time: 10 min</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"><span class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>Comments:</span><a href="/posts/2020-07-009.html#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/posts/2020-07-009.html" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h3 id="virtural继承"><a class="markdownIt-Anchor" href="#virtural继承"></a> virtural继承</h3>
+<pre><code>class AAAA { int  a; };
+class BBBB :public virtual AAAA { int b; char a; };
+class CCCC :public virtual AAAA { int c; };
+class DDDD :public BBBB, public CCCC { int d; };
+</code></pre>
+<p>内存分布：</p>
+<h4 id="aaaa"><a class="markdownIt-Anchor" href="#aaaa"></a> AAAA</h4>
+<pre><code>1&gt;class AAAA	size(4):
+1&gt;	+---
+1&gt; 0	| a
+1&gt;	+---
+</code></pre>
+<h4 id="bbbb"><a class="markdownIt-Anchor" href="#bbbb"></a> BBBB</h4>
+<pre><code>1&gt;class BBBB	size(20):
+1&gt;	+---
+1&gt; 0	| {vbptr}   虚基类指针，占8位
+1&gt; 8	| b
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;	+--- (virtual base AAAA)    虚基类中的a，占4位
+1&gt;16	| a
+1&gt;	+---
+1&gt;BBBB::$vbtable@:  虚基类表，偏移16的位置为虚基类AAAA
+1&gt; 0	| 0
+1&gt; 1	| 16 (BBBBd(BBBB+0)AAAA)
+1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;            AAAA      16       0       4 0
+</code></pre>
+<h4 id="cccc"><a class="markdownIt-Anchor" href="#cccc"></a> CCCC</h4>
+<pre><code>1&gt;class CCCC	size(20):
+1&gt;	+---
+1&gt; 0	| {vbptr}
+1&gt; 8	| c
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;	+--- (virtual base AAAA)
+1&gt;16	| a
+1&gt;	+---
+1&gt;CCCC::$vbtable@:
+1&gt; 0	| 0
+1&gt; 1	| 16 (CCCCd(CCCC+0)AAAA)
+1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;            AAAA      16       0       4 0
+</code></pre>
+<h4 id="dddd"><a class="markdownIt-Anchor" href="#dddd"></a> DDDD</h4>
+<pre><code>1&gt;class DDDD	size(44):
+1&gt;	+---
+1&gt; 0	| +--- (base class BBBB)
+1&gt; 0	| | {vbptr}
+1&gt; 8	| | b
+1&gt;  	| | &lt;alignment member&gt; (size=4)
+1&gt;  	| | &lt;alignment member&gt; (size=4)
+1&gt;	| +---
+1&gt;16	| +--- (base class CCCC)
+1&gt;16	| | {vbptr}
+1&gt;24	| | c
+1&gt;  	| | &lt;alignment member&gt; (size=4)
+1&gt;  	| | &lt;alignment member&gt; (size=4)
+1&gt;	| +---
+1&gt;32	| d
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;	+--- (virtual base AAAA)
+1&gt;40	| a
+1&gt;	+---
+1&gt;DDDD::$vbtable@BBBB@:
+1&gt; 0	| 0
+1&gt; 1	| 40 (DDDDd(BBBB+0)AAAA)
+1&gt;DDDD::$vbtable@CCCC@:
+1&gt; 0	| 0
+1&gt; 1	| 24 (DDDDd(CCCC+0)AAAA)
+1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;            AAAA      40       0       4 0
+</code></pre>
+<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
 <p>虚函数是指一个类中你希望重写(override)的成员函数，当你用一个基类指针或引用,指向一个继承类对象的时候，调用一个虚函数时, 实际调用的是继承类的版本。</p>
 <pre><code>class Animal {
 public :
@@ -149,6 +224,29 @@ int main(int argc, char** argv)
     d-&gt;Print();
 }
 </code></pre>
+<p>内存布局：</p>
+<pre><code>1&gt;class Animal	size(8):
+1&gt;	+---
+1&gt; 0	| {vfptr}   虚表指针
+1&gt;	+---
+1&gt;Animal::$vftable@:    虚函数表
+1&gt;	| &amp;Animal_meta
+1&gt;	|  0
+1&gt; 0	| &amp;Animal::Print    可能有多个虚函数
+1&gt;Animal::Print this adjustor: 0
+
+1&gt;class Dog	size(8):
+1&gt;	+---
+1&gt; 0	| +--- (base class Animal)
+1&gt; 0	| | {vfptr}
+1&gt;	| +---
+1&gt;	+---
+1&gt;Dog::$vftable@:
+1&gt;	| &amp;Dog_meta
+1&gt;	|  0
+1&gt; 0	| &amp;Dog::Print
+1&gt;Dog::Print this adjustor: 0
+</code></pre>
 <p>使用<code>virtual</code>后，函数的输出是<code>Dog</code></p>
 <p>没有使用virtual之前，C++对成员函数使用静态绑定，函数的调用地址在运行前就已经固定。不考虑指针指向的内容，对于什么类型的指针就调用什么类型的函数。<br />
 对于虚函数，每个派生类对象都有一个指向虚函数表的指针，访问任何虚函数都是间接通过这个指针进行的，之所以要用虚函数表，是因为调用一个虚函数的哪个版本是在运行过程（调用时指针所指的对象）才能确定的（动态绑定）。</p>
@@ -183,6 +281,68 @@ int main()
 }
 </code></pre>
 <p>在编译之前，函数模板中t.shout()调用的是哪个接口并不确定。在编译期间，编译器推断出模板参数，因此确定调用的shout是哪个具体类型的接口。不同的推断结果调用不同的函数，这就是编译器多态。</p>
+<h3 id="virtural继承下的虚函数"><a class="markdownIt-Anchor" href="#virtural继承下的虚函数"></a> virtural继承下的虚函数</h3>
+<pre><code>class Base {
+public:
+    int x;
+    virtual void func() {  };
+    virtual void func1() {  };
+    virtual void func2() {  };
+};
+class Derive:public virtual Base {
+public:
+    int y;
+    virtual void func1() {  };
+    virtual void func2() {  };
+    virtual void func3() {  };
+};
+</code></pre>
+<p>内存布局</p>
+<pre><code>1&gt;class Base	size(16):
+1&gt;	+---
+1&gt; 0	| {vfptr}
+1&gt; 8	| x
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;Base::$vftable@:
+1&gt;	| &amp;Base_meta
+1&gt;	|  0
+1&gt; 0	| &amp;Base::func
+1&gt; 1	| &amp;Base::func1
+1&gt; 2	| &amp;Base::func2
+1&gt;Base::func this adjustor: 0
+1&gt;Base::func1 this adjustor: 0
+1&gt;Base::func2 this adjustor: 0
+1&gt;class Derive	size(40):
+1&gt;	+---
+1&gt; 0	| {vfptr}
+1&gt; 8	| {vbptr}
+1&gt;16	| y
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;	+--- (virtual base Base)
+1&gt;24	| {vfptr}
+1&gt;32	| x
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;Derive::$vftable@Derive@:
+1&gt;	| &amp;Derive_meta
+1&gt;	|  0
+1&gt; 0	| &amp;Derive::func3
+1&gt;Derive::$vbtable@:
+1&gt; 0	| -8
+1&gt; 1	| 16 (Derived(Derive+8)Base)
+1&gt;Derive::$vftable@Base@:
+1&gt;	| -24
+1&gt; 0	| &amp;Base::func
+1&gt; 1	| &amp;Derive::func1
+1&gt; 2	| &amp;Derive::func2
+1&gt;Derive::func1 this adjustor: 24
+1&gt;Derive::func2 this adjustor: 24
+1&gt;Derive::func3 this adjustor: 0
+1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;            Base      24       8       4 0
+</code></pre>
 <h3 id="const"><a class="markdownIt-Anchor" href="#const"></a> <code>const</code></h3>
 <ul>
 <li>
@@ -212,7 +372,8 @@ Demo d1(param);
 Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
 </code></pre>
 <h3 id="static"><a class="markdownIt-Anchor" href="#static"></a> static</h3>
-<p>在c++的类中，对于static成员变量是否是private数据并没有影响，因为设定static成员变量初值时，不受任何存取权限的束缚。static成员变量需要进行初始化操作。初始化时要带上类型名，并且不要带static。static成员变量是在初始化（而不是在类声明时候）才定义出来的。如果没有初始化操作，会产生链接错误：</p>
+<p>在c++的类中，<s>对于static成员变量是否是private数据并没有影响，因为设定static成员变量初值时，不受任何存取权限的束缚</s>。在VS2019中对于类内的静态成员变量是由访问控制的，对于private的静态成员变量，只能在初始化时在类外操作。<br />
+static成员变量需要进行初始化操作。初始化时要带上类型名，并且不要带static。static成员变量是在初始化（而不是在类声明时候）才定义出来的。如果没有初始化操作，会产生链接错误。例如 ~ typename classname:: ~</p>
 <h3 id="lambda"><a class="markdownIt-Anchor" href="#lambda"></a> lambda</h3>
 <p>语法形式如下：<br />
 [capture](parameters)-&gt;return-type {body}<br />
@@ -279,7 +440,7 @@ capture:</p>
 </li>
 <li></li>
 </ol>
-</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Sly Li</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://slyli.cn/posts/2020-07-009.html">http://slyli.cn/posts/2020-07-009.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C++</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/slyli/img1/wallpapper/digitalart-1518055361254-315.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/2020-07-010.html"><img class="prev-cover" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/python.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">小说网站爬虫</div></div></a></div><div class="next-post pull-right"><a href="/posts/2020-07-008.html"><img class="next-cover" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/lr1.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">LinearRegression--python</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/posts/2020-09-001.html" title="Win32显示图像"><img class="relatedPosts_cover" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-5we787.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fas fa-history fa-fw"></i> 2020-09-02</div><div class="relatedPosts_title">Win32显示图像</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var requestSetting = function (from,set) {
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Sly Li</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://slyli.cn/posts/2020-07-009.html">http://slyli.cn/posts/2020-07-009.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C++</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-09/african_head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/2020-07-010.html"><img class="prev-cover" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/python.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">小说网站爬虫</div></div></a></div><div class="next-post pull-right"><a href="/posts/2020-07-008.html"><img class="next-cover" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/lr1.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">LinearRegression--python</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/posts/2020-09-001.html" title="Win32显示图像"><img class="relatedPosts_cover" data-src="https://cdn.jsdelivr.net/gh/slyli/img1/wallhaven/wallhaven-5we787.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fas fa-history fa-fw"></i> 2020-09-02</div><div class="relatedPosts_title">Win32显示图像</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var requestSetting = function (from,set) {
   var from = from
   var setting = set.split(',').filter(function(item){
   return from.indexOf(item) > -1

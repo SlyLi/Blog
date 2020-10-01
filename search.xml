@@ -1152,7 +1152,82 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
   <entry>
     <title>c++学习</title>
     <url>/posts/2020-07-009.html</url>
-    <content><![CDATA[<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
+    <content><![CDATA[<h3 id="virtural继承"><a class="markdownIt-Anchor" href="#virtural继承"></a> virtural继承</h3>
+<pre><code>class AAAA { int  a; };
+class BBBB :public virtual AAAA { int b; char a; };
+class CCCC :public virtual AAAA { int c; };
+class DDDD :public BBBB, public CCCC { int d; };
+</code></pre>
+<p>内存分布：</p>
+<h4 id="aaaa"><a class="markdownIt-Anchor" href="#aaaa"></a> AAAA</h4>
+<pre><code>1&gt;class AAAA	size(4):
+1&gt;	+---
+1&gt; 0	| a
+1&gt;	+---
+</code></pre>
+<h4 id="bbbb"><a class="markdownIt-Anchor" href="#bbbb"></a> BBBB</h4>
+<pre><code>1&gt;class BBBB	size(20):
+1&gt;	+---
+1&gt; 0	| {vbptr}   虚基类指针，占8位
+1&gt; 8	| b
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;	+--- (virtual base AAAA)    虚基类中的a，占4位
+1&gt;16	| a
+1&gt;	+---
+1&gt;BBBB::$vbtable@:  虚基类表，偏移16的位置为虚基类AAAA
+1&gt; 0	| 0
+1&gt; 1	| 16 (BBBBd(BBBB+0)AAAA)
+1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;            AAAA      16       0       4 0
+</code></pre>
+<h4 id="cccc"><a class="markdownIt-Anchor" href="#cccc"></a> CCCC</h4>
+<pre><code>1&gt;class CCCC	size(20):
+1&gt;	+---
+1&gt; 0	| {vbptr}
+1&gt; 8	| c
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;	+--- (virtual base AAAA)
+1&gt;16	| a
+1&gt;	+---
+1&gt;CCCC::$vbtable@:
+1&gt; 0	| 0
+1&gt; 1	| 16 (CCCCd(CCCC+0)AAAA)
+1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;            AAAA      16       0       4 0
+</code></pre>
+<h4 id="dddd"><a class="markdownIt-Anchor" href="#dddd"></a> DDDD</h4>
+<pre><code>1&gt;class DDDD	size(44):
+1&gt;	+---
+1&gt; 0	| +--- (base class BBBB)
+1&gt; 0	| | {vbptr}
+1&gt; 8	| | b
+1&gt;  	| | &lt;alignment member&gt; (size=4)
+1&gt;  	| | &lt;alignment member&gt; (size=4)
+1&gt;	| +---
+1&gt;16	| +--- (base class CCCC)
+1&gt;16	| | {vbptr}
+1&gt;24	| | c
+1&gt;  	| | &lt;alignment member&gt; (size=4)
+1&gt;  	| | &lt;alignment member&gt; (size=4)
+1&gt;	| +---
+1&gt;32	| d
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;	+--- (virtual base AAAA)
+1&gt;40	| a
+1&gt;	+---
+1&gt;DDDD::$vbtable@BBBB@:
+1&gt; 0	| 0
+1&gt; 1	| 40 (DDDDd(BBBB+0)AAAA)
+1&gt;DDDD::$vbtable@CCCC@:
+1&gt; 0	| 0
+1&gt; 1	| 24 (DDDDd(CCCC+0)AAAA)
+1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;            AAAA      40       0       4 0
+</code></pre>
+<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
 <p>虚函数是指一个类中你希望重写(override)的成员函数，当你用一个基类指针或引用,指向一个继承类对象的时候，调用一个虚函数时, 实际调用的是继承类的版本。</p>
 <pre><code>class Animal {
 public :
@@ -1199,6 +1274,29 @@ int main(int argc, char** argv)
     d-&gt;Print();
 }
 </code></pre>
+<p>内存布局：</p>
+<pre><code>1&gt;class Animal	size(8):
+1&gt;	+---
+1&gt; 0	| {vfptr}   虚表指针
+1&gt;	+---
+1&gt;Animal::$vftable@:    虚函数表
+1&gt;	| &amp;Animal_meta
+1&gt;	|  0
+1&gt; 0	| &amp;Animal::Print    可能有多个虚函数
+1&gt;Animal::Print this adjustor: 0
+
+1&gt;class Dog	size(8):
+1&gt;	+---
+1&gt; 0	| +--- (base class Animal)
+1&gt; 0	| | {vfptr}
+1&gt;	| +---
+1&gt;	+---
+1&gt;Dog::$vftable@:
+1&gt;	| &amp;Dog_meta
+1&gt;	|  0
+1&gt; 0	| &amp;Dog::Print
+1&gt;Dog::Print this adjustor: 0
+</code></pre>
 <p>使用<code>virtual</code>后，函数的输出是<code>Dog</code></p>
 <p>没有使用virtual之前，C++对成员函数使用静态绑定，函数的调用地址在运行前就已经固定。不考虑指针指向的内容，对于什么类型的指针就调用什么类型的函数。<br />
 对于虚函数，每个派生类对象都有一个指向虚函数表的指针，访问任何虚函数都是间接通过这个指针进行的，之所以要用虚函数表，是因为调用一个虚函数的哪个版本是在运行过程（调用时指针所指的对象）才能确定的（动态绑定）。</p>
@@ -1233,6 +1331,68 @@ int main()
 }
 </code></pre>
 <p>在编译之前，函数模板中t.shout()调用的是哪个接口并不确定。在编译期间，编译器推断出模板参数，因此确定调用的shout是哪个具体类型的接口。不同的推断结果调用不同的函数，这就是编译器多态。</p>
+<h3 id="virtural继承下的虚函数"><a class="markdownIt-Anchor" href="#virtural继承下的虚函数"></a> virtural继承下的虚函数</h3>
+<pre><code>class Base {
+public:
+    int x;
+    virtual void func() {  };
+    virtual void func1() {  };
+    virtual void func2() {  };
+};
+class Derive:public virtual Base {
+public:
+    int y;
+    virtual void func1() {  };
+    virtual void func2() {  };
+    virtual void func3() {  };
+};
+</code></pre>
+<p>内存布局</p>
+<pre><code>1&gt;class Base	size(16):
+1&gt;	+---
+1&gt; 0	| {vfptr}
+1&gt; 8	| x
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;Base::$vftable@:
+1&gt;	| &amp;Base_meta
+1&gt;	|  0
+1&gt; 0	| &amp;Base::func
+1&gt; 1	| &amp;Base::func1
+1&gt; 2	| &amp;Base::func2
+1&gt;Base::func this adjustor: 0
+1&gt;Base::func1 this adjustor: 0
+1&gt;Base::func2 this adjustor: 0
+1&gt;class Derive	size(40):
+1&gt;	+---
+1&gt; 0	| {vfptr}
+1&gt; 8	| {vbptr}
+1&gt;16	| y
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;	+--- (virtual base Base)
+1&gt;24	| {vfptr}
+1&gt;32	| x
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;Derive::$vftable@Derive@:
+1&gt;	| &amp;Derive_meta
+1&gt;	|  0
+1&gt; 0	| &amp;Derive::func3
+1&gt;Derive::$vbtable@:
+1&gt; 0	| -8
+1&gt; 1	| 16 (Derived(Derive+8)Base)
+1&gt;Derive::$vftable@Base@:
+1&gt;	| -24
+1&gt; 0	| &amp;Base::func
+1&gt; 1	| &amp;Derive::func1
+1&gt; 2	| &amp;Derive::func2
+1&gt;Derive::func1 this adjustor: 24
+1&gt;Derive::func2 this adjustor: 24
+1&gt;Derive::func3 this adjustor: 0
+1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;            Base      24       8       4 0
+</code></pre>
 <h3 id="const"><a class="markdownIt-Anchor" href="#const"></a> <code>const</code></h3>
 <ul>
 <li>
@@ -1262,7 +1422,8 @@ Demo d1(param);
 Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
 </code></pre>
 <h3 id="static"><a class="markdownIt-Anchor" href="#static"></a> static</h3>
-<p>在c++的类中，对于static成员变量是否是private数据并没有影响，因为设定static成员变量初值时，不受任何存取权限的束缚。static成员变量需要进行初始化操作。初始化时要带上类型名，并且不要带static。static成员变量是在初始化（而不是在类声明时候）才定义出来的。如果没有初始化操作，会产生链接错误：</p>
+<p>在c++的类中，<s>对于static成员变量是否是private数据并没有影响，因为设定static成员变量初值时，不受任何存取权限的束缚</s>。在VS2019中对于类内的静态成员变量是由访问控制的，对于private的静态成员变量，只能在初始化时在类外操作。<br />
+static成员变量需要进行初始化操作。初始化时要带上类型名，并且不要带static。static成员变量是在初始化（而不是在类声明时候）才定义出来的。如果没有初始化操作，会产生链接错误。例如 ~ typename classname:: ~</p>
 <h3 id="lambda"><a class="markdownIt-Anchor" href="#lambda"></a> lambda</h3>
 <p>语法形式如下：<br />
 [capture](parameters)-&gt;return-type {body}<br />
