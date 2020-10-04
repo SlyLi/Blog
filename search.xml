@@ -1488,7 +1488,9 @@ capture:</p>
 <li>
 <p>C++往往拒接在继承的模板化基类内寻找继承来的名称（方法），因为模板化基类又可能被特化，而特化版本的基类可能不含有此名称。必须要使用时可以在基类函数调用前加上<code>this-&gt;</code> 或者<code>BaseClass&lt;TemplateName&gt;::</code> 或在使用前添加<code>using BaseClass&lt;TemplateName&gt;::FuncName;</code></p>
 </li>
-<li></li>
+<li>
+<p>函数返回局部变量时，返回的并不是这个局部变量，而是这个局部变量的一个拷贝。</p>
+</li>
 </ol>
 ]]></content>
       <categories>
@@ -1678,7 +1680,34 @@ public:
 </code></pre>
 <h3 id="226-翻转二叉树"><a class="markdownIt-Anchor" href="#226-翻转二叉树"></a> 226. 翻转二叉树</h3>
 <p>easy 递归交换左右节点就行。</p>
-]]></content>
+<h3 id="32-最长有效括号"><a class="markdownIt-Anchor" href="#32-最长有效括号"></a> 32. 最长有效括号</h3>
+<p>动态规划算法。</p>
+<h4 id="1"><a class="markdownIt-Anchor" href="#1"></a> 1</h4>
+<ul>
+<li>dp[i][j] = n ,代表从i - j 是有效括号字符串 且长度为n。</li>
+<li>列出状态转移方程：<br />
+dp[i][j] =
+<ul>
+<li>if  dp[i+1][j-1]&gt;0 &amp;&amp; s[i]==’ ( ’ &amp;&amp;  s[j] ==’ ) ’   then  dp[i][j] = dp[i+1][j-1]+2</li>
+<li>for k = i+1 : j-1<br />
+if  s[i][k]&gt;0 &amp;&amp; s[k+1][j]&gt;0    then    dp[i][j] = dp[i][k]+dp[i+1][j]</li>
+</ul>
+</li>
+<li>编写算法，发现时间复杂度有点高，最后有三个用例时间超时。</li>
+<li>总结： 可以发现 n=j-i+1,这就说明，j在此处有些多余，改进时可将j去掉。</li>
+</ul>
+<h4 id="2"><a class="markdownIt-Anchor" href="#2"></a> 2</h4>
+<ul>
+<li>dp[i]=n , 代表截至到 i 的有效括号字符串长度是 n 。</li>
+<li>状态转移方程：<br />
+dp[i] =     if s[i]==’)’
+<ul>
+<li>if    s[i-1] == ‘(’   then    dp[i] = dp[i-2] + 2</li>
+<li>else if   s[i - dict[i-1]-1]==’(’     then    dp[i] = dp[i-1] + 2 + dp[i - dict[i-1]-2]</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestValidParentheses(string s) &#123;</span><br><span class="line">        int len &#x3D; s.length();</span><br><span class="line">        vector&lt;int&gt; dict(len,0);</span><br><span class="line">        int max &#x3D; 0;</span><br><span class="line">        for(int i&#x3D;1;i&lt;len;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(s[i]&#x3D;&#x3D;&#39;)&#39;)</span><br><span class="line">            &#123;</span><br><span class="line">                if(s[i-1]&#x3D;&#x3D;&#39;(&#39;)</span><br><span class="line">                &#123;</span><br><span class="line">                    dict[i] &#x3D; i&gt;1?dict[i-2]+2:2;</span><br><span class="line">                &#125;</span><br><span class="line">                else if(i - dict[i-1]-1&gt;&#x3D;0 &amp;&amp;s[i - dict[i-1]-1]&#x3D;&#x3D;&#39;(&#39;)</span><br><span class="line">                &#123;</span><br><span class="line">                    dict[i] &#x3D; dict[i-1]+2;</span><br><span class="line">                    if(i - dict[i-1]-2&gt;&#x3D;0 &amp;&amp;dict[i - dict[i-1]-2]&gt;0)</span><br><span class="line">                    &#123;</span><br><span class="line">                        dict[i]+&#x3D;dict[i - dict[i-1]-2];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                max &#x3D; dict[i]&gt;max?dict[i]:max;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return max;</span><br><span class="line">    &#125;         </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>C/C++</category>
       </categories>
