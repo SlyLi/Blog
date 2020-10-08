@@ -1053,7 +1053,7 @@ ImageLoad(void* dat, int width, int height,int size)
 <h4 id="2020105-3km-running"><a class="markdownIt-Anchor" href="#2020105-3km-running"></a> 2020/10/5  3km running</h4>
 <h4 id="2020106-10-6-4-17-10-8-人旗"><a class="markdownIt-Anchor" href="#2020106-10-6-4-17-10-8-人旗"></a> 2020/10/6  🔺 10 6 4   🔻17 10 8   + 人旗</h4>
 <h4 id="2020107"><a class="markdownIt-Anchor" href="#2020107"></a> 2020/10/7</h4>
-<h4 id="2020108"><a class="markdownIt-Anchor" href="#2020108"></a> 2020/10/8</h4>
+<h4 id="2020108-11-7-8-6-8-6-4"><a class="markdownIt-Anchor" href="#2020108-11-7-8-6-8-6-4"></a> 2020/10/8  🔺 11 7 8 6 8 6 4</h4>
 <h4 id="2020109"><a class="markdownIt-Anchor" href="#2020109"></a> 2020/10/9</h4>
 <h4 id="20201010"><a class="markdownIt-Anchor" href="#20201010"></a> 2020/10/10</h4>
 <h4 id="20201011"><a class="markdownIt-Anchor" href="#20201011"></a> 2020/10/11</h4>
@@ -2346,5 +2346,17 @@ $y = d \times cos \left( \theta \right)$
       <categories>
         <category>others</category>
       </categories>
+  </entry>
+  <entry>
+    <title>js多次点击的响应</title>
+    <url>/posts/2020-10-003.html</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;&lt;button id&#x3D;&quot;aerith&quot;&#x2F;&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">    $(document).ready(function()&#123;        </span><br><span class="line"></span><br><span class="line">        var timer &#x3D; null;</span><br><span class="line">        var cnt &#x3D;0;</span><br><span class="line"></span><br><span class="line">        $(&quot;#aerith&quot;).click(function()&#123;</span><br><span class="line">            cnt++;</span><br><span class="line">            console.log(cnt);</span><br><span class="line">            timer &#x3D; setTimeout(function()&#123;</span><br><span class="line">                switch (cnt) &#123;</span><br><span class="line">                    case 1:</span><br><span class="line">                        console.log(&quot;click once&quot;);        </span><br><span class="line">                        break;</span><br><span class="line">                    case 2:</span><br><span class="line">                        console.log(&quot;click 2&quot;);        </span><br><span class="line">                        break;</span><br><span class="line">                    case 3:</span><br><span class="line">                        console.log(&quot;click 3&quot;);        </span><br><span class="line">                        break;</span><br><span class="line">                    case 4:</span><br><span class="line">                        console.log(&quot;click 4&quot;);        </span><br><span class="line">                        break;</span><br><span class="line">                    default:    </span><br><span class="line">                        break;</span><br><span class="line">                &#125; </span><br><span class="line">                clearTimeout(timer);         </span><br><span class="line">                cnt &#x3D;0;                         </span><br><span class="line">          &#125;, 300);&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>javascript</tag>
+      </tags>
   </entry>
 </search>
