@@ -2,16 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://slyli.cn/posts/2020-10-001.html</loc>
+    <loc>http://slyli.cn/gallery/index.html</loc>
     
-    <lastmod>2020-10-07T15:49:22.039Z</lastmod>
+    <lastmod>2020-10-08T07:11:03.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://slyli.cn/gallery/wallpaper1/index.html</loc>
+    
+    <lastmod>2020-10-08T07:10:24.841Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://slyli.cn/gallery/wallpaper/index.html</loc>
+    
+    <lastmod>2020-10-08T07:10:09.452Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://slyli.cn/gallery/ohmygirl/index.html</loc>
+    
+    <lastmod>2020-10-08T06:48:08.527Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://slyli.cn/posts/2020-10-002.html</loc>
+    
+    <lastmod>2020-10-08T06:27:46.674Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://slyli.cn/posts/2020-08-002.html</loc>
     
-    <lastmod>2020-10-04T11:04:29.093Z</lastmod>
+    <lastmod>2020-10-08T06:26:56.697Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://slyli.cn/posts/2020-10-001.html</loc>
+    
+    <lastmod>2020-10-07T16:16:20.078Z</lastmod>
     
   </url>
   
@@ -68,13 +103,6 @@
     <loc>http://slyli.cn/posts/2020-08-006.html</loc>
     
     <lastmod>2020-09-02T09:52:16.969Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://slyli.cn/posts/2020-08-007.html</loc>
-    
-    <lastmod>2020-08-12T05:55:59.683Z</lastmod>
     
   </url>
   
