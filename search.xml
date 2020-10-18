@@ -1060,10 +1060,10 @@ printf(“Hello, Markdown.”);<br />
 <h4 id="20201012-3km-running"><a class="markdownIt-Anchor" href="#20201012-3km-running"></a> 2020/10/12 3km running</h4>
 <h4 id="20201013"><a class="markdownIt-Anchor" href="#20201013"></a> 2020/10/13</h4>
 <h4 id="20201014-13-8-9-8-6-6"><a class="markdownIt-Anchor" href="#20201014-13-8-9-8-6-6"></a> 2020/10/14 🔺 13 8 9 8 6 6</h4>
-<h4 id="20201015"><a class="markdownIt-Anchor" href="#20201015"></a> 2020/10/15</h4>
+<h4 id="20201015-10-7-7-10-8"><a class="markdownIt-Anchor" href="#20201015-10-7-7-10-8"></a> 2020/10/15 🔻 10 7 7 10 8</h4>
 <h4 id="20201016"><a class="markdownIt-Anchor" href="#20201016"></a> 2020/10/16</h4>
 <h4 id="20201017"><a class="markdownIt-Anchor" href="#20201017"></a> 2020/10/17</h4>
-<h4 id="20201018"><a class="markdownIt-Anchor" href="#20201018"></a> 2020/10/18</h4>
+<h4 id="20201018-14-8-8-9-6-5"><a class="markdownIt-Anchor" href="#20201018-14-8-8-9-6-5"></a> 2020/10/18 🔺 14 8 8 9 6 5</h4>
 <h4 id="20201019"><a class="markdownIt-Anchor" href="#20201019"></a> 2020/10/19</h4>
 <h4 id="20201020"><a class="markdownIt-Anchor" href="#20201020"></a> 2020/10/20</h4>
 <h4 id="20201021"><a class="markdownIt-Anchor" href="#20201021"></a> 2020/10/21</h4>
@@ -2062,7 +2062,12 @@ dp[i][j] 表示从数组的[0,i] 下标范围内选取若干个正整数（可�
 <p>对于每一层，我们进行下一层的next的赋值操作。我们利用上层对本层完成的next的赋值从左到右对每个节点进行遍历，完成对每个节点的子节点的next的赋值操作，完成全部子节点后进入下一层。继续进行。</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    Node* connect(Node* root) &#123;</span><br><span class="line">        Pre(root);</span><br><span class="line">        return root;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    void Pre(Node *root)</span><br><span class="line">    &#123;</span><br><span class="line">        if(root)</span><br><span class="line">        &#123;</span><br><span class="line">            if(root-&gt;left)</span><br><span class="line">                root-&gt;left-&gt;next &#x3D; root-&gt;right;</span><br><span class="line">            if(root-&gt;right)</span><br><span class="line">            &#123;</span><br><span class="line">                if(root-&gt;next)</span><br><span class="line">                    root-&gt;right-&gt;next &#x3D; root-&gt;next-&gt;left;</span><br><span class="line">                else</span><br><span class="line">                    root-&gt;right-&gt;next &#x3D; NULL;</span><br><span class="line">            &#125;</span><br><span class="line">            Pre(root-&gt;left);</span><br><span class="line">            Pre(root-&gt;right); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    Node* connect(Node* root) &#123;</span><br><span class="line">        Pre(root);</span><br><span class="line">        return root;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    void Pre(Node *root)</span><br><span class="line">    &#123;</span><br><span class="line">        if(root)</span><br><span class="line">        &#123;</span><br><span class="line">            if(root-&gt;left)</span><br><span class="line">                root-&gt;left-&gt;next &#x3D; root-&gt;right;</span><br><span class="line">            if(root-&gt;right)</span><br><span class="line">            &#123;</span><br><span class="line">                if(root-&gt;next)</span><br><span class="line">                    root-&gt;right-&gt;next &#x3D; root-&gt;next-&gt;left;</span><br><span class="line">                else</span><br><span class="line">                    root-&gt;right-&gt;next &#x3D; NULL;</span><br><span class="line">            &#125;</span><br><span class="line">            Pre(root-&gt;left);</span><br><span class="line">            Pre(root-&gt;right); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="977-有序数组的平方"><a class="markdownIt-Anchor" href="#977-有序数组的平方"></a> 977. 有序数组的平方</h3>
+<p>easy</p>
+<h3 id="19-删除链表的倒数第n个节点"><a class="markdownIt-Anchor" href="#19-删除链表的倒数第n个节点"></a> 19. 删除链表的倒数第N个节点</h3>
+<p>快慢指针，第一个指针先前进N个节点，然后两个指针一起前进，知道第一个指针到达链表的尾部。</p>
+]]></content>
       <categories>
         <category>C/C++</category>
       </categories>
