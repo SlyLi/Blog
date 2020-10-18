@@ -609,66 +609,6 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>C学习</title>
-    <url>/posts/2020-08-001.html</url>
-    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
-<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
-<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
-<ul>
-<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
-<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
-<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
-<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
-</ul>
-<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
-<p>链接属性一共有三种：external,internal和none。</p>
-<ul>
-<li>
-<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
-</li>
-<li>
-<p>internal：只有同一文件内才为同一实体；</p>
-</li>
-<li>
-<p>none：多个声明被当作独立不同的实体；</p>
-</li>
-<li>
-<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
-<pre><code>  static int a;
-</code></pre>
-</li>
-</ul>
-<p>那么变量a就是这个源文件所私有。</p>
-<ul>
-<li>
-<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
-</li>
-<li>
-<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
-<pre><code>  int a;
-  extern int b;
-  extern int c=10;
-</code></pre>
-</li>
-</ul>
-<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
-<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
-<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
-<ul>
-<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
-<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
-<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
-当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>android</title>
     <url>/posts/2020-08-003.html</url>
     <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
@@ -1466,357 +1406,6 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>c++学习</title>
-    <url>/posts/2020-07-009.html</url>
-    <content><![CDATA[<h3 id="virtural继承"><a class="markdownIt-Anchor" href="#virtural继承"></a> virtural继承</h3>
-<pre><code>class AAAA { int  a; };
-class BBBB :public virtual AAAA { int b; char a; };
-class CCCC :public virtual AAAA { int c; };
-class DDDD :public BBBB, public CCCC { int d; };
-</code></pre>
-<p>内存分布：</p>
-<h4 id="aaaa"><a class="markdownIt-Anchor" href="#aaaa"></a> AAAA</h4>
-<pre><code>1&gt;class AAAA	size(4):
-1&gt;	+---
-1&gt; 0	| a
-1&gt;	+---
-</code></pre>
-<h4 id="bbbb"><a class="markdownIt-Anchor" href="#bbbb"></a> BBBB</h4>
-<pre><code>1&gt;class BBBB	size(20):
-1&gt;	+---
-1&gt; 0	| {vbptr}   虚基类指针，占8位
-1&gt; 8	| b
-1&gt;  	| &lt;alignment member&gt; (size=4)
-1&gt;	+---
-1&gt;	+--- (virtual base AAAA)    虚基类中的a，占4位
-1&gt;16	| a
-1&gt;	+---
-1&gt;BBBB::$vbtable@:  虚基类表，偏移16的位置为虚基类AAAA
-1&gt; 0	| 0
-1&gt; 1	| 16 (BBBBd(BBBB+0)AAAA)
-1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
-1&gt;            AAAA      16       0       4 0
-</code></pre>
-<h4 id="cccc"><a class="markdownIt-Anchor" href="#cccc"></a> CCCC</h4>
-<pre><code>1&gt;class CCCC	size(20):
-1&gt;	+---
-1&gt; 0	| {vbptr}
-1&gt; 8	| c
-1&gt;  	| &lt;alignment member&gt; (size=4)
-1&gt;	+---
-1&gt;	+--- (virtual base AAAA)
-1&gt;16	| a
-1&gt;	+---
-1&gt;CCCC::$vbtable@:
-1&gt; 0	| 0
-1&gt; 1	| 16 (CCCCd(CCCC+0)AAAA)
-1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
-1&gt;            AAAA      16       0       4 0
-</code></pre>
-<h4 id="dddd"><a class="markdownIt-Anchor" href="#dddd"></a> DDDD</h4>
-<pre><code>1&gt;class DDDD	size(44):
-1&gt;	+---
-1&gt; 0	| +--- (base class BBBB)
-1&gt; 0	| | {vbptr}
-1&gt; 8	| | b
-1&gt;  	| | &lt;alignment member&gt; (size=4)
-1&gt;  	| | &lt;alignment member&gt; (size=4)
-1&gt;	| +---
-1&gt;16	| +--- (base class CCCC)
-1&gt;16	| | {vbptr}
-1&gt;24	| | c
-1&gt;  	| | &lt;alignment member&gt; (size=4)
-1&gt;  	| | &lt;alignment member&gt; (size=4)
-1&gt;	| +---
-1&gt;32	| d
-1&gt;  	| &lt;alignment member&gt; (size=4)
-1&gt;	+---
-1&gt;	+--- (virtual base AAAA)
-1&gt;40	| a
-1&gt;	+---
-1&gt;DDDD::$vbtable@BBBB@:
-1&gt; 0	| 0
-1&gt; 1	| 40 (DDDDd(BBBB+0)AAAA)
-1&gt;DDDD::$vbtable@CCCC@:
-1&gt; 0	| 0
-1&gt; 1	| 24 (DDDDd(CCCC+0)AAAA)
-1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
-1&gt;            AAAA      40       0       4 0
-</code></pre>
-<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
-<p>虚函数是指一个类中你希望重写(override)的成员函数，当你用一个基类指针或引用,指向一个继承类对象的时候，调用一个虚函数时, 实际调用的是继承类的版本。</p>
-<pre><code>class Animal {
-public :
-    void  Print()
-    { 
-        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
-    }
-};
-class Dog: public Animal
-{
-public:
-    void  Print() 
-    {
-        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
-    }
-private:
-};
-int main(int argc, char** argv)
-{
-    Animal* d = new Dog();
-    d-&gt;Print();
-}
-</code></pre>
-<p>没有使用<code>virtual</code>时，函数的输出的是<code>Animal</code></p>
-<pre><code>class Animal {
-public :
-    virtual void  Print()
-    { 
-        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
-    }
-};
-class Dog: public Animal
-{
-public:
-    void  Print() 
-    {
-        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
-    }
-private:
-};
-int main(int argc, char** argv)
-{
-    Animal* d = new Dog();	
-    d-&gt;Print();
-}
-</code></pre>
-<p>内存布局：</p>
-<pre><code>1&gt;class Animal	size(8):
-1&gt;	+---
-1&gt; 0	| {vfptr}   虚表指针
-1&gt;	+---
-1&gt;Animal::$vftable@:    虚函数表
-1&gt;	| &amp;Animal_meta
-1&gt;	|  0
-1&gt; 0	| &amp;Animal::Print    可能有多个虚函数
-1&gt;Animal::Print this adjustor: 0
-
-1&gt;class Dog	size(8):
-1&gt;	+---
-1&gt; 0	| +--- (base class Animal)
-1&gt; 0	| | {vfptr}
-1&gt;	| +---
-1&gt;	+---
-1&gt;Dog::$vftable@:
-1&gt;	| &amp;Dog_meta
-1&gt;	|  0
-1&gt; 0	| &amp;Dog::Print
-1&gt;Dog::Print this adjustor: 0
-</code></pre>
-<p>使用<code>virtual</code>后，函数的输出是<code>Dog</code></p>
-<p>没有使用virtual之前，C++对成员函数使用静态绑定，函数的调用地址在运行前就已经固定。不考虑指针指向的内容，对于什么类型的指针就调用什么类型的函数。<br />
-对于虚函数，每个派生类对象都有一个指向虚函数表的指针，访问任何虚函数都是间接通过这个指针进行的，之所以要用虚函数表，是因为调用一个虚函数的哪个版本是在运行过程（调用时指针所指的对象）才能确定的（动态绑定）。</p>
-<p>这也可以叫运行时多态。</p>
-<div class="note warning">
-            <p>因此特性，若基类的析构函数是non-virtual的，容易造成局部销毁，导致资源泄漏。非常危险。</p>
-          </div>
-<p>编译期多态：对模板参数而言，多态是通过模板具现化和函数重载解析实现的。以不同的模板参数具现化导致调用不同的函数，这就是所谓的编译期多态。</p>
-<pre><code>class Dog
-{
-public:
-    void shout(){ cout &lt;&lt; &quot;Dog&quot;&lt;&lt;endl; }
-};
-class Cat
-{
-public:
-    void shout(){ cout &lt;&lt; &quot;Cat&quot;&lt;&lt;endl; }
-};
-
-template &lt;typename T&gt;
-void  Animal(T &amp; t)
-{
-    t.shout();
-}
-
-int main()
-{
-    Dog dog;
-    Cat cat; 
-    animalShout(dog);
-    animalShout(cat);   
-}
-</code></pre>
-<p>在编译之前，函数模板中t.shout()调用的是哪个接口并不确定。在编译期间，编译器推断出模板参数，因此确定调用的shout是哪个具体类型的接口。不同的推断结果调用不同的函数，这就是编译器多态。</p>
-<h3 id="virtural继承下的虚函数"><a class="markdownIt-Anchor" href="#virtural继承下的虚函数"></a> virtural继承下的虚函数</h3>
-<pre><code>class Base {
-public:
-    int x;
-    virtual void func() {  };
-    virtual void func1() {  };
-    virtual void func2() {  };
-};
-class Derive:public virtual Base {
-public:
-    int y;
-    virtual void func1() {  };
-    virtual void func2() {  };
-    virtual void func3() {  };
-};
-</code></pre>
-<p>内存布局</p>
-<pre><code>1&gt;class Base	size(16):
-1&gt;	+---
-1&gt; 0	| {vfptr}
-1&gt; 8	| x
-1&gt;  	| &lt;alignment member&gt; (size=4)
-1&gt;	+---
-1&gt;Base::$vftable@:
-1&gt;	| &amp;Base_meta
-1&gt;	|  0
-1&gt; 0	| &amp;Base::func
-1&gt; 1	| &amp;Base::func1
-1&gt; 2	| &amp;Base::func2
-1&gt;Base::func this adjustor: 0
-1&gt;Base::func1 this adjustor: 0
-1&gt;Base::func2 this adjustor: 0
-1&gt;class Derive	size(40):
-1&gt;	+---
-1&gt; 0	| {vfptr}
-1&gt; 8	| {vbptr}
-1&gt;16	| y
-1&gt;  	| &lt;alignment member&gt; (size=4)
-1&gt;	+---
-1&gt;	+--- (virtual base Base)
-1&gt;24	| {vfptr}
-1&gt;32	| x
-1&gt;  	| &lt;alignment member&gt; (size=4)
-1&gt;	+---
-1&gt;Derive::$vftable@Derive@:
-1&gt;	| &amp;Derive_meta
-1&gt;	|  0
-1&gt; 0	| &amp;Derive::func3
-1&gt;Derive::$vbtable@:
-1&gt; 0	| -8
-1&gt; 1	| 16 (Derived(Derive+8)Base)
-1&gt;Derive::$vftable@Base@:
-1&gt;	| -24
-1&gt; 0	| &amp;Base::func
-1&gt; 1	| &amp;Derive::func1
-1&gt; 2	| &amp;Derive::func2
-1&gt;Derive::func1 this adjustor: 24
-1&gt;Derive::func2 this adjustor: 24
-1&gt;Derive::func3 this adjustor: 0
-1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
-1&gt;            Base      24       8       4 0
-</code></pre>
-<h3 id="const"><a class="markdownIt-Anchor" href="#const"></a> <code>const</code></h3>
-<ul>
-<li>
-<p>const在指针左边时，指针指向的内容是const。</p>
-</li>
-<li>
-<p>const在指针右边时，指针是const指针</p>
-</li>
-<li>
-<p>当const在函数名前面的时候修饰的是函数返回值。</p>
-</li>
-<li>
-<p>在函数名后面表示是常成员函数，该函数不能修改对象内的任何成员的值，如果需要修改，要在变量前面加<code>mutable</code>关键字。</p>
-</li>
-<li>
-<p>事实上，在某种条件下，<code>const</code>仍可能被修改，可见Effective C++ P22。</p>
-</li>
-</ul>
-<h3 id="explicit"><a class="markdownIt-Anchor" href="#explicit"></a> <code>explicit</code></h3>
-<p>explicit关键字的作用就是防止类构造函数的隐式自动转换，只能用于修饰只有一个参数的类构造函数，与默认的implicit（隐式）相对。构造函数只有一个参数时, 那么在编译的时候就会有一个缺省的转换操作：将该构造函数对应数据类型的数据转换为该类对象。</p>
-<pre><code>class Demo { public: Demo(param) };
-Demo d1(param);
-Demo d2 = param;    //可行，相当于Demo d1(param);
-
-class Demo { public: explicit Demo(param) };
-Demo d1(param);
-Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
-</code></pre>
-<h3 id="static"><a class="markdownIt-Anchor" href="#static"></a> static</h3>
-<p>在c++的类中，<s>对于static成员变量是否是private数据并没有影响，因为设定static成员变量初值时，不受任何存取权限的束缚</s>。在VS2019中对于类内的静态成员变量是由访问控制的，对于private的静态成员变量，只能在初始化时在类外操作。<br />
-static成员变量需要进行初始化操作。初始化时要带上类型名，并且不要带static。static成员变量是在初始化（而不是在类声明时候）才定义出来的。如果没有初始化操作，会产生链接错误。例如 ~ typename classname::membername; ~</p>
-<h3 id="lambda"><a class="markdownIt-Anchor" href="#lambda"></a> lambda</h3>
-<p>语法形式如下：<br />
-[capture](parameters)-&gt;return-type {body}<br />
-capture:</p>
-<ul>
-<li>空。没有使用任何函数对象参数。</li>
-<li>= 。函数体内可以使用Lambda所在作用范围内所有可见的局部变量（包括Lambda所在类的this），并且是值传递方式（相当于编译器自动为我们按值传递了所有局部变量）。</li>
-<li>&amp;。函数体内可以使用Lambda所在作用范围内所有可见的局部变量（包括Lambda所在类的this），并且是引用传递方式（相当于编译器自动为我们按引用传递了所有局部变量）。</li>
-<li>this。函数体内可以使用Lambda所在类中的成员变量。</li>
-<li>a。将a按值进行传递。按值进行传递时，函数体内不能修改传递进来的a的拷贝，因为默认情况下函数是const的。要修改传递进来的a的拷贝，可以添加mutable修饰符。</li>
-<li>&amp;a。将a按引用进行传递。</li>
-<li>a, &amp;b。将a按值进行传递，b按引用进行传递。</li>
-<li>= ，&amp;a, &amp;b。除a和b按引用进行传递外，其他参数都按值进行传递。</li>
-<li>&amp;, a, b。除a和b按值进行传递外，其他参数都按引用进行传递。</li>
-</ul>
-<h3 id="others"><a class="markdownIt-Anchor" href="#others"></a> Others</h3>
-<ol>
-<li>
-<p>C++规定，对象的成员变量的初始化动作发生在进入构造函数本体之前。</p>
-</li>
-<li>
-<p>类内成员变量总是以其声明顺序被初始化，</p>
-</li>
-<li>
-<p>C++对于不同编译单元（源文件）的non-local static（文件内，所有函数以外的定义的对象）对象的初始化顺序无明确定义。为了避免这个问题，可以通过函数调用的方式（返回一个local static对象），将non-local static对象改为函数内部的static对象。</p>
-</li>
-<li>
-<p>构造函数最好使用成员初值列赋值。</p>
-<pre><code> Construct():value1(),value2(),value3(){}
-</code></pre>
-<p>成员初值列赋值时，赋值顺序由class中成员的生命顺序决定，不是由初始化列表中的顺序决定。初始化列表的赋值在构造函数内的代码执行前执行。</p>
-</li>
-<li>
-<p>C++编译器会自动给空类创建构造函数、赋值函数和析构函数。（当这些函数被调用时）</p>
-<pre><code> class Empty{};
-</code></pre>
-<p>等价于</p>
-<pre><code> class Empty
- {
-     public:
-         Empty(){...}
-         Empty(const Empty&amp; rhs){...}
-         ~Empty(){...}
-
-         Empty&amp; operator=(const Empty&amp; rhs){...}
- }
-</code></pre>
-<p>想要阻止这一自动创建，可以将这些函数声明为<code>private</code>，并且故意不实现他们。</p>
-</li>
-<li>
-<p>函数中通过值传递传递对象时，若一个派生类被视为基类传递，基类的构造函数会被调用，派生的特化性质被切掉。</p>
-</li>
-<li>
-<p>函数调用，名称查找法则以及实参取决值查找规则。</p>
-</li>
-<li>
-<p>用户可以全特化std内容template，但不允许添加任何新的其他东西，在调用时，优先选择特化版本。 见Effective C++ P107。</p>
-</li>
-<li>
-<p>在使用依赖于模板参数的嵌套从属类型时，要在它前面放置关键字<code>typename</code> （在使用嵌套从属类型时，这个名称被假设为非类型。在前面加上typename告诉C++，这个是类型），但不能在基类列或者成员初始列前加typename。</p>
-</li>
-<li>
-<p>C++往往拒接在继承的模板化基类内寻找继承来的名称（方法），因为模板化基类又可能被特化，而特化版本的基类可能不含有此名称。必须要使用时可以在基类函数调用前加上<code>this-&gt;</code> 或者<code>BaseClass&lt;TemplateName&gt;::</code> 或在使用前添加<code>using BaseClass&lt;TemplateName&gt;::FuncName;</code></p>
-</li>
-<li>
-<p>函数返回局部变量时，返回的并不是这个局部变量，而是这个局部变量的一个拷贝。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-动态规划</title>
     <url>/posts/2020-10-002.html</url>
     <content><![CDATA[<h3 id="5-最长回文子串"><a class="markdownIt-Anchor" href="#5-最长回文子串"></a> 5. 最长回文子串</h3>
@@ -2467,6 +2056,417 @@ $y = d \times cos \left( \theta \right)$
       <tags>
         <tag>web</tag>
         <tag>javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C</title>
+    <url>/posts/2020-08-001.html</url>
+    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
+<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
+<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
+<ul>
+<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
+<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
+<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
+<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
+</ul>
+<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
+<p>链接属性一共有三种：external,internal和none。</p>
+<ul>
+<li>
+<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
+</li>
+<li>
+<p>internal：只有同一文件内才为同一实体；</p>
+</li>
+<li>
+<p>none：多个声明被当作独立不同的实体；</p>
+</li>
+<li>
+<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
+<pre><code>  static int a;
+</code></pre>
+</li>
+</ul>
+<p>那么变量a就是这个源文件所私有。</p>
+<ul>
+<li>
+<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
+</li>
+<li>
+<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
+<pre><code>  int a;
+  extern int b;
+  extern int c=10;
+</code></pre>
+</li>
+</ul>
+<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
+<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
+<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
+<ul>
+<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
+<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
+<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
+当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++</title>
+    <url>/posts/2020-07-009.html</url>
+    <content><![CDATA[<h3 id="virtural继承"><a class="markdownIt-Anchor" href="#virtural继承"></a> virtural继承</h3>
+<pre><code>class AAAA { int  a; };
+class BBBB :public virtual AAAA { int b; char a; };
+class CCCC :public virtual AAAA { int c; };
+class DDDD :public BBBB, public CCCC { int d; };
+</code></pre>
+<p>内存分布：</p>
+<h4 id="aaaa"><a class="markdownIt-Anchor" href="#aaaa"></a> AAAA</h4>
+<pre><code>1&gt;class AAAA	size(4):
+1&gt;	+---
+1&gt; 0	| a
+1&gt;	+---
+</code></pre>
+<h4 id="bbbb"><a class="markdownIt-Anchor" href="#bbbb"></a> BBBB</h4>
+<pre><code>1&gt;class BBBB	size(20):
+1&gt;	+---
+1&gt; 0	| {vbptr}   虚基类指针，占8位
+1&gt; 8	| b
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;	+--- (virtual base AAAA)    虚基类中的a，占4位
+1&gt;16	| a
+1&gt;	+---
+1&gt;BBBB::$vbtable@:  虚基类表，偏移16的位置为虚基类AAAA
+1&gt; 0	| 0
+1&gt; 1	| 16 (BBBBd(BBBB+0)AAAA)
+1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;            AAAA      16       0       4 0
+</code></pre>
+<h4 id="cccc"><a class="markdownIt-Anchor" href="#cccc"></a> CCCC</h4>
+<pre><code>1&gt;class CCCC	size(20):
+1&gt;	+---
+1&gt; 0	| {vbptr}
+1&gt; 8	| c
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;	+--- (virtual base AAAA)
+1&gt;16	| a
+1&gt;	+---
+1&gt;CCCC::$vbtable@:
+1&gt; 0	| 0
+1&gt; 1	| 16 (CCCCd(CCCC+0)AAAA)
+1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;            AAAA      16       0       4 0
+</code></pre>
+<h4 id="dddd"><a class="markdownIt-Anchor" href="#dddd"></a> DDDD</h4>
+<pre><code>1&gt;class DDDD	size(44):
+1&gt;	+---
+1&gt; 0	| +--- (base class BBBB)
+1&gt; 0	| | {vbptr}
+1&gt; 8	| | b
+1&gt;  	| | &lt;alignment member&gt; (size=4)
+1&gt;  	| | &lt;alignment member&gt; (size=4)
+1&gt;	| +---
+1&gt;16	| +--- (base class CCCC)
+1&gt;16	| | {vbptr}
+1&gt;24	| | c
+1&gt;  	| | &lt;alignment member&gt; (size=4)
+1&gt;  	| | &lt;alignment member&gt; (size=4)
+1&gt;	| +---
+1&gt;32	| d
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;	+--- (virtual base AAAA)
+1&gt;40	| a
+1&gt;	+---
+1&gt;DDDD::$vbtable@BBBB@:
+1&gt; 0	| 0
+1&gt; 1	| 40 (DDDDd(BBBB+0)AAAA)
+1&gt;DDDD::$vbtable@CCCC@:
+1&gt; 0	| 0
+1&gt; 1	| 24 (DDDDd(CCCC+0)AAAA)
+1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;            AAAA      40       0       4 0
+</code></pre>
+<h3 id="virtual-虚函数"><a class="markdownIt-Anchor" href="#virtual-虚函数"></a> virtual 虚函数</h3>
+<p>虚函数是指一个类中你希望重写(override)的成员函数，当你用一个基类指针或引用,指向一个继承类对象的时候，调用一个虚函数时, 实际调用的是继承类的版本。</p>
+<pre><code>class Animal {
+public :
+    void  Print()
+    { 
+        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
+    }
+};
+class Dog: public Animal
+{
+public:
+    void  Print() 
+    {
+        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
+    }
+private:
+};
+int main(int argc, char** argv)
+{
+    Animal* d = new Dog();
+    d-&gt;Print();
+}
+</code></pre>
+<p>没有使用<code>virtual</code>时，函数的输出的是<code>Animal</code></p>
+<pre><code>class Animal {
+public :
+    virtual void  Print()
+    { 
+        cout &lt;&lt; &quot;Animal&quot; &lt;&lt; endl; 
+    }
+};
+class Dog: public Animal
+{
+public:
+    void  Print() 
+    {
+        cout &lt;&lt; &quot;Dog&quot; &lt;&lt; endl;
+    }
+private:
+};
+int main(int argc, char** argv)
+{
+    Animal* d = new Dog();	
+    d-&gt;Print();
+}
+</code></pre>
+<p>内存布局：</p>
+<pre><code>1&gt;class Animal	size(8):
+1&gt;	+---
+1&gt; 0	| {vfptr}   虚表指针
+1&gt;	+---
+1&gt;Animal::$vftable@:    虚函数表
+1&gt;	| &amp;Animal_meta
+1&gt;	|  0
+1&gt; 0	| &amp;Animal::Print    可能有多个虚函数
+1&gt;Animal::Print this adjustor: 0
+
+1&gt;class Dog	size(8):
+1&gt;	+---
+1&gt; 0	| +--- (base class Animal)
+1&gt; 0	| | {vfptr}
+1&gt;	| +---
+1&gt;	+---
+1&gt;Dog::$vftable@:
+1&gt;	| &amp;Dog_meta
+1&gt;	|  0
+1&gt; 0	| &amp;Dog::Print
+1&gt;Dog::Print this adjustor: 0
+</code></pre>
+<p>使用<code>virtual</code>后，函数的输出是<code>Dog</code></p>
+<p>没有使用virtual之前，C++对成员函数使用静态绑定，函数的调用地址在运行前就已经固定。不考虑指针指向的内容，对于什么类型的指针就调用什么类型的函数。<br />
+对于虚函数，每个派生类对象都有一个指向虚函数表的指针，访问任何虚函数都是间接通过这个指针进行的，之所以要用虚函数表，是因为调用一个虚函数的哪个版本是在运行过程（调用时指针所指的对象）才能确定的（动态绑定）。</p>
+<p>这也可以叫运行时多态。</p>
+<div class="note warning">
+            <p>因此特性，若基类的析构函数是non-virtual的，容易造成局部销毁，导致资源泄漏。非常危险。</p>
+          </div>
+<p>编译期多态：对模板参数而言，多态是通过模板具现化和函数重载解析实现的。以不同的模板参数具现化导致调用不同的函数，这就是所谓的编译期多态。</p>
+<pre><code>class Dog
+{
+public:
+    void shout(){ cout &lt;&lt; &quot;Dog&quot;&lt;&lt;endl; }
+};
+class Cat
+{
+public:
+    void shout(){ cout &lt;&lt; &quot;Cat&quot;&lt;&lt;endl; }
+};
+
+template &lt;typename T&gt;
+void  Animal(T &amp; t)
+{
+    t.shout();
+}
+
+int main()
+{
+    Dog dog;
+    Cat cat; 
+    animalShout(dog);
+    animalShout(cat);   
+}
+</code></pre>
+<p>在编译之前，函数模板中t.shout()调用的是哪个接口并不确定。在编译期间，编译器推断出模板参数，因此确定调用的shout是哪个具体类型的接口。不同的推断结果调用不同的函数，这就是编译器多态。</p>
+<h3 id="virtural继承下的虚函数"><a class="markdownIt-Anchor" href="#virtural继承下的虚函数"></a> virtural继承下的虚函数</h3>
+<pre><code>class Base {
+public:
+    int x;
+    virtual void func() {  };
+    virtual void func1() {  };
+    virtual void func2() {  };
+};
+class Derive:public virtual Base {
+public:
+    int y;
+    virtual void func1() {  };
+    virtual void func2() {  };
+    virtual void func3() {  };
+};
+</code></pre>
+<p>内存布局</p>
+<pre><code>1&gt;class Base	size(16):
+1&gt;	+---
+1&gt; 0	| {vfptr}
+1&gt; 8	| x
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;Base::$vftable@:
+1&gt;	| &amp;Base_meta
+1&gt;	|  0
+1&gt; 0	| &amp;Base::func
+1&gt; 1	| &amp;Base::func1
+1&gt; 2	| &amp;Base::func2
+1&gt;Base::func this adjustor: 0
+1&gt;Base::func1 this adjustor: 0
+1&gt;Base::func2 this adjustor: 0
+1&gt;class Derive	size(40):
+1&gt;	+---
+1&gt; 0	| {vfptr}
+1&gt; 8	| {vbptr}
+1&gt;16	| y
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;	+--- (virtual base Base)
+1&gt;24	| {vfptr}
+1&gt;32	| x
+1&gt;  	| &lt;alignment member&gt; (size=4)
+1&gt;	+---
+1&gt;Derive::$vftable@Derive@:
+1&gt;	| &amp;Derive_meta
+1&gt;	|  0
+1&gt; 0	| &amp;Derive::func3
+1&gt;Derive::$vbtable@:
+1&gt; 0	| -8
+1&gt; 1	| 16 (Derived(Derive+8)Base)
+1&gt;Derive::$vftable@Base@:
+1&gt;	| -24
+1&gt; 0	| &amp;Base::func
+1&gt; 1	| &amp;Derive::func1
+1&gt; 2	| &amp;Derive::func2
+1&gt;Derive::func1 this adjustor: 24
+1&gt;Derive::func2 this adjustor: 24
+1&gt;Derive::func3 this adjustor: 0
+1&gt;vbi:	   class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;            Base      24       8       4 0
+</code></pre>
+<h3 id="const"><a class="markdownIt-Anchor" href="#const"></a> <code>const</code></h3>
+<ul>
+<li>
+<p>const在指针左边时，指针指向的内容是const。</p>
+</li>
+<li>
+<p>const在指针右边时，指针是const指针</p>
+</li>
+<li>
+<p>当const在函数名前面的时候修饰的是函数返回值。</p>
+</li>
+<li>
+<p>在函数名后面表示是常成员函数，该函数不能修改对象内的任何成员的值，如果需要修改，要在变量前面加<code>mutable</code>关键字。</p>
+</li>
+<li>
+<p>事实上，在某种条件下，<code>const</code>仍可能被修改，可见Effective C++ P22。</p>
+</li>
+</ul>
+<h3 id="explicit"><a class="markdownIt-Anchor" href="#explicit"></a> <code>explicit</code></h3>
+<p>explicit关键字的作用就是防止类构造函数的隐式自动转换，只能用于修饰只有一个参数的类构造函数，与默认的implicit（隐式）相对。构造函数只有一个参数时, 那么在编译的时候就会有一个缺省的转换操作：将该构造函数对应数据类型的数据转换为该类对象。</p>
+<pre><code>class Demo { public: Demo(param) };
+Demo d1(param);
+Demo d2 = param;    //可行，相当于Demo d1(param);
+
+class Demo { public: explicit Demo(param) };
+Demo d1(param);
+Demo d2 = param;    //不可行，explicit关键字禁止了这种隐式转换
+</code></pre>
+<h3 id="static"><a class="markdownIt-Anchor" href="#static"></a> static</h3>
+<p>在c++的类中，<s>对于static成员变量是否是private数据并没有影响，因为设定static成员变量初值时，不受任何存取权限的束缚</s>。在VS2019中对于类内的静态成员变量是由访问控制的，对于private的静态成员变量，只能在初始化时在类外操作。<br />
+static成员变量需要进行初始化操作。初始化时要带上类型名，并且不要带static。static成员变量是在初始化（而不是在类声明时候）才定义出来的。如果没有初始化操作，会产生链接错误。例如 ~ typename classname::membername; ~</p>
+<h3 id="lambda"><a class="markdownIt-Anchor" href="#lambda"></a> lambda</h3>
+<p>语法形式如下：<br />
+[capture](parameters)-&gt;return-type {body}<br />
+capture:</p>
+<ul>
+<li>空。没有使用任何函数对象参数。</li>
+<li>= 。函数体内可以使用Lambda所在作用范围内所有可见的局部变量（包括Lambda所在类的this），并且是值传递方式（相当于编译器自动为我们按值传递了所有局部变量）。</li>
+<li>&amp;。函数体内可以使用Lambda所在作用范围内所有可见的局部变量（包括Lambda所在类的this），并且是引用传递方式（相当于编译器自动为我们按引用传递了所有局部变量）。</li>
+<li>this。函数体内可以使用Lambda所在类中的成员变量。</li>
+<li>a。将a按值进行传递。按值进行传递时，函数体内不能修改传递进来的a的拷贝，因为默认情况下函数是const的。要修改传递进来的a的拷贝，可以添加mutable修饰符。</li>
+<li>&amp;a。将a按引用进行传递。</li>
+<li>a, &amp;b。将a按值进行传递，b按引用进行传递。</li>
+<li>= ，&amp;a, &amp;b。除a和b按引用进行传递外，其他参数都按值进行传递。</li>
+<li>&amp;, a, b。除a和b按值进行传递外，其他参数都按引用进行传递。</li>
+</ul>
+<h3 id="others"><a class="markdownIt-Anchor" href="#others"></a> Others</h3>
+<ol>
+<li>
+<p>C++规定，对象的成员变量的初始化动作发生在进入构造函数本体之前。</p>
+</li>
+<li>
+<p>类内成员变量总是以其声明顺序被初始化，</p>
+</li>
+<li>
+<p>C++对于不同编译单元（源文件）的non-local static（文件内，所有函数以外的定义的对象）对象的初始化顺序无明确定义。为了避免这个问题，可以通过函数调用的方式（返回一个local static对象），将non-local static对象改为函数内部的static对象。</p>
+</li>
+<li>
+<p>构造函数最好使用成员初值列赋值。</p>
+<pre><code> Construct():value1(),value2(),value3(){}
+</code></pre>
+<p>成员初值列赋值时，赋值顺序由class中成员的生命顺序决定，不是由初始化列表中的顺序决定。初始化列表的赋值在构造函数内的代码执行前执行。</p>
+</li>
+<li>
+<p>C++编译器会自动给空类创建构造函数、赋值函数和析构函数。（当这些函数被调用时）</p>
+<pre><code> class Empty{};
+</code></pre>
+<p>等价于</p>
+<pre><code> class Empty
+ {
+     public:
+         Empty(){...}
+         Empty(const Empty&amp; rhs){...}
+         ~Empty(){...}
+
+         Empty&amp; operator=(const Empty&amp; rhs){...}
+ }
+</code></pre>
+<p>想要阻止这一自动创建，可以将这些函数声明为<code>private</code>，并且故意不实现他们。</p>
+</li>
+<li>
+<p>函数中通过值传递传递对象时，若一个派生类被视为基类传递，基类的构造函数会被调用，派生的特化性质被切掉。</p>
+</li>
+<li>
+<p>函数调用，名称查找法则以及实参取决值查找规则。</p>
+</li>
+<li>
+<p>用户可以全特化std内容template，但不允许添加任何新的其他东西，在调用时，优先选择特化版本。 见Effective C++ P107。</p>
+</li>
+<li>
+<p>在使用依赖于模板参数的嵌套从属类型时，要在它前面放置关键字<code>typename</code> （在使用嵌套从属类型时，这个名称被假设为非类型。在前面加上typename告诉C++，这个是类型），但不能在基类列或者成员初始列前加typename。</p>
+</li>
+<li>
+<p>C++往往拒接在继承的模板化基类内寻找继承来的名称（方法），因为模板化基类又可能被特化，而特化版本的基类可能不含有此名称。必须要使用时可以在基类函数调用前加上<code>this-&gt;</code> 或者<code>BaseClass&lt;TemplateName&gt;::</code> 或在使用前添加<code>using BaseClass&lt;TemplateName&gt;::FuncName;</code></p>
+</li>
+<li>
+<p>函数返回局部变量时，返回的并不是这个局部变量，而是这个局部变量的一个拷贝。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
 </search>
