@@ -1661,6 +1661,17 @@ dp[i][j] 表示从数组的[0,i] 下标范围内选取若干个正整数（可�
 <li>第一次遍历，将需要退格的字符换成’#’, 第二次遍历，判断连个字符串是否相同。</li>
 <li>利用栈，遍历对于字符，将字符压入栈中，对于退格符，将栈顶的字符从栈中取出，完成之后，再比较两个栈中的内容。</li>
 </ul>
+<h3 id="143-重排链表"><a class="markdownIt-Anchor" href="#143-重排链表"></a> 143. 重排链表</h3>
+<ul>
+<li>用递归做思路不难，结束条件有点麻烦。</li>
+<li>先到达链表的最后一个，将其插入到相应的位置后返回，再到前一个判断后插入，持续如此，到达结束条件之后，直接返回。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void reorderList(ListNode* head) &#123;</span><br><span class="line">        if(!head)</span><br><span class="line">            return;</span><br><span class="line">        cur &#x3D; head;</span><br><span class="line">        ret &#x3D; false;</span><br><span class="line">        inser(head-&gt;next);</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode *cur&#x3D;nullptr;</span><br><span class="line">    bool ret;</span><br><span class="line">    void inser(ListNode *node)</span><br><span class="line">    &#123;</span><br><span class="line">        if(!node)</span><br><span class="line">        &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        inser(node-&gt;next);</span><br><span class="line">        if(ret)</span><br><span class="line">            return;</span><br><span class="line">        if(node-&gt;next&#x3D;&#x3D;nullptr)</span><br><span class="line">        &#123;</span><br><span class="line">            if(cur-&gt;next!&#x3D;node)</span><br><span class="line">                node-&gt;next &#x3D; cur-&gt;next;</span><br><span class="line">            cur-&gt;next &#x3D; node;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(node-&gt;next &#x3D;&#x3D; cur-&gt;next)</span><br><span class="line">        &#123;</span><br><span class="line">            cur &#x3D; cur-&gt;next-&gt;next;</span><br><span class="line"></span><br><span class="line">            if(cur&#x3D;&#x3D;node||cur-&gt;next &#x3D;&#x3D; node)</span><br><span class="line">            &#123;</span><br><span class="line">                node-&gt;next&#x3D;nullptr;</span><br><span class="line">                ret &#x3D; true;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                node-&gt;next &#x3D; cur-&gt;next;</span><br><span class="line">                cur-&gt;next &#x3D; node;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以先找链表中点，使用快慢指针，慢指针走一步，快指针走两步。slow = slow-&gt;next, fast = fast-&gt;next-&gt;next;</li>
+<li>将后半部分链表逆序排序</li>
+<li>合并两个链表</li>
+</ul>
 ]]></content>
       <categories>
         <category>C/C++</category>
