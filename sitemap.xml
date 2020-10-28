@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://slyli.cn/about/index.html</loc>
+    
+    <lastmod>2020-10-28T08:25:59.518Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://slyli.cn/posts/2020-08-002.html</loc>
     
     <lastmod>2020-10-28T06:33:32.780Z</lastmod>
@@ -124,13 +131,6 @@
     <loc>http://slyli.cn/posts/2020-09-002.html</loc>
     
     <lastmod>2020-10-18T16:05:49.568Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://slyli.cn/about/index.html</loc>
-    
-    <lastmod>2020-10-18T16:03:08.732Z</lastmod>
     
   </url>
   
