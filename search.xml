@@ -2662,7 +2662,7 @@ dp[i][j] 表示从数组的[0,i] 下标范围内选取若干个正整数（可�
   </entry>
   <entry>
     <title>leetcode-每日一题</title>
-    <url>/posts/2020-08-002.html</url>
+    <url>/posts/2020-11-001.html</url>
     <content><![CDATA[<h3 id="349-两个数组的交集"><a class="markdownIt-Anchor" href="#349-两个数组的交集"></a> 349. 两个数组的交集</h3>
 <ul>
 <li>首先记录下nums1中出现过的数字，如果nums2中也出现就将其加入到集合中。</li>
