@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>C</title>
+    <url>/posts/2020-08-001.html</url>
+    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
+<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
+<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
+<ul>
+<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
+<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
+<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
+<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
+</ul>
+<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
+<p>链接属性一共有三种：external,internal和none。</p>
+<ul>
+<li>
+<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
+</li>
+<li>
+<p>internal：只有同一文件内才为同一实体；</p>
+</li>
+<li>
+<p>none：多个声明被当作独立不同的实体；</p>
+</li>
+<li>
+<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
+<pre><code>  static int a;
+</code></pre>
+</li>
+</ul>
+<p>那么变量a就是这个源文件所私有。</p>
+<ul>
+<li>
+<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
+</li>
+<li>
+<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
+<pre><code>  int a;
+  extern int b;
+  extern int c=10;
+</code></pre>
+</li>
+</ul>
+<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
+<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
+<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
+<ul>
+<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
+<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
+<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
+当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>3D-Render</title>
     <url>/posts/2020-09-002.html</url>
     <content><![CDATA[<p>选择Sokolov的<a href="https://github.com/ssloy/tinyrenderer" target="_blank" rel="noopener">Tiny Renderer</a>教程开始入门。<br />
@@ -223,64 +283,14 @@ pts[j] = m2v(viewport * projection * modelview * v2m(v));
       </tags>
   </entry>
   <entry>
-    <title>C</title>
-    <url>/posts/2020-08-001.html</url>
-    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
-<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
-<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
-<ul>
-<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
-<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
-<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
-<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
-</ul>
-<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
-<p>链接属性一共有三种：external,internal和none。</p>
-<ul>
-<li>
-<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
-</li>
-<li>
-<p>internal：只有同一文件内才为同一实体；</p>
-</li>
-<li>
-<p>none：多个声明被当作独立不同的实体；</p>
-</li>
-<li>
-<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
-<pre><code>  static int a;
-</code></pre>
-</li>
-</ul>
-<p>那么变量a就是这个源文件所私有。</p>
-<ul>
-<li>
-<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
-</li>
-<li>
-<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
-<pre><code>  int a;
-  extern int b;
-  extern int c=10;
-</code></pre>
-</li>
-</ul>
-<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
-<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
-<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
-<ul>
-<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
-<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
-<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
-当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
-</ul>
+    <title>KaTeX Supported Functions</title>
+    <url>/posts/2020-10-004.html</url>
+    <content><![CDATA[<h2 id="katex"><a class="markdownIt-Anchor" href="#katex"></a> <a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">KaTeX</a></h2>
+<iframe src="https://katex.org/docs/supported.html" width="100%" height="800px" frameborder="0" loading="lazy" allowfullscreen></iframe>
 ]]></content>
       <categories>
-        <category>C/C++</category>
+        <category>blog</category>
       </categories>
-      <tags>
-        <tag>C</tag>
-      </tags>
   </entry>
   <entry>
     <title>OneDrive云盘搭建</title>
@@ -759,16 +769,6 @@ if __name__ == &quot;__main__&quot;:
         <tag>machine learning</tag>
         <tag>python</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>KaTeX Supported Functions</title>
-    <url>/posts/2020-10-004.html</url>
-    <content><![CDATA[<h2 id="katex"><a class="markdownIt-Anchor" href="#katex"></a> <a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">KaTeX</a></h2>
-<iframe src="https://katex.org/docs/supported.html" width="100%" height="800px" frameborder="0" loading="lazy" allowfullscreen></iframe>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
   </entry>
   <entry>
     <title>LogisticRegression--python</title>
@@ -1269,6 +1269,36 @@ printf(“Hello, Markdown.”);<br />
       </tags>
   </entry>
   <entry>
+    <title>beyond</title>
+    <url>/posts/2020-10-001.html</url>
+    <content><![CDATA[<p>🔺：<code>pull-up</code><br />
+🔻：<code>push-up (parallel bars dips)</code></p>
+<h2 id="2020年"><a class="markdownIt-Anchor" href="#2020年"></a> 2020年</h2>
+<h3 id="2020年10月"><a class="markdownIt-Anchor" href="#2020年10月"></a> 2020年10月</h3>
+<h4 id="2020104-12-6-6-7-6-6-4-3"><a class="markdownIt-Anchor" href="#2020104-12-6-6-7-6-6-4-3"></a> 2020/10/4  🔺 12 6 6 7 6 6 4 3</h4>
+<h4 id="2020105-3km-running"><a class="markdownIt-Anchor" href="#2020105-3km-running"></a> 2020/10/5  3km running</h4>
+<h4 id="2020106-10-6-4-17-10-8-人旗"><a class="markdownIt-Anchor" href="#2020106-10-6-4-17-10-8-人旗"></a> 2020/10/6  🔺 10 6 4   🔻17 10 8   + 人旗</h4>
+<h4 id="2020108-11-7-8-6-8-6-4"><a class="markdownIt-Anchor" href="#2020108-11-7-8-6-8-6-4"></a> 2020/10/8  🔺 11 7 8 6 8 6 4</h4>
+<h4 id="20201010-11-7-7-7-5-6-5-3"><a class="markdownIt-Anchor" href="#20201010-11-7-7-7-5-6-5-3"></a> 2020/10/10 🔺 11 7 7 7 5 6 5 3</h4>
+<h4 id="20201012-3km-running"><a class="markdownIt-Anchor" href="#20201012-3km-running"></a> 2020/10/12 3km running</h4>
+<h4 id="20201014-13-8-9-8-6-6"><a class="markdownIt-Anchor" href="#20201014-13-8-9-8-6-6"></a> 2020/10/14 🔺 13 8 9 8 6 6</h4>
+<h4 id="20201015-10-7-7-10-8"><a class="markdownIt-Anchor" href="#20201015-10-7-7-10-8"></a> 2020/10/15 🔻 10 7 7 10 8</h4>
+<h4 id="20201018-14-8-8-9-6-5"><a class="markdownIt-Anchor" href="#20201018-14-8-8-9-6-5"></a> 2020/10/18 🔺 14 8 8 9 6 5</h4>
+<h4 id="20201020-14-10-8-7-7"><a class="markdownIt-Anchor" href="#20201020-14-10-8-7-7"></a> 2020/10/20 🔺 14 10 8 7 7</h4>
+<h4 id="20201022-15-9-9-7-5-6"><a class="markdownIt-Anchor" href="#20201022-15-9-9-7-5-6"></a> 2020/10/22 🔺 15 9 9 7 5 6</h4>
+<h4 id="20201024-17-10-10-10-16"><a class="markdownIt-Anchor" href="#20201024-17-10-10-10-16"></a> 2020/10/24 🔻 17 10 10 10 16</h4>
+<h4 id="20201026-15-10-9-8-8-2"><a class="markdownIt-Anchor" href="#20201026-15-10-9-8-8-2"></a> 2020/10/26 🔺 15 10 9 8 8 2</h4>
+<h4 id="20201028-15-11-11-9-6"><a class="markdownIt-Anchor" href="#20201028-15-11-11-9-6"></a> 2020/10/28 🔺 15 11 11 9 6</h4>
+<h4 id="20201030-15-10-10-7-7-2"><a class="markdownIt-Anchor" href="#20201030-15-10-10-7-7-2"></a> 2020/10/30 🔺 15 10 10 7 7 2</h4>
+<h3 id="2020年11月"><a class="markdownIt-Anchor" href="#2020年11月"></a> 2020年11月</h3>
+<h4 id="2020111-10-10-10-10-10-人体旗帜还是不太稳定发挥"><a class="markdownIt-Anchor" href="#2020111-10-10-10-10-10-人体旗帜还是不太稳定发挥"></a> 2020/11/1 🔺 10 10 10 10 10  人体旗帜还是不太稳定发挥</h4>
+<h4 id="2020113-16-12-10-10-8"><a class="markdownIt-Anchor" href="#2020113-16-12-10-10-8"></a> 2020/11/3 🔺 16 12 10 10 8</h4>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Win32显示图像</title>
     <url>/posts/2020-09-001.html</url>
     <content><![CDATA[<p>在windows下将数据以位图的方式显示：</p>
@@ -1404,36 +1434,6 @@ ImageLoad(void* dat, int width, int height,int size)
       </tags>
   </entry>
   <entry>
-    <title>beyond</title>
-    <url>/posts/2020-10-001.html</url>
-    <content><![CDATA[<p>🔺：<code>pull-up</code><br />
-🔻：<code>push-up (parallel bars dips)</code></p>
-<h2 id="2020年"><a class="markdownIt-Anchor" href="#2020年"></a> 2020年</h2>
-<h3 id="2020年10月"><a class="markdownIt-Anchor" href="#2020年10月"></a> 2020年10月</h3>
-<h4 id="2020104-12-6-6-7-6-6-4-3"><a class="markdownIt-Anchor" href="#2020104-12-6-6-7-6-6-4-3"></a> 2020/10/4  🔺 12 6 6 7 6 6 4 3</h4>
-<h4 id="2020105-3km-running"><a class="markdownIt-Anchor" href="#2020105-3km-running"></a> 2020/10/5  3km running</h4>
-<h4 id="2020106-10-6-4-17-10-8-人旗"><a class="markdownIt-Anchor" href="#2020106-10-6-4-17-10-8-人旗"></a> 2020/10/6  🔺 10 6 4   🔻17 10 8   + 人旗</h4>
-<h4 id="2020108-11-7-8-6-8-6-4"><a class="markdownIt-Anchor" href="#2020108-11-7-8-6-8-6-4"></a> 2020/10/8  🔺 11 7 8 6 8 6 4</h4>
-<h4 id="20201010-11-7-7-7-5-6-5-3"><a class="markdownIt-Anchor" href="#20201010-11-7-7-7-5-6-5-3"></a> 2020/10/10 🔺 11 7 7 7 5 6 5 3</h4>
-<h4 id="20201012-3km-running"><a class="markdownIt-Anchor" href="#20201012-3km-running"></a> 2020/10/12 3km running</h4>
-<h4 id="20201014-13-8-9-8-6-6"><a class="markdownIt-Anchor" href="#20201014-13-8-9-8-6-6"></a> 2020/10/14 🔺 13 8 9 8 6 6</h4>
-<h4 id="20201015-10-7-7-10-8"><a class="markdownIt-Anchor" href="#20201015-10-7-7-10-8"></a> 2020/10/15 🔻 10 7 7 10 8</h4>
-<h4 id="20201018-14-8-8-9-6-5"><a class="markdownIt-Anchor" href="#20201018-14-8-8-9-6-5"></a> 2020/10/18 🔺 14 8 8 9 6 5</h4>
-<h4 id="20201020-14-10-8-7-7"><a class="markdownIt-Anchor" href="#20201020-14-10-8-7-7"></a> 2020/10/20 🔺 14 10 8 7 7</h4>
-<h4 id="20201022-15-9-9-7-5-6"><a class="markdownIt-Anchor" href="#20201022-15-9-9-7-5-6"></a> 2020/10/22 🔺 15 9 9 7 5 6</h4>
-<h4 id="20201024-17-10-10-10-16"><a class="markdownIt-Anchor" href="#20201024-17-10-10-10-16"></a> 2020/10/24 🔻 17 10 10 10 16</h4>
-<h4 id="20201026-15-10-9-8-8-2"><a class="markdownIt-Anchor" href="#20201026-15-10-9-8-8-2"></a> 2020/10/26 🔺 15 10 9 8 8 2</h4>
-<h4 id="20201028-15-11-11-9-6"><a class="markdownIt-Anchor" href="#20201028-15-11-11-9-6"></a> 2020/10/28 🔺 15 11 11 9 6</h4>
-<h4 id="20201030-15-10-10-7-7-2"><a class="markdownIt-Anchor" href="#20201030-15-10-10-7-7-2"></a> 2020/10/30 🔺 15 10 10 7 7 2</h4>
-<h3 id="2020年11月"><a class="markdownIt-Anchor" href="#2020年11月"></a> 2020年11月</h3>
-<h4 id="2020111-10-10-10-10-10-人体旗帜还是不太稳定发挥"><a class="markdownIt-Anchor" href="#2020111-10-10-10-10-10-人体旗帜还是不太稳定发挥"></a> 2020/11/1 🔺 10 10 10 10 10  人体旗帜还是不太稳定发挥</h4>
-<h4 id="2020113-16-12-10-10-8"><a class="markdownIt-Anchor" href="#2020113-16-12-10-10-8"></a> 2020/11/3 🔺 16 12 10 10 8</h4>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-  </entry>
-  <entry>
     <title>butterfly修改及使用</title>
     <url>/posts/2020-07-003.html</url>
     <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
@@ -1563,6 +1563,24 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
       </tags>
   </entry>
   <entry>
+    <title>5 free-handstand tips</title>
+    <url>/posts/2020-10-005.html</url>
+    <content><![CDATA[<ol>
+<li>改变手的放置位置，不要将整个手全紧贴地面，可以将手指弯曲，形成一个抓地的感觉</li>
+<li>将手掌贴地，只有在需要必须使用手指时是用手指，平常调整身体的平衡时，可以只使用手掌进行调节，当我们身体将要放过去时，这样就可以有额外的力量将身体拉回来</li>
+<li>增大平衡范围，加强自己的核心力量，往后倒时，将臀部前移，腿下移或后移</li>
+<li>练习其他类型的手平衡</li>
+<li>使用不同的底板实现平衡，不只限于地面，其他的比如草地，沙滩，双杠</li>
+</ol>
+<ul>
+<li>靠墙倒立时，可以尝试不用脚蹬，使用手掌的力量使脚离开墙</li>
+</ul>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
     <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
     <url>/posts/2020-07-002.html</url>
     <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
@@ -1584,22 +1602,25 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
       </tags>
   </entry>
   <entry>
-    <title>5 free-handstand tips</title>
-    <url>/posts/2020-10-005.html</url>
-    <content><![CDATA[<ol>
-<li>改变手的放置位置，不要将整个手全紧贴地面，可以将手指弯曲，形成一个抓地的感觉</li>
-<li>将手掌贴地，只有在需要必须使用手指时是用手指，平常调整身体的平衡时，可以只使用手掌进行调节，当我们身体将要放过去时，这样就可以有额外的力量将身体拉回来</li>
-<li>增大平衡范围，加强自己的核心力量，往后倒时，将臀部前移，腿下移或后移</li>
-<li>练习其他类型的手平衡</li>
-<li>使用不同的底板实现平衡，不只限于地面，其他的比如草地，沙滩，双杠</li>
-</ol>
+    <title>leetcode-每日一题</title>
+    <url>/posts/2020-11-001.html</url>
+    <content><![CDATA[<h3 id="349-两个数组的交集"><a class="markdownIt-Anchor" href="#349-两个数组的交集"></a> 349. 两个数组的交集</h3>
 <ul>
-<li>靠墙倒立时，可以尝试不用脚蹬，使用手掌的力量使脚离开墙</li>
+<li>首先记录下nums1中出现过的数字，如果nums2中也出现就将其加入到集合中。</li>
 </ul>
-]]></content>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">intersection</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; <span class="built_in">map</span>;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; <span class="built_in">set</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> var :nums1)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">map</span>[var] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> var :nums2)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">map</span>.<span class="built_in">find</span>(var)!=<span class="built_in">map</span>.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">set</span>.insert(var);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="built_in">set</span>.<span class="built_in">begin</span>(),<span class="built_in">set</span>.<span class="built_in">end</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="941-有效的山脉数组"><a class="markdownIt-Anchor" href="#941-有效的山脉数组"></a> 941. 有效的山脉数组</h3>
+<p><a href="https://slyli.cn/posts/2020-08-002.html#845-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E9%95%BF%E5%B1%B1%E8%84%89">845-数组中的最长山脉</a>的简化版本</p>
+<ul>
+<li>for循环内部如果没有语句，要注意后面要加上<code>;</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">validMountainArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(A.<span class="built_in">size</span>()&lt;<span class="number">3</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">int</span> i,j;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;A.<span class="built_in">size</span>()&amp;&amp;A[i]&gt;A[i<span class="number">-1</span>];i++);</span><br><span class="line">        <span class="keyword">for</span>(j=i;j&lt;A.<span class="built_in">size</span>()&amp;&amp;A[j]&lt;A[j<span class="number">-1</span>];j++);</span><br><span class="line">        <span class="keyword">if</span>(i!=<span class="number">1</span> &amp;&amp; j !=i &amp;&amp; j==A.<span class="built_in">size</span>())</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>others</category>
+        <category>C/C++</category>
       </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
   </entry>
   <entry>
     <title>js多次点击的响应</title>
@@ -1716,6 +1737,323 @@ dp[i] =     if s[i]==’)’
       </categories>
       <tags>
         <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-每日一题</title>
+    <url>/posts/2020-08-002.html</url>
+    <content><![CDATA[<h3 id="每日一题"><a class="markdownIt-Anchor" href="#每日一题"></a> 每日一题</h3>
+<h3 id="336回文对"><a class="markdownIt-Anchor" href="#336回文对"></a> 336.回文对</h3>
+<p>题目比较简单，上来可以先判断两个拼接好的字符串是否符合，然后遍历判断。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; palindromePairs(vector&lt;string&gt;&amp; words) &#123;</span><br><span class="line">        int len&#x3D;words.size();</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; all;</span><br><span class="line">        for(int i&#x3D;0;i&lt;len;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for(int j&#x3D;0;j&lt;len;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                if(i!&#x3D;j&amp;&amp;Judge(words[i],words[j]))</span><br><span class="line">                &#123;</span><br><span class="line">                    vector&lt;int&gt; temp;</span><br><span class="line">                    temp.push_back(i);</span><br><span class="line">                    temp.push_back(j);</span><br><span class="line">                    all.push_back(temp);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        return all;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    bool Judge(string&amp; w1,string&amp; w2)</span><br><span class="line">    &#123;</span><br><span class="line">        string str &#x3D; w1+w2;</span><br><span class="line">        int len &#x3D; str.size();</span><br><span class="line">        for(int i&#x3D;0;i&lt;len;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(str[i]!&#x3D;str[len-1-i])</span><br><span class="line">                return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>提交结果，有一半能够通过，其他的超出了时间限制。看到题解说不能直接用<code>str = w1+w2;</code>，移动指针会快一些。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bool Judge(string&amp; w1,string&amp; w2)</span><br><span class="line">&#123;</span><br><span class="line">    int len1 &#x3D; w1.size();</span><br><span class="line">    int len2 &#x3D; w2.size();</span><br><span class="line">    int len &#x3D; len1 +len2;</span><br><span class="line">    int i;</span><br><span class="line">    </span><br><span class="line">    for(i&#x3D;0;i&lt;len&#x2F;2;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if(len1&gt;len2)</span><br><span class="line">        &#123;</span><br><span class="line">            if(i&lt;len2)</span><br><span class="line">            &#123;</span><br><span class="line">                if(w1[i]!&#x3D;w2[len2-1-i])</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if(w1[i]!&#x3D;w1[len-1-i])</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            if(i&lt;len1)</span><br><span class="line">            &#123;</span><br><span class="line">                if(w1[i]!&#x3D;w2[len2-1-i])</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if(w2[i-len1]!&#x3D;w2[len2-1-i])</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">            </span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果：通过<br />
+执行用时：1528 ms, 在所有 C++ 提交中击败了7.14%的用户。<br />
+内存消耗：21.6 MB, 在所有 C++ 提交中击败了100.00%的用户。</p>
+<p>另一个方法使用 manacher算法，竞赛难度就算了。只能做人下人了，哈哈。</p>
+<p>后面评论实在太逗了。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc1.png" alt="" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc2.png" alt="" /></p>
+<h3 id="100-相同的树"><a class="markdownIt-Anchor" href="#100-相同的树"></a> 100. 相同的树</h3>
+<p>很简单的一道题，直接递归调用判断就行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isSameTree(TreeNode* p, TreeNode* q) &#123;</span><br><span class="line">        if(p!&#x3D;nullptr&amp;&amp; q!&#x3D;nullptr)</span><br><span class="line">        &#123;</span><br><span class="line">            return p-&gt;val&#x3D;&#x3D;q-&gt;val&amp;&amp;isSameTree(p-&gt;left,q-&gt;left)&amp;&amp;isSameTree(p-&gt;right,q-&gt;right);             </span><br><span class="line">        &#125;</span><br><span class="line">        else if(p&#x3D;&#x3D;nullptr &amp;&amp; q&#x3D;&#x3D; nullptr)</span><br><span class="line">            return true;</span><br><span class="line">        else </span><br><span class="line">            return false; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="226-翻转二叉树"><a class="markdownIt-Anchor" href="#226-翻转二叉树"></a> 226. 翻转二叉树</h3>
+<p>easy 递归交换左右节点。</p>
+<h3 id="344-反转字符串"><a class="markdownIt-Anchor" href="#344-反转字符串"></a> 344. 反转字符串</h3>
+<p>遍历头尾交换。</p>
+<h3 id="142-环形链表-ii"><a class="markdownIt-Anchor" href="#142-环形链表-ii"></a> 142. 环形链表 II</h3>
+<ol>
+<li>暴力搜索 O(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>)</li>
+<li>hash表</li>
+<li>利用快慢指针，快指针每次走两步，慢指针每次走一步。</li>
+</ol>
+<h3 id="416-分割等和子集"><a class="markdownIt-Anchor" href="#416-分割等和子集"></a> 416. 分割等和子集</h3>
+<ul>
+<li>美好的一天从每日一题结束</li>
+<li>动态规划，可以转化为0-1背包问题。</li>
+<li>对每一个数，都可以选择取和取。</li>
+<li>转移方程<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mi mathvariant="normal">∣</mi><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo>−</mo><mi>n</mi><mi>u</mi><mi>m</mi><mi>s</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mi>f</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>j</mi><mo>≥</mo><mrow><mi>n</mi><mi>u</mi><mi>m</mi><mi>s</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mi>f</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>j</mi><mo>&lt;</mo><mrow><mi>n</mi><mi>u</mi><mi>m</mi><mi>s</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">dp[i][j]=\begin{cases}
+  dp[i-1][j]|dp[i-1][j-nums[i]],&amp;{if}&amp;{j}≥{nums[i]}\\
+  dp[i-1][j],&amp;{if}&amp;{j}&lt;{nums[i]}
+  \end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mord">∣</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">]</span><span class="mpunct">,</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mpunct">,</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><br />
+dp[i][j] 表示从数组的[0,i] 下标范围内选取若干个正整数（可以是0个），是否存在一种选取方案使得被选取的正整数的和等于j。</li>
+</ul>
+<h3 id="0-1-背包问题"><a class="markdownIt-Anchor" href="#0-1-背包问题"></a> 0-1 背包问题</h3>
+<p>给定 n 种物品和一个容量为 C 的背包，物品 i 的重量是 wi，其价值为 vi 。<br />
+问：应该如何选择装入背包的物品，使得装入背包中的物品的总价值最大？</p>
+<ul>
+<li>声明一个 大小为  m[n][c] 的二维数组，m[ i ][ j ] 表示 在面对第 i 件物品，且背包容量为  j 时所能获得的最大价值</li>
+<li>状态转移方程：<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo separator="true">,</mo><mi>m</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo>−</mo><mi>w</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo>+</mo><mi>v</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mi>f</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>j</mi><mo>≥</mo><mrow><mi>w</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>m</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mi>m</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mi>f</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>j</mi><mo>&lt;</mo><mrow><mi>w</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">m[i][j]=\begin{cases}
+  max(m[i-1][j],m[i-1][j-w[i]]+v[i]),&amp;{if}&amp;{j}≥{w[i]}\\
+  m[i][j]=m[i-1][j],&amp;{if}&amp;{j}&lt;{w[i]}
+  \end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">)</span><span class="mpunct">,</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mpunct">,</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></li>
+</ul>
+<h3 id="530-二叉搜索树的最小绝对差"><a class="markdownIt-Anchor" href="#530-二叉搜索树的最小绝对差"></a> 530. 二叉搜索树的最小绝对差</h3>
+<p>中序遍历可以得到二叉搜索树值的有序序列，元素的最小绝对差一定是相邻两个元素之间的。last记录上次的值，与本次的值求绝对差，边遍历边更新最小绝对差，</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int getMinimumDifference(TreeNode* root) &#123;</span><br><span class="line">        &#123;</span><br><span class="line">            MidTra(root);</span><br><span class="line">            return _min;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">private:</span><br><span class="line">    int last &#x3D; -1;</span><br><span class="line">    int _min &#x3D; INT_MAX;</span><br><span class="line">    void MidTra(TreeNode* root)</span><br><span class="line">    &#123;</span><br><span class="line">        if(root!&#x3D;NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            MidTra(root-&gt;left);</span><br><span class="line">            if(last!&#x3D;-1)</span><br><span class="line">            &#123;</span><br><span class="line">                _min&#x3D;min(_min,root-&gt;val-last);</span><br><span class="line">                last&#x3D;root-&gt;val;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                last &#x3D; root-&gt;val;</span><br><span class="line">            &#125;</span><br><span class="line">            MidTra(root-&gt;right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="24-两两交换链表中的节点"><a class="markdownIt-Anchor" href="#24-两两交换链表中的节点"></a> 24. 两两交换链表中的节点</h3>
+<p>easy难度，就是简单的链表节点交换问题。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* swapPairs(ListNode* head) &#123;</span><br><span class="line">        if(head&#x3D;&#x3D;nullptr||head-&gt;next&#x3D;&#x3D;nullptr)</span><br><span class="line">            return head;</span><br><span class="line">        ListNode *first &#x3D; head,*second &#x3D; head-&gt;next,*ret &#x3D; head-&gt;next,*last &#x3D;nullptr;</span><br><span class="line">        while(first &amp;&amp; second)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode *temp &#x3D; second-&gt;next;</span><br><span class="line">            second-&gt;next &#x3D; first;</span><br><span class="line">            first-&gt;next &#x3D;nullptr;</span><br><span class="line">            if(last!&#x3D;nullptr)</span><br><span class="line">                last-&gt;next &#x3D; second;</span><br><span class="line">            last &#x3D; first;</span><br><span class="line">            first &#x3D; temp;</span><br><span class="line">            if(first!&#x3D;nullptr)</span><br><span class="line">            &#123;</span><br><span class="line">                second &#x3D; first-&gt;next;</span><br><span class="line">                if(second&#x3D;&#x3D;nullptr)</span><br><span class="line">                    last-&gt;next &#x3D; first;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="1002-查找常用字符"><a class="markdownIt-Anchor" href="#1002-查找常用字符"></a> 1002. 查找常用字符</h3>
+<ul>
+<li>设置一个长度26的vector存储每个字符串中各个字符的计数。</li>
+<li>遍历整个字符串向量，分别每个字符串中的字符个数进行计数。</li>
+<li>取所有vector的交集（对于字符计数不同的，取此字符较小的计数）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;string&gt; commonChars(vector&lt;string&gt;&amp; A) &#123;</span><br><span class="line">        if(A.size()&#x3D;&#x3D;0)</span><br><span class="line">            return vector&lt;string&gt;();</span><br><span class="line">        vector&lt;int&gt; cnt(26,0); </span><br><span class="line">        for(auto ch :A[0])</span><br><span class="line">             cnt[ch-&#39;a&#39;]++;</span><br><span class="line">        for(int i&#x3D;1;i&lt;A.size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            vector&lt;int&gt; ths(26,0);</span><br><span class="line">            for(auto ch :A[i])</span><br><span class="line">            &#123;</span><br><span class="line">                ths[ch-&#39;a&#39;]++;</span><br><span class="line">            &#125;</span><br><span class="line">            for(int i&#x3D;0;i&lt;26;i++)</span><br><span class="line">                if(cnt[i]!&#x3D;ths[i])</span><br><span class="line">                    cnt[i]&#x3D;min(cnt[i],ths[i]); </span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;string&gt; ret;</span><br><span class="line">        for(int i&#x3D;0;i&lt;26;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            while(cnt[i])</span><br><span class="line">            &#123;</span><br><span class="line">                ret.push_back(string(1,&#39;a&#39;+i));</span><br><span class="line">                cnt[i]--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="116-填充每个节点的下一个右侧节点指针"><a class="markdownIt-Anchor" href="#116-填充每个节点的下一个右侧节点指针"></a> 116. 填充每个节点的下一个右侧节点指针</h3>
+<ul>
+<li>
+<p>可以采取先序遍历的思想</p>
+</li>
+<li>
+<p>对于每个节点root，如果有左子节点 root-&gt;left，那么左子节点的next是右子节点，root-&gt;left-&gt;next = root-&gt;right</p>
+</li>
+<li>
+<p>如果有右子节点（有左定有有）root-&gt;right，右子节点的next是</p>
+<ul>
+<li>若root的next节点不为空，右子节点的next是root-&gt;next的左子节点，root-&gt;right-&gt;next = root-&gt;next-&gt;left</li>
+<li>若root的next节点为空，右子节点的next是NULL,root-&gt;right-&gt;next = NULL</li>
+</ul>
+</li>
+<li>
+<p>本题很容易想到使用额外的队列进行树的层次遍历，在此我们可以省略掉这个额外的队列进行循环的层次遍历。</p>
+</li>
+<li>
+<p>next的赋值操作和上一个递归的一致</p>
+</li>
+<li>
+<p>对于每一层，我们进行下一层的next的赋值操作。我们利用上层对本层完成的next的赋值从左到右对每个节点进行遍历，完成对每个节点的子节点的next的赋值操作，完成全部子节点后进入下一层。继续进行。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    Node* connect(Node* root) &#123;</span><br><span class="line">        Pre(root);</span><br><span class="line">        return root;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    void Pre(Node *root)</span><br><span class="line">    &#123;</span><br><span class="line">        if(root)</span><br><span class="line">        &#123;</span><br><span class="line">            if(root-&gt;left)</span><br><span class="line">                root-&gt;left-&gt;next &#x3D; root-&gt;right;</span><br><span class="line">            if(root-&gt;right)</span><br><span class="line">            &#123;</span><br><span class="line">                if(root-&gt;next)</span><br><span class="line">                    root-&gt;right-&gt;next &#x3D; root-&gt;next-&gt;left;</span><br><span class="line">                else</span><br><span class="line">                    root-&gt;right-&gt;next &#x3D; NULL;</span><br><span class="line">            &#125;</span><br><span class="line">            Pre(root-&gt;left);</span><br><span class="line">            Pre(root-&gt;right); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="977-有序数组的平方"><a class="markdownIt-Anchor" href="#977-有序数组的平方"></a> 977. 有序数组的平方</h3>
+<p>easy</p>
+<h3 id="19-删除链表的倒数第n个节点"><a class="markdownIt-Anchor" href="#19-删除链表的倒数第n个节点"></a> 19. 删除链表的倒数第N个节点</h3>
+<p>快慢指针，第一个指针先前进N个节点，然后两个指针一起前进，知道第一个指针到达链表的尾部。</p>
+<h3 id="844-比较含退格的字符串"><a class="markdownIt-Anchor" href="#844-比较含退格的字符串"></a> 844. 比较含退格的字符串</h3>
+<ul>
+<li>第一次遍历，将需要退格的字符换成’#’, 第二次遍历，判断连个字符串是否相同。</li>
+<li>利用栈，遍历对于字符，将字符压入栈中，对于退格符，将栈顶的字符从栈中取出，完成之后，再比较两个栈中的内容。</li>
+</ul>
+<h3 id="143-重排链表"><a class="markdownIt-Anchor" href="#143-重排链表"></a> 143. 重排链表</h3>
+<ul>
+<li>用递归做思路不难，结束条件有点麻烦。</li>
+<li>先到达链表的最后一个，将其插入到相应的位置后返回，再到前一个判断后插入，持续如此，到达结束条件之后，直接返回。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void reorderList(ListNode* head) &#123;</span><br><span class="line">        if(!head)</span><br><span class="line">            return;</span><br><span class="line">        cur &#x3D; head;</span><br><span class="line">        ret &#x3D; false;</span><br><span class="line">        inser(head-&gt;next);</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode *cur&#x3D;nullptr;</span><br><span class="line">    bool ret;</span><br><span class="line">    void inser(ListNode *node)</span><br><span class="line">    &#123;</span><br><span class="line">        if(!node)</span><br><span class="line">        &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        inser(node-&gt;next);</span><br><span class="line">        if(ret)</span><br><span class="line">            return;</span><br><span class="line">        if(node-&gt;next&#x3D;&#x3D;nullptr)</span><br><span class="line">        &#123;</span><br><span class="line">            if(cur-&gt;next!&#x3D;node)</span><br><span class="line">                node-&gt;next &#x3D; cur-&gt;next;</span><br><span class="line">            cur-&gt;next &#x3D; node;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(node-&gt;next &#x3D;&#x3D; cur-&gt;next)</span><br><span class="line">        &#123;</span><br><span class="line">            cur &#x3D; cur-&gt;next-&gt;next;</span><br><span class="line"></span><br><span class="line">            if(cur&#x3D;&#x3D;node||cur-&gt;next &#x3D;&#x3D; node)</span><br><span class="line">            &#123;</span><br><span class="line">                node-&gt;next&#x3D;nullptr;</span><br><span class="line">                ret &#x3D; true;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                node-&gt;next &#x3D; cur-&gt;next;</span><br><span class="line">                cur-&gt;next &#x3D; node;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以先找链表中点，使用快慢指针，慢指针走一步，快指针走两步。slow = slow-&gt;next, fast = fast-&gt;next-&gt;next;</li>
+<li>将后半部分链表逆序排序</li>
+<li>合并两个链表</li>
+</ul>
+<h3 id="925-长按键入"><a class="markdownIt-Anchor" href="#925-长按键入"></a> 925. 长按键入</h3>
+<ul>
+<li>使用两个指针，分别指向两个字符串，然后就很显然了。。。。</li>
+</ul>
+<h3 id="763-划分字母区间"><a class="markdownIt-Anchor" href="#763-划分字母区间"></a> 763. 划分字母区间</h3>
+<ul>
+<li>遍历字符串，进行分段。设置一个位置P用作新段的开始，一个栈S用作记录分段</li>
+<li>找到当前位置 i 的字符出现在字符串中的最后一次出现的位置 E，
+<ul>
+<li>如果当前字符是一个新段的开始，压入 E-i+1 然后 P = E+1</li>
+<li>否则，判断这个位置E和新段开始P的大小，如果大于或等于P，将栈顶的分段大小加上 E-P+1  然后 P=E+1</li>
+</ul>
+</li>
+</ul>
+<div class="note primary simple">
+            <ol><li>第二步中找字符出现的字符串中的最后一次出现的位置 E 时，可以用字典或HASH表遍历一遍字符串提前记录下来。 这样时间复杂度就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>,而不是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li><li>可以使用双指针代替使用栈。</li></ol>
+          </div>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; partitionLabels(string S) &#123;</span><br><span class="line">        int len &#x3D; S.size();</span><br><span class="line">        int start &#x3D; 0;</span><br><span class="line">        int dict[26]&#x3D;&#123;0&#125;;</span><br><span class="line">        stack&lt;int&gt; sta;</span><br><span class="line">        for(int i&#x3D;len-1;i&gt;&#x3D;0;i--)</span><br><span class="line">        &#123;</span><br><span class="line">            dict[S[i]-&#39;a&#39;] &#x3D; dict[S[i]-&#39;a&#39;]&gt;0?dict[S[i]-&#39;a&#39;]:i;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;0;i&lt;len;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            int j&#x3D;dict[S[i]-&#39;a&#39;];</span><br><span class="line">            if(i&#x3D;&#x3D;start)</span><br><span class="line">            &#123;</span><br><span class="line">                sta.push(j-start+1);</span><br><span class="line">                start &#x3D; j+1;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if(j&gt;&#x3D;start)</span><br><span class="line">                &#123;</span><br><span class="line">                    int pre &#x3D; sta.top();</span><br><span class="line">                    sta.pop();</span><br><span class="line">                    sta.push(pre + j-start+1);</span><br><span class="line">                    start &#x3D; j+1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;int&gt; v(sta.size());</span><br><span class="line">        for(auto &amp;vi:v)</span><br><span class="line">        &#123;</span><br><span class="line">            vi &#x3D; sta.top();</span><br><span class="line">            sta.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        reverse(v.begin(),v.end());</span><br><span class="line">        return v;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>第一次medium运行时间0ms,超过100%还是挺开心的。</p>
+<h3 id="234-回文链表"><a class="markdownIt-Anchor" href="#234-回文链表"></a> 234. 回文链表</h3>
+<ul>
+<li>首先快慢指针找到链表中间节点。</li>
+<li>反转其中一半链表</li>
+<li>比较</li>
+</ul>
+<div class="note info simple">
+            <p>其中第一步和第二步可以合并，在寻找链表中间节点的时候可以将前半部分的链表反转，之后就可以直接比较了。</p>
+          </div>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isPalindrome(ListNode* head) &#123;</span><br><span class="line">        ListNode *slow &#x3D; head,*fast &#x3D; head;</span><br><span class="line">        ListNode *tail &#x3D; NULL;</span><br><span class="line">        while(fast&amp;&amp;fast-&gt;next)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode *temp &#x3D; slow;</span><br><span class="line">            slow &#x3D; slow-&gt;next;</span><br><span class="line">            fast &#x3D; fast-&gt;next-&gt;next;</span><br><span class="line">            temp-&gt;next &#x3D; tail;</span><br><span class="line">            tail &#x3D; temp;</span><br><span class="line">        &#125;</span><br><span class="line">        if(fast)</span><br><span class="line">            slow &#x3D; slow-&gt;next;</span><br><span class="line">        while(tail &amp;&amp; slow)</span><br><span class="line">        &#123;</span><br><span class="line">            if(tail-&gt;val!&#x3D;slow-&gt;val)</span><br><span class="line">                return false;</span><br><span class="line">            tail &#x3D; tail-&gt;next;</span><br><span class="line">            slow  &#x3D; slow-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="1024-视频拼接-2020-1024"><a class="markdownIt-Anchor" href="#1024-视频拼接-2020-1024"></a> 1024. 视频拼接 （2020-1024？）</h3>
+<ul>
+<li>可使用贪心算法或动态规划,本题使用贪心算法最优</li>
+<li>动规：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo separator="true">,</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">dp[j] = min(dp[j],dp[i]+1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></li>
+<li>动规和贪心前半部分结合</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int videoStitching(vector&lt;vector&lt;int&gt;&gt;&amp; clips, int T) &#123;</span><br><span class="line">        vector&lt;int&gt; dt(T,0);</span><br><span class="line">        vector&lt;int&gt; dp(T+1,-1);</span><br><span class="line">        for(auto c :clips)</span><br><span class="line">        &#123;</span><br><span class="line">            if(c[0]&lt;T&amp;&amp;c[1]&gt;dt[c[0]])</span><br><span class="line">                dt[c[0]] &#x3D; c[1];</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;0;i&lt;&#x3D;dt[0]&amp;&amp;i&lt;&#x3D;T;i++)</span><br><span class="line">            dp[i] &#x3D; 1;</span><br><span class="line">        for(int i&#x3D;1;i&lt;T;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(dp[i]&lt;0)</span><br><span class="line">                return -1;</span><br><span class="line">            if(dt[i]&gt;i)</span><br><span class="line">            &#123;</span><br><span class="line">                for(int j&#x3D;i+1;j&lt;&#x3D;dt[i] &amp;&amp;j&lt;&#x3D;T;j++)</span><br><span class="line">                &#123;</span><br><span class="line">                    if(dp[j]&gt;0)</span><br><span class="line">                        dp[j] &#x3D; min(dp[j],dp[i]+1);</span><br><span class="line">                    else</span><br><span class="line">                        dp[j] &#x3D; dp[i]+1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[T];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>贪心：先记录每个位置能到达的最远点。遍历，记录当前能到达的最远点far，和当前使用段的结束点ed。进行判断，结束或记录所使用的最少段cnt</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (int i &#x3D; 0; i &lt; T; i++) </span><br><span class="line">&#123;</span><br><span class="line">    far &#x3D; max(far, dt[i]);</span><br><span class="line">    if (i &#x3D;&#x3D; far) </span><br><span class="line">        return -1;</span><br><span class="line">    if (i &#x3D;&#x3D; ed) </span><br><span class="line">    &#123;</span><br><span class="line">        cnt++;</span><br><span class="line">        ed &#x3D; far;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="845-数组中的最长山脉"><a class="markdownIt-Anchor" href="#845-数组中的最长山脉"></a> 845. 数组中的最长山脉</h3>
+<ul>
+<li>今天是中等难度，不过感觉像是简单的题目。</li>
+<li>从0开始，然后判断就行了。每次在中间记录一下山顶，确定不是只有上坡或者下坡。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestMountain</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = A.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>,start=<span class="number">0</span>,<span class="built_in">max</span>=<span class="number">0</span>,heil=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;len)</span><br><span class="line">        &#123;</span><br><span class="line">            start = i;</span><br><span class="line">            <span class="keyword">while</span>(i+<span class="number">1</span>&lt;len &amp;&amp;A[i+<span class="number">1</span>]&gt;A[i]) i++;</span><br><span class="line">            <span class="keyword">int</span> mid = i;</span><br><span class="line">            <span class="keyword">while</span>(i+<span class="number">1</span>&lt;len &amp;&amp;A[i+<span class="number">1</span>]&lt;A[i]) i++;</span><br><span class="line">            <span class="keyword">if</span>(i==start)</span><br><span class="line">            &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(i&gt;mid&amp;&amp;mid&gt;start&amp;&amp; <span class="built_in">max</span>&lt;i-start+<span class="number">1</span>)</span><br><span class="line">                    <span class="built_in">max</span> = i-start+<span class="number">1</span>;</span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="1365-有多少小于当前数字的数字"><a class="markdownIt-Anchor" href="#1365-有多少小于当前数字的数字"></a> 1365. 有多少小于当前数字的数字</h3>
+<ul>
+<li>计数排序，然后统计</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">smallerNumbersThanCurrent</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dict[<span class="number">101</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> n:nums)</span><br><span class="line">        &#123;</span><br><span class="line">            dict[n]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;<span class="number">101</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            dict[i]+=dict[i<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">ret</span><span class="params">(nums)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;r:ret)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(r!=<span class="number">0</span>)</span><br><span class="line">                r=dict[r<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="144-二叉树的前序遍历"><a class="markdownIt-Anchor" href="#144-二叉树的前序遍历"></a> 144. 二叉树的前序遍历</h3>
+<ul>
+<li>非递归遍历，while + stack</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode*&gt; s;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">        <span class="keyword">while</span>(root||!s.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(root)</span><br><span class="line">            &#123;</span><br><span class="line">                v.push_back(root-&gt;val);</span><br><span class="line">                s.push(root);</span><br><span class="line">                root = root-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                TreeNode *temp = s.top();</span><br><span class="line">                s.pop();</span><br><span class="line">                root = temp-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="1207-独一无二的出现次数"><a class="markdownIt-Anchor" href="#1207-独一无二的出现次数"></a> 1207. 独一无二的出现次数</h3>
+<ul>
+<li>对输入数组进行计数</li>
+<li>对计数的数组进行排序</li>
+<li>相邻两个数比较，如果有相同的就表明出现次数不是独一无二的</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">uniqueOccurrences</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">cnt</span><span class="params">(<span class="number">2001</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.<span class="built_in">size</span>();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i]&gt;=<span class="number">0</span>)</span><br><span class="line">                cnt[arr[i]]++;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                cnt[<span class="number">2001</span>+arr[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(cnt.<span class="built_in">begin</span>(),cnt.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2000</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(cnt[i]!=<span class="number">0</span> &amp;&amp;cnt[i]==cnt[i+<span class="number">1</span>])</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<div class="note info simple">
+            <p>第二、三步也进行一次计数</p>
+          </div>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">uniqueOccurrences</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">cnt</span><span class="params">(<span class="number">2001</span>)</span></span>;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">dt</span><span class="params">(<span class="number">1001</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.<span class="built_in">size</span>();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i]&gt;=<span class="number">0</span>)</span><br><span class="line">                cnt[arr[i]]++;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                cnt[<span class="number">2001</span>+arr[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2001</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            dt[cnt[i]]++;</span><br><span class="line">            <span class="keyword">if</span>(dt[cnt[i]]&gt;<span class="number">1</span> &amp;&amp;cnt[i]!=<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="129-求根到叶子节点数字之和"><a class="markdownIt-Anchor" href="#129-求根到叶子节点数字之和"></a> 129. 求根到叶子节点数字之和</h3>
+<ul>
+<li>递归求和</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sumNumbers</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Func(root,<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Func</span><span class="params">(TreeNode *root,<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        num = num*<span class="number">10</span> +root-&gt;val;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;left==<span class="literal">NULL</span>&amp;&amp;root-&gt;right==<span class="literal">NULL</span>)</span><br><span class="line">        &#123; </span><br><span class="line">            <span class="keyword">return</span> num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            <span class="keyword">return</span> Func(root-&gt;left,num)+Func(root-&gt;right,num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="463-岛屿的周长"><a class="markdownIt-Anchor" href="#463-岛屿的周长"></a> 463. 岛屿的周长</h3>
+<ul>
+<li>从左往右，从上往下遍历即可</li>
+<li>如果地图是一个岛屿，周长 +4 ，如果这个岛屿左边也是岛屿，周长 -2，如果这个岛屿上方也是岛屿，周长 -2，</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> rows = grid.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(rows==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> cols = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> sum = grid[<span class="number">0</span>][<span class="number">0</span>]*<span class="number">4</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;cols;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(grid[<span class="number">0</span>][j]==<span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                sum+=<span class="number">4</span>;</span><br><span class="line">                <span class="keyword">if</span>(grid[<span class="number">0</span>][j<span class="number">-1</span>]==<span class="number">1</span>)</span><br><span class="line">                    sum-=<span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;rows;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(grid[i][<span class="number">0</span>]==<span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                sum += grid[i][<span class="number">0</span>]*<span class="number">4</span>;</span><br><span class="line">                <span class="keyword">if</span>(grid[i<span class="number">-1</span>][<span class="number">0</span>]==<span class="number">1</span>)</span><br><span class="line">                    sum-=<span class="number">2</span>;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;cols;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    sum+=<span class="number">4</span>;</span><br><span class="line">                    <span class="keyword">if</span>(grid[i][j<span class="number">-1</span>]==<span class="number">1</span>)</span><br><span class="line">                        sum-=<span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">if</span>(grid[i<span class="number">-1</span>][j]==<span class="number">1</span>)</span><br><span class="line">                        sum-=<span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pytorch中的LSTM模型</title>
+    <url>/posts/2020-10-006.html</url>
+    <content><![CDATA[<h2 id="背景知识"><a class="markdownIt-Anchor" href="#背景知识"></a> 背景知识</h2>
+<h3 id="lstm原理介绍"><a class="markdownIt-Anchor" href="#lstm原理介绍"></a> LSTM原理介绍</h3>
+<iframe src="https://datawhalechina.github.io/leeml-notes/#/chapter36/chapter36?id=lstm" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
+<h3 id="pytorch-doc"><a class="markdownIt-Anchor" href="#pytorch-doc"></a> pytorch doc</h3>
+<iframe src="https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html#torch.nn.LSTM" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
+<h2 id="简单实例"><a class="markdownIt-Anchor" href="#简单实例"></a> 简单实例</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">lstm = nn.LSTM(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>)                    <span class="comment"># (input_size(feature_num) ,hidden_size,num_layers ) </span></span><br><span class="line">input = torch.randn(<span class="number">4</span>, <span class="number">1</span>, <span class="number">1</span>)               <span class="comment"># (seq_len, batch, input_size(feature_num))</span></span><br><span class="line">h0 = torch.randn(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>)                  <span class="comment"># (num_layers * num_directions, batch, hidden_size)</span></span><br><span class="line">c0 = torch.randn(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>)                  <span class="comment"># (num_layers * num_directions, batch, hidden_size)</span></span><br><span class="line">output, (hn, cn) = lstm(input, (h0, c0))   <span class="comment"># output:(seq_len, batch, num_directions * hidden_size)</span></span><br><span class="line">                                           <span class="comment"># hn = output[-1] , output = [h1,h2,...,hn]</span></span><br></pre></td></tr></table></figure>
+<h3 id="各个参数的理解"><a class="markdownIt-Anchor" href="#各个参数的理解"></a> 各个参数的理解</h3>
+<ol>
+<li>input_size:一个输入中的特征的个数</li>
+<li>hidden_size: 隐藏层节点的个数，如下图</li>
+<li>num_layers: lstm层的个数，默认为1，如果设为2，则第一层的输出[h0,h1,…hn]作为第二层的输入，在计算出最后的输出[h0,h1,…hn]</li>
+<li>seq_len: 一个序列中输入的个数</li>
+<li>batch: 每批处理的样本个数</li>
+</ol>
+<h3 id="实例结构图"><a class="markdownIt-Anchor" href="#实例结构图"></a> 实例结构图</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-10/lstm.jpg" alt="" /></p>
+<h2 id="航班预测人数"><a class="markdownIt-Anchor" href="#航班预测人数"></a> 航班预测人数</h2>
+<p>参考 <a href="https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/" target="_blank" rel="noopener">https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler</span><br><span class="line"></span><br><span class="line"><span class="comment">#  https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_data</span><span class="params">(data, pred=None)</span>:</span></span><br><span class="line">    plt.title(<span class="string">'mouth vs passengers'</span>)</span><br><span class="line">    plt.xlabel(<span class="string">'mouths'</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'total passengers'</span>)</span><br><span class="line">    plt.plot(data)</span><br><span class="line">    <span class="keyword">if</span> pred <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        x = np.arange(<span class="number">132</span>, <span class="number">144</span>, <span class="number">1</span>)</span><br><span class="line">        plt.plot(x, pred)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_io_seq</span><span class="params">(data, tw)</span>:</span></span><br><span class="line">    io_seq = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(data) - tw):</span><br><span class="line">        seq = data[i:i + tw]</span><br><span class="line">        lab = data[i + tw:i + tw + <span class="number">1</span>]</span><br><span class="line">        io_seq.append((seq, lab))</span><br><span class="line">    <span class="keyword">return</span> io_seq</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LSTM</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, i_size=<span class="number">1</span>, hid_size=<span class="number">200</span>, o_size=<span class="number">1</span>)</span>:</span></span><br><span class="line">        super(LSTM, self).__init__()</span><br><span class="line">        self.hidden_layer_size = hid_size</span><br><span class="line">        self.lstm = nn.LSTM(i_size, self.hidden_layer_size)</span><br><span class="line">        self.linear = nn.Linear(self.hidden_layer_size, o_size)</span><br><span class="line">        self.hidden_cell = (torch.zeros(<span class="number">1</span>, <span class="number">1</span>, self.hidden_layer_size), torch.zeros(<span class="number">1</span>, <span class="number">1</span>, self.hidden_layer_size))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, input_seq)</span>:</span></span><br><span class="line">        out, self.hidden_cell = self.lstm(input_seq.view(len(input_seq), <span class="number">1</span>, <span class="number">-1</span>), self.hidden_cell)</span><br><span class="line">        pred = self.linear(out.view(len(input_seq), <span class="number">-1</span>))</span><br><span class="line">        <span class="keyword">return</span> pred[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(lstm, data, PATH=<span class="string">'./cifar_net.pth'</span>)</span>:</span></span><br><span class="line">    loss_func = nn.MSELoss().to(device)</span><br><span class="line">    optimizer = torch.optim.Adam(lstm.parameters(), lr=<span class="number">0.001</span>)</span><br><span class="line">    print(lstm)</span><br><span class="line">    epochs = <span class="number">150</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(epochs):</span><br><span class="line">        <span class="keyword">for</span> seq, label <span class="keyword">in</span> data:</span><br><span class="line">            seq = seq.to(device)</span><br><span class="line">            label = label.to(device)</span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            lstm.hidden_cell = (</span><br><span class="line">                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size).to(device),</span><br><span class="line">                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size).to(device))</span><br><span class="line">            y_pred = lstm(seq)</span><br><span class="line">            single_loss = loss_func(y_pred, label)</span><br><span class="line">            single_loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line">        <span class="keyword">if</span> i % <span class="number">25</span> == <span class="number">1</span>:</span><br><span class="line">            print(<span class="string">f'epoch: <span class="subst">&#123;i:<span class="number">3</span>&#125;</span> loss: <span class="subst">&#123;single_loss.item():<span class="number">10.8</span>f&#125;</span>'</span>)</span><br><span class="line">    torch.save(lstm.state_dict(), PATH)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    device = torch.device(<span class="string">"cuda:0"</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">"cpu"</span>)</span><br><span class="line"></span><br><span class="line">    flight = sns.load_dataset(<span class="string">'flights'</span>)</span><br><span class="line">    all_data = flight[<span class="string">'passengers'</span>].values.astype(float)</span><br><span class="line">    test_data_size = <span class="number">12</span></span><br><span class="line">    train_data = all_data[:-test_data_size]</span><br><span class="line">    test_data = all_data[-test_data_size:]</span><br><span class="line">    scaler = MinMaxScaler((<span class="number">0</span>, <span class="number">10</span>))</span><br><span class="line">    train_data_norm = scaler.fit_transform(train_data.reshape(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line">    train_data_norm = torch.FloatTensor(train_data_norm).view(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">    train_io_seq = create_io_seq(train_data_norm, <span class="number">12</span>)</span><br><span class="line"></span><br><span class="line">    lstm = LSTM()</span><br><span class="line">    lstm.to(device)</span><br><span class="line">    <span class="comment"># train(lstm, train_io_seq)</span></span><br><span class="line"></span><br><span class="line">    fut_pred = <span class="number">12</span></span><br><span class="line">    lstm.load_state_dict(torch.load(<span class="string">'./cifar_net.pth'</span>))</span><br><span class="line">    lstm.cpu()</span><br><span class="line">    test_input = train_data_norm[<span class="number">-12</span>:].tolist()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(fut_pred):</span><br><span class="line">        seq = torch.FloatTensor(test_input[<span class="number">-12</span>:])</span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">            lstm.hidden_cell = (torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size),</span><br><span class="line">                                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size))</span><br><span class="line">            test_input.append(lstm(seq).item())</span><br><span class="line"></span><br><span class="line">    act_pred = scaler.inverse_transform(np.array(test_input[<span class="number">-12</span>:]).reshape(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line">    plot_data(flight[<span class="string">'passengers'</span>], act_pred)</span><br></pre></td></tr></table></figure>
+<p>最终结果，蓝色为原始数据，橙红色是预测数据<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-10/myplot.png" alt="" /></p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>小说网站爬虫</title>
+    <url>/posts/2020-07-010.html</url>
+    <content><![CDATA[<h3 id="1小说爬虫简易模板"><a class="markdownIt-Anchor" href="#1小说爬虫简易模板"></a> 1.小说爬虫简易模板</h3>
+<pre><code>import requests
+from bs4 import BeautifulSoup
+import re
+import os
+
+# 本脚本无普适性，请具体网站具体分析
+root = ''  # 文章首页链接
+art_id = ''  # 文章链接id
+
+fname = './txts/'+art_id[5:-1]+'.txt'
+encode = 'gbk'
+
+
+def GetAllSection(root, id):
+    r = requests.get(root + id)
+    r.encoding = encode
+    bs = BeautifulSoup(r.text, 'html.parser')
+    url_a = bs.find_all('a')
+    urls = []
+    for u in url_a:
+        href = u.get('href')
+        if href and re.match(id, href):
+            urls.append(root+href)
+
+    del urls[0]
+    return urls
+
+
+def SaveArticle(root, id, fname):
+    i = 1
+    urls = GetAllSection(root, id)
+    for url in urls:
+        r = requests.get(url)
+        r.encoding = encode
+        bs = BeautifulSoup(r.text, 'html.parser')
+        text = bs.find_all('p')[1].text
+        text = text.replace('\xa0', ' ')
+        text = text.replace('\ufffd', ' ')
+        text = text.replace('\n\r\n', '\n')
+        with open(fname, 'a', encoding=encode) as file:
+            if i == 1:
+                file.write(bs.h1.text+'\n')
+                i = 0
+            file.write(text+'\n')
+
+
+if __name__ == &quot;__main__&quot;:
+    SaveArticle(root, art_id, fname)
+    # print(fname)
+</code></pre>
+<h3 id="2道德经爬虫"><a class="markdownIt-Anchor" href="#2道德经爬虫"></a> 2.道德经爬虫</h3>
+<p>自己想做一个古文阅读类的安卓app，所以文章素材的话就只能自己去网上爬了。通过分析网站链接逻辑，和网站内文章内容的布局，很容易就可以写出来。<br />
+文章保存在当前目录下。</p>
+<pre><code>import requests
+from bs4 import BeautifulSoup
+import re
+import os
+encode = 'utf-8'
+cha_num = 81
+
+def SaveArticle(fname, urls):
+    for url in urls:
+        print('-', end='')
+        r = requests.get(url)
+        r.encoding = encode
+        bs = BeautifulSoup(r.text, 'html.parser')
+        text = bs.find_all('div', {&quot;class&quot;: &quot;grap&quot;})
+        with open(fname, 'a', encoding=encode) as file:
+            for t in text:
+                te = t.text.replace('\xa0', ' ').replace(
+                    '\u3000', ' ').replace('\ufffd', ' ')
+                file.write(te+'\n')
+
+if __name__ == &quot;__main__&quot;:
+    urls = ['https://www.5000yan.com/'+str(i)+'.html' for i in range(1, 82)]
+    SaveArticle('daodejing.txt', urls)
+    # print(urls)
+</code></pre>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
@@ -1888,125 +2226,66 @@ dp[i] =     if s[i]==’)’
       </tags>
   </entry>
   <entry>
-    <title>pytorch中的LSTM模型</title>
-    <url>/posts/2020-10-006.html</url>
-    <content><![CDATA[<h2 id="背景知识"><a class="markdownIt-Anchor" href="#背景知识"></a> 背景知识</h2>
-<h3 id="lstm原理介绍"><a class="markdownIt-Anchor" href="#lstm原理介绍"></a> LSTM原理介绍</h3>
-<iframe src="https://datawhalechina.github.io/leeml-notes/#/chapter36/chapter36?id=lstm" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
-<h3 id="pytorch-doc"><a class="markdownIt-Anchor" href="#pytorch-doc"></a> pytorch doc</h3>
-<iframe src="https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html#torch.nn.LSTM" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
-<h2 id="简单实例"><a class="markdownIt-Anchor" href="#简单实例"></a> 简单实例</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">lstm = nn.LSTM(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>)                    <span class="comment"># (input_size(feature_num) ,hidden_size,num_layers ) </span></span><br><span class="line">input = torch.randn(<span class="number">4</span>, <span class="number">1</span>, <span class="number">1</span>)               <span class="comment"># (seq_len, batch, input_size(feature_num))</span></span><br><span class="line">h0 = torch.randn(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>)                  <span class="comment"># (num_layers * num_directions, batch, hidden_size)</span></span><br><span class="line">c0 = torch.randn(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>)                  <span class="comment"># (num_layers * num_directions, batch, hidden_size)</span></span><br><span class="line">output, (hn, cn) = lstm(input, (h0, c0))   <span class="comment"># output:(seq_len, batch, num_directions * hidden_size)</span></span><br><span class="line">                                           <span class="comment"># hn = output[-1] , output = [h1,h2,...,hn]</span></span><br></pre></td></tr></table></figure>
-<h3 id="各个参数的理解"><a class="markdownIt-Anchor" href="#各个参数的理解"></a> 各个参数的理解</h3>
-<ol>
-<li>input_size:一个输入中的特征的个数</li>
-<li>hidden_size: 隐藏层节点的个数，如下图</li>
-<li>num_layers: lstm层的个数，默认为1，如果设为2，则第一层的输出[h0,h1,…hn]作为第二层的输入，在计算出最后的输出[h0,h1,…hn]</li>
-<li>seq_len: 一个序列中输入的个数</li>
-<li>batch: 每批处理的样本个数</li>
-</ol>
-<h3 id="实例结构图"><a class="markdownIt-Anchor" href="#实例结构图"></a> 实例结构图</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-10/lstm.jpg" alt="" /></p>
-<h2 id="航班预测人数"><a class="markdownIt-Anchor" href="#航班预测人数"></a> 航班预测人数</h2>
-<p>参考 <a href="https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/" target="_blank" rel="noopener">https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler</span><br><span class="line"></span><br><span class="line"><span class="comment">#  https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_data</span><span class="params">(data, pred=None)</span>:</span></span><br><span class="line">    plt.title(<span class="string">'mouth vs passengers'</span>)</span><br><span class="line">    plt.xlabel(<span class="string">'mouths'</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'total passengers'</span>)</span><br><span class="line">    plt.plot(data)</span><br><span class="line">    <span class="keyword">if</span> pred <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        x = np.arange(<span class="number">132</span>, <span class="number">144</span>, <span class="number">1</span>)</span><br><span class="line">        plt.plot(x, pred)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_io_seq</span><span class="params">(data, tw)</span>:</span></span><br><span class="line">    io_seq = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(data) - tw):</span><br><span class="line">        seq = data[i:i + tw]</span><br><span class="line">        lab = data[i + tw:i + tw + <span class="number">1</span>]</span><br><span class="line">        io_seq.append((seq, lab))</span><br><span class="line">    <span class="keyword">return</span> io_seq</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LSTM</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, i_size=<span class="number">1</span>, hid_size=<span class="number">200</span>, o_size=<span class="number">1</span>)</span>:</span></span><br><span class="line">        super(LSTM, self).__init__()</span><br><span class="line">        self.hidden_layer_size = hid_size</span><br><span class="line">        self.lstm = nn.LSTM(i_size, self.hidden_layer_size)</span><br><span class="line">        self.linear = nn.Linear(self.hidden_layer_size, o_size)</span><br><span class="line">        self.hidden_cell = (torch.zeros(<span class="number">1</span>, <span class="number">1</span>, self.hidden_layer_size), torch.zeros(<span class="number">1</span>, <span class="number">1</span>, self.hidden_layer_size))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, input_seq)</span>:</span></span><br><span class="line">        out, self.hidden_cell = self.lstm(input_seq.view(len(input_seq), <span class="number">1</span>, <span class="number">-1</span>), self.hidden_cell)</span><br><span class="line">        pred = self.linear(out.view(len(input_seq), <span class="number">-1</span>))</span><br><span class="line">        <span class="keyword">return</span> pred[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(lstm, data, PATH=<span class="string">'./cifar_net.pth'</span>)</span>:</span></span><br><span class="line">    loss_func = nn.MSELoss().to(device)</span><br><span class="line">    optimizer = torch.optim.Adam(lstm.parameters(), lr=<span class="number">0.001</span>)</span><br><span class="line">    print(lstm)</span><br><span class="line">    epochs = <span class="number">150</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(epochs):</span><br><span class="line">        <span class="keyword">for</span> seq, label <span class="keyword">in</span> data:</span><br><span class="line">            seq = seq.to(device)</span><br><span class="line">            label = label.to(device)</span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            lstm.hidden_cell = (</span><br><span class="line">                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size).to(device),</span><br><span class="line">                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size).to(device))</span><br><span class="line">            y_pred = lstm(seq)</span><br><span class="line">            single_loss = loss_func(y_pred, label)</span><br><span class="line">            single_loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line">        <span class="keyword">if</span> i % <span class="number">25</span> == <span class="number">1</span>:</span><br><span class="line">            print(<span class="string">f'epoch: <span class="subst">&#123;i:<span class="number">3</span>&#125;</span> loss: <span class="subst">&#123;single_loss.item():<span class="number">10.8</span>f&#125;</span>'</span>)</span><br><span class="line">    torch.save(lstm.state_dict(), PATH)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    device = torch.device(<span class="string">"cuda:0"</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">"cpu"</span>)</span><br><span class="line"></span><br><span class="line">    flight = sns.load_dataset(<span class="string">'flights'</span>)</span><br><span class="line">    all_data = flight[<span class="string">'passengers'</span>].values.astype(float)</span><br><span class="line">    test_data_size = <span class="number">12</span></span><br><span class="line">    train_data = all_data[:-test_data_size]</span><br><span class="line">    test_data = all_data[-test_data_size:]</span><br><span class="line">    scaler = MinMaxScaler((<span class="number">0</span>, <span class="number">10</span>))</span><br><span class="line">    train_data_norm = scaler.fit_transform(train_data.reshape(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line">    train_data_norm = torch.FloatTensor(train_data_norm).view(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">    train_io_seq = create_io_seq(train_data_norm, <span class="number">12</span>)</span><br><span class="line"></span><br><span class="line">    lstm = LSTM()</span><br><span class="line">    lstm.to(device)</span><br><span class="line">    <span class="comment"># train(lstm, train_io_seq)</span></span><br><span class="line"></span><br><span class="line">    fut_pred = <span class="number">12</span></span><br><span class="line">    lstm.load_state_dict(torch.load(<span class="string">'./cifar_net.pth'</span>))</span><br><span class="line">    lstm.cpu()</span><br><span class="line">    test_input = train_data_norm[<span class="number">-12</span>:].tolist()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(fut_pred):</span><br><span class="line">        seq = torch.FloatTensor(test_input[<span class="number">-12</span>:])</span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">            lstm.hidden_cell = (torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size),</span><br><span class="line">                                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size))</span><br><span class="line">            test_input.append(lstm(seq).item())</span><br><span class="line"></span><br><span class="line">    act_pred = scaler.inverse_transform(np.array(test_input[<span class="number">-12</span>:]).reshape(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line">    plot_data(flight[<span class="string">'passengers'</span>], act_pred)</span><br></pre></td></tr></table></figure>
-<p>最终结果，蓝色为原始数据，橙红色是预测数据<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-10/myplot.png" alt="" /></p>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>小说网站爬虫</title>
-    <url>/posts/2020-07-010.html</url>
-    <content><![CDATA[<h3 id="1小说爬虫简易模板"><a class="markdownIt-Anchor" href="#1小说爬虫简易模板"></a> 1.小说爬虫简易模板</h3>
-<pre><code>import requests
-from bs4 import BeautifulSoup
-import re
-import os
-
-# 本脚本无普适性，请具体网站具体分析
-root = ''  # 文章首页链接
-art_id = ''  # 文章链接id
-
-fname = './txts/'+art_id[5:-1]+'.txt'
-encode = 'gbk'
-
-
-def GetAllSection(root, id):
-    r = requests.get(root + id)
-    r.encoding = encode
-    bs = BeautifulSoup(r.text, 'html.parser')
-    url_a = bs.find_all('a')
-    urls = []
-    for u in url_a:
-        href = u.get('href')
-        if href and re.match(id, href):
-            urls.append(root+href)
-
-    del urls[0]
-    return urls
-
-
-def SaveArticle(root, id, fname):
-    i = 1
-    urls = GetAllSection(root, id)
-    for url in urls:
-        r = requests.get(url)
-        r.encoding = encode
-        bs = BeautifulSoup(r.text, 'html.parser')
-        text = bs.find_all('p')[1].text
-        text = text.replace('\xa0', ' ')
-        text = text.replace('\ufffd', ' ')
-        text = text.replace('\n\r\n', '\n')
-        with open(fname, 'a', encoding=encode) as file:
-            if i == 1:
-                file.write(bs.h1.text+'\n')
-                i = 0
-            file.write(text+'\n')
-
-
-if __name__ == &quot;__main__&quot;:
-    SaveArticle(root, art_id, fname)
-    # print(fname)
+    <title>博客说明</title>
+    <url>/posts/2020-07-001.html</url>
+    <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
+<p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
+<h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
+<h3 id="创建一个新的文章或页面"><a class="markdownIt-Anchor" href="#创建一个新的文章或页面"></a> 创建一个新的文章或页面</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] [title]</span><br></pre></td></tr></table></figure>
+<h4 id="布局layout"><a class="markdownIt-Anchor" href="#布局layout"></a> 布局（Layout）</h4>
+<p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
+<pre><code>布局	路径
+post	source/_posts
+page	source
+draft	source/_drafts
 </code></pre>
-<h3 id="2道德经爬虫"><a class="markdownIt-Anchor" href="#2道德经爬虫"></a> 2.道德经爬虫</h3>
-<p>自己想做一个古文阅读类的安卓app，所以文章素材的话就只能自己去网上爬了。通过分析网站链接逻辑，和网站内文章内容的布局，很容易就可以写出来。<br />
-文章保存在当前目录下。</p>
-<pre><code>import requests
-from bs4 import BeautifulSoup
-import re
-import os
-encode = 'utf-8'
-cha_num = 81
-
-def SaveArticle(fname, urls):
-    for url in urls:
-        print('-', end='')
-        r = requests.get(url)
-        r.encoding = encode
-        bs = BeautifulSoup(r.text, 'html.parser')
-        text = bs.find_all('div', {&quot;class&quot;: &quot;grap&quot;})
-        with open(fname, 'a', encoding=encode) as file:
-            for t in text:
-                te = t.text.replace('\xa0', ' ').replace(
-                    '\u3000', ' ').replace('\ufffd', ' ')
-                file.write(te+'\n')
-
-if __name__ == &quot;__main__&quot;:
-    urls = ['https://www.5000yan.com/'+str(i)+'.html' for i in range(1, 82)]
-    SaveArticle('daodejing.txt', urls)
-    # print(urls)
-</code></pre>
-]]></content>
+<h4 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h4>
+<p>创建一个标题为exp的文章，默认布局为post，在命令中可以省略。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new exp</span><br></pre></td></tr></table></figure>
+<p>创建一个名为exp的页面。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new page exp</span><br></pre></td></tr></table></figure>
+<h3 id="本地运行服务器可以在localhost4000中查看"><a class="markdownIt-Anchor" href="#本地运行服务器可以在localhost4000中查看"></a> 本地运行服务器，可以在<a href="http://localhost:4000" target="_blank" rel="noopener">localhost:4000</a>中查看</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="重新渲染博客"><a class="markdownIt-Anchor" href="#重新渲染博客"></a> 重新渲染博客</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="将项目更新到github-pages上"><a class="markdownIt-Anchor" href="#将项目更新到github-pages上"></a> 将项目更新到GitHub Pages上</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo doc</a></p>
+<h3 id="git的使用"><a class="markdownIt-Anchor" href="#git的使用"></a> git的使用</h3>
+<h4 id="git初始化仓库"><a class="markdownIt-Anchor" href="#git初始化仓库"></a> git初始化仓库</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<h4 id="git添加到缓冲区"><a class="markdownIt-Anchor" href="#git添加到缓冲区"></a> git添加到缓冲区</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add *</span><br></pre></td></tr></table></figure>
+<h4 id="git提交改动"><a class="markdownIt-Anchor" href="#git提交改动"></a> git提交改动</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">"msg"</span></span><br></pre></td></tr></table></figure>
+<h4 id="git推送到远程仓库"><a class="markdownIt-Anchor" href="#git推送到远程仓库"></a> git推送到远程仓库</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<h4 id="如果没有远程仓库可以先添加"><a class="markdownIt-Anchor" href="#如果没有远程仓库可以先添加"></a> 如果没有远程仓库，可以先添加</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin server</span><br></pre></td></tr></table></figure>
+<h3 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h3>
+<p>hexo g -d 或者 git push 时可能在Writing objects停住不动，原因是上传文件可能较大，而缓冲区较小。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.postBuffer 524288000</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Python</category>
+        <category>blog</category>
       </categories>
       <tags>
-        <tag>Python</tag>
-        <tag>爬虫</tag>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
+        <tag>hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>小四轴飞行器</title>
+    <url>/posts/2020-08-004.html</url>
+    <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
+<p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
   </entry>
   <entry>
     <title>伽马兽王</title>
@@ -2146,65 +2425,23 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>博客说明</title>
-    <url>/posts/2020-07-001.html</url>
-    <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
-<p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
-<h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
-<h3 id="创建一个新的文章或页面"><a class="markdownIt-Anchor" href="#创建一个新的文章或页面"></a> 创建一个新的文章或页面</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] [title]</span><br></pre></td></tr></table></figure>
-<h4 id="布局layout"><a class="markdownIt-Anchor" href="#布局layout"></a> 布局（Layout）</h4>
-<p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
-<pre><code>布局	路径
-post	source/_posts
-page	source
-draft	source/_drafts
-</code></pre>
-<h4 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h4>
-<p>创建一个标题为exp的文章，默认布局为post，在命令中可以省略。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new exp</span><br></pre></td></tr></table></figure>
-<p>创建一个名为exp的页面。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new page exp</span><br></pre></td></tr></table></figure>
-<h3 id="本地运行服务器可以在localhost4000中查看"><a class="markdownIt-Anchor" href="#本地运行服务器可以在localhost4000中查看"></a> 本地运行服务器，可以在<a href="http://localhost:4000" target="_blank" rel="noopener">localhost:4000</a>中查看</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<h3 id="重新渲染博客"><a class="markdownIt-Anchor" href="#重新渲染博客"></a> 重新渲染博客</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
-<h3 id="将项目更新到github-pages上"><a class="markdownIt-Anchor" href="#将项目更新到github-pages上"></a> 将项目更新到GitHub Pages上</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo doc</a></p>
-<h3 id="git的使用"><a class="markdownIt-Anchor" href="#git的使用"></a> git的使用</h3>
-<h4 id="git初始化仓库"><a class="markdownIt-Anchor" href="#git初始化仓库"></a> git初始化仓库</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
-<h4 id="git添加到缓冲区"><a class="markdownIt-Anchor" href="#git添加到缓冲区"></a> git添加到缓冲区</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add *</span><br></pre></td></tr></table></figure>
-<h4 id="git提交改动"><a class="markdownIt-Anchor" href="#git提交改动"></a> git提交改动</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">"msg"</span></span><br></pre></td></tr></table></figure>
-<h4 id="git推送到远程仓库"><a class="markdownIt-Anchor" href="#git推送到远程仓库"></a> git推送到远程仓库</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
-<h4 id="如果没有远程仓库可以先添加"><a class="markdownIt-Anchor" href="#如果没有远程仓库可以先添加"></a> 如果没有远程仓库，可以先添加</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin server</span><br></pre></td></tr></table></figure>
-<h3 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h3>
-<p>hexo g -d 或者 git push 时可能在Writing objects停住不动，原因是上传文件可能较大，而缓冲区较小。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.postBuffer 524288000</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小四轴飞行器</title>
-    <url>/posts/2020-08-004.html</url>
-    <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
-<p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
+    <title>记录</title>
+    <url>/posts/2020-08-005.html</url>
+    <content><![CDATA[<ol>
+<li>
+<p>楼下一个男人病得要死，那间壁的一家唱着留声机；对面是弄孩子。楼上有两人狂笑；还有打牌声。河中的船上有女人哭着她死去的母亲。 人类的悲欢并不相通，我只觉得他们吵闹。  —鲁迅《而已集》《小杂感》</p>
+</li>
+<li>
+<p>We used to look up at the sky and wonder at our place in the stars, now we just look down and worry about our place in the dirt. —《Interstellar》<br />
+我们曾经仰望星空，思考我们在宇宙中的位置，而现在我们只会低着头，担心如何在这片土地上活下去。—《星际穿越》</p>
+</li>
+<li>
+<p>弱小和无知不是生存的障碍，傲慢才是。 —《三体》</p>
+</li>
+</ol>
 ]]></content>
       <categories>
-        <category>C/C++</category>
+        <category>others</category>
       </categories>
   </entry>
   <entry>
@@ -2443,243 +2680,6 @@ $y = d \times cos \left( \theta \right)$
         <tag>HFUT</tag>
         <tag>STM32</tag>
         <tag>RPLIDAR A1 激光雷达</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>记录</title>
-    <url>/posts/2020-08-005.html</url>
-    <content><![CDATA[<ol>
-<li>
-<p>楼下一个男人病得要死，那间壁的一家唱着留声机；对面是弄孩子。楼上有两人狂笑；还有打牌声。河中的船上有女人哭着她死去的母亲。 人类的悲欢并不相通，我只觉得他们吵闹。  —鲁迅《而已集》《小杂感》</p>
-</li>
-<li>
-<p>We used to look up at the sky and wonder at our place in the stars, now we just look down and worry about our place in the dirt. —《Interstellar》<br />
-我们曾经仰望星空，思考我们在宇宙中的位置，而现在我们只会低着头，担心如何在这片土地上活下去。—《星际穿越》</p>
-</li>
-<li>
-<p>弱小和无知不是生存的障碍，傲慢才是。 —《三体》</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>leetcode-每日一题</title>
-    <url>/posts/2020-08-002.html</url>
-    <content><![CDATA[<h3 id="每日一题"><a class="markdownIt-Anchor" href="#每日一题"></a> 每日一题</h3>
-<h3 id="336回文对"><a class="markdownIt-Anchor" href="#336回文对"></a> 336.回文对</h3>
-<p>题目比较简单，上来可以先判断两个拼接好的字符串是否符合，然后遍历判断。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; palindromePairs(vector&lt;string&gt;&amp; words) &#123;</span><br><span class="line">        int len&#x3D;words.size();</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; all;</span><br><span class="line">        for(int i&#x3D;0;i&lt;len;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for(int j&#x3D;0;j&lt;len;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                if(i!&#x3D;j&amp;&amp;Judge(words[i],words[j]))</span><br><span class="line">                &#123;</span><br><span class="line">                    vector&lt;int&gt; temp;</span><br><span class="line">                    temp.push_back(i);</span><br><span class="line">                    temp.push_back(j);</span><br><span class="line">                    all.push_back(temp);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        return all;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    bool Judge(string&amp; w1,string&amp; w2)</span><br><span class="line">    &#123;</span><br><span class="line">        string str &#x3D; w1+w2;</span><br><span class="line">        int len &#x3D; str.size();</span><br><span class="line">        for(int i&#x3D;0;i&lt;len;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(str[i]!&#x3D;str[len-1-i])</span><br><span class="line">                return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>提交结果，有一半能够通过，其他的超出了时间限制。看到题解说不能直接用<code>str = w1+w2;</code>，移动指针会快一些。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bool Judge(string&amp; w1,string&amp; w2)</span><br><span class="line">&#123;</span><br><span class="line">    int len1 &#x3D; w1.size();</span><br><span class="line">    int len2 &#x3D; w2.size();</span><br><span class="line">    int len &#x3D; len1 +len2;</span><br><span class="line">    int i;</span><br><span class="line">    </span><br><span class="line">    for(i&#x3D;0;i&lt;len&#x2F;2;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if(len1&gt;len2)</span><br><span class="line">        &#123;</span><br><span class="line">            if(i&lt;len2)</span><br><span class="line">            &#123;</span><br><span class="line">                if(w1[i]!&#x3D;w2[len2-1-i])</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if(w1[i]!&#x3D;w1[len-1-i])</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            if(i&lt;len1)</span><br><span class="line">            &#123;</span><br><span class="line">                if(w1[i]!&#x3D;w2[len2-1-i])</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if(w2[i-len1]!&#x3D;w2[len2-1-i])</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">            </span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行结果：通过<br />
-执行用时：1528 ms, 在所有 C++ 提交中击败了7.14%的用户。<br />
-内存消耗：21.6 MB, 在所有 C++ 提交中击败了100.00%的用户。</p>
-<p>另一个方法使用 manacher算法，竞赛难度就算了。只能做人下人了，哈哈。</p>
-<p>后面评论实在太逗了。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc1.png" alt="" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cccc2.png" alt="" /></p>
-<h3 id="100-相同的树"><a class="markdownIt-Anchor" href="#100-相同的树"></a> 100. 相同的树</h3>
-<p>很简单的一道题，直接递归调用判断就行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isSameTree(TreeNode* p, TreeNode* q) &#123;</span><br><span class="line">        if(p!&#x3D;nullptr&amp;&amp; q!&#x3D;nullptr)</span><br><span class="line">        &#123;</span><br><span class="line">            return p-&gt;val&#x3D;&#x3D;q-&gt;val&amp;&amp;isSameTree(p-&gt;left,q-&gt;left)&amp;&amp;isSameTree(p-&gt;right,q-&gt;right);             </span><br><span class="line">        &#125;</span><br><span class="line">        else if(p&#x3D;&#x3D;nullptr &amp;&amp; q&#x3D;&#x3D; nullptr)</span><br><span class="line">            return true;</span><br><span class="line">        else </span><br><span class="line">            return false; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="226-翻转二叉树"><a class="markdownIt-Anchor" href="#226-翻转二叉树"></a> 226. 翻转二叉树</h3>
-<p>easy 递归交换左右节点。</p>
-<h3 id="344-反转字符串"><a class="markdownIt-Anchor" href="#344-反转字符串"></a> 344. 反转字符串</h3>
-<p>遍历头尾交换。</p>
-<h3 id="142-环形链表-ii"><a class="markdownIt-Anchor" href="#142-环形链表-ii"></a> 142. 环形链表 II</h3>
-<ol>
-<li>暴力搜索 O(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>)</li>
-<li>hash表</li>
-<li>利用快慢指针，快指针每次走两步，慢指针每次走一步。</li>
-</ol>
-<h3 id="416-分割等和子集"><a class="markdownIt-Anchor" href="#416-分割等和子集"></a> 416. 分割等和子集</h3>
-<ul>
-<li>美好的一天从每日一题结束</li>
-<li>动态规划，可以转化为0-1背包问题。</li>
-<li>对每一个数，都可以选择取和取。</li>
-<li>转移方程<br />
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mi mathvariant="normal">∣</mi><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo>−</mo><mi>n</mi><mi>u</mi><mi>m</mi><mi>s</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mi>f</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>j</mi><mo>≥</mo><mrow><mi>n</mi><mi>u</mi><mi>m</mi><mi>s</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mi>f</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>j</mi><mo>&lt;</mo><mrow><mi>n</mi><mi>u</mi><mi>m</mi><mi>s</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">dp[i][j]=\begin{cases}
-  dp[i-1][j]|dp[i-1][j-nums[i]],&amp;{if}&amp;{j}≥{nums[i]}\\
-  dp[i-1][j],&amp;{if}&amp;{j}&lt;{nums[i]}
-  \end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mord">∣</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">]</span><span class="mpunct">,</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mpunct">,</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><br />
-dp[i][j] 表示从数组的[0,i] 下标范围内选取若干个正整数（可以是0个），是否存在一种选取方案使得被选取的正整数的和等于j。</li>
-</ul>
-<h3 id="0-1-背包问题"><a class="markdownIt-Anchor" href="#0-1-背包问题"></a> 0-1 背包问题</h3>
-<p>给定 n 种物品和一个容量为 C 的背包，物品 i 的重量是 wi，其价值为 vi 。<br />
-问：应该如何选择装入背包的物品，使得装入背包中的物品的总价值最大？</p>
-<ul>
-<li>声明一个 大小为  m[n][c] 的二维数组，m[ i ][ j ] 表示 在面对第 i 件物品，且背包容量为  j 时所能获得的最大价值</li>
-<li>状态转移方程：<br />
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo separator="true">,</mo><mi>m</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo>−</mo><mi>w</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo>+</mo><mi>v</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mi>f</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>j</mi><mo>≥</mo><mrow><mi>w</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>m</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mi>m</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mi>f</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>j</mi><mo>&lt;</mo><mrow><mi>w</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">m[i][j]=\begin{cases}
-  max(m[i-1][j],m[i-1][j-w[i]]+v[i]),&amp;{if}&amp;{j}≥{w[i]}\\
-  m[i][j]=m[i-1][j],&amp;{if}&amp;{j}&lt;{w[i]}
-  \end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">)</span><span class="mpunct">,</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mpunct">,</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></li>
-</ul>
-<h3 id="530-二叉搜索树的最小绝对差"><a class="markdownIt-Anchor" href="#530-二叉搜索树的最小绝对差"></a> 530. 二叉搜索树的最小绝对差</h3>
-<p>中序遍历可以得到二叉搜索树值的有序序列，元素的最小绝对差一定是相邻两个元素之间的。last记录上次的值，与本次的值求绝对差，边遍历边更新最小绝对差，</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int getMinimumDifference(TreeNode* root) &#123;</span><br><span class="line">        &#123;</span><br><span class="line">            MidTra(root);</span><br><span class="line">            return _min;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">private:</span><br><span class="line">    int last &#x3D; -1;</span><br><span class="line">    int _min &#x3D; INT_MAX;</span><br><span class="line">    void MidTra(TreeNode* root)</span><br><span class="line">    &#123;</span><br><span class="line">        if(root!&#x3D;NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            MidTra(root-&gt;left);</span><br><span class="line">            if(last!&#x3D;-1)</span><br><span class="line">            &#123;</span><br><span class="line">                _min&#x3D;min(_min,root-&gt;val-last);</span><br><span class="line">                last&#x3D;root-&gt;val;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                last &#x3D; root-&gt;val;</span><br><span class="line">            &#125;</span><br><span class="line">            MidTra(root-&gt;right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="24-两两交换链表中的节点"><a class="markdownIt-Anchor" href="#24-两两交换链表中的节点"></a> 24. 两两交换链表中的节点</h3>
-<p>easy难度，就是简单的链表节点交换问题。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* swapPairs(ListNode* head) &#123;</span><br><span class="line">        if(head&#x3D;&#x3D;nullptr||head-&gt;next&#x3D;&#x3D;nullptr)</span><br><span class="line">            return head;</span><br><span class="line">        ListNode *first &#x3D; head,*second &#x3D; head-&gt;next,*ret &#x3D; head-&gt;next,*last &#x3D;nullptr;</span><br><span class="line">        while(first &amp;&amp; second)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode *temp &#x3D; second-&gt;next;</span><br><span class="line">            second-&gt;next &#x3D; first;</span><br><span class="line">            first-&gt;next &#x3D;nullptr;</span><br><span class="line">            if(last!&#x3D;nullptr)</span><br><span class="line">                last-&gt;next &#x3D; second;</span><br><span class="line">            last &#x3D; first;</span><br><span class="line">            first &#x3D; temp;</span><br><span class="line">            if(first!&#x3D;nullptr)</span><br><span class="line">            &#123;</span><br><span class="line">                second &#x3D; first-&gt;next;</span><br><span class="line">                if(second&#x3D;&#x3D;nullptr)</span><br><span class="line">                    last-&gt;next &#x3D; first;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="1002-查找常用字符"><a class="markdownIt-Anchor" href="#1002-查找常用字符"></a> 1002. 查找常用字符</h3>
-<ul>
-<li>设置一个长度26的vector存储每个字符串中各个字符的计数。</li>
-<li>遍历整个字符串向量，分别每个字符串中的字符个数进行计数。</li>
-<li>取所有vector的交集（对于字符计数不同的，取此字符较小的计数）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;string&gt; commonChars(vector&lt;string&gt;&amp; A) &#123;</span><br><span class="line">        if(A.size()&#x3D;&#x3D;0)</span><br><span class="line">            return vector&lt;string&gt;();</span><br><span class="line">        vector&lt;int&gt; cnt(26,0); </span><br><span class="line">        for(auto ch :A[0])</span><br><span class="line">             cnt[ch-&#39;a&#39;]++;</span><br><span class="line">        for(int i&#x3D;1;i&lt;A.size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            vector&lt;int&gt; ths(26,0);</span><br><span class="line">            for(auto ch :A[i])</span><br><span class="line">            &#123;</span><br><span class="line">                ths[ch-&#39;a&#39;]++;</span><br><span class="line">            &#125;</span><br><span class="line">            for(int i&#x3D;0;i&lt;26;i++)</span><br><span class="line">                if(cnt[i]!&#x3D;ths[i])</span><br><span class="line">                    cnt[i]&#x3D;min(cnt[i],ths[i]); </span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;string&gt; ret;</span><br><span class="line">        for(int i&#x3D;0;i&lt;26;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            while(cnt[i])</span><br><span class="line">            &#123;</span><br><span class="line">                ret.push_back(string(1,&#39;a&#39;+i));</span><br><span class="line">                cnt[i]--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="116-填充每个节点的下一个右侧节点指针"><a class="markdownIt-Anchor" href="#116-填充每个节点的下一个右侧节点指针"></a> 116. 填充每个节点的下一个右侧节点指针</h3>
-<ul>
-<li>
-<p>可以采取先序遍历的思想</p>
-</li>
-<li>
-<p>对于每个节点root，如果有左子节点 root-&gt;left，那么左子节点的next是右子节点，root-&gt;left-&gt;next = root-&gt;right</p>
-</li>
-<li>
-<p>如果有右子节点（有左定有有）root-&gt;right，右子节点的next是</p>
-<ul>
-<li>若root的next节点不为空，右子节点的next是root-&gt;next的左子节点，root-&gt;right-&gt;next = root-&gt;next-&gt;left</li>
-<li>若root的next节点为空，右子节点的next是NULL,root-&gt;right-&gt;next = NULL</li>
-</ul>
-</li>
-<li>
-<p>本题很容易想到使用额外的队列进行树的层次遍历，在此我们可以省略掉这个额外的队列进行循环的层次遍历。</p>
-</li>
-<li>
-<p>next的赋值操作和上一个递归的一致</p>
-</li>
-<li>
-<p>对于每一层，我们进行下一层的next的赋值操作。我们利用上层对本层完成的next的赋值从左到右对每个节点进行遍历，完成对每个节点的子节点的next的赋值操作，完成全部子节点后进入下一层。继续进行。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    Node* connect(Node* root) &#123;</span><br><span class="line">        Pre(root);</span><br><span class="line">        return root;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    void Pre(Node *root)</span><br><span class="line">    &#123;</span><br><span class="line">        if(root)</span><br><span class="line">        &#123;</span><br><span class="line">            if(root-&gt;left)</span><br><span class="line">                root-&gt;left-&gt;next &#x3D; root-&gt;right;</span><br><span class="line">            if(root-&gt;right)</span><br><span class="line">            &#123;</span><br><span class="line">                if(root-&gt;next)</span><br><span class="line">                    root-&gt;right-&gt;next &#x3D; root-&gt;next-&gt;left;</span><br><span class="line">                else</span><br><span class="line">                    root-&gt;right-&gt;next &#x3D; NULL;</span><br><span class="line">            &#125;</span><br><span class="line">            Pre(root-&gt;left);</span><br><span class="line">            Pre(root-&gt;right); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="977-有序数组的平方"><a class="markdownIt-Anchor" href="#977-有序数组的平方"></a> 977. 有序数组的平方</h3>
-<p>easy</p>
-<h3 id="19-删除链表的倒数第n个节点"><a class="markdownIt-Anchor" href="#19-删除链表的倒数第n个节点"></a> 19. 删除链表的倒数第N个节点</h3>
-<p>快慢指针，第一个指针先前进N个节点，然后两个指针一起前进，知道第一个指针到达链表的尾部。</p>
-<h3 id="844-比较含退格的字符串"><a class="markdownIt-Anchor" href="#844-比较含退格的字符串"></a> 844. 比较含退格的字符串</h3>
-<ul>
-<li>第一次遍历，将需要退格的字符换成’#’, 第二次遍历，判断连个字符串是否相同。</li>
-<li>利用栈，遍历对于字符，将字符压入栈中，对于退格符，将栈顶的字符从栈中取出，完成之后，再比较两个栈中的内容。</li>
-</ul>
-<h3 id="143-重排链表"><a class="markdownIt-Anchor" href="#143-重排链表"></a> 143. 重排链表</h3>
-<ul>
-<li>用递归做思路不难，结束条件有点麻烦。</li>
-<li>先到达链表的最后一个，将其插入到相应的位置后返回，再到前一个判断后插入，持续如此，到达结束条件之后，直接返回。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void reorderList(ListNode* head) &#123;</span><br><span class="line">        if(!head)</span><br><span class="line">            return;</span><br><span class="line">        cur &#x3D; head;</span><br><span class="line">        ret &#x3D; false;</span><br><span class="line">        inser(head-&gt;next);</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode *cur&#x3D;nullptr;</span><br><span class="line">    bool ret;</span><br><span class="line">    void inser(ListNode *node)</span><br><span class="line">    &#123;</span><br><span class="line">        if(!node)</span><br><span class="line">        &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        inser(node-&gt;next);</span><br><span class="line">        if(ret)</span><br><span class="line">            return;</span><br><span class="line">        if(node-&gt;next&#x3D;&#x3D;nullptr)</span><br><span class="line">        &#123;</span><br><span class="line">            if(cur-&gt;next!&#x3D;node)</span><br><span class="line">                node-&gt;next &#x3D; cur-&gt;next;</span><br><span class="line">            cur-&gt;next &#x3D; node;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(node-&gt;next &#x3D;&#x3D; cur-&gt;next)</span><br><span class="line">        &#123;</span><br><span class="line">            cur &#x3D; cur-&gt;next-&gt;next;</span><br><span class="line"></span><br><span class="line">            if(cur&#x3D;&#x3D;node||cur-&gt;next &#x3D;&#x3D; node)</span><br><span class="line">            &#123;</span><br><span class="line">                node-&gt;next&#x3D;nullptr;</span><br><span class="line">                ret &#x3D; true;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                node-&gt;next &#x3D; cur-&gt;next;</span><br><span class="line">                cur-&gt;next &#x3D; node;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>可以先找链表中点，使用快慢指针，慢指针走一步，快指针走两步。slow = slow-&gt;next, fast = fast-&gt;next-&gt;next;</li>
-<li>将后半部分链表逆序排序</li>
-<li>合并两个链表</li>
-</ul>
-<h3 id="925-长按键入"><a class="markdownIt-Anchor" href="#925-长按键入"></a> 925. 长按键入</h3>
-<ul>
-<li>使用两个指针，分别指向两个字符串，然后就很显然了。。。。</li>
-</ul>
-<h3 id="763-划分字母区间"><a class="markdownIt-Anchor" href="#763-划分字母区间"></a> 763. 划分字母区间</h3>
-<ul>
-<li>遍历字符串，进行分段。设置一个位置P用作新段的开始，一个栈S用作记录分段</li>
-<li>找到当前位置 i 的字符出现在字符串中的最后一次出现的位置 E，
-<ul>
-<li>如果当前字符是一个新段的开始，压入 E-i+1 然后 P = E+1</li>
-<li>否则，判断这个位置E和新段开始P的大小，如果大于或等于P，将栈顶的分段大小加上 E-P+1  然后 P=E+1</li>
-</ul>
-</li>
-</ul>
-<div class="note primary simple">
-            <ol><li>第二步中找字符出现的字符串中的最后一次出现的位置 E 时，可以用字典或HASH表遍历一遍字符串提前记录下来。 这样时间复杂度就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>,而不是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li><li>可以使用双指针代替使用栈。</li></ol>
-          </div>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; partitionLabels(string S) &#123;</span><br><span class="line">        int len &#x3D; S.size();</span><br><span class="line">        int start &#x3D; 0;</span><br><span class="line">        int dict[26]&#x3D;&#123;0&#125;;</span><br><span class="line">        stack&lt;int&gt; sta;</span><br><span class="line">        for(int i&#x3D;len-1;i&gt;&#x3D;0;i--)</span><br><span class="line">        &#123;</span><br><span class="line">            dict[S[i]-&#39;a&#39;] &#x3D; dict[S[i]-&#39;a&#39;]&gt;0?dict[S[i]-&#39;a&#39;]:i;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;0;i&lt;len;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            int j&#x3D;dict[S[i]-&#39;a&#39;];</span><br><span class="line">            if(i&#x3D;&#x3D;start)</span><br><span class="line">            &#123;</span><br><span class="line">                sta.push(j-start+1);</span><br><span class="line">                start &#x3D; j+1;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if(j&gt;&#x3D;start)</span><br><span class="line">                &#123;</span><br><span class="line">                    int pre &#x3D; sta.top();</span><br><span class="line">                    sta.pop();</span><br><span class="line">                    sta.push(pre + j-start+1);</span><br><span class="line">                    start &#x3D; j+1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;int&gt; v(sta.size());</span><br><span class="line">        for(auto &amp;vi:v)</span><br><span class="line">        &#123;</span><br><span class="line">            vi &#x3D; sta.top();</span><br><span class="line">            sta.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        reverse(v.begin(),v.end());</span><br><span class="line">        return v;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>第一次medium运行时间0ms,超过100%还是挺开心的。</p>
-<h3 id="234-回文链表"><a class="markdownIt-Anchor" href="#234-回文链表"></a> 234. 回文链表</h3>
-<ul>
-<li>首先快慢指针找到链表中间节点。</li>
-<li>反转其中一半链表</li>
-<li>比较</li>
-</ul>
-<div class="note info simple">
-            <p>其中第一步和第二步可以合并，在寻找链表中间节点的时候可以将前半部分的链表反转，之后就可以直接比较了。</p>
-          </div>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isPalindrome(ListNode* head) &#123;</span><br><span class="line">        ListNode *slow &#x3D; head,*fast &#x3D; head;</span><br><span class="line">        ListNode *tail &#x3D; NULL;</span><br><span class="line">        while(fast&amp;&amp;fast-&gt;next)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode *temp &#x3D; slow;</span><br><span class="line">            slow &#x3D; slow-&gt;next;</span><br><span class="line">            fast &#x3D; fast-&gt;next-&gt;next;</span><br><span class="line">            temp-&gt;next &#x3D; tail;</span><br><span class="line">            tail &#x3D; temp;</span><br><span class="line">        &#125;</span><br><span class="line">        if(fast)</span><br><span class="line">            slow &#x3D; slow-&gt;next;</span><br><span class="line">        while(tail &amp;&amp; slow)</span><br><span class="line">        &#123;</span><br><span class="line">            if(tail-&gt;val!&#x3D;slow-&gt;val)</span><br><span class="line">                return false;</span><br><span class="line">            tail &#x3D; tail-&gt;next;</span><br><span class="line">            slow  &#x3D; slow-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="1024-视频拼接-2020-1024"><a class="markdownIt-Anchor" href="#1024-视频拼接-2020-1024"></a> 1024. 视频拼接 （2020-1024？）</h3>
-<ul>
-<li>可使用贪心算法或动态规划,本题使用贪心算法最优</li>
-<li>动规：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo separator="true">,</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">dp[j] = min(dp[j],dp[i]+1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></li>
-<li>动规和贪心前半部分结合</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int videoStitching(vector&lt;vector&lt;int&gt;&gt;&amp; clips, int T) &#123;</span><br><span class="line">        vector&lt;int&gt; dt(T,0);</span><br><span class="line">        vector&lt;int&gt; dp(T+1,-1);</span><br><span class="line">        for(auto c :clips)</span><br><span class="line">        &#123;</span><br><span class="line">            if(c[0]&lt;T&amp;&amp;c[1]&gt;dt[c[0]])</span><br><span class="line">                dt[c[0]] &#x3D; c[1];</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;0;i&lt;&#x3D;dt[0]&amp;&amp;i&lt;&#x3D;T;i++)</span><br><span class="line">            dp[i] &#x3D; 1;</span><br><span class="line">        for(int i&#x3D;1;i&lt;T;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(dp[i]&lt;0)</span><br><span class="line">                return -1;</span><br><span class="line">            if(dt[i]&gt;i)</span><br><span class="line">            &#123;</span><br><span class="line">                for(int j&#x3D;i+1;j&lt;&#x3D;dt[i] &amp;&amp;j&lt;&#x3D;T;j++)</span><br><span class="line">                &#123;</span><br><span class="line">                    if(dp[j]&gt;0)</span><br><span class="line">                        dp[j] &#x3D; min(dp[j],dp[i]+1);</span><br><span class="line">                    else</span><br><span class="line">                        dp[j] &#x3D; dp[i]+1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[T];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>贪心：先记录每个位置能到达的最远点。遍历，记录当前能到达的最远点far，和当前使用段的结束点ed。进行判断，结束或记录所使用的最少段cnt</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (int i &#x3D; 0; i &lt; T; i++) </span><br><span class="line">&#123;</span><br><span class="line">    far &#x3D; max(far, dt[i]);</span><br><span class="line">    if (i &#x3D;&#x3D; far) </span><br><span class="line">        return -1;</span><br><span class="line">    if (i &#x3D;&#x3D; ed) </span><br><span class="line">    &#123;</span><br><span class="line">        cnt++;</span><br><span class="line">        ed &#x3D; far;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="845-数组中的最长山脉"><a class="markdownIt-Anchor" href="#845-数组中的最长山脉"></a> 845. 数组中的最长山脉</h3>
-<ul>
-<li>今天是中等难度，不过感觉像是简单的题目。</li>
-<li>从0开始，然后判断就行了。每次在中间记录一下山顶，确定不是只有上坡或者下坡。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestMountain</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = A.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>,start=<span class="number">0</span>,<span class="built_in">max</span>=<span class="number">0</span>,heil=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;len)</span><br><span class="line">        &#123;</span><br><span class="line">            start = i;</span><br><span class="line">            <span class="keyword">while</span>(i+<span class="number">1</span>&lt;len &amp;&amp;A[i+<span class="number">1</span>]&gt;A[i]) i++;</span><br><span class="line">            <span class="keyword">int</span> mid = i;</span><br><span class="line">            <span class="keyword">while</span>(i+<span class="number">1</span>&lt;len &amp;&amp;A[i+<span class="number">1</span>]&lt;A[i]) i++;</span><br><span class="line">            <span class="keyword">if</span>(i==start)</span><br><span class="line">            &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(i&gt;mid&amp;&amp;mid&gt;start&amp;&amp; <span class="built_in">max</span>&lt;i-start+<span class="number">1</span>)</span><br><span class="line">                    <span class="built_in">max</span> = i-start+<span class="number">1</span>;</span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="1365-有多少小于当前数字的数字"><a class="markdownIt-Anchor" href="#1365-有多少小于当前数字的数字"></a> 1365. 有多少小于当前数字的数字</h3>
-<ul>
-<li>计数排序，然后统计</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">smallerNumbersThanCurrent</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dict[<span class="number">101</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> n:nums)</span><br><span class="line">        &#123;</span><br><span class="line">            dict[n]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;<span class="number">101</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            dict[i]+=dict[i<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">ret</span><span class="params">(nums)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;r:ret)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(r!=<span class="number">0</span>)</span><br><span class="line">                r=dict[r<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="144-二叉树的前序遍历"><a class="markdownIt-Anchor" href="#144-二叉树的前序遍历"></a> 144. 二叉树的前序遍历</h3>
-<ul>
-<li>非递归遍历，while + stack</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode*&gt; s;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">        <span class="keyword">while</span>(root||!s.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(root)</span><br><span class="line">            &#123;</span><br><span class="line">                v.push_back(root-&gt;val);</span><br><span class="line">                s.push(root);</span><br><span class="line">                root = root-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                TreeNode *temp = s.top();</span><br><span class="line">                s.pop();</span><br><span class="line">                root = temp-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="1207-独一无二的出现次数"><a class="markdownIt-Anchor" href="#1207-独一无二的出现次数"></a> 1207. 独一无二的出现次数</h3>
-<ul>
-<li>对输入数组进行计数</li>
-<li>对计数的数组进行排序</li>
-<li>相邻两个数比较，如果有相同的就表明出现次数不是独一无二的</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">uniqueOccurrences</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">cnt</span><span class="params">(<span class="number">2001</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.<span class="built_in">size</span>();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i]&gt;=<span class="number">0</span>)</span><br><span class="line">                cnt[arr[i]]++;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                cnt[<span class="number">2001</span>+arr[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(cnt.<span class="built_in">begin</span>(),cnt.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2000</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(cnt[i]!=<span class="number">0</span> &amp;&amp;cnt[i]==cnt[i+<span class="number">1</span>])</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<div class="note info simple">
-            <p>第二、三步也进行一次计数</p>
-          </div>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">uniqueOccurrences</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">cnt</span><span class="params">(<span class="number">2001</span>)</span></span>;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">dt</span><span class="params">(<span class="number">1001</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.<span class="built_in">size</span>();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i]&gt;=<span class="number">0</span>)</span><br><span class="line">                cnt[arr[i]]++;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                cnt[<span class="number">2001</span>+arr[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2001</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            dt[cnt[i]]++;</span><br><span class="line">            <span class="keyword">if</span>(dt[cnt[i]]&gt;<span class="number">1</span> &amp;&amp;cnt[i]!=<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="129-求根到叶子节点数字之和"><a class="markdownIt-Anchor" href="#129-求根到叶子节点数字之和"></a> 129. 求根到叶子节点数字之和</h3>
-<ul>
-<li>递归求和</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sumNumbers</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Func(root,<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Func</span><span class="params">(TreeNode *root,<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        num = num*<span class="number">10</span> +root-&gt;val;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;left==<span class="literal">NULL</span>&amp;&amp;root-&gt;right==<span class="literal">NULL</span>)</span><br><span class="line">        &#123; </span><br><span class="line">            <span class="keyword">return</span> num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            <span class="keyword">return</span> Func(root-&gt;left,num)+Func(root-&gt;right,num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="463-岛屿的周长"><a class="markdownIt-Anchor" href="#463-岛屿的周长"></a> 463. 岛屿的周长</h3>
-<ul>
-<li>从左往右，从上往下遍历即可</li>
-<li>如果地图是一个岛屿，周长 +4 ，如果这个岛屿左边也是岛屿，周长 -2，如果这个岛屿上方也是岛屿，周长 -2，</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> rows = grid.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(rows==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> cols = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> sum = grid[<span class="number">0</span>][<span class="number">0</span>]*<span class="number">4</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;cols;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(grid[<span class="number">0</span>][j]==<span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                sum+=<span class="number">4</span>;</span><br><span class="line">                <span class="keyword">if</span>(grid[<span class="number">0</span>][j<span class="number">-1</span>]==<span class="number">1</span>)</span><br><span class="line">                    sum-=<span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;rows;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(grid[i][<span class="number">0</span>]==<span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                sum += grid[i][<span class="number">0</span>]*<span class="number">4</span>;</span><br><span class="line">                <span class="keyword">if</span>(grid[i<span class="number">-1</span>][<span class="number">0</span>]==<span class="number">1</span>)</span><br><span class="line">                    sum-=<span class="number">2</span>;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;cols;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    sum+=<span class="number">4</span>;</span><br><span class="line">                    <span class="keyword">if</span>(grid[i][j<span class="number">-1</span>]==<span class="number">1</span>)</span><br><span class="line">                        sum-=<span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">if</span>(grid[i<span class="number">-1</span>][j]==<span class="number">1</span>)</span><br><span class="line">                        sum-=<span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode-每日一题</title>
-    <url>/posts/2020-11-001.html</url>
-    <content><![CDATA[<h3 id="349-两个数组的交集"><a class="markdownIt-Anchor" href="#349-两个数组的交集"></a> 349. 两个数组的交集</h3>
-<ul>
-<li>首先记录下nums1中出现过的数字，如果nums2中也出现就将其加入到集合中。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">intersection</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; <span class="built_in">map</span>;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; <span class="built_in">set</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> var :nums1)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">map</span>[var] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> var :nums2)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">map</span>.<span class="built_in">find</span>(var)!=<span class="built_in">map</span>.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">set</span>.insert(var);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="built_in">set</span>.<span class="built_in">begin</span>(),<span class="built_in">set</span>.<span class="built_in">end</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="941-有效的山脉数组"><a class="markdownIt-Anchor" href="#941-有效的山脉数组"></a> 941. 有效的山脉数组</h3>
-<p><a href="https://slyli.cn/posts/2020-08-002.html#845-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E9%95%BF%E5%B1%B1%E8%84%89">845-数组中的最长山脉</a>的简化版本</p>
-<ul>
-<li>for循环内部如果没有语句，要注意后面要加上<code>;</code></li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">validMountainArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(A.<span class="built_in">size</span>()&lt;<span class="number">3</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">int</span> i,j;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;A.<span class="built_in">size</span>()&amp;&amp;A[i]&gt;A[i<span class="number">-1</span>];i++);</span><br><span class="line">        <span class="keyword">for</span>(j=i;j&lt;A.<span class="built_in">size</span>()&amp;&amp;A[j]&lt;A[j<span class="number">-1</span>];j++);</span><br><span class="line">        <span class="keyword">if</span>(i!=<span class="number">1</span> &amp;&amp; j !=i &amp;&amp; j==A.<span class="built_in">size</span>())</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
       </tags>
   </entry>
 </search>
