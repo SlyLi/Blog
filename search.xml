@@ -1,66 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>C</title>
-    <url>/posts/2020-08-001.html</url>
-    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
-<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
-<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
-<ul>
-<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
-<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
-<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
-<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
-</ul>
-<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
-<p>链接属性一共有三种：external,internal和none。</p>
-<ul>
-<li>
-<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
-</li>
-<li>
-<p>internal：只有同一文件内才为同一实体；</p>
-</li>
-<li>
-<p>none：多个声明被当作独立不同的实体；</p>
-</li>
-<li>
-<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
-<pre><code>  static int a;
-</code></pre>
-</li>
-</ul>
-<p>那么变量a就是这个源文件所私有。</p>
-<ul>
-<li>
-<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
-</li>
-<li>
-<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
-<pre><code>  int a;
-  extern int b;
-  extern int c=10;
-</code></pre>
-</li>
-</ul>
-<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
-<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
-<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
-<ul>
-<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
-<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
-<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
-当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>3D-Render</title>
     <url>/posts/2020-09-002.html</url>
     <content><![CDATA[<p>选择Sokolov的<a href="https://github.com/ssloy/tinyrenderer" target="_blank" rel="noopener">Tiny Renderer</a>教程开始入门。<br />
@@ -283,14 +223,64 @@ pts[j] = m2v(viewport * projection * modelview * v2m(v));
       </tags>
   </entry>
   <entry>
-    <title>KaTeX Supported Functions</title>
-    <url>/posts/2020-10-004.html</url>
-    <content><![CDATA[<h2 id="katex"><a class="markdownIt-Anchor" href="#katex"></a> <a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">KaTeX</a></h2>
-<iframe src="https://katex.org/docs/supported.html" width="100%" height="800px" frameborder="0" loading="lazy" allowfullscreen></iframe>
+    <title>C</title>
+    <url>/posts/2020-08-001.html</url>
+    <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
+<h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
+<p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
+<ul>
+<li>代码块作用域：位于一对花括号之间的所有语句称为一个代码块，代码块开始声明的具有~。</li>
+<li>文件作用域：任何在所有代码块之外声明的标识符都有~。</li>
+<li>原型作用域：只适用于在函数原型中声明的参数名。</li>
+<li>函数作用域：只适用于语句标签，语句标签用于goto语句。</li>
+</ul>
+<h3 id="链接属性"><a class="markdownIt-Anchor" href="#链接属性"></a> 链接属性</h3>
+<p>链接属性一共有三种：external,internal和none。</p>
+<ul>
+<li>
+<p>external：无论声明多少次，几个源文件中的声明都表示同一实体；</p>
+</li>
+<li>
+<p>internal：只有同一文件内才为同一实体；</p>
+</li>
+<li>
+<p>none：多个声明被当作独立不同的实体；</p>
+</li>
+<li>
+<p>在缺省情况下，文件作用域内（不存在于任意函数内）的变量或函数为external。如果在它前面加上static可以使它的链接属性变为internal，例如：</p>
+<pre><code>  static int a;
+</code></pre>
+</li>
+</ul>
+<p>那么变量a就是这个源文件所私有。</p>
+<ul>
+<li>
+<p>static 只对缺省链接属性为external的声明才有改变链接属性的效果。</p>
+</li>
+<li>
+<p>extern关键字，只能用于声明变量，不能用于定义（除非声明时有初始化，才被当作定义）。当缺省时既可以为声明，也可以是定义。</p>
+<pre><code>  int a;
+  extern int b;
+  extern int c=10;
+</code></pre>
+</li>
+</ul>
+<p>a：即是声明又是定义，b：只是声明，c：定义。</p>
+<h3 id="存储类型"><a class="markdownIt-Anchor" href="#存储类型"></a> 存储类型</h3>
+<p>有三个地方可用于存储变量：普通内存，运行时堆栈，硬件寄存器。</p>
+<ul>
+<li>所有代码块之外声明的变量总是存储在静态内存中，这类变量称为静态变量，静态变量在程序运行之前创建，整个执行过程中都存在。静态变量会被初始化为0。</li>
+<li>代码块内部声明的变量的存储类型是自动的，也就是说它存储在堆栈中。自动变量在代码块执行到此块时自动变量才被创建，执行完毕后就消失。</li>
+<li><code>regiser</code> 提示他们应该存储于机器的硬件寄存器而不是内存中。这类变量称为寄存器变量。<br />
+当static修饰代码块内部的变量声明时，会将自动变量修改为静态变量，但链接属性和作用域不受影响。</li>
+</ul>
 ]]></content>
       <categories>
-        <category>blog</category>
+        <category>C/C++</category>
       </categories>
+      <tags>
+        <tag>C</tag>
+      </tags>
   </entry>
   <entry>
     <title>OneDrive云盘搭建</title>
@@ -694,6 +684,16 @@ capture:</p>
       <tags>
         <tag>C++</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>KaTeX Supported Functions</title>
+    <url>/posts/2020-10-004.html</url>
+    <content><![CDATA[<h2 id="katex"><a class="markdownIt-Anchor" href="#katex"></a> <a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">KaTeX</a></h2>
+<iframe src="https://katex.org/docs/supported.html" width="100%" height="800px" frameborder="0" loading="lazy" allowfullscreen></iframe>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
   </entry>
   <entry>
     <title>LinearRegression--python</title>
@@ -1269,36 +1269,6 @@ printf(“Hello, Markdown.”);<br />
       </tags>
   </entry>
   <entry>
-    <title>beyond</title>
-    <url>/posts/2020-10-001.html</url>
-    <content><![CDATA[<p>🔺：<code>pull-up</code><br />
-🔻：<code>push-up (parallel bars dips)</code></p>
-<h2 id="2020年"><a class="markdownIt-Anchor" href="#2020年"></a> 2020年</h2>
-<h3 id="2020年10月"><a class="markdownIt-Anchor" href="#2020年10月"></a> 2020年10月</h3>
-<h4 id="2020104-12-6-6-7-6-6-4-3"><a class="markdownIt-Anchor" href="#2020104-12-6-6-7-6-6-4-3"></a> 2020/10/4  🔺 12 6 6 7 6 6 4 3</h4>
-<h4 id="2020105-3km-running"><a class="markdownIt-Anchor" href="#2020105-3km-running"></a> 2020/10/5  3km running</h4>
-<h4 id="2020106-10-6-4-17-10-8-人旗"><a class="markdownIt-Anchor" href="#2020106-10-6-4-17-10-8-人旗"></a> 2020/10/6  🔺 10 6 4   🔻17 10 8   + 人旗</h4>
-<h4 id="2020108-11-7-8-6-8-6-4"><a class="markdownIt-Anchor" href="#2020108-11-7-8-6-8-6-4"></a> 2020/10/8  🔺 11 7 8 6 8 6 4</h4>
-<h4 id="20201010-11-7-7-7-5-6-5-3"><a class="markdownIt-Anchor" href="#20201010-11-7-7-7-5-6-5-3"></a> 2020/10/10 🔺 11 7 7 7 5 6 5 3</h4>
-<h4 id="20201012-3km-running"><a class="markdownIt-Anchor" href="#20201012-3km-running"></a> 2020/10/12 3km running</h4>
-<h4 id="20201014-13-8-9-8-6-6"><a class="markdownIt-Anchor" href="#20201014-13-8-9-8-6-6"></a> 2020/10/14 🔺 13 8 9 8 6 6</h4>
-<h4 id="20201015-10-7-7-10-8"><a class="markdownIt-Anchor" href="#20201015-10-7-7-10-8"></a> 2020/10/15 🔻 10 7 7 10 8</h4>
-<h4 id="20201018-14-8-8-9-6-5"><a class="markdownIt-Anchor" href="#20201018-14-8-8-9-6-5"></a> 2020/10/18 🔺 14 8 8 9 6 5</h4>
-<h4 id="20201020-14-10-8-7-7"><a class="markdownIt-Anchor" href="#20201020-14-10-8-7-7"></a> 2020/10/20 🔺 14 10 8 7 7</h4>
-<h4 id="20201022-15-9-9-7-5-6"><a class="markdownIt-Anchor" href="#20201022-15-9-9-7-5-6"></a> 2020/10/22 🔺 15 9 9 7 5 6</h4>
-<h4 id="20201024-17-10-10-10-16"><a class="markdownIt-Anchor" href="#20201024-17-10-10-10-16"></a> 2020/10/24 🔻 17 10 10 10 16</h4>
-<h4 id="20201026-15-10-9-8-8-2"><a class="markdownIt-Anchor" href="#20201026-15-10-9-8-8-2"></a> 2020/10/26 🔺 15 10 9 8 8 2</h4>
-<h4 id="20201028-15-11-11-9-6"><a class="markdownIt-Anchor" href="#20201028-15-11-11-9-6"></a> 2020/10/28 🔺 15 11 11 9 6</h4>
-<h4 id="20201030-15-10-10-7-7-2"><a class="markdownIt-Anchor" href="#20201030-15-10-10-7-7-2"></a> 2020/10/30 🔺 15 10 10 7 7 2</h4>
-<h3 id="2020年11月"><a class="markdownIt-Anchor" href="#2020年11月"></a> 2020年11月</h3>
-<h4 id="2020111-10-10-10-10-10-人体旗帜还是不太稳定发挥"><a class="markdownIt-Anchor" href="#2020111-10-10-10-10-10-人体旗帜还是不太稳定发挥"></a> 2020/11/1 🔺 10 10 10 10 10  人体旗帜还是不太稳定发挥</h4>
-<h4 id="2020113-16-12-10-10-8"><a class="markdownIt-Anchor" href="#2020113-16-12-10-10-8"></a> 2020/11/3 🔺 16 12 10 10 8</h4>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Win32显示图像</title>
     <url>/posts/2020-09-001.html</url>
     <content><![CDATA[<p>在windows下将数据以位图的方式显示：</p>
@@ -1505,6 +1475,36 @@ comments: false
       </tags>
   </entry>
   <entry>
+    <title>beyond</title>
+    <url>/posts/2020-10-001.html</url>
+    <content><![CDATA[<p>🔺：<code>pull-up</code><br />
+🔻：<code>push-up (parallel bars dips)</code></p>
+<h2 id="2020年"><a class="markdownIt-Anchor" href="#2020年"></a> 2020年</h2>
+<h3 id="2020年10月"><a class="markdownIt-Anchor" href="#2020年10月"></a> 2020年10月</h3>
+<h4 id="2020104-12-6-6-7-6-6-4-3"><a class="markdownIt-Anchor" href="#2020104-12-6-6-7-6-6-4-3"></a> 2020/10/4  🔺 12 6 6 7 6 6 4 3</h4>
+<h4 id="2020105-3km-running"><a class="markdownIt-Anchor" href="#2020105-3km-running"></a> 2020/10/5  3km running</h4>
+<h4 id="2020106-10-6-4-17-10-8-人旗"><a class="markdownIt-Anchor" href="#2020106-10-6-4-17-10-8-人旗"></a> 2020/10/6  🔺 10 6 4   🔻17 10 8   + 人旗</h4>
+<h4 id="2020108-11-7-8-6-8-6-4"><a class="markdownIt-Anchor" href="#2020108-11-7-8-6-8-6-4"></a> 2020/10/8  🔺 11 7 8 6 8 6 4</h4>
+<h4 id="20201010-11-7-7-7-5-6-5-3"><a class="markdownIt-Anchor" href="#20201010-11-7-7-7-5-6-5-3"></a> 2020/10/10 🔺 11 7 7 7 5 6 5 3</h4>
+<h4 id="20201012-3km-running"><a class="markdownIt-Anchor" href="#20201012-3km-running"></a> 2020/10/12 3km running</h4>
+<h4 id="20201014-13-8-9-8-6-6"><a class="markdownIt-Anchor" href="#20201014-13-8-9-8-6-6"></a> 2020/10/14 🔺 13 8 9 8 6 6</h4>
+<h4 id="20201015-10-7-7-10-8"><a class="markdownIt-Anchor" href="#20201015-10-7-7-10-8"></a> 2020/10/15 🔻 10 7 7 10 8</h4>
+<h4 id="20201018-14-8-8-9-6-5"><a class="markdownIt-Anchor" href="#20201018-14-8-8-9-6-5"></a> 2020/10/18 🔺 14 8 8 9 6 5</h4>
+<h4 id="20201020-14-10-8-7-7"><a class="markdownIt-Anchor" href="#20201020-14-10-8-7-7"></a> 2020/10/20 🔺 14 10 8 7 7</h4>
+<h4 id="20201022-15-9-9-7-5-6"><a class="markdownIt-Anchor" href="#20201022-15-9-9-7-5-6"></a> 2020/10/22 🔺 15 9 9 7 5 6</h4>
+<h4 id="20201024-17-10-10-10-16"><a class="markdownIt-Anchor" href="#20201024-17-10-10-10-16"></a> 2020/10/24 🔻 17 10 10 10 16</h4>
+<h4 id="20201026-15-10-9-8-8-2"><a class="markdownIt-Anchor" href="#20201026-15-10-9-8-8-2"></a> 2020/10/26 🔺 15 10 9 8 8 2</h4>
+<h4 id="20201028-15-11-11-9-6"><a class="markdownIt-Anchor" href="#20201028-15-11-11-9-6"></a> 2020/10/28 🔺 15 11 11 9 6</h4>
+<h4 id="20201030-15-10-10-7-7-2"><a class="markdownIt-Anchor" href="#20201030-15-10-10-7-7-2"></a> 2020/10/30 🔺 15 10 10 7 7 2</h4>
+<h3 id="2020年11月"><a class="markdownIt-Anchor" href="#2020年11月"></a> 2020年11月</h3>
+<h4 id="2020111-10-10-10-10-10-人体旗帜还是不太稳定发挥"><a class="markdownIt-Anchor" href="#2020111-10-10-10-10-10-人体旗帜还是不太稳定发挥"></a> 2020/11/1 🔺 10 10 10 10 10  人体旗帜还是不太稳定发挥</h4>
+<h4 id="2020113-16-12-10-10-8"><a class="markdownIt-Anchor" href="#2020113-16-12-10-10-8"></a> 2020/11/3 🔺 16 12 10 10 8</h4>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
     <title>cocos2dx</title>
     <url>/posts/2020-09-003.html</url>
     <content><![CDATA[<h2 id="记录cocos2dx的学习历程和遇到的坑-版本40"><a class="markdownIt-Anchor" href="#记录cocos2dx的学习历程和遇到的坑-版本40"></a> 记录cocos2dx的学习历程和遇到的坑。 版本4.0</h2>
@@ -1563,24 +1563,6 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
       </tags>
   </entry>
   <entry>
-    <title>5 free-handstand tips</title>
-    <url>/posts/2020-10-005.html</url>
-    <content><![CDATA[<ol>
-<li>改变手的放置位置，不要将整个手全紧贴地面，可以将手指弯曲，形成一个抓地的感觉</li>
-<li>将手掌贴地，只有在需要必须使用手指时是用手指，平常调整身体的平衡时，可以只使用手掌进行调节，当我们身体将要放过去时，这样就可以有额外的力量将身体拉回来</li>
-<li>增大平衡范围，加强自己的核心力量，往后倒时，将臀部前移，腿下移或后移</li>
-<li>练习其他类型的手平衡</li>
-<li>使用不同的底板实现平衡，不只限于地面，其他的比如草地，沙滩，双杠</li>
-</ol>
-<ul>
-<li>靠墙倒立时，可以尝试不用脚蹬，使用手掌的力量使脚离开墙</li>
-</ul>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-  </entry>
-  <entry>
     <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
     <url>/posts/2020-07-002.html</url>
     <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg" target="_blank" rel="noopener">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
@@ -1602,25 +1584,22 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
       </tags>
   </entry>
   <entry>
-    <title>leetcode-每日一题</title>
-    <url>/posts/2020-11-001.html</url>
-    <content><![CDATA[<h3 id="349-两个数组的交集"><a class="markdownIt-Anchor" href="#349-两个数组的交集"></a> 349. 两个数组的交集</h3>
+    <title>5 free-handstand tips</title>
+    <url>/posts/2020-10-005.html</url>
+    <content><![CDATA[<ol>
+<li>改变手的放置位置，不要将整个手全紧贴地面，可以将手指弯曲，形成一个抓地的感觉</li>
+<li>将手掌贴地，只有在需要必须使用手指时是用手指，平常调整身体的平衡时，可以只使用手掌进行调节，当我们身体将要放过去时，这样就可以有额外的力量将身体拉回来</li>
+<li>增大平衡范围，加强自己的核心力量，往后倒时，将臀部前移，腿下移或后移</li>
+<li>练习其他类型的手平衡</li>
+<li>使用不同的底板实现平衡，不只限于地面，其他的比如草地，沙滩，双杠</li>
+</ol>
 <ul>
-<li>首先记录下nums1中出现过的数字，如果nums2中也出现就将其加入到集合中。</li>
+<li>靠墙倒立时，可以尝试不用脚蹬，使用手掌的力量使脚离开墙</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">intersection</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; <span class="built_in">map</span>;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; <span class="built_in">set</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> var :nums1)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">map</span>[var] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> var :nums2)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">map</span>.<span class="built_in">find</span>(var)!=<span class="built_in">map</span>.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">set</span>.insert(var);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="built_in">set</span>.<span class="built_in">begin</span>(),<span class="built_in">set</span>.<span class="built_in">end</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="941-有效的山脉数组"><a class="markdownIt-Anchor" href="#941-有效的山脉数组"></a> 941. 有效的山脉数组</h3>
-<p><a href="https://slyli.cn/posts/2020-08-002.html#845-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E9%95%BF%E5%B1%B1%E8%84%89">845-数组中的最长山脉</a>的简化版本</p>
-<ul>
-<li>for循环内部如果没有语句，要注意后面要加上<code>;</code></li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">validMountainArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(A.<span class="built_in">size</span>()&lt;<span class="number">3</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">int</span> i,j;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;A.<span class="built_in">size</span>()&amp;&amp;A[i]&gt;A[i<span class="number">-1</span>];i++);</span><br><span class="line">        <span class="keyword">for</span>(j=i;j&lt;A.<span class="built_in">size</span>()&amp;&amp;A[j]&lt;A[j<span class="number">-1</span>];j++);</span><br><span class="line">        <span class="keyword">if</span>(i!=<span class="number">1</span> &amp;&amp; j !=i &amp;&amp; j==A.<span class="built_in">size</span>())</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+]]></content>
       <categories>
-        <category>C/C++</category>
+        <category>others</category>
       </categories>
-      <tags>
-        <tag>leetcode</tag>
-      </tags>
   </entry>
   <entry>
     <title>js多次点击的响应</title>
@@ -1936,127 +1915,6 @@ dp[i][j] 表示从数组的[0,i] 下标范围内选取若干个正整数（可�
       </tags>
   </entry>
   <entry>
-    <title>pytorch中的LSTM模型</title>
-    <url>/posts/2020-10-006.html</url>
-    <content><![CDATA[<h2 id="背景知识"><a class="markdownIt-Anchor" href="#背景知识"></a> 背景知识</h2>
-<h3 id="lstm原理介绍"><a class="markdownIt-Anchor" href="#lstm原理介绍"></a> LSTM原理介绍</h3>
-<iframe src="https://datawhalechina.github.io/leeml-notes/#/chapter36/chapter36?id=lstm" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
-<h3 id="pytorch-doc"><a class="markdownIt-Anchor" href="#pytorch-doc"></a> pytorch doc</h3>
-<iframe src="https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html#torch.nn.LSTM" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
-<h2 id="简单实例"><a class="markdownIt-Anchor" href="#简单实例"></a> 简单实例</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">lstm = nn.LSTM(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>)                    <span class="comment"># (input_size(feature_num) ,hidden_size,num_layers ) </span></span><br><span class="line">input = torch.randn(<span class="number">4</span>, <span class="number">1</span>, <span class="number">1</span>)               <span class="comment"># (seq_len, batch, input_size(feature_num))</span></span><br><span class="line">h0 = torch.randn(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>)                  <span class="comment"># (num_layers * num_directions, batch, hidden_size)</span></span><br><span class="line">c0 = torch.randn(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>)                  <span class="comment"># (num_layers * num_directions, batch, hidden_size)</span></span><br><span class="line">output, (hn, cn) = lstm(input, (h0, c0))   <span class="comment"># output:(seq_len, batch, num_directions * hidden_size)</span></span><br><span class="line">                                           <span class="comment"># hn = output[-1] , output = [h1,h2,...,hn]</span></span><br></pre></td></tr></table></figure>
-<h3 id="各个参数的理解"><a class="markdownIt-Anchor" href="#各个参数的理解"></a> 各个参数的理解</h3>
-<ol>
-<li>input_size:一个输入中的特征的个数</li>
-<li>hidden_size: 隐藏层节点的个数，如下图</li>
-<li>num_layers: lstm层的个数，默认为1，如果设为2，则第一层的输出[h0,h1,…hn]作为第二层的输入，在计算出最后的输出[h0,h1,…hn]</li>
-<li>seq_len: 一个序列中输入的个数</li>
-<li>batch: 每批处理的样本个数</li>
-</ol>
-<h3 id="实例结构图"><a class="markdownIt-Anchor" href="#实例结构图"></a> 实例结构图</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-10/lstm.jpg" alt="" /></p>
-<h2 id="航班预测人数"><a class="markdownIt-Anchor" href="#航班预测人数"></a> 航班预测人数</h2>
-<p>参考 <a href="https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/" target="_blank" rel="noopener">https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler</span><br><span class="line"></span><br><span class="line"><span class="comment">#  https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_data</span><span class="params">(data, pred=None)</span>:</span></span><br><span class="line">    plt.title(<span class="string">'mouth vs passengers'</span>)</span><br><span class="line">    plt.xlabel(<span class="string">'mouths'</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'total passengers'</span>)</span><br><span class="line">    plt.plot(data)</span><br><span class="line">    <span class="keyword">if</span> pred <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        x = np.arange(<span class="number">132</span>, <span class="number">144</span>, <span class="number">1</span>)</span><br><span class="line">        plt.plot(x, pred)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_io_seq</span><span class="params">(data, tw)</span>:</span></span><br><span class="line">    io_seq = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(data) - tw):</span><br><span class="line">        seq = data[i:i + tw]</span><br><span class="line">        lab = data[i + tw:i + tw + <span class="number">1</span>]</span><br><span class="line">        io_seq.append((seq, lab))</span><br><span class="line">    <span class="keyword">return</span> io_seq</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LSTM</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, i_size=<span class="number">1</span>, hid_size=<span class="number">200</span>, o_size=<span class="number">1</span>)</span>:</span></span><br><span class="line">        super(LSTM, self).__init__()</span><br><span class="line">        self.hidden_layer_size = hid_size</span><br><span class="line">        self.lstm = nn.LSTM(i_size, self.hidden_layer_size)</span><br><span class="line">        self.linear = nn.Linear(self.hidden_layer_size, o_size)</span><br><span class="line">        self.hidden_cell = (torch.zeros(<span class="number">1</span>, <span class="number">1</span>, self.hidden_layer_size), torch.zeros(<span class="number">1</span>, <span class="number">1</span>, self.hidden_layer_size))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, input_seq)</span>:</span></span><br><span class="line">        out, self.hidden_cell = self.lstm(input_seq.view(len(input_seq), <span class="number">1</span>, <span class="number">-1</span>), self.hidden_cell)</span><br><span class="line">        pred = self.linear(out.view(len(input_seq), <span class="number">-1</span>))</span><br><span class="line">        <span class="keyword">return</span> pred[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(lstm, data, PATH=<span class="string">'./cifar_net.pth'</span>)</span>:</span></span><br><span class="line">    loss_func = nn.MSELoss().to(device)</span><br><span class="line">    optimizer = torch.optim.Adam(lstm.parameters(), lr=<span class="number">0.001</span>)</span><br><span class="line">    print(lstm)</span><br><span class="line">    epochs = <span class="number">150</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(epochs):</span><br><span class="line">        <span class="keyword">for</span> seq, label <span class="keyword">in</span> data:</span><br><span class="line">            seq = seq.to(device)</span><br><span class="line">            label = label.to(device)</span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            lstm.hidden_cell = (</span><br><span class="line">                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size).to(device),</span><br><span class="line">                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size).to(device))</span><br><span class="line">            y_pred = lstm(seq)</span><br><span class="line">            single_loss = loss_func(y_pred, label)</span><br><span class="line">            single_loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line">        <span class="keyword">if</span> i % <span class="number">25</span> == <span class="number">1</span>:</span><br><span class="line">            print(<span class="string">f'epoch: <span class="subst">&#123;i:<span class="number">3</span>&#125;</span> loss: <span class="subst">&#123;single_loss.item():<span class="number">10.8</span>f&#125;</span>'</span>)</span><br><span class="line">    torch.save(lstm.state_dict(), PATH)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    device = torch.device(<span class="string">"cuda:0"</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">"cpu"</span>)</span><br><span class="line"></span><br><span class="line">    flight = sns.load_dataset(<span class="string">'flights'</span>)</span><br><span class="line">    all_data = flight[<span class="string">'passengers'</span>].values.astype(float)</span><br><span class="line">    test_data_size = <span class="number">12</span></span><br><span class="line">    train_data = all_data[:-test_data_size]</span><br><span class="line">    test_data = all_data[-test_data_size:]</span><br><span class="line">    scaler = MinMaxScaler((<span class="number">0</span>, <span class="number">10</span>))</span><br><span class="line">    train_data_norm = scaler.fit_transform(train_data.reshape(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line">    train_data_norm = torch.FloatTensor(train_data_norm).view(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">    train_io_seq = create_io_seq(train_data_norm, <span class="number">12</span>)</span><br><span class="line"></span><br><span class="line">    lstm = LSTM()</span><br><span class="line">    lstm.to(device)</span><br><span class="line">    <span class="comment"># train(lstm, train_io_seq)</span></span><br><span class="line"></span><br><span class="line">    fut_pred = <span class="number">12</span></span><br><span class="line">    lstm.load_state_dict(torch.load(<span class="string">'./cifar_net.pth'</span>))</span><br><span class="line">    lstm.cpu()</span><br><span class="line">    test_input = train_data_norm[<span class="number">-12</span>:].tolist()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(fut_pred):</span><br><span class="line">        seq = torch.FloatTensor(test_input[<span class="number">-12</span>:])</span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">            lstm.hidden_cell = (torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size),</span><br><span class="line">                                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size))</span><br><span class="line">            test_input.append(lstm(seq).item())</span><br><span class="line"></span><br><span class="line">    act_pred = scaler.inverse_transform(np.array(test_input[<span class="number">-12</span>:]).reshape(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line">    plot_data(flight[<span class="string">'passengers'</span>], act_pred)</span><br></pre></td></tr></table></figure>
-<p>最终结果，蓝色为原始数据，橙红色是预测数据<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-10/myplot.png" alt="" /></p>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>小说网站爬虫</title>
-    <url>/posts/2020-07-010.html</url>
-    <content><![CDATA[<h3 id="1小说爬虫简易模板"><a class="markdownIt-Anchor" href="#1小说爬虫简易模板"></a> 1.小说爬虫简易模板</h3>
-<pre><code>import requests
-from bs4 import BeautifulSoup
-import re
-import os
-
-# 本脚本无普适性，请具体网站具体分析
-root = ''  # 文章首页链接
-art_id = ''  # 文章链接id
-
-fname = './txts/'+art_id[5:-1]+'.txt'
-encode = 'gbk'
-
-
-def GetAllSection(root, id):
-    r = requests.get(root + id)
-    r.encoding = encode
-    bs = BeautifulSoup(r.text, 'html.parser')
-    url_a = bs.find_all('a')
-    urls = []
-    for u in url_a:
-        href = u.get('href')
-        if href and re.match(id, href):
-            urls.append(root+href)
-
-    del urls[0]
-    return urls
-
-
-def SaveArticle(root, id, fname):
-    i = 1
-    urls = GetAllSection(root, id)
-    for url in urls:
-        r = requests.get(url)
-        r.encoding = encode
-        bs = BeautifulSoup(r.text, 'html.parser')
-        text = bs.find_all('p')[1].text
-        text = text.replace('\xa0', ' ')
-        text = text.replace('\ufffd', ' ')
-        text = text.replace('\n\r\n', '\n')
-        with open(fname, 'a', encoding=encode) as file:
-            if i == 1:
-                file.write(bs.h1.text+'\n')
-                i = 0
-            file.write(text+'\n')
-
-
-if __name__ == &quot;__main__&quot;:
-    SaveArticle(root, art_id, fname)
-    # print(fname)
-</code></pre>
-<h3 id="2道德经爬虫"><a class="markdownIt-Anchor" href="#2道德经爬虫"></a> 2.道德经爬虫</h3>
-<p>自己想做一个古文阅读类的安卓app，所以文章素材的话就只能自己去网上爬了。通过分析网站链接逻辑，和网站内文章内容的布局，很容易就可以写出来。<br />
-文章保存在当前目录下。</p>
-<pre><code>import requests
-from bs4 import BeautifulSoup
-import re
-import os
-encode = 'utf-8'
-cha_num = 81
-
-def SaveArticle(fname, urls):
-    for url in urls:
-        print('-', end='')
-        r = requests.get(url)
-        r.encoding = encode
-        bs = BeautifulSoup(r.text, 'html.parser')
-        text = bs.find_all('div', {&quot;class&quot;: &quot;grap&quot;})
-        with open(fname, 'a', encoding=encode) as file:
-            for t in text:
-                te = t.text.replace('\xa0', ' ').replace(
-                    '\u3000', ' ').replace('\ufffd', ' ')
-                file.write(te+'\n')
-
-if __name__ == &quot;__main__&quot;:
-    urls = ['https://www.5000yan.com/'+str(i)+'.html' for i in range(1, 82)]
-    SaveArticle('daodejing.txt', urls)
-    # print(urls)
-</code></pre>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>machine-learning 知识点总结</title>
     <url>/posts/2020-07-006.html</url>
     <content><![CDATA[<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
@@ -2226,66 +2084,146 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>博客说明</title>
-    <url>/posts/2020-07-001.html</url>
-    <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
-<p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
-<h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
-<h3 id="创建一个新的文章或页面"><a class="markdownIt-Anchor" href="#创建一个新的文章或页面"></a> 创建一个新的文章或页面</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] [title]</span><br></pre></td></tr></table></figure>
-<h4 id="布局layout"><a class="markdownIt-Anchor" href="#布局layout"></a> 布局（Layout）</h4>
-<p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
-<pre><code>布局	路径
-post	source/_posts
-page	source
-draft	source/_drafts
-</code></pre>
-<h4 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h4>
-<p>创建一个标题为exp的文章，默认布局为post，在命令中可以省略。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new exp</span><br></pre></td></tr></table></figure>
-<p>创建一个名为exp的页面。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new page exp</span><br></pre></td></tr></table></figure>
-<h3 id="本地运行服务器可以在localhost4000中查看"><a class="markdownIt-Anchor" href="#本地运行服务器可以在localhost4000中查看"></a> 本地运行服务器，可以在<a href="http://localhost:4000" target="_blank" rel="noopener">localhost:4000</a>中查看</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<h3 id="重新渲染博客"><a class="markdownIt-Anchor" href="#重新渲染博客"></a> 重新渲染博客</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
-<h3 id="将项目更新到github-pages上"><a class="markdownIt-Anchor" href="#将项目更新到github-pages上"></a> 将项目更新到GitHub Pages上</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo doc</a></p>
-<h3 id="git的使用"><a class="markdownIt-Anchor" href="#git的使用"></a> git的使用</h3>
-<h4 id="git初始化仓库"><a class="markdownIt-Anchor" href="#git初始化仓库"></a> git初始化仓库</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
-<h4 id="git添加到缓冲区"><a class="markdownIt-Anchor" href="#git添加到缓冲区"></a> git添加到缓冲区</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add *</span><br></pre></td></tr></table></figure>
-<h4 id="git提交改动"><a class="markdownIt-Anchor" href="#git提交改动"></a> git提交改动</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">"msg"</span></span><br></pre></td></tr></table></figure>
-<h4 id="git推送到远程仓库"><a class="markdownIt-Anchor" href="#git推送到远程仓库"></a> git推送到远程仓库</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
-<h4 id="如果没有远程仓库可以先添加"><a class="markdownIt-Anchor" href="#如果没有远程仓库可以先添加"></a> 如果没有远程仓库，可以先添加</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin server</span><br></pre></td></tr></table></figure>
-<h3 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h3>
-<p>hexo g -d 或者 git push 时可能在Writing objects停住不动，原因是上传文件可能较大，而缓冲区较小。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.postBuffer 524288000</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小四轴飞行器</title>
-    <url>/posts/2020-08-004.html</url>
-    <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
-<p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
-]]></content>
+    <title>leetcode-每日一题</title>
+    <url>/posts/2020-11-001.html</url>
+    <content><![CDATA[<h3 id="349-两个数组的交集"><a class="markdownIt-Anchor" href="#349-两个数组的交集"></a> 349. 两个数组的交集</h3>
+<ul>
+<li>首先记录下nums1中出现过的数字，如果nums2中也出现就将其加入到集合中。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">intersection</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; <span class="built_in">map</span>;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; <span class="built_in">set</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> var :nums1)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">map</span>[var] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> var :nums2)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">map</span>.<span class="built_in">find</span>(var)!=<span class="built_in">map</span>.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">set</span>.insert(var);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="built_in">set</span>.<span class="built_in">begin</span>(),<span class="built_in">set</span>.<span class="built_in">end</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="941-有效的山脉数组"><a class="markdownIt-Anchor" href="#941-有效的山脉数组"></a> 941. 有效的山脉数组</h3>
+<p><a href="https://slyli.cn/posts/2020-08-002.html#845-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E9%95%BF%E5%B1%B1%E8%84%89">845-数组中的最长山脉</a>的简化版本</p>
+<ul>
+<li>for循环内部如果没有语句，要注意后面要加上<code>;</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">validMountainArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(A.<span class="built_in">size</span>()&lt;<span class="number">3</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">int</span> i,j;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;A.<span class="built_in">size</span>()&amp;&amp;A[i]&gt;A[i<span class="number">-1</span>];i++);</span><br><span class="line">        <span class="keyword">for</span>(j=i;j&lt;A.<span class="built_in">size</span>()&amp;&amp;A[j]&lt;A[j<span class="number">-1</span>];j++);</span><br><span class="line">        <span class="keyword">if</span>(i!=<span class="number">1</span> &amp;&amp; j !=i &amp;&amp; j==A.<span class="built_in">size</span>())</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>C/C++</category>
       </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pytorch中的LSTM模型</title>
+    <url>/posts/2020-10-006.html</url>
+    <content><![CDATA[<h2 id="背景知识"><a class="markdownIt-Anchor" href="#背景知识"></a> 背景知识</h2>
+<h3 id="lstm原理介绍"><a class="markdownIt-Anchor" href="#lstm原理介绍"></a> LSTM原理介绍</h3>
+<iframe src="https://datawhalechina.github.io/leeml-notes/#/chapter36/chapter36?id=lstm" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
+<h3 id="pytorch-doc"><a class="markdownIt-Anchor" href="#pytorch-doc"></a> pytorch doc</h3>
+<iframe src="https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html#torch.nn.LSTM" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
+<h2 id="简单实例"><a class="markdownIt-Anchor" href="#简单实例"></a> 简单实例</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">lstm = nn.LSTM(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>)                    <span class="comment"># (input_size(feature_num) ,hidden_size,num_layers ) </span></span><br><span class="line">input = torch.randn(<span class="number">4</span>, <span class="number">1</span>, <span class="number">1</span>)               <span class="comment"># (seq_len, batch, input_size(feature_num))</span></span><br><span class="line">h0 = torch.randn(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>)                  <span class="comment"># (num_layers * num_directions, batch, hidden_size)</span></span><br><span class="line">c0 = torch.randn(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>)                  <span class="comment"># (num_layers * num_directions, batch, hidden_size)</span></span><br><span class="line">output, (hn, cn) = lstm(input, (h0, c0))   <span class="comment"># output:(seq_len, batch, num_directions * hidden_size)</span></span><br><span class="line">                                           <span class="comment"># hn = output[-1] , output = [h1,h2,...,hn]</span></span><br></pre></td></tr></table></figure>
+<h3 id="各个参数的理解"><a class="markdownIt-Anchor" href="#各个参数的理解"></a> 各个参数的理解</h3>
+<ol>
+<li>input_size:一个输入中的特征的个数</li>
+<li>hidden_size: 隐藏层节点的个数，如下图</li>
+<li>num_layers: lstm层的个数，默认为1，如果设为2，则第一层的输出[h0,h1,…hn]作为第二层的输入，在计算出最后的输出[h0,h1,…hn]</li>
+<li>seq_len: 一个序列中输入的个数</li>
+<li>batch: 每批处理的样本个数</li>
+</ol>
+<h3 id="实例结构图"><a class="markdownIt-Anchor" href="#实例结构图"></a> 实例结构图</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-10/lstm.jpg" alt="" /></p>
+<h2 id="航班预测人数"><a class="markdownIt-Anchor" href="#航班预测人数"></a> 航班预测人数</h2>
+<p>参考 <a href="https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/" target="_blank" rel="noopener">https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler</span><br><span class="line"></span><br><span class="line"><span class="comment">#  https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_data</span><span class="params">(data, pred=None)</span>:</span></span><br><span class="line">    plt.title(<span class="string">'mouth vs passengers'</span>)</span><br><span class="line">    plt.xlabel(<span class="string">'mouths'</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'total passengers'</span>)</span><br><span class="line">    plt.plot(data)</span><br><span class="line">    <span class="keyword">if</span> pred <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        x = np.arange(<span class="number">132</span>, <span class="number">144</span>, <span class="number">1</span>)</span><br><span class="line">        plt.plot(x, pred)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_io_seq</span><span class="params">(data, tw)</span>:</span></span><br><span class="line">    io_seq = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(data) - tw):</span><br><span class="line">        seq = data[i:i + tw]</span><br><span class="line">        lab = data[i + tw:i + tw + <span class="number">1</span>]</span><br><span class="line">        io_seq.append((seq, lab))</span><br><span class="line">    <span class="keyword">return</span> io_seq</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LSTM</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, i_size=<span class="number">1</span>, hid_size=<span class="number">200</span>, o_size=<span class="number">1</span>)</span>:</span></span><br><span class="line">        super(LSTM, self).__init__()</span><br><span class="line">        self.hidden_layer_size = hid_size</span><br><span class="line">        self.lstm = nn.LSTM(i_size, self.hidden_layer_size)</span><br><span class="line">        self.linear = nn.Linear(self.hidden_layer_size, o_size)</span><br><span class="line">        self.hidden_cell = (torch.zeros(<span class="number">1</span>, <span class="number">1</span>, self.hidden_layer_size), torch.zeros(<span class="number">1</span>, <span class="number">1</span>, self.hidden_layer_size))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, input_seq)</span>:</span></span><br><span class="line">        out, self.hidden_cell = self.lstm(input_seq.view(len(input_seq), <span class="number">1</span>, <span class="number">-1</span>), self.hidden_cell)</span><br><span class="line">        pred = self.linear(out.view(len(input_seq), <span class="number">-1</span>))</span><br><span class="line">        <span class="keyword">return</span> pred[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(lstm, data, PATH=<span class="string">'./cifar_net.pth'</span>)</span>:</span></span><br><span class="line">    loss_func = nn.MSELoss().to(device)</span><br><span class="line">    optimizer = torch.optim.Adam(lstm.parameters(), lr=<span class="number">0.001</span>)</span><br><span class="line">    print(lstm)</span><br><span class="line">    epochs = <span class="number">150</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(epochs):</span><br><span class="line">        <span class="keyword">for</span> seq, label <span class="keyword">in</span> data:</span><br><span class="line">            seq = seq.to(device)</span><br><span class="line">            label = label.to(device)</span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            lstm.hidden_cell = (</span><br><span class="line">                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size).to(device),</span><br><span class="line">                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size).to(device))</span><br><span class="line">            y_pred = lstm(seq)</span><br><span class="line">            single_loss = loss_func(y_pred, label)</span><br><span class="line">            single_loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line">        <span class="keyword">if</span> i % <span class="number">25</span> == <span class="number">1</span>:</span><br><span class="line">            print(<span class="string">f'epoch: <span class="subst">&#123;i:<span class="number">3</span>&#125;</span> loss: <span class="subst">&#123;single_loss.item():<span class="number">10.8</span>f&#125;</span>'</span>)</span><br><span class="line">    torch.save(lstm.state_dict(), PATH)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    device = torch.device(<span class="string">"cuda:0"</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">"cpu"</span>)</span><br><span class="line"></span><br><span class="line">    flight = sns.load_dataset(<span class="string">'flights'</span>)</span><br><span class="line">    all_data = flight[<span class="string">'passengers'</span>].values.astype(float)</span><br><span class="line">    test_data_size = <span class="number">12</span></span><br><span class="line">    train_data = all_data[:-test_data_size]</span><br><span class="line">    test_data = all_data[-test_data_size:]</span><br><span class="line">    scaler = MinMaxScaler((<span class="number">0</span>, <span class="number">10</span>))</span><br><span class="line">    train_data_norm = scaler.fit_transform(train_data.reshape(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line">    train_data_norm = torch.FloatTensor(train_data_norm).view(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">    train_io_seq = create_io_seq(train_data_norm, <span class="number">12</span>)</span><br><span class="line"></span><br><span class="line">    lstm = LSTM()</span><br><span class="line">    lstm.to(device)</span><br><span class="line">    <span class="comment"># train(lstm, train_io_seq)</span></span><br><span class="line"></span><br><span class="line">    fut_pred = <span class="number">12</span></span><br><span class="line">    lstm.load_state_dict(torch.load(<span class="string">'./cifar_net.pth'</span>))</span><br><span class="line">    lstm.cpu()</span><br><span class="line">    test_input = train_data_norm[<span class="number">-12</span>:].tolist()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(fut_pred):</span><br><span class="line">        seq = torch.FloatTensor(test_input[<span class="number">-12</span>:])</span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">            lstm.hidden_cell = (torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size),</span><br><span class="line">                                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size))</span><br><span class="line">            test_input.append(lstm(seq).item())</span><br><span class="line"></span><br><span class="line">    act_pred = scaler.inverse_transform(np.array(test_input[<span class="number">-12</span>:]).reshape(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line">    plot_data(flight[<span class="string">'passengers'</span>], act_pred)</span><br></pre></td></tr></table></figure>
+<p>最终结果，蓝色为原始数据，橙红色是预测数据<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-10/myplot.png" alt="" /></p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>小说网站爬虫</title>
+    <url>/posts/2020-07-010.html</url>
+    <content><![CDATA[<h3 id="1小说爬虫简易模板"><a class="markdownIt-Anchor" href="#1小说爬虫简易模板"></a> 1.小说爬虫简易模板</h3>
+<pre><code>import requests
+from bs4 import BeautifulSoup
+import re
+import os
+
+# 本脚本无普适性，请具体网站具体分析
+root = ''  # 文章首页链接
+art_id = ''  # 文章链接id
+
+fname = './txts/'+art_id[5:-1]+'.txt'
+encode = 'gbk'
+
+
+def GetAllSection(root, id):
+    r = requests.get(root + id)
+    r.encoding = encode
+    bs = BeautifulSoup(r.text, 'html.parser')
+    url_a = bs.find_all('a')
+    urls = []
+    for u in url_a:
+        href = u.get('href')
+        if href and re.match(id, href):
+            urls.append(root+href)
+
+    del urls[0]
+    return urls
+
+
+def SaveArticle(root, id, fname):
+    i = 1
+    urls = GetAllSection(root, id)
+    for url in urls:
+        r = requests.get(url)
+        r.encoding = encode
+        bs = BeautifulSoup(r.text, 'html.parser')
+        text = bs.find_all('p')[1].text
+        text = text.replace('\xa0', ' ')
+        text = text.replace('\ufffd', ' ')
+        text = text.replace('\n\r\n', '\n')
+        with open(fname, 'a', encoding=encode) as file:
+            if i == 1:
+                file.write(bs.h1.text+'\n')
+                i = 0
+            file.write(text+'\n')
+
+
+if __name__ == &quot;__main__&quot;:
+    SaveArticle(root, art_id, fname)
+    # print(fname)
+</code></pre>
+<h3 id="2道德经爬虫"><a class="markdownIt-Anchor" href="#2道德经爬虫"></a> 2.道德经爬虫</h3>
+<p>自己想做一个古文阅读类的安卓app，所以文章素材的话就只能自己去网上爬了。通过分析网站链接逻辑，和网站内文章内容的布局，很容易就可以写出来。<br />
+文章保存在当前目录下。</p>
+<pre><code>import requests
+from bs4 import BeautifulSoup
+import re
+import os
+encode = 'utf-8'
+cha_num = 81
+
+def SaveArticle(fname, urls):
+    for url in urls:
+        print('-', end='')
+        r = requests.get(url)
+        r.encoding = encode
+        bs = BeautifulSoup(r.text, 'html.parser')
+        text = bs.find_all('div', {&quot;class&quot;: &quot;grap&quot;})
+        with open(fname, 'a', encoding=encode) as file:
+            for t in text:
+                te = t.text.replace('\xa0', ' ').replace(
+                    '\u3000', ' ').replace('\ufffd', ' ')
+                file.write(te+'\n')
+
+if __name__ == &quot;__main__&quot;:
+    urls = ['https://www.5000yan.com/'+str(i)+'.html' for i in range(1, 82)]
+    SaveArticle('daodejing.txt', urls)
+    # print(urls)
+</code></pre>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>爬虫</tag>
+      </tags>
   </entry>
   <entry>
     <title>伽马兽王</title>
@@ -2425,24 +2363,66 @@ draft	source/_drafts
       </tags>
   </entry>
   <entry>
-    <title>记录</title>
-    <url>/posts/2020-08-005.html</url>
-    <content><![CDATA[<ol>
-<li>
-<p>楼下一个男人病得要死，那间壁的一家唱着留声机；对面是弄孩子。楼上有两人狂笑；还有打牌声。河中的船上有女人哭着她死去的母亲。 人类的悲欢并不相通，我只觉得他们吵闹。  —鲁迅《而已集》《小杂感》</p>
-</li>
-<li>
-<p>We used to look up at the sky and wonder at our place in the stars, now we just look down and worry about our place in the dirt. —《Interstellar》<br />
-我们曾经仰望星空，思考我们在宇宙中的位置，而现在我们只会低着头，担心如何在这片土地上活下去。—《星际穿越》</p>
-</li>
-<li>
-<p>弱小和无知不是生存的障碍，傲慢才是。 —《三体》</p>
-</li>
-</ol>
+    <title>小四轴飞行器</title>
+    <url>/posts/2020-08-004.html</url>
+    <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
+<p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
 ]]></content>
       <categories>
-        <category>others</category>
+        <category>C/C++</category>
       </categories>
+  </entry>
+  <entry>
+    <title>博客说明</title>
+    <url>/posts/2020-07-001.html</url>
+    <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
+<p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
+<h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
+<h3 id="创建一个新的文章或页面"><a class="markdownIt-Anchor" href="#创建一个新的文章或页面"></a> 创建一个新的文章或页面</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] [title]</span><br></pre></td></tr></table></figure>
+<h4 id="布局layout"><a class="markdownIt-Anchor" href="#布局layout"></a> 布局（Layout）</h4>
+<p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
+<pre><code>布局	路径
+post	source/_posts
+page	source
+draft	source/_drafts
+</code></pre>
+<h4 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h4>
+<p>创建一个标题为exp的文章，默认布局为post，在命令中可以省略。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new exp</span><br></pre></td></tr></table></figure>
+<p>创建一个名为exp的页面。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new page exp</span><br></pre></td></tr></table></figure>
+<h3 id="本地运行服务器可以在localhost4000中查看"><a class="markdownIt-Anchor" href="#本地运行服务器可以在localhost4000中查看"></a> 本地运行服务器，可以在<a href="http://localhost:4000" target="_blank" rel="noopener">localhost:4000</a>中查看</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="重新渲染博客"><a class="markdownIt-Anchor" href="#重新渲染博客"></a> 重新渲染博客</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="将项目更新到github-pages上"><a class="markdownIt-Anchor" href="#将项目更新到github-pages上"></a> 将项目更新到GitHub Pages上</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo doc</a></p>
+<h3 id="git的使用"><a class="markdownIt-Anchor" href="#git的使用"></a> git的使用</h3>
+<h4 id="git初始化仓库"><a class="markdownIt-Anchor" href="#git初始化仓库"></a> git初始化仓库</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<h4 id="git添加到缓冲区"><a class="markdownIt-Anchor" href="#git添加到缓冲区"></a> git添加到缓冲区</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add *</span><br></pre></td></tr></table></figure>
+<h4 id="git提交改动"><a class="markdownIt-Anchor" href="#git提交改动"></a> git提交改动</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">"msg"</span></span><br></pre></td></tr></table></figure>
+<h4 id="git推送到远程仓库"><a class="markdownIt-Anchor" href="#git推送到远程仓库"></a> git推送到远程仓库</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<h4 id="如果没有远程仓库可以先添加"><a class="markdownIt-Anchor" href="#如果没有远程仓库可以先添加"></a> 如果没有远程仓库，可以先添加</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin server</span><br></pre></td></tr></table></figure>
+<h3 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h3>
+<p>hexo g -d 或者 git push 时可能在Writing objects停住不动，原因是上传文件可能较大，而缓冲区较小。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.postBuffer 524288000</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
+        <tag>hexo</tag>
+      </tags>
   </entry>
   <entry>
     <title>基于雷达探测技术和stm32平台的自动避障智能车</title>
@@ -2681,5 +2661,25 @@ $y = d \times cos \left( \theta \right)$
         <tag>STM32</tag>
         <tag>RPLIDAR A1 激光雷达</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>记录</title>
+    <url>/posts/2020-08-005.html</url>
+    <content><![CDATA[<ol>
+<li>
+<p>楼下一个男人病得要死，那间壁的一家唱着留声机；对面是弄孩子。楼上有两人狂笑；还有打牌声。河中的船上有女人哭着她死去的母亲。 人类的悲欢并不相通，我只觉得他们吵闹。  —鲁迅《而已集》《小杂感》</p>
+</li>
+<li>
+<p>We used to look up at the sky and wonder at our place in the stars, now we just look down and worry about our place in the dirt. —《Interstellar》<br />
+我们曾经仰望星空，思考我们在宇宙中的位置，而现在我们只会低着头，担心如何在这片土地上活下去。—《星际穿越》</p>
+</li>
+<li>
+<p>弱小和无知不是生存的障碍，傲慢才是。 —《三体》</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
   </entry>
 </search>
