@@ -1,0 +1,14 @@
+User-agent: *
+
+Disallow: /img/
+Disallow: /css/
+Disallow: /js/
+Disallow: /photos/
+Disallow: /*.css
+Disallow: /*.js
+
+Sitemap: https://slyli.cn/sitemap.xml
+Sitemap: https://slyli.cn/baidusitemap.xml
+
+
+
