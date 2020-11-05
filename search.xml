@@ -771,6 +771,265 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
+    <title>LogisticRegression--python</title>
+    <url>/posts/2020-07-011.html</url>
+    <content><![CDATA[<p>逻辑回归</p>
+<pre><code>import numpy as np
+from matplotlib import pyplot as plt
+
+def Sigmod(z):
+    return 1.0/(1.0+np.exp(-z))
+
+def ComputeCost(x, y, theta, lam):
+    m = len(y)
+    h = Sigmod(np.dot(x, theta))
+    the = theta.copy()
+    the[0] = 0
+    temp = np.dot(the.T, the)
+    J = (0-np.dot(y.T, np.log(h))-np.dot((1-y).T, np.log(1-h))+lam*temp/2)/m
+    return J
+
+# 映射为多项式，增加特征量
+def MapFeature(x1, x2):
+    deg = 2
+    out = np.ones((x1.shape[0], 1))
+    for i in np.arange(1, deg+1):
+        for j in range(i+1):
+            temp = x1**(i-j)*(x2**j)  # 矩阵直接乘相当于matlab中的点乘.*
+            out = np.hstack((out, temp.reshape(-1, 1)))
+    return out
+
+def GradientDescent(x, y, theta, alpha, lam, num_iters):
+    m = len(y)
+    n = len(theta)
+
+    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
+
+    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
+
+    for i in range(num_iters):  # 遍历迭代次数
+        h = Sigmod(np.dot(x, theta))
+        # h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
+        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
+        theta = temp[:, i]
+        J_history[i] = ComputeCost(X, y, theta, lam)  # 调用计算代价函数
+        # print(J_history[i])
+    return theta, J_history
+
+def predict(X, theta):
+    m = X.shape[0]
+    p = np.zeros((m, 1))
+    p = Sigmod(np.dot(X, theta))    # 预测的结果，是个概率值
+
+    for i in range(m):
+        if p[i] &gt; 0.5:  # 概率大于0.5预测为1，否则预测为0
+            p[i] = 1
+        else:
+            p[i] = 0
+    return p
+
+# 画决策边界
+def plotDecisionBoundary(theta, X, y):
+    pos = np.where(y == 1)  # 找到y==1的坐标位置
+    neg = np.where(y == 0)  # 找到y==0的坐标位置
+    # 作图
+    plt.figure(figsize=(15, 12))
+    plt.plot(X[pos, 0], X[pos, 1], 'ro')        # red o
+    plt.plot(X[neg, 0], X[neg, 1], 'bo')        # blue o
+    #plt.title(u&quot;决策边界&quot;, fontproperties=font)
+
+    #u = np.linspace(30,100,100)
+    #v = np.linspace(30,100,100)
+
+    u = np.linspace(-1, 1.5, 50)  # 根据具体的数据，这里需要调整
+    v = np.linspace(-1, 1.5, 50)
+
+    z = np.zeros((len(u), len(v)))
+    for i in range(len(u)):
+        for j in range(len(v)):
+            z[i, j] = np.dot(MapFeature(u[i].reshape(1, -1),
+                                        v[j].reshape(1, -1)), theta)    # 计算对应的值，需要map
+
+    z = np.transpose(z)
+    # 画等高线，范围在[0,0.01]，即近似为决策边界
+    plt.contour(u, v, z, [0, 0.01], linewidth=2.0)
+    # plt.legend()
+    plt.show()
+
+if __name__ == &quot;__main__&quot;:
+    data = np.loadtxt('data2.txt', delimiter=',', dtype=np.float64)
+    lam = 0.1
+    alpha = 0.1
+    X = data[:, 0:-1]
+    y = data[:, -1].reshape(-1, 1)
+    X = MapFeature(X[:, 0], X[:, 1])
+
+    theta = np.zeros((X.shape[1], 1))
+
+    print(ComputeCost(X, y, theta,  lam))
+    theta, J_his = GradientDescent(X, y, theta, alpha, lam, 5000)
+
+    print(theta)
+    p = predict(X, theta)  # 预测
+    # 与真实值比较，p==y返回True，转化为float
+    print(u'在训练集上的准确度为%f%%' % np.mean(np.float64(p == y)*100))
+    X = data[:, 0:-1]
+    y = data[:, -1]
+    plotDecisionBoundary(theta, X, y)  # 画决策边界
+</code></pre>
+<p>逻辑回归数字识别</p>
+<pre><code>import numpy as np
+from matplotlib import pyplot as plt
+import scipy.io as spio
+
+
+def Sigmod(z):
+    return 1.0/(1.0+np.exp(-z))
+
+
+def ComputeCost(x, y, theta, lam):
+    m = len(y)
+    h = Sigmod(np.dot(x, theta))
+    the = theta.copy()
+    the[0] = 0
+    temp = np.dot(the.T, the)
+    J = (0-np.dot(y.T, np.log(h))-np.dot((1-y).T, np.log(1-h))+lam*temp/2)/m
+    return J
+
+# 映射为多项式，增加特征量
+
+
+def MapFeature(x1, x2):
+    deg = 2
+    out = np.ones((x1.shape[0], 1))
+    for i in np.arange(1, deg+1):
+        for j in range(i+1):
+            temp = x1**(i-j)*(x2**j)  # 矩阵直接乘相当于matlab中的点乘.*
+            out = np.hstack((out, temp.reshape(-1, 1)))
+    return out
+
+
+def GradientDescent(X, y, theta, alpha, lam, num_iters):
+    m = len(y)
+    n = len(theta)
+
+    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
+
+    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
+
+    for i in range(num_iters):  # 遍历迭代次数
+        h = Sigmod(np.dot(X, theta))
+        # h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
+        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
+        theta = temp[:, i]
+        J_history[i] = ComputeCost(X, y, theta, lam)  # 调用计算代价函数
+        # print(J_history[i])
+    return theta, J_history
+
+
+def predict(X, theta):
+    m = X.shape[0]
+    p = np.zeros((m, 1))
+    p = Sigmod(np.dot(X, theta))    # 预测的结果，是个概率值
+
+    for i in range(m):
+        if p[i] &gt; 0.5:  # 概率大于0.5预测为1，否则预测为0
+            p[i] = 1
+        else:
+            p[i] = 0
+    return p
+
+
+# 显示100个数字
+
+
+def display_data(imgData):
+    sum = 0
+    '''
+    显示100个数（若是一个一个绘制将会非常慢，可以将要画的数字整理好，放到一个矩阵中，显示这个矩阵即可）
+    - 初始化一个二维数组
+    - 将每行的数据调整成图像的矩阵，放进二维数组
+    - 显示即可
+    '''
+    pad = 1
+    display_array = -np.ones((pad+10*(20+pad), pad+10*(20+pad)))
+    for i in range(10):
+        for j in range(10):
+            display_array[pad+i*(20+pad):pad+i*(20+pad)+20, pad+j*(20+pad):pad+j*(20+pad)+20] = (
+                imgData[sum, :].reshape(20, 20, order=&quot;F&quot;))    # order=F指定以列优先，在matlab中是这样的，python中需要指定，默认以行
+            sum += 1
+
+    plt.imshow(display_array, cmap='gray')  # 显示灰度图像
+    plt.axis('off')
+    plt.show()
+
+
+def OneAll(X, y, nums, alpha, lam, num_iters):
+    m, n = X.shape
+    theta_a = np.zeros((n+1, nums))
+    X = np.hstack((np.zeros((m, 1)), X))
+    class_y = np.zeros((m, nums))
+
+    for i in range(nums):
+        class_y[:, i] = np.int32(y == i).reshape(1, -1)
+
+    for i in range(nums):
+        init_theta = np.zeros((n+1, 1))
+        theta, _ = GradientDescent(
+            X, class_y[:, i].reshape(-1, 1), init_theta, alpha, lam, num_iters)
+        theta_a[:, i] = theta.reshape((1, -1))
+    return theta_a.T
+
+
+def predict_oneVsAll(all_theta, X):
+    m = X.shape[0]
+    p = np.zeros((m, 1))
+    X = np.hstack((np.ones((m, 1)), X))  # 在X最前面加一列1
+
+    h = Sigmod(np.dot(X, np.transpose(all_theta)))  # 预测
+
+    '''
+    返回h中每一行最大值所在的列号
+    - np.max(h, axis=1)返回h中每一行的最大值（是某个数字的最大概率）
+    - 最后where找到的最大概率所在的列号（列号即是对应的数字）
+    '''
+    p = np.array(np.where(h[0, :] == np.max(h, axis=1)[0]))
+    for i in np.arange(1, m):
+        t = np.array(np.where(h[i, :] == np.max(h, axis=1)[i]))
+        p = np.vstack((p, t))
+    return p
+
+
+if __name__ == &quot;__main__&quot;:
+    num_lables = 10
+    alpha = 0.1
+    lam = 0.1
+    num_iters = 1000
+
+    data = spio.loadmat(&quot;data_digits.mat&quot;)
+    X = data['X']  # 获取X数据，每一行对应一个数字20x20px
+    y = data['y']
+    m, n = X.shape
+    rand = [np.random.randint(0, m) for x in range(100)]
+    # display_data(X[rand, :])
+    theta_a = OneAll(X, y, num_lables, alpha, lam, num_iters)
+    p = predict_oneVsAll(theta_a, X)               # 预测
+    # 将预测结果和真实结果保存到文件中
+    res = np.hstack((p, y.reshape(-1, 1)))
+    np.savetxt(&quot;predict.csv&quot;, res, delimiter=',')
+
+    print(u&quot;预测准确度为：%f%%&quot; % np.mean(np.float64(p == y.reshape(-1, 1))*100))
+</code></pre>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>machine learning</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown语法</title>
     <url>/posts/2020-06-001.html</url>
     <content><![CDATA[<h2 id="主要内容"><a class="markdownIt-Anchor" href="#主要内容"></a> 主要内容</h2>
@@ -1055,265 +1314,6 @@ ImageLoad(void* dat, int width, int height,int size)
       </tags>
   </entry>
   <entry>
-    <title>LogisticRegression--python</title>
-    <url>/posts/2020-07-011.html</url>
-    <content><![CDATA[<p>逻辑回归</p>
-<pre><code>import numpy as np
-from matplotlib import pyplot as plt
-
-def Sigmod(z):
-    return 1.0/(1.0+np.exp(-z))
-
-def ComputeCost(x, y, theta, lam):
-    m = len(y)
-    h = Sigmod(np.dot(x, theta))
-    the = theta.copy()
-    the[0] = 0
-    temp = np.dot(the.T, the)
-    J = (0-np.dot(y.T, np.log(h))-np.dot((1-y).T, np.log(1-h))+lam*temp/2)/m
-    return J
-
-# 映射为多项式，增加特征量
-def MapFeature(x1, x2):
-    deg = 2
-    out = np.ones((x1.shape[0], 1))
-    for i in np.arange(1, deg+1):
-        for j in range(i+1):
-            temp = x1**(i-j)*(x2**j)  # 矩阵直接乘相当于matlab中的点乘.*
-            out = np.hstack((out, temp.reshape(-1, 1)))
-    return out
-
-def GradientDescent(x, y, theta, alpha, lam, num_iters):
-    m = len(y)
-    n = len(theta)
-
-    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
-
-    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
-
-    for i in range(num_iters):  # 遍历迭代次数
-        h = Sigmod(np.dot(x, theta))
-        # h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
-        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
-        theta = temp[:, i]
-        J_history[i] = ComputeCost(X, y, theta, lam)  # 调用计算代价函数
-        # print(J_history[i])
-    return theta, J_history
-
-def predict(X, theta):
-    m = X.shape[0]
-    p = np.zeros((m, 1))
-    p = Sigmod(np.dot(X, theta))    # 预测的结果，是个概率值
-
-    for i in range(m):
-        if p[i] &gt; 0.5:  # 概率大于0.5预测为1，否则预测为0
-            p[i] = 1
-        else:
-            p[i] = 0
-    return p
-
-# 画决策边界
-def plotDecisionBoundary(theta, X, y):
-    pos = np.where(y == 1)  # 找到y==1的坐标位置
-    neg = np.where(y == 0)  # 找到y==0的坐标位置
-    # 作图
-    plt.figure(figsize=(15, 12))
-    plt.plot(X[pos, 0], X[pos, 1], 'ro')        # red o
-    plt.plot(X[neg, 0], X[neg, 1], 'bo')        # blue o
-    #plt.title(u&quot;决策边界&quot;, fontproperties=font)
-
-    #u = np.linspace(30,100,100)
-    #v = np.linspace(30,100,100)
-
-    u = np.linspace(-1, 1.5, 50)  # 根据具体的数据，这里需要调整
-    v = np.linspace(-1, 1.5, 50)
-
-    z = np.zeros((len(u), len(v)))
-    for i in range(len(u)):
-        for j in range(len(v)):
-            z[i, j] = np.dot(MapFeature(u[i].reshape(1, -1),
-                                        v[j].reshape(1, -1)), theta)    # 计算对应的值，需要map
-
-    z = np.transpose(z)
-    # 画等高线，范围在[0,0.01]，即近似为决策边界
-    plt.contour(u, v, z, [0, 0.01], linewidth=2.0)
-    # plt.legend()
-    plt.show()
-
-if __name__ == &quot;__main__&quot;:
-    data = np.loadtxt('data2.txt', delimiter=',', dtype=np.float64)
-    lam = 0.1
-    alpha = 0.1
-    X = data[:, 0:-1]
-    y = data[:, -1].reshape(-1, 1)
-    X = MapFeature(X[:, 0], X[:, 1])
-
-    theta = np.zeros((X.shape[1], 1))
-
-    print(ComputeCost(X, y, theta,  lam))
-    theta, J_his = GradientDescent(X, y, theta, alpha, lam, 5000)
-
-    print(theta)
-    p = predict(X, theta)  # 预测
-    # 与真实值比较，p==y返回True，转化为float
-    print(u'在训练集上的准确度为%f%%' % np.mean(np.float64(p == y)*100))
-    X = data[:, 0:-1]
-    y = data[:, -1]
-    plotDecisionBoundary(theta, X, y)  # 画决策边界
-</code></pre>
-<p>逻辑回归数字识别</p>
-<pre><code>import numpy as np
-from matplotlib import pyplot as plt
-import scipy.io as spio
-
-
-def Sigmod(z):
-    return 1.0/(1.0+np.exp(-z))
-
-
-def ComputeCost(x, y, theta, lam):
-    m = len(y)
-    h = Sigmod(np.dot(x, theta))
-    the = theta.copy()
-    the[0] = 0
-    temp = np.dot(the.T, the)
-    J = (0-np.dot(y.T, np.log(h))-np.dot((1-y).T, np.log(1-h))+lam*temp/2)/m
-    return J
-
-# 映射为多项式，增加特征量
-
-
-def MapFeature(x1, x2):
-    deg = 2
-    out = np.ones((x1.shape[0], 1))
-    for i in np.arange(1, deg+1):
-        for j in range(i+1):
-            temp = x1**(i-j)*(x2**j)  # 矩阵直接乘相当于matlab中的点乘.*
-            out = np.hstack((out, temp.reshape(-1, 1)))
-    return out
-
-
-def GradientDescent(X, y, theta, alpha, lam, num_iters):
-    m = len(y)
-    n = len(theta)
-
-    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
-
-    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
-
-    for i in range(num_iters):  # 遍历迭代次数
-        h = Sigmod(np.dot(X, theta))
-        # h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
-        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
-        theta = temp[:, i]
-        J_history[i] = ComputeCost(X, y, theta, lam)  # 调用计算代价函数
-        # print(J_history[i])
-    return theta, J_history
-
-
-def predict(X, theta):
-    m = X.shape[0]
-    p = np.zeros((m, 1))
-    p = Sigmod(np.dot(X, theta))    # 预测的结果，是个概率值
-
-    for i in range(m):
-        if p[i] &gt; 0.5:  # 概率大于0.5预测为1，否则预测为0
-            p[i] = 1
-        else:
-            p[i] = 0
-    return p
-
-
-# 显示100个数字
-
-
-def display_data(imgData):
-    sum = 0
-    '''
-    显示100个数（若是一个一个绘制将会非常慢，可以将要画的数字整理好，放到一个矩阵中，显示这个矩阵即可）
-    - 初始化一个二维数组
-    - 将每行的数据调整成图像的矩阵，放进二维数组
-    - 显示即可
-    '''
-    pad = 1
-    display_array = -np.ones((pad+10*(20+pad), pad+10*(20+pad)))
-    for i in range(10):
-        for j in range(10):
-            display_array[pad+i*(20+pad):pad+i*(20+pad)+20, pad+j*(20+pad):pad+j*(20+pad)+20] = (
-                imgData[sum, :].reshape(20, 20, order=&quot;F&quot;))    # order=F指定以列优先，在matlab中是这样的，python中需要指定，默认以行
-            sum += 1
-
-    plt.imshow(display_array, cmap='gray')  # 显示灰度图像
-    plt.axis('off')
-    plt.show()
-
-
-def OneAll(X, y, nums, alpha, lam, num_iters):
-    m, n = X.shape
-    theta_a = np.zeros((n+1, nums))
-    X = np.hstack((np.zeros((m, 1)), X))
-    class_y = np.zeros((m, nums))
-
-    for i in range(nums):
-        class_y[:, i] = np.int32(y == i).reshape(1, -1)
-
-    for i in range(nums):
-        init_theta = np.zeros((n+1, 1))
-        theta, _ = GradientDescent(
-            X, class_y[:, i].reshape(-1, 1), init_theta, alpha, lam, num_iters)
-        theta_a[:, i] = theta.reshape((1, -1))
-    return theta_a.T
-
-
-def predict_oneVsAll(all_theta, X):
-    m = X.shape[0]
-    p = np.zeros((m, 1))
-    X = np.hstack((np.ones((m, 1)), X))  # 在X最前面加一列1
-
-    h = Sigmod(np.dot(X, np.transpose(all_theta)))  # 预测
-
-    '''
-    返回h中每一行最大值所在的列号
-    - np.max(h, axis=1)返回h中每一行的最大值（是某个数字的最大概率）
-    - 最后where找到的最大概率所在的列号（列号即是对应的数字）
-    '''
-    p = np.array(np.where(h[0, :] == np.max(h, axis=1)[0]))
-    for i in np.arange(1, m):
-        t = np.array(np.where(h[i, :] == np.max(h, axis=1)[i]))
-        p = np.vstack((p, t))
-    return p
-
-
-if __name__ == &quot;__main__&quot;:
-    num_lables = 10
-    alpha = 0.1
-    lam = 0.1
-    num_iters = 1000
-
-    data = spio.loadmat(&quot;data_digits.mat&quot;)
-    X = data['X']  # 获取X数据，每一行对应一个数字20x20px
-    y = data['y']
-    m, n = X.shape
-    rand = [np.random.randint(0, m) for x in range(100)]
-    # display_data(X[rand, :])
-    theta_a = OneAll(X, y, num_lables, alpha, lam, num_iters)
-    p = predict_oneVsAll(theta_a, X)               # 预测
-    # 将预测结果和真实结果保存到文件中
-    res = np.hstack((p, y.reshape(-1, 1)))
-    np.savetxt(&quot;predict.csv&quot;, res, delimiter=',')
-
-    print(u&quot;预测准确度为：%f%%&quot; % np.mean(np.float64(p == y.reshape(-1, 1))*100))
-</code></pre>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>machine learning</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>android</title>
     <url>/posts/2020-08-003.html</url>
     <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
@@ -1401,64 +1401,6 @@ if __name__ == &quot;__main__&quot;:
       </categories>
       <tags>
         <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cocos2dx</title>
-    <url>/posts/2020-09-003.html</url>
-    <content><![CDATA[<h2 id="记录cocos2dx的学习历程和遇到的坑-版本40"><a class="markdownIt-Anchor" href="#记录cocos2dx的学习历程和遇到的坑-版本40"></a> 记录cocos2dx的学习历程和遇到的坑。 版本4.0</h2>
-<h3 id="坐标系问题"><a class="markdownIt-Anchor" href="#坐标系问题"></a> 坐标系问题</h3>
-<ul>
-<li>对于精灵，坐标系从左下开始向右上增长，x轴从左向右。例如 sprite-&gt;setPosition(Vec2(0, 0)); 设置精灵为左下角。</li>
-<li>对于鼠标，坐标系从左上方开始向右下增长，x轴从左向右。例如 Point pt = e-&gt;getLocation(); pt={0,0}代表鼠标位于左上角。</li>
-</ul>
-<h3 id="鼠标控制事件"><a class="markdownIt-Anchor" href="#鼠标控制事件"></a> 鼠标控制事件</h3>
-<p>对于鼠标事件，cocos官方文档中对于4.0版本中还未更新。我们可以同过如下方式实现鼠标对于精灵的控制。</p>
-<pre><code>static bool mouse_down = false;
-auto myMouseListener = EventListenerMouse::create();
-myMouseListener-&gt;onMouseDown = [=](Event* event)
-{
-    EventMouse* e = (EventMouse*)event;
-    Point pt = e-&gt;getLocation();
-    pt.y = visibleSize.height - pt.y;
-    Rect rect = charac-&gt;getBoundingBox();
-    //log(&quot;point x:%f,y%f&quot;, pt.x, pt.y);
-
-    if (rect.containsPoint(pt))
-    {
-      //  log(&quot;rect x:%f,y%f&quot;, rect.origin.x, rect.origin.y);
-        mouse_down = true;
-        charac-&gt;setPosition(pt);
-
-    }
-   
-};
-myMouseListener-&gt;onMouseUp = [=](Event* event)
-{
-    mouse_down = false;
-};
-//鼠标移动
-myMouseListener-&gt;onMouseMove = [=](Event* event)
-{
-    EventMouse* e = (EventMouse*)event;
-    Point pt = e-&gt;getLocation();
-    pt.y = visibleSize.height - pt.y;
-
-    if (mouse_down )
-    {
-       charac-&gt;setPosition( pt);
-    }
-};
-_eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, this);
-</code></pre>
-<h3 id="setuserobject"><a class="markdownIt-Anchor" href="#setuserobject"></a> setUserObject</h3>
-<p>在使用setUserObject传值时，对应的参数要new，否则会出现莫名其妙的bug。</p>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>cocos2dx鼠标控制精灵</tag>
       </tags>
   </entry>
   <entry>
@@ -1566,6 +1508,64 @@ comments: false
       <tags>
         <tag>blog</tag>
         <tag>butterfly</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cocos2dx</title>
+    <url>/posts/2020-09-003.html</url>
+    <content><![CDATA[<h2 id="记录cocos2dx的学习历程和遇到的坑-版本40"><a class="markdownIt-Anchor" href="#记录cocos2dx的学习历程和遇到的坑-版本40"></a> 记录cocos2dx的学习历程和遇到的坑。 版本4.0</h2>
+<h3 id="坐标系问题"><a class="markdownIt-Anchor" href="#坐标系问题"></a> 坐标系问题</h3>
+<ul>
+<li>对于精灵，坐标系从左下开始向右上增长，x轴从左向右。例如 sprite-&gt;setPosition(Vec2(0, 0)); 设置精灵为左下角。</li>
+<li>对于鼠标，坐标系从左上方开始向右下增长，x轴从左向右。例如 Point pt = e-&gt;getLocation(); pt={0,0}代表鼠标位于左上角。</li>
+</ul>
+<h3 id="鼠标控制事件"><a class="markdownIt-Anchor" href="#鼠标控制事件"></a> 鼠标控制事件</h3>
+<p>对于鼠标事件，cocos官方文档中对于4.0版本中还未更新。我们可以同过如下方式实现鼠标对于精灵的控制。</p>
+<pre><code>static bool mouse_down = false;
+auto myMouseListener = EventListenerMouse::create();
+myMouseListener-&gt;onMouseDown = [=](Event* event)
+{
+    EventMouse* e = (EventMouse*)event;
+    Point pt = e-&gt;getLocation();
+    pt.y = visibleSize.height - pt.y;
+    Rect rect = charac-&gt;getBoundingBox();
+    //log(&quot;point x:%f,y%f&quot;, pt.x, pt.y);
+
+    if (rect.containsPoint(pt))
+    {
+      //  log(&quot;rect x:%f,y%f&quot;, rect.origin.x, rect.origin.y);
+        mouse_down = true;
+        charac-&gt;setPosition(pt);
+
+    }
+   
+};
+myMouseListener-&gt;onMouseUp = [=](Event* event)
+{
+    mouse_down = false;
+};
+//鼠标移动
+myMouseListener-&gt;onMouseMove = [=](Event* event)
+{
+    EventMouse* e = (EventMouse*)event;
+    Point pt = e-&gt;getLocation();
+    pt.y = visibleSize.height - pt.y;
+
+    if (mouse_down )
+    {
+       charac-&gt;setPosition( pt);
+    }
+};
+_eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, this);
+</code></pre>
+<h3 id="setuserobject"><a class="markdownIt-Anchor" href="#setuserobject"></a> setUserObject</h3>
+<p>在使用setUserObject传值时，对应的参数要new，否则会出现莫名其妙的bug。</p>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>cocos2dx鼠标控制精灵</tag>
       </tags>
   </entry>
   <entry>
@@ -2375,6 +2375,17 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
+    <title>小四轴飞行器</title>
+    <url>/posts/2020-08-004.html</url>
+    <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
+<p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+  </entry>
+  <entry>
     <title>博客说明</title>
     <url>/posts/2020-07-001.html</url>
     <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -2424,17 +2435,6 @@ draft	source/_drafts
         <tag>butterfly</tag>
         <tag>hexo</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>小四轴飞行器</title>
-    <url>/posts/2020-08-004.html</url>
-    <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
-<p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
   </entry>
   <entry>
     <title>基于雷达探测技术和stm32平台的自动避障智能车</title>
