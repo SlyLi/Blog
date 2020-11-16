@@ -2179,7 +2179,13 @@ dp[i][j] 表示从数组的[0,i] 下标范围内选取若干个正整数（可�
 <li>前面一位变化的即使是 1 也比后面的变化为 9 的数变化大。</li>
 <li>然后剩下的就是一些边界条件问题了。</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">removeKdigits</span><span class="params">(<span class="built_in">string</span> num, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(num.<span class="built_in">size</span>()==k)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;num.<span class="built_in">size</span>()<span class="number">-1</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(num[i]&gt;num[i+<span class="number">1</span>] &amp;&amp; k&gt;<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                num.erase(num.<span class="built_in">begin</span>()+i);</span><br><span class="line">                k--;</span><br><span class="line">                <span class="keyword">if</span>(i&gt;<span class="number">0</span>)</span><br><span class="line">                    i--;</span><br><span class="line">                i--;  </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(k--&gt;<span class="number">0</span>) num.erase(num.<span class="built_in">end</span>()<span class="number">-1</span>);</span><br><span class="line">        i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;num.<span class="built_in">size</span>()<span class="number">-1</span>&amp;&amp;num[i]==<span class="string">'0'</span>) i++;</span><br><span class="line">        num.erase(num.<span class="built_in">begin</span>(),num.<span class="built_in">begin</span>()+i);</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">removeKdigits</span><span class="params">(<span class="built_in">string</span> num, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(num.<span class="built_in">size</span>()==k)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;num.<span class="built_in">size</span>()<span class="number">-1</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(num[i]&gt;num[i+<span class="number">1</span>] &amp;&amp; k&gt;<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                num.erase(num.<span class="built_in">begin</span>()+i);</span><br><span class="line">                k--;</span><br><span class="line">                <span class="keyword">if</span>(i&gt;<span class="number">0</span>)</span><br><span class="line">                    i--;</span><br><span class="line">                i--;  </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(k--&gt;<span class="number">0</span>) num.erase(num.<span class="built_in">end</span>()<span class="number">-1</span>);</span><br><span class="line">        i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;num.<span class="built_in">size</span>()<span class="number">-1</span>&amp;&amp;num[i]==<span class="string">'0'</span>) i++;</span><br><span class="line">        num.erase(num.<span class="built_in">begin</span>(),num.<span class="built_in">begin</span>()+i);</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="406-根据身高重建队列"><a class="markdownIt-Anchor" href="#406-根据身高重建队列"></a> <a href="https://leetcode-cn.com/problems/queue-reconstruction-by-height/" target="_blank" rel="noopener">406. 根据身高重建队列</a></h3>
+<ul>
+<li>以身高为第一关键字，个数为第二关键字排序，</li>
+<li>插入结果vector中，从最矮的人开始，对于一个人(h,k)，此时前面还未插入的/vector为空的人的身高一定高于h，没经过一个空时，k-1，直到k==0的这个空位就是这个人(h,k)所应该在的位置。</li>
+</ul>
+]]></content>
       <categories>
         <category>C/C++</category>
       </categories>
@@ -2932,6 +2938,17 @@ $y = d \times cos \left( \theta \right)$
 ]]></content>
       <categories>
         <category>others</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Optimization</title>
+    <url>/posts/2020-11-001.html</url>
+    <content><![CDATA[<ol>
+<li>最优化：在满足一系列限制条件下，获得目标函数或指标获得一个最大值（最小值）</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Master and Major</category>
       </categories>
   </entry>
 </search>
