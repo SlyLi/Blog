@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://slyli.cn/posts/2020-11-002.html</loc>
-    <lastmod>2020-11-17</lastmod>
+    <loc>http://slyli.cn/posts/2020-10-001.html</loc>
+    <lastmod>2020-11-18</lastmod>
   </url>  <url>
     <loc>http://slyli.cn/posts/2020-11-001.html</loc>
-    <lastmod>2020-11-17</lastmod>
+    <lastmod>2020-11-18</lastmod>
   </url>  <url>
-    <loc>http://slyli.cn/posts/2020-10-001.html</loc>
-    <lastmod>2020-11-15</lastmod>
+    <loc>http://slyli.cn/posts/2020-11-002.html</loc>
+    <lastmod>2020-11-18</lastmod>
+  </url>  <url>
+    <loc>http://slyli.cn/posts/2020-09-003.html</loc>
+    <lastmod>2020-11-18</lastmod>
   </url>  <url>
     <loc>http://slyli.cn/posts/2020-08-002.html</loc>
     <lastmod>2020-10-31</lastmod>
@@ -56,9 +59,6 @@
     <lastmod>2020-10-18</lastmod>
   </url>  <url>
     <loc>http://slyli.cn/posts/2020-07-006.html</loc>
-    <lastmod>2020-09-25</lastmod>
-  </url>  <url>
-    <loc>http://slyli.cn/posts/2020-09-003.html</loc>
     <lastmod>2020-09-25</lastmod>
   </url>  <url>
     <loc>http://slyli.cn/posts/2020-07-005.html</loc>
