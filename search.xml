@@ -1597,6 +1597,7 @@ ImageLoad(void* dat, int width, int height,int size)
 <li>2020-11-15   <code>pull up</code> 19 14 11 10 10</li>
 <li>2020-11-17   竟然下雨了，推迟到明天</li>
 <li>2020-11-18   18 14 10 9 10 吊杠60s</li>
+<li>2020-11-20   19 13 12 10 8</li>
 </ol>
 ]]></content>
       <categories>
@@ -2198,7 +2199,17 @@ dp[i][j] 表示从数组的[0,i] 下标范围内选取若干个正整数（可�
 <li>汽车总耗油量必须小于等于加油站能加的汽油和</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">canCompleteCircuit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; gas, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; cost)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> <span class="built_in">run</span>=<span class="number">0</span>,all=<span class="number">0</span>,<span class="built_in">begin</span>=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;gas.<span class="built_in">size</span>();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">run</span>+=gas[i]-cost[i];</span><br><span class="line">            all+=gas[i]-cost[i];</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">run</span>&lt;<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">run</span>=<span class="number">0</span>;</span><br><span class="line">                <span class="built_in">begin</span>=i+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(all&lt;<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">begin</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-]]></content>
+<h3 id="283-移动零"><a class="markdownIt-Anchor" href="#283-移动零"></a> <a href="https://leetcode-cn.com/problems/move-zeroes/" target="_blank" rel="noopener">283. 移动零</a></h3>
+<ol>
+<li>双指针移动</li>
+<li>对0进行计数，然后把数字发放到该放的位置</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> <span class="built_in">begin</span>=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.<span class="built_in">size</span>();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i])</span><br><span class="line">                nums[<span class="built_in">begin</span>++] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(;<span class="built_in">begin</span>&lt;nums.<span class="built_in">size</span>();<span class="built_in">begin</span>++)</span><br><span class="line">            nums[<span class="built_in">begin</span>]=<span class="number">0</span>;     </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="147-对链表进行插入排序"><a class="markdownIt-Anchor" href="#147-对链表进行插入排序"></a> <a href="https://leetcode-cn.com/problems/insertion-sort-list/" target="_blank" rel="noopener">147. 对链表进行插入排序</a></h3>
+<ul>
+<li>插入排序转化成链表的形式，维护一个有序列表，每次选择未排序部分的一个值插入到有序列表中对应的位置。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">insertionSortList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!head) <span class="keyword">return</span> head;</span><br><span class="line">        ListNode *cur = head-&gt;next,*pos = head;</span><br><span class="line">        pos-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">while</span>(cur!=<span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(pos-&gt;next&amp;&amp;pos-&gt;next-&gt;val&lt;cur-&gt;val) pos=pos-&gt;next;</span><br><span class="line">            <span class="keyword">if</span>(pos-&gt;val&gt;cur-&gt;val)</span><br><span class="line">            &#123;</span><br><span class="line">                head=cur;</span><br><span class="line">                cur=cur-&gt;next;</span><br><span class="line">                head-&gt;next=pos;</span><br><span class="line">                pos=head;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                ListNode *temp  = cur;</span><br><span class="line">                cur=cur-&gt;next;</span><br><span class="line">                temp-&gt;next=pos-&gt;next;</span><br><span class="line">                pos-&gt;next=temp;</span><br><span class="line">                pos=head;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>C/C++</category>
       </categories>
@@ -2974,6 +2985,27 @@ $y = d \times cos \left( \theta \right)$
 ]]></content>
       <categories>
         <category>Master and Major</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>python配置文件</title>
+    <url>/posts/2020-11-003.html</url>
+    <content><![CDATA[<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[top]</span></span><br><span class="line"><span class="attr">categories</span>=<span class="number">111</span></span><br><span class="line"><span class="attr">purity</span>=<span class="number">111</span></span><br><span class="line"><span class="attr">sorting</span>=toplist</span><br><span class="line"><span class="attr">order</span>=desc</span><br><span class="line"><span class="section">[hot]</span></span><br><span class="line"><span class="attr">sorting</span>=hot</span><br></pre></td></tr></table></figure>
+<h3 id="引入库"><a class="markdownIt-Anchor" href="#引入库"></a> 引入库</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> configparser</span><br></pre></td></tr></table></figure>
+<h3 id="初始化并读取文件"><a class="markdownIt-Anchor" href="#初始化并读取文件"></a> 初始化并读取文件</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config = ConfigParser()</span><br><span class="line">config.read(<span class="string">'config.ini'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="获取所有sections选择一个section"><a class="markdownIt-Anchor" href="#获取所有sections选择一个section"></a> 获取所有sections,选择一个section</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sections = config.sections()</span><br><span class="line"><span class="comment">#结果 ['top', 'hot']</span></span><br><span class="line"></span><br><span class="line">sec = sections[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="获取一个section中的所有键key"><a class="markdownIt-Anchor" href="#获取一个section中的所有键key"></a> 获取一个section中的所有键(key)</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.options(sec)</span><br><span class="line"><span class="comment">#结果 ['categories', 'purity', 'sorting', 'order']</span></span><br></pre></td></tr></table></figure>
+<h3 id="获取一个section中的所有键值对keyvalue"><a class="markdownIt-Anchor" href="#获取一个section中的所有键值对keyvalue"></a> 获取一个section中的所有键值对(key:value)</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.items(sec)</span><br><span class="line"><span class="comment">#结果 [('categories', '111'), ('purity', '111'), ('sorting', 'toplist'), ('order', 'desc')]</span></span><br></pre></td></tr></table></figure>
+<h3 id="获取section中某个键的值"><a class="markdownIt-Anchor" href="#获取section中某个键的值"></a> 获取section中某个键的值</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.get(sec, <span class="string">'categories'</span>)</span><br><span class="line"><span class="comment">#结果 111</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>python</category>
       </categories>
   </entry>
 </search>
