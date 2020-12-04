@@ -1719,6 +1719,8 @@ comments: false
 <h3 id="2020年12月"><a class="markdownIt-Anchor" href="#2020年12月"></a> 2020年12月</h3>
 <ol>
 <li>2020-12-02   <code>pull up</code> 20 15 13 10 10</li>
+<li>2020-12-03   <code>bar dips</code> 20 20 15 15 15</li>
+<li>2020-12-04   <code>pull up</code> 22 15 15 13 10</li>
 </ol>
 ]]></content>
       <categories>
@@ -2333,7 +2335,12 @@ dp[i] =     if s[i]==’)’
   <entry>
     <title>leetcode-每日一题</title>
     <url>/posts/2020-12-001.html</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h3 id="204-计数质数"><a class="markdownIt-Anchor" href="#204-计数质数"></a> <a href="https://leetcode-cn.com/problems/count-primes/" target="_blank" rel="noopener">204. 计数质数</a></h3>
+<ul>
+<li>暴力</li>
+<li>筛选法，对所有数进行标记，对于一个质数，他所有的倍数都不是质数。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countPrimes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;<span class="number">3</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">res</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> j;</span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;res.<span class="built_in">size</span>()&amp;&amp;res[j]*res[j]&lt;=i;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(i%res[j]==<span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(j==res.<span class="built_in">size</span>()||res[j]*res[j]&gt;i)</span><br><span class="line">                res.push_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.<span class="built_in">size</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
