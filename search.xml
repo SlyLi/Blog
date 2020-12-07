@@ -1721,6 +1721,7 @@ comments: false
 <li>2020-12-02   <code>pull up</code> 20 15 13 10 10</li>
 <li>2020-12-03   <code>bar dips</code> 20 20 15 15 15</li>
 <li>2020-12-04   <code>pull up</code> 22 15 15 13 10</li>
+<li>2020-12-07   <code>pull up</code> 10 13 12 10 10</li>
 </ol>
 ]]></content>
       <categories>
@@ -1815,6 +1816,8 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
 <li>增大平衡范围，加强自己的核心力量，往后倒时，将臀部前移，腿下移或后移</li>
 <li>练习其他类型的手平衡</li>
 <li>使用不同的底板实现平衡，不只限于地面，其他的比如草地，沙滩，双杠</li>
+<li>倒立时眼睛看下方地面，有利于感受身体，保持平衡</li>
+<li>准备倒立时，手臂保持垂直于地面，减少上肢运动幅度，臀部抬高，上肢先起，倒立起尽量减少动作幅度，下落时先收腿容易控制下落，减少幅度</li>
 </ol>
 <ul>
 <li>靠墙倒立时，可以尝试不用脚蹬，使用手掌的力量使脚离开墙</li>
@@ -2340,7 +2343,9 @@ dp[i] =     if s[i]==’)’
 <li>暴力</li>
 <li>筛选法，对所有数进行标记，对于一个质数，他所有的倍数都不是质数。</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countPrimes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;<span class="number">3</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">res</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> j;</span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;res.<span class="built_in">size</span>()&amp;&amp;res[j]*res[j]&lt;=i;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(i%res[j]==<span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(j==res.<span class="built_in">size</span>()||res[j]*res[j]&gt;i)</span><br><span class="line">                res.push_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.<span class="built_in">size</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countPrimes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;<span class="number">3</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">res</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> j;</span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;res.<span class="built_in">size</span>()&amp;&amp;res[j]*res[j]&lt;=i;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(i%res[j]==<span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(j==res.<span class="built_in">size</span>()||res[j]*res[j]&gt;i)</span><br><span class="line">                res.push_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.<span class="built_in">size</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="621-任务调度器"><a class="markdownIt-Anchor" href="#621-任务调度器"></a> <a href="https://leetcode-cn.com/problems/task-scheduler/" target="_blank" rel="noopener">621. 任务调度器</a></h3>
+]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
