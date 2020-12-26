@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://slyli.cn/posts/2020-10-001.html</loc>
+    <loc>http://slyli.cn/posts/2020-11-002.html</loc>
     
-    <lastmod>2020-12-24T14:43:08.656Z</lastmod>
+    <lastmod>2020-12-26T15:45:18.854Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://slyli.cn/posts/2020-11-002.html</loc>
+    <loc>http://slyli.cn/posts/2020-10-001.html</loc>
     
-    <lastmod>2020-12-24T14:42:44.605Z</lastmod>
+    <lastmod>2020-12-26T15:30:22.386Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://slyli.cn/game/index.html</loc>
+    
+    <lastmod>2020-12-25T10:02:33.169Z</lastmod>
     
   </url>
   
@@ -271,13 +278,6 @@
     <loc>http://slyli.cn/comment/index.html</loc>
     
     <lastmod>2020-07-06T15:58:47.977Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://slyli.cn/game/index.html</loc>
-    
-    <lastmod>2020-07-06T15:57:22.160Z</lastmod>
     
   </url>
   
