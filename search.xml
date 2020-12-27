@@ -337,16 +337,6 @@ pts[j] = m2v(viewport * projection * modelview * v2m(v));
       </categories>
   </entry>
   <entry>
-    <title>KaTeX Supported Functions</title>
-    <url>/posts/2020-10-004.html</url>
-    <content><![CDATA[<h2 id="katex"><a class="markdownIt-Anchor" href="#katex"></a> <a href="https://katex.org/docs/supported.html">KaTeX</a></h2>
-<iframe src="https://katex.org/docs/supported.html" width="100%" height="800px" frameborder="0" loading="lazy" allowfullscreen></iframe>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-  </entry>
-  <entry>
     <title>C++</title>
     <url>/posts/2020-07-009.html</url>
     <content><![CDATA[<h3 id="virtural继承"><a class="markdownIt-Anchor" href="#virtural继承"></a> virtural继承</h3>
@@ -695,6 +685,16 @@ capture:</p>
       <tags>
         <tag>C++</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>KaTeX Supported Functions</title>
+    <url>/posts/2020-10-004.html</url>
+    <content><![CDATA[<h2 id="katex"><a class="markdownIt-Anchor" href="#katex"></a> <a href="https://katex.org/docs/supported.html">KaTeX</a></h2>
+<iframe src="https://katex.org/docs/supported.html" width="100%" height="800px" frameborder="0" loading="lazy" allowfullscreen></iframe>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
   </entry>
   <entry>
     <title>LinearRegression--python</title>
@@ -1270,51 +1270,6 @@ printf(“Hello, Markdown.”);<br />
       </tags>
   </entry>
   <entry>
-    <title>Win32显示图像</title>
-    <url>/posts/2020-09-001.html</url>
-    <content><![CDATA[<p>在windows下将数据以位图的方式显示：</p>
-<pre><code>//变量定义
-
-HWND hWnd;              //窗口句柄定义
-HDC hdc_mem;            //缓冲句柄
-HBITMAP screen_hb ;		// DIB
-HBITMAP screen_ob ;		// 老的 BITMAP
-void* buffer;           //数据存储区
-
-BITMAPINFO bi = &#123; &#123; sizeof(BITMAPINFOHEADER), 100, 100, 1, 24, BI_RGB,
-       100 * 100 * 3, 0, 0, 0, 0 &#125; &#125;;
-//初始化配置
-HDC hdc = GetDC(hWnd);
-hdc_mem = CreateCompatibleDC(hdc);
-screen_hb = CreateDIBSection(hdc_mem, &amp;bi, DIB_RGB_COLORS, (void**)&amp;buffer, NULL, 0);   
-if (screen_hb == NULL) return -3;
-screen_ob = (HBITMAP)SelectObject(hdc_mem, screen_hb);
-ReleaseDC(hWnd, hdc);
-
-//显示数据  dat为位图数据指针，size为1像素所占字节大小
-ImageLoad(void* dat, int width, int height,int size)
-&#123;
-    if (hdc_mem &amp;&amp; screen_hb)
-    &#123;
-        HDC hDC = GetDC(hWnd);
-        memcpy(buffer, dat, width * height * size);
-        BitBlt(hDC, 0, 0, width, height, hdc_mem, 0, 0, SRCCOPY);
-        ReleaseDC(hWnd, hDC);
-    &#125;
-&#125;
-</code></pre>
-<p>CreateDIBSection函数中的第四个参数非常重要，这个参数是一个指针，指向存储位图数据的一块内存。我们传递给函数一个指针变量后，函数自动分配一块内存出来，这块内存自动分配，自动释放。在配置好后，我们将位图数据放置到这块内存中，在调用BitBlt就可以显示图像了。<br />
-做这个的原因是，自己准备学习3d render需要显示，如果加载QT\SDL库有点大材小用，并且网上一些其他的用来显示的加了很多其他功能代码，总体的代码量有点多。</p>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>CreateDIBSection</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Optimization</title>
     <url>/posts/2020-11-002.html</url>
     <content><![CDATA[<h2 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h2>
@@ -1547,6 +1502,141 @@ T_k - \frac  {T_{k,j}} {T_{i,j}} T_i &amp;\text{if}\ k \not= j
       </categories>
   </entry>
   <entry>
+    <title>Win32显示图像</title>
+    <url>/posts/2020-09-001.html</url>
+    <content><![CDATA[<p>在windows下将数据以位图的方式显示：</p>
+<pre><code>//变量定义
+
+HWND hWnd;              //窗口句柄定义
+HDC hdc_mem;            //缓冲句柄
+HBITMAP screen_hb ;		// DIB
+HBITMAP screen_ob ;		// 老的 BITMAP
+void* buffer;           //数据存储区
+
+BITMAPINFO bi = &#123; &#123; sizeof(BITMAPINFOHEADER), 100, 100, 1, 24, BI_RGB,
+       100 * 100 * 3, 0, 0, 0, 0 &#125; &#125;;
+//初始化配置
+HDC hdc = GetDC(hWnd);
+hdc_mem = CreateCompatibleDC(hdc);
+screen_hb = CreateDIBSection(hdc_mem, &amp;bi, DIB_RGB_COLORS, (void**)&amp;buffer, NULL, 0);   
+if (screen_hb == NULL) return -3;
+screen_ob = (HBITMAP)SelectObject(hdc_mem, screen_hb);
+ReleaseDC(hWnd, hdc);
+
+//显示数据  dat为位图数据指针，size为1像素所占字节大小
+ImageLoad(void* dat, int width, int height,int size)
+&#123;
+    if (hdc_mem &amp;&amp; screen_hb)
+    &#123;
+        HDC hDC = GetDC(hWnd);
+        memcpy(buffer, dat, width * height * size);
+        BitBlt(hDC, 0, 0, width, height, hdc_mem, 0, 0, SRCCOPY);
+        ReleaseDC(hWnd, hDC);
+    &#125;
+&#125;
+</code></pre>
+<p>CreateDIBSection函数中的第四个参数非常重要，这个参数是一个指针，指向存储位图数据的一块内存。我们传递给函数一个指针变量后，函数自动分配一块内存出来，这块内存自动分配，自动释放。在配置好后，我们将位图数据放置到这块内存中，在调用BitBlt就可以显示图像了。<br />
+做这个的原因是，自己准备学习3d render需要显示，如果加载QT\SDL库有点大材小用，并且网上一些其他的用来显示的加了很多其他功能代码，总体的代码量有点多。</p>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>CreateDIBSection</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>android</title>
+    <url>/posts/2020-08-003.html</url>
+    <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
+具体是Unknown host ‘<a href="http://d29vzk4ow07wi7.cloudfront.net">d29vzk4ow07wi7.cloudfront.net</a>’. You may need to adjust the proxy settings in Gradle.<br />
+把 build.gradle 中的两个 jcenter() 用 maven{ url “<a href="http://maven.aliyun.com/nexus/content/groups/public/">http://maven.aliyun.com/nexus/content/groups/public/</a>”} 代替，然后等待下载安装完成就好了。<br />
+开这个项目，目前是想做一个古文阅读的app，等我把安卓开发的基础知识过一遍就来更新。</p>
+<h3 id="更新"><a class="markdownIt-Anchor" href="#更新"></a> 更新</h3>
+<p>虽然安卓的基础知识还没怎么弄明白，还是靠这自己的底子，硬着头皮给写出来了。对我来说，最难的部分应该就是对Android项目结构还不熟，所以对项目的实现方式就会变的很粗暴。。。</p>
+<h3 id="界面"><a class="markdownIt-Anchor" href="#界面"></a> 界面</h3>
+<p>这个项目里主要的需要实现的东西不多。基本上最重要的就是UI了。</p>
+<ol>
+<li>需要一个主要的文本显示区，用来可以切换的显示文章，注释，译文等。</li>
+<li>需要几个按钮，可以切换文本显示区显示的内容。</li>
+<li>需要一个目录，用来选择书籍的章节。</li>
+</ol>
+<h3 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h3>
+<p>内容方面主要的就是把爬虫获取的文章通过某种方式处理，格式化，可以让我们可以方便的显示在文本区。<br />
+对于爬虫的详细内容可以看<a href="https://slyli.cn/posts/2020-07-010.html">小说网站爬虫</a>，这篇文章中的<code>标题2</code>。</p>
+<pre><code>private String[][] ReadBook() &#123;
+        String[][] book=new String[81][4];
+        StringBuilder termsString = new StringBuilder();
+        BufferedReader reader;
+        int ch_num=-1;
+        int temp=0;
+        try &#123;
+            reader = new BufferedReader(
+                    new InputStreamReader(getAssets().open(&quot;daodejing.txt&quot;),&quot;UTF-8&quot;));
+            String str;
+            while ((str = reader.readLine()) != null) &#123;
+                str=str.replaceAll(&quot; &quot;,&quot;&quot;);
+                if(str.length()&gt;0)
+                &#123;
+                    if(str.equals(&quot;【原文】&quot;))
+                    &#123;
+                        ch_num++;
+                        temp =0;
+                        book[ch_num][temp]=&quot;第&quot;+String.valueOf(ch_num+1)+&quot;章&quot;+'\n';
+                    &#125;
+                    else if(str.equals(&quot;【注释】&quot;))
+                    &#123;
+                        temp=1;
+                    &#125;
+                    else if(str.equals(&quot;【译文】&quot;))
+                    &#123;
+                        temp=2;
+                    &#125;
+                    else if(str.equals(&quot;【解析】&quot;))
+                    &#123;
+                        temp=3;
+                    &#125;
+                    else if(str.equals(&quot;【导读】&quot;))
+                    &#123;
+                        temp=2;
+                    &#125;
+                    if(book[ch_num][temp]==null)
+                        book[ch_num][temp]=str+'\n';
+                    else
+                        book[ch_num][temp]+=str+'\n';
+                &#125;
+            &#125;
+            reader.close();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+        return book;
+    &#125;
+</code></pre>
+<p>以上就是处理的方式，对内容处理完成后，把它们按照约定设置在文本显示区就完成了。</p>
+<h3 id="成品"><a class="markdownIt-Anchor" href="#成品"></a> 成品</h3>
+<p>丑是丑了点，主要想做的功能算是完成了。</p>
+<h4 id="目录"><a class="markdownIt-Anchor" href="#目录"></a> 目录</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131030_com.example.helloworld.jpg" alt="cat" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131105_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="原文"><a class="markdownIt-Anchor" href="#原文"></a> 原文</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131046_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="注释"><a class="markdownIt-Anchor" href="#注释"></a> 注释</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131051_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="译文"><a class="markdownIt-Anchor" href="#译文"></a> 译文</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131055_com.example.helloworld.jpg" alt="cat" /></p>
+<h4 id="解析"><a class="markdownIt-Anchor" href="#解析"></a> 解析</h4>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131059_com.example.helloworld.jpg" alt="cat" /></p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>beyond</title>
     <url>/posts/2020-10-001.html</url>
     <content><![CDATA[<div class="note info simple"><p>粗滤估计我的街健记录应该是从2018年春天开始的，当时是大二下，断断续续竟然都快3年了！ <code>2020-11-9 23:00</code></p>
@@ -1770,96 +1860,6 @@ T_k - \frac  {T_{k,j}} {T_{i,j}} T_i &amp;\text{if}\ k \not= j
       </categories>
   </entry>
   <entry>
-    <title>android</title>
-    <url>/posts/2020-08-003.html</url>
-    <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
-具体是Unknown host ‘<a href="http://d29vzk4ow07wi7.cloudfront.net">d29vzk4ow07wi7.cloudfront.net</a>’. You may need to adjust the proxy settings in Gradle.<br />
-把 build.gradle 中的两个 jcenter() 用 maven{ url “<a href="http://maven.aliyun.com/nexus/content/groups/public/">http://maven.aliyun.com/nexus/content/groups/public/</a>”} 代替，然后等待下载安装完成就好了。<br />
-开这个项目，目前是想做一个古文阅读的app，等我把安卓开发的基础知识过一遍就来更新。</p>
-<h3 id="更新"><a class="markdownIt-Anchor" href="#更新"></a> 更新</h3>
-<p>虽然安卓的基础知识还没怎么弄明白，还是靠这自己的底子，硬着头皮给写出来了。对我来说，最难的部分应该就是对Android项目结构还不熟，所以对项目的实现方式就会变的很粗暴。。。</p>
-<h3 id="界面"><a class="markdownIt-Anchor" href="#界面"></a> 界面</h3>
-<p>这个项目里主要的需要实现的东西不多。基本上最重要的就是UI了。</p>
-<ol>
-<li>需要一个主要的文本显示区，用来可以切换的显示文章，注释，译文等。</li>
-<li>需要几个按钮，可以切换文本显示区显示的内容。</li>
-<li>需要一个目录，用来选择书籍的章节。</li>
-</ol>
-<h3 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h3>
-<p>内容方面主要的就是把爬虫获取的文章通过某种方式处理，格式化，可以让我们可以方便的显示在文本区。<br />
-对于爬虫的详细内容可以看<a href="https://slyli.cn/posts/2020-07-010.html">小说网站爬虫</a>，这篇文章中的<code>标题2</code>。</p>
-<pre><code>private String[][] ReadBook() &#123;
-        String[][] book=new String[81][4];
-        StringBuilder termsString = new StringBuilder();
-        BufferedReader reader;
-        int ch_num=-1;
-        int temp=0;
-        try &#123;
-            reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open(&quot;daodejing.txt&quot;),&quot;UTF-8&quot;));
-            String str;
-            while ((str = reader.readLine()) != null) &#123;
-                str=str.replaceAll(&quot; &quot;,&quot;&quot;);
-                if(str.length()&gt;0)
-                &#123;
-                    if(str.equals(&quot;【原文】&quot;))
-                    &#123;
-                        ch_num++;
-                        temp =0;
-                        book[ch_num][temp]=&quot;第&quot;+String.valueOf(ch_num+1)+&quot;章&quot;+'\n';
-                    &#125;
-                    else if(str.equals(&quot;【注释】&quot;))
-                    &#123;
-                        temp=1;
-                    &#125;
-                    else if(str.equals(&quot;【译文】&quot;))
-                    &#123;
-                        temp=2;
-                    &#125;
-                    else if(str.equals(&quot;【解析】&quot;))
-                    &#123;
-                        temp=3;
-                    &#125;
-                    else if(str.equals(&quot;【导读】&quot;))
-                    &#123;
-                        temp=2;
-                    &#125;
-                    if(book[ch_num][temp]==null)
-                        book[ch_num][temp]=str+'\n';
-                    else
-                        book[ch_num][temp]+=str+'\n';
-                &#125;
-            &#125;
-            reader.close();
-        &#125; catch (IOException e) &#123;
-            e.printStackTrace();
-        &#125;
-        return book;
-    &#125;
-</code></pre>
-<p>以上就是处理的方式，对内容处理完成后，把它们按照约定设置在文本显示区就完成了。</p>
-<h3 id="成品"><a class="markdownIt-Anchor" href="#成品"></a> 成品</h3>
-<p>丑是丑了点，主要想做的功能算是完成了。</p>
-<h4 id="目录"><a class="markdownIt-Anchor" href="#目录"></a> 目录</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131030_com.example.helloworld.jpg" alt="cat" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131105_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="原文"><a class="markdownIt-Anchor" href="#原文"></a> 原文</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131046_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="注释"><a class="markdownIt-Anchor" href="#注释"></a> 注释</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131051_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="译文"><a class="markdownIt-Anchor" href="#译文"></a> 译文</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131055_com.example.helloworld.jpg" alt="cat" /></p>
-<h4 id="解析"><a class="markdownIt-Anchor" href="#解析"></a> 解析</h4>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/Screenshot_20200810_131059_com.example.helloworld.jpg" alt="cat" /></p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>butterfly修改及使用</title>
     <url>/posts/2020-07-003.html</url>
     <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
@@ -1912,6 +1912,16 @@ comments: false
 </div>
 <div class="note danger simple"><p>danger 提示塊標籤</p>
 </div>
+<h3 id="butterfly-更新至-342-20201227"><a class="markdownIt-Anchor" href="#butterfly-更新至-342-20201227"></a> butterfly 更新至 3.4.2  (2020/12/27)</h3>
+<ol>
+<li>添加了pjax</li>
+<li>文章页目录改为aside显示</li>
+<li>添加aplayer全局播放器</li>
+<li>添加了豆瓣 电影、书籍、游戏</li>
+<li>添加gitalk，和Qmsg的提示，变成gitalk和valine双评论</li>
+<li>aerith位置修改</li>
+<li>添加steam，暂时先用着，作者很长时间没更新了，等之后有时间自己写一个好看点的。。。</li>
+</ol>
 ]]></content>
       <categories>
         <category>blog</category>
@@ -1980,26 +1990,6 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
       </tags>
   </entry>
   <entry>
-    <title>5 free-handstand tips</title>
-    <url>/posts/2020-10-005.html</url>
-    <content><![CDATA[<ol>
-<li>改变手的放置位置，不要将整个手全紧贴地面，可以将手指弯曲，形成一个抓地的感觉</li>
-<li>将手掌贴地，只有在需要必须使用手指时是用手指，平常调整身体的平衡时，可以只使用手掌进行调节，当我们身体将要放过去时，这样就可以有额外的力量将身体拉回来</li>
-<li>增大平衡范围，加强自己的核心力量，往后倒时，将臀部前移，腿下移或后移</li>
-<li>练习其他类型的手平衡</li>
-<li>使用不同的底板实现平衡，不只限于地面，其他的比如草地，沙滩，双杠</li>
-<li>倒立时眼睛看下方地面，有利于感受身体，保持平衡</li>
-<li>准备倒立时，手臂保持垂直于地面，减少上肢运动幅度，臀部抬高，上肢先起，倒立起尽量减少动作幅度，下落时先收腿容易控制下落，减少幅度</li>
-</ol>
-<ul>
-<li>靠墙倒立时，可以尝试不用脚蹬，使用手掌的力量使脚离开墙</li>
-</ul>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-  </entry>
-  <entry>
     <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
     <url>/posts/2020-07-002.html</url>
     <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
@@ -2019,6 +2009,26 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
         <tag>steam</tag>
         <tag>repkg</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>5 free-handstand tips</title>
+    <url>/posts/2020-10-005.html</url>
+    <content><![CDATA[<ol>
+<li>改变手的放置位置，不要将整个手全紧贴地面，可以将手指弯曲，形成一个抓地的感觉</li>
+<li>将手掌贴地，只有在需要必须使用手指时是用手指，平常调整身体的平衡时，可以只使用手掌进行调节，当我们身体将要放过去时，这样就可以有额外的力量将身体拉回来</li>
+<li>增大平衡范围，加强自己的核心力量，往后倒时，将臀部前移，腿下移或后移</li>
+<li>练习其他类型的手平衡</li>
+<li>使用不同的底板实现平衡，不只限于地面，其他的比如草地，沙滩，双杠</li>
+<li>倒立时眼睛看下方地面，有利于感受身体，保持平衡</li>
+<li>准备倒立时，手臂保持垂直于地面，减少上肢运动幅度，臀部抬高，上肢先起，倒立起尽量减少动作幅度，下落时先收腿容易控制下落，减少幅度</li>
+</ol>
+<ul>
+<li>靠墙倒立时，可以尝试不用脚蹬，使用手掌的力量使脚离开墙</li>
+</ul>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
   </entry>
   <entry>
     <title>js多次点击的响应</title>
@@ -2622,17 +2632,6 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>小四轴飞行器</title>
-    <url>/posts/2020-08-004.html</url>
-    <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
-<p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-  </entry>
-  <entry>
     <title>博客说明</title>
     <url>/posts/2020-07-001.html</url>
     <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -2682,6 +2681,17 @@ draft	source/_drafts
         <tag>butterfly</tag>
         <tag>hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>小四轴飞行器</title>
+    <url>/posts/2020-08-004.html</url>
+    <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
+<p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
   </entry>
   <entry>
     <title>记录</title>
