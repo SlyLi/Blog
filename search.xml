@@ -277,6 +277,16 @@ pts[j] = m2v(viewport * projection * modelview * v2m(v));
       </categories>
   </entry>
   <entry>
+    <title>KaTeX Supported Functions</title>
+    <url>/posts/2020-10-004.html</url>
+    <content><![CDATA[<h2 id="katex"><a class="markdownIt-Anchor" href="#katex"></a> <a href="https://katex.org/docs/supported.html">KaTeX</a></h2>
+<iframe src="https://katex.org/docs/supported.html" width="100%" height="800px" frameborder="0" loading="lazy" allowfullscreen></iframe>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+  </entry>
+  <entry>
     <title>C</title>
     <url>/posts/2020-08-001.html</url>
     <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
@@ -335,16 +345,6 @@ pts[j] = m2v(viewport * projection * modelview * v2m(v));
       <tags>
         <tag>C</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>KaTeX Supported Functions</title>
-    <url>/posts/2020-10-004.html</url>
-    <content><![CDATA[<h2 id="katex"><a class="markdownIt-Anchor" href="#katex"></a> <a href="https://katex.org/docs/supported.html">KaTeX</a></h2>
-<iframe src="https://katex.org/docs/supported.html" width="100%" height="800px" frameborder="0" loading="lazy" allowfullscreen></iframe>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
   </entry>
   <entry>
     <title>C++</title>
@@ -697,81 +697,6 @@ capture:</p>
       </tags>
   </entry>
   <entry>
-    <title>LinearRegression--python</title>
-    <url>/posts/2020-07-008.html</url>
-    <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
-<pre><code>import numpy as np
-from matplotlib import pyplot as plt
-# 线性回归
-# X是矩阵，每一行是一组输入数据；theta是列向量；y也是列向量
-def ComputeCost(X, y, theta):
-    m = len(y)
-    J = 0
-    t = np.dot(X, theta)-y
-    J = np.dot(t.T, t)/(2*m)
-    return J
-
-# 计算代价函数
-# alpaa是学习率；num_iters是迭代次数
-def GradientDescent(X, y, theta, alpha, num_iters):
-    m = len(y)
-    n = len(theta)
-    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
-    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
-
-    for i in range(num_iters):  # 遍历迭代次数
-        h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
-        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
-        theta = temp[:, i]
-        J_history[i] = ComputeCost(X, y, theta)  # 调用计算代价函数
-        # print(J_history[i])
-    return theta, J_history
-
-def featureNormaliza(X):
-    X_norm = np.array(X)  # 将X转化为numpy数组对象，才可以进行矩阵的运算
-    # 定义所需变量
-    mu = np.zeros((1, X.shape[1]))
-    sigma = np.zeros((1, X.shape[1]))
-    mu = np.mean(X_norm, 0)          # 求每一列的平均值（0指定为列，1代表行）
-    sigma = np.std(X_norm, 0)        # 求每一列的标准差
-    for i in range(X.shape[1]):     # 遍历列
-        X_norm[:, i] = (X_norm[:, i]-mu[i])/sigma[i]  # 归一化
-    return X_norm, mu, sigma
-
-# 逻辑回归
-if __name__ == &quot;__main__&quot;:
-    alpha = 0.01
-    num_iters = 400
-
-    # 取消归一化需要的参数
-    #alpha = 0.0000001
-    #num_iters = 4000
-
-    data = np.loadtxt('data.txt', delimiter=',', dtype=np.float64)
-    X = data[:, 0:-1]
-    y = data[:, -1].reshape(-1, 1)
-    X, mu, s = featureNormaliza(X)
-    #plt.scatter(X_norm[:, 0], X_norm[:, 1])
-    # plt.show()
-    X = np.hstack((np.ones((X.shape[0], 1)), X))
-    theta = np.zeros((X.shape[1], 1))
-    theta, J_history = GradientDescent(X, y, theta, alpha, num_iters)
-
-    x = np.arange(1, num_iters+1)
-    plt.plot(x, J_history)
-    plt.show()
-</code></pre>
-<p>虽然算法理解起来不算很难，等到了自己动手是实现的时候还是有很多问题的。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>machine learning</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LogisticRegression--python</title>
     <url>/posts/2020-07-011.html</url>
     <content><![CDATA[<p>逻辑回归</p>
@@ -1021,6 +946,81 @@ if __name__ == &quot;__main__&quot;:
 
     print(u&quot;预测准确度为：%f%%&quot; % np.mean(np.float64(p == y.reshape(-1, 1))*100))
 </code></pre>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>machine learning</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LinearRegression--python</title>
+    <url>/posts/2020-07-008.html</url>
+    <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
+<pre><code>import numpy as np
+from matplotlib import pyplot as plt
+# 线性回归
+# X是矩阵，每一行是一组输入数据；theta是列向量；y也是列向量
+def ComputeCost(X, y, theta):
+    m = len(y)
+    J = 0
+    t = np.dot(X, theta)-y
+    J = np.dot(t.T, t)/(2*m)
+    return J
+
+# 计算代价函数
+# alpaa是学习率；num_iters是迭代次数
+def GradientDescent(X, y, theta, alpha, num_iters):
+    m = len(y)
+    n = len(theta)
+    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
+    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
+
+    for i in range(num_iters):  # 遍历迭代次数
+        h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
+        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
+        theta = temp[:, i]
+        J_history[i] = ComputeCost(X, y, theta)  # 调用计算代价函数
+        # print(J_history[i])
+    return theta, J_history
+
+def featureNormaliza(X):
+    X_norm = np.array(X)  # 将X转化为numpy数组对象，才可以进行矩阵的运算
+    # 定义所需变量
+    mu = np.zeros((1, X.shape[1]))
+    sigma = np.zeros((1, X.shape[1]))
+    mu = np.mean(X_norm, 0)          # 求每一列的平均值（0指定为列，1代表行）
+    sigma = np.std(X_norm, 0)        # 求每一列的标准差
+    for i in range(X.shape[1]):     # 遍历列
+        X_norm[:, i] = (X_norm[:, i]-mu[i])/sigma[i]  # 归一化
+    return X_norm, mu, sigma
+
+# 逻辑回归
+if __name__ == &quot;__main__&quot;:
+    alpha = 0.01
+    num_iters = 400
+
+    # 取消归一化需要的参数
+    #alpha = 0.0000001
+    #num_iters = 4000
+
+    data = np.loadtxt('data.txt', delimiter=',', dtype=np.float64)
+    X = data[:, 0:-1]
+    y = data[:, -1].reshape(-1, 1)
+    X, mu, s = featureNormaliza(X)
+    #plt.scatter(X_norm[:, 0], X_norm[:, 1])
+    # plt.show()
+    X = np.hstack((np.ones((X.shape[0], 1)), X))
+    theta = np.zeros((X.shape[1], 1))
+    theta, J_history = GradientDescent(X, y, theta, alpha, num_iters)
+
+    x = np.arange(1, num_iters+1)
+    plt.plot(x, J_history)
+    plt.show()
+</code></pre>
+<p>虽然算法理解起来不算很难，等到了自己动手是实现的时候还是有很多问题的。</p>
 ]]></content>
       <categories>
         <category>AI</category>
@@ -1502,274 +1502,6 @@ T_k - \frac  {T_{k,j}} {T_{i,j}} T_i &amp;\text{if}\ k \not= j
       </categories>
   </entry>
   <entry>
-    <title>Win32显示图像</title>
-    <url>/posts/2020-09-001.html</url>
-    <content><![CDATA[<p>在windows下将数据以位图的方式显示：</p>
-<pre><code>//变量定义
-
-HWND hWnd;              //窗口句柄定义
-HDC hdc_mem;            //缓冲句柄
-HBITMAP screen_hb ;		// DIB
-HBITMAP screen_ob ;		// 老的 BITMAP
-void* buffer;           //数据存储区
-
-BITMAPINFO bi = &#123; &#123; sizeof(BITMAPINFOHEADER), 100, 100, 1, 24, BI_RGB,
-       100 * 100 * 3, 0, 0, 0, 0 &#125; &#125;;
-//初始化配置
-HDC hdc = GetDC(hWnd);
-hdc_mem = CreateCompatibleDC(hdc);
-screen_hb = CreateDIBSection(hdc_mem, &amp;bi, DIB_RGB_COLORS, (void**)&amp;buffer, NULL, 0);   
-if (screen_hb == NULL) return -3;
-screen_ob = (HBITMAP)SelectObject(hdc_mem, screen_hb);
-ReleaseDC(hWnd, hdc);
-
-//显示数据  dat为位图数据指针，size为1像素所占字节大小
-ImageLoad(void* dat, int width, int height,int size)
-&#123;
-    if (hdc_mem &amp;&amp; screen_hb)
-    &#123;
-        HDC hDC = GetDC(hWnd);
-        memcpy(buffer, dat, width * height * size);
-        BitBlt(hDC, 0, 0, width, height, hdc_mem, 0, 0, SRCCOPY);
-        ReleaseDC(hWnd, hDC);
-    &#125;
-&#125;
-</code></pre>
-<p>CreateDIBSection函数中的第四个参数非常重要，这个参数是一个指针，指向存储位图数据的一块内存。我们传递给函数一个指针变量后，函数自动分配一块内存出来，这块内存自动分配，自动释放。在配置好后，我们将位图数据放置到这块内存中，在调用BitBlt就可以显示图像了。<br />
-做这个的原因是，自己准备学习3d render需要显示，如果加载QT\SDL库有点大材小用，并且网上一些其他的用来显示的加了很多其他功能代码，总体的代码量有点多。</p>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>CreateDIBSection</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>beyond</title>
-    <url>/posts/2020-10-001.html</url>
-    <content><![CDATA[<div class="note info simple"><p>粗滤估计我的街健记录应该是从2018年春天开始的，当时是大二下，断断续续竟然都快3年了！ <code>2020-11-9 23:00</code></p>
-</div>
-<h2 id="2020年之前原帖"><a class="markdownIt-Anchor" href="#2020年之前原帖"></a> 2020年之前（<a href="https://tieba.baidu.com/p/5805622993">原帖</a>）</h2>
-<h3 id="2018年07月"><a class="markdownIt-Anchor" href="#2018年07月"></a> 2018年07月</h3>
-<ol>
-<li>2018-07-22   俯卧撑100 引体20</li>
-<li>2018-07-23   俯卧撑110 引体向上30</li>
-<li>2018-07-24   100俯卧撑35引体</li>
-<li>2018-07-25   100俯卧撑35引体向上</li>
-<li>2018-07-27   40引体向上</li>
-<li>2018-07-28   43引体向上</li>
-<li>2018-07-29   20引体向上</li>
-<li>2018-07-30   20引体向上</li>
-<li>2018-07-31   引体向上12 8 9 8 7 😊</li>
-</ol>
-<h3 id="2018年08月"><a class="markdownIt-Anchor" href="#2018年08月"></a> 2018年08月</h3>
-<ol>
-<li>2018-08-04   引体向上 11 10 9 8 7 2个借力双力臂</li>
-<li>2018-08-05   11 5 8 8 7</li>
-<li>2018-08-06   12 10 8 8 7</li>
-<li>2018-08-07   今天 100俯卧撑</li>
-<li>2018-08-08   12 8 9 7 5 6</li>
-<li>2018-08-09   11 8 8 8 7</li>
-<li>2018-08-10   100俯卧撑</li>
-<li>2018-08-11   11 9 8 8 8 50俯卧撑</li>
-<li>2018-08-13   10 9 8 8 7</li>
-<li>2018-08-18   110俯卧撑</li>
-<li>2018-08-20   120</li>
-<li>2018-08-21   140个</li>
-<li>2018-08-26   120 单次俯卧撑到达40</li>
-<li>2018-08-28   30 20 20 20 20</li>
-</ol>
-<h3 id="2018年09月"><a class="markdownIt-Anchor" href="#2018年09月"></a> 2018年09月</h3>
-<ol>
-<li>2018-09-02   50个左右</li>
-<li>2018-09-03   引体 11 8 8 9 7</li>
-<li>2018-09-07   12 10 7 10 7 5 间隔有点长了</li>
-<li>2018-09-08   12 8 8 8 7 7 6 3 4 3 手臂感觉胀胀的</li>
-<li>2018-09-09   13 10 8 8 7 6 6 5 第一次13个勉强完成。 后边做了不少半程（实在上不去了），不过没计数。</li>
-<li>2018-09-11   12 10 7 8 5 3 5 3 3 最后一组荡了十几个，果然荡还是简单啊！！！！</li>
-<li>2018-09-13   解锁体操上杠动作 然后几个双力臂，11 11 10 7 8 7 8 6 5 3</li>
-<li>2018-09-14   10 9 10 6 5 6</li>
-<li>2018-09-15   13个半 10 10 8 8</li>
-<li>2018-09-16   100俯卧撑</li>
-<li>2018-09-17   8 14 9 6 9 5</li>
-<li>2018-09-18   10 10 7 8 6 5 5 5 5 5 热热热 🤮</li>
-<li>2018-09-21   12 10 8 8 6 前两天下雨 俯卧撑</li>
-<li>2018-09-25   13 8 6 7 5 7</li>
-<li>2018-09-26   13 10 8 8 7 7 7 6 5 3 😫    摆动的双力臂果然还是技巧很重要啊。。 估计不用10个标准引体就够了</li>
-<li>2018-09-27   150俯卧撑</li>
-<li>2018-09-28   10 9 8 8 8 7 7 7 6 6</li>
-<li>2018-09-28   14 11 10 8 8 6 7 5 5 。。。</li>
-<li>2018-09-30   150俯卧撑。</li>
-</ol>
-<h3 id="2018年10月"><a class="markdownIt-Anchor" href="#2018年10月"></a> 2018年10月</h3>
-<ol>
-<li>2018-10-01   15 2个双力臂 5 8 8 7 7 6 8 5 7</li>
-<li>2018-10-02   14 5 。。。。。。</li>
-<li>2018-10-05   15 10 9 9 9 8 6 7 6 7 啦啦啦</li>
-<li>2018-10-06   15 9 8 9 6 8 6 5 3 4 防删</li>
-<li>2018-10-08   13 8 8 9 8 6 6 嘤嘤嘤</li>
-<li>2018-10-09   15 11 11 6 突然下雨。。。</li>
-<li>2018-10-10   16 10 9 8 8 8 8</li>
-<li>2018-10-11   17 12 11 9 8 7 8 快速拉</li>
-<li>2018-10-12   16 8 8 6 5 虚。。。</li>
-<li>2018-10-16   17 13 11 9 9 9 8 前几天下雨休息</li>
-<li>2018-10-17   16 13 12 9 8 8 5 啦啦啦</li>
-<li>2018-10-18   18 11 10 8 11 9 8 吊杠70s 单杠臂屈伸15</li>
-<li>2018-10-20   20 13 11 10 9 8 第一组极限速度追求数量 动作不是很标准 借力20</li>
-<li>2018-10-22   18 13 11 10 9 8 8 8 啧啧啧啧</li>
-<li>2018-10-23   15 后边各种引体瞎拉 感觉状态不太好</li>
-<li>2018-10-24   100引体5个一组 20分钟 然后 9 8 8</li>
-<li>2018-10-26   20 15 9 10 9 8 7 20标准引体√</li>
-<li>2018-10-27   17 13 11 9 9 11 啦啦啦啦</li>
-<li>2018-10-28   15 11 10 8 9 。。。。。。，，</li>
-<li>2018-10-30   17 11 10 11 10 。。。</li>
-<li>2018-10-31   15 14 10 10 10 8 10 11 越来越菜了</li>
-</ol>
-<h3 id="2018年11月"><a class="markdownIt-Anchor" href="#2018年11月"></a> 2018年11月</h3>
-<ol>
-<li>2018-11-02   8 7 9 8 6 5 4 负重10kg</li>
-<li>2018-11-08   不借力双力臂达成 17 11 13 10 10 10 10   前两天下雨在寝室练的倒立，状态好可以十几秒了</li>
-<li>2018-11-10   曲腿人旗 11 9 😕</li>
-<li>2018-11-11   10 10 10 10 10 10 下雨</li>
-<li>2018-11-13   20 11 12 13 11 10 10 10 舒服。</li>
-<li>2018-11-17   下雨。。。。。</li>
-<li>2018-11-23   10 x 5</li>
-<li>2018-11-30   17 11 10 12 11 10   人旗现在曲腿10s＋ 估计放假前能完成<br />
-前两天的快乐双力臂😋<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://imgsa.baidu.com/forum/w%3D580/sign=2e8800789f45d688a302b2ac94c37dab/3f65c011b912c8fc2ebb3f86f1039245d7882125.jpg" alt="" /></li>
-</ol>
-<h3 id="2018年12月"><a class="markdownIt-Anchor" href="#2018年12月"></a> 2018年12月</h3>
-<ol>
-<li>2018-12-14   接连下了一个月的雨 难受 估计退到15了</li>
-<li>2018-12-18   17 10 5 10 7 7 5 退步也忒快啊</li>
-</ol>
-<h3 id="2019年01月"><a class="markdownIt-Anchor" href="#2019年01月"></a> 2019年01月</h3>
-<ol>
-<li>2019-01-09   15 8 11 8 7 10 5</li>
-</ol>
-<h3 id="2019年03月"><a class="markdownIt-Anchor" href="#2019年03月"></a> 2019年03月</h3>
-<ol>
-<li>2019-03-05   阔别了两个月的引体向上 14 8 5 5 5 5 5</li>
-<li>2019-03-10   10 7 8 6 6 5 5</li>
-<li>2019-03-18   吊杠70s</li>
-<li>2019-03-23   15 9 6 7 8 6 恢复的太慢了。。</li>
-<li>2019-03-30   12 10 7 8 6 啦啦啦啦啦</li>
-</ol>
-<h3 id="2019年04月"><a class="markdownIt-Anchor" href="#2019年04月"></a> 2019年04月</h3>
-<ol>
-<li>2019-04-01   14 10 10 7 7 9 6 慢速恢复训练</li>
-<li>2019-04-07   16 9 8 8 8 8</li>
-<li>2019-04-08   16 11 10 10 10 9 刺激刺激</li>
-<li>2019-04-15   15 8 8 10 9</li>
-<li>2019-04-16   15 10 8 9 8</li>
-<li>2019-04-20   18 12 10 11 10</li>
-<li>2019-04-23   10x7</li>
-<li>2019-04-25   17 11 11 9 10 7 target 20</li>
-<li>2019-04-30   15 8 11 10 10</li>
-</ol>
-<h3 id="2019年05月"><a class="markdownIt-Anchor" href="#2019年05月"></a> 2019年05月</h3>
-<ol>
-<li>2019-05-02   17 8 11 9 9 啦啦啦</li>
-<li>2019-05-04   18 13 10 10 10 争取一个月内到极限20</li>
-<li>2019-05-07   16 11 10 9 9 啦啦啦啦</li>
-<li>2019-05-09   20 10 10 10 10 啊啊啊啊啊啊啊啊啊！！！！！！！！</li>
-<li>2019-05-11   19 12 12 10 10</li>
-<li>2019-05-13   17 10 10 11 10 啊啊啊啊</li>
-<li>2019-05-16   15 10 11 10 10</li>
-<li>2019-05-17   17 12 10 10 10 夏天到了</li>
-<li>2019-05-19   20 15 12 10 10</li>
-<li>2019-05-20   20 13 12 11 9 啦啦啦</li>
-<li>2019-05-22   20 11 12 10 10 啦啦啦</li>
-<li>2019-05-28   17 11 9 10 10 😭😭</li>
-<li>2019-05-29   12 15 10 10 10</li>
-<li>2019-05-30   体测 20</li>
-<li>2019-05-31   21 12 10 10 。。。。略略略</li>
-</ol>
-<h3 id="2019年06月"><a class="markdownIt-Anchor" href="#2019年06月"></a> 2019年06月</h3>
-<ol>
-<li>2019-06-02   17 12 10 10 10 滴滴滴滴滴</li>
-<li>2019-06-07   17 12 12 10</li>
-<li>2019-06-09   15 10 12 10</li>
-<li>2019-06-10   11 16 10 人旗人旗！！！</li>
-<li>2019-06-12   17 14 10 10 10</li>
-<li>2019-06-15   18 10 10 10 10</li>
-<li>2019-06-16   18 8 8 10 10 。。。</li>
-<li>2019-06-22   15 10 10 10</li>
-<li>2019-06-24   18 8 9 9 10 按百度这个尿性，有空还是我记录全都迁到blog上面吧。。</li>
-<li>2019-06-26   20 11 8 8 10</li>
-</ol>
-<div class="note success simple"><p>终于将之前还存在的记录（丢失了19年夏秋的记录）都迁移过来了。    <code>2020-11-09 23:50</code></p>
-</div>
-<h2 id="2020年"><a class="markdownIt-Anchor" href="#2020年"></a> 2020年</h2>
-<h3 id="2020年10月"><a class="markdownIt-Anchor" href="#2020年10月"></a> 2020年10月</h3>
-<ol>
-<li>2020-10-04   <code>pull up</code> 12 6 6 7 6 6 4 3</li>
-<li>2020-10-05   <code>running</code> 3km</li>
-<li>2020-10-06   <code>pull up</code> 10 6 4   <code>bar dips</code>17 10 8   + 人旗</li>
-<li>2020-10-08   <code>pull up</code> 11 7 8 6 8 6 4</li>
-<li>2020-10-10   <code>pull up</code> 11 7 7 7 5 6 5 3</li>
-<li>2020-10-12   <code>running</code> 3km</li>
-<li>2020-10-14   <code>pull up</code> 13 8 9 8 6 6</li>
-<li>2020-10-15   <code>bar dips</code> 10 7 7 10 8</li>
-<li>2020-10-18   <code>pull up</code> 14 8 8 9 6 5</li>
-<li>2020-10-20   <code>pull up</code> 14 10 8 7 7</li>
-<li>2020-10-22   <code>pull up</code> 15 9 9 7 5 6</li>
-<li>2020-10-24   <code>bar dips</code> 17 10 10 10 16</li>
-<li>2020-10-26   <code>pull up</code> 15 10 9 8 8 2</li>
-<li>2020-10-28   <code>pull up</code> 15 11 11 9 6</li>
-<li>2020-10-30   <code>pull up</code> 15 10 10 7 7 2</li>
-</ol>
-<h3 id="2020年11月"><a class="markdownIt-Anchor" href="#2020年11月"></a> 2020年11月</h3>
-<div class="note warning simple"><p><strong>这个月希望能完成单次20个的小目标，恢复到自己的巅峰</strong></p>
-</div>
-<ol>
-<li>2020-11-01   <code>pull up</code> 10 10 10 10 10  人体旗帜还是不太稳定发挥</li>
-<li>2020-11-03   <code>pull up</code> 16 12 10 10 8</li>
-<li>2020-11-05   <code>pull up</code> 17 15 12 8 8  今天晚上很舒服，很小的的风。加上组内间隔时间稍长。</li>
-<li>2020-11-07   <code>pull up</code> 15 13 12 9 8  人旗果然还是主要靠背，练了一个月的引体向上之后，人旗的感觉明显比之前强了。</li>
-<li>2020-11-09   <code>pull up</code> 15 11 11 11 8  人旗的感觉有点像梦一样了，感觉有点不太真实。不要再搞些花里胡哨的了，专心提数量吧</li>
-<li>2020-11-10   人旗80°</li>
-<li>2020-11-11   <code>pull up</code> 17 13 10 8 8</li>
-<li>2020-11-13   <code>pull up</code> 20 14 10 10 8  手感状态哈哈🤪🤪</li>
-<li>2020-11-14   人旗 + 差一点的双力臂</li>
-<li>2020-11-15   <code>pull up</code> 19 14 11 10 10</li>
-<li>2020-11-17   竟然下雨了，推迟到明天</li>
-<li>2020-11-18   <code>pull up</code> 18 14 10 9 10 吊杠60s</li>
-<li>2020-11-20   <code>pull up</code> 19 13 12 10 8</li>
-<li>2020-11-22   <code>bar dips</code> 10*5 太冷了，<s>考虑买个室内的在宿舍内试试。</s></li>
-<li>2020-11-24   <code>pull up</code> 12 15 11 10 10</li>
-<li>2020-11-26   <code>pull up</code> 15 15 11 10 10 <code>bar dips</code> 15*2</li>
-<li>2020-11-28   <code>pull up</code> 15 11 15 15 10    买了个在宿舍的，还行，只需要练双杠和人旗的时候出去了</li>
-<li>2020-11-30   <code>pull up</code> 18 15 15 10 10</li>
-</ol>
-<h3 id="2020年12月"><a class="markdownIt-Anchor" href="#2020年12月"></a> 2020年12月</h3>
-<ol>
-<li>2020-12-02   <code>pull up</code> 20 15 13 10 10</li>
-<li>2020-12-03   <code>bar dips</code> 20 20 15 15 15</li>
-<li>2020-12-04   <code>pull up</code> 22 15 15 13 10</li>
-<li>2020-12-07   <code>pull up</code> 10 13 12 10 10</li>
-<li>2020-12-08   <code>bar dips</code> 20 20 15</li>
-<li>2020-12-09   <code>pull up</code> 15 13 10 10 10</li>
-<li>2020-12-11   <code>pull up</code> 15 12 10 10 10</li>
-<li>2020-12-14   <code>pull up</code> 15 11 11 10 10</li>
-<li>2020-12-15   <code>burpee</code> 30min</li>
-<li>2020-12-17   <code>pull up</code> 17 12 12 10 10</li>
-<li>2020-12-18   <code>burpee</code> 30min</li>
-<li>2020-12-19   <code>pull up</code> 15 12  手被割破了，难受 100蹲起</li>
-<li>2020-12-20   <code>push up</code> 30 20 30 20</li>
-<li>2020-12-23   <code>burpee</code> 110</li>
-<li>2020-12-24   <code>pull up</code> 15 12 10 10 10</li>
-<li>2020-12-25   <code>burpee</code> 100</li>
-<li>2020-12-26   <code>pull up</code> 20 10 11 10 10</li>
-</ol>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-  </entry>
-  <entry>
     <title>android</title>
     <url>/posts/2020-08-003.html</url>
     <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
@@ -1990,6 +1722,294 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
       </tags>
   </entry>
   <entry>
+    <title>beyond</title>
+    <url>/posts/2020-10-001.html</url>
+    <content><![CDATA[<div class="note info simple"><p>粗滤估计我的街健记录应该是从2018年春天开始的，当时是大二下，断断续续竟然都快3年了！ <code>2020-11-9 23:00</code></p>
+</div>
+<h2 id="2020年之前原帖"><a class="markdownIt-Anchor" href="#2020年之前原帖"></a> 2020年之前（<a href="https://tieba.baidu.com/p/5805622993">原帖</a>）</h2>
+<h3 id="2018年07月"><a class="markdownIt-Anchor" href="#2018年07月"></a> 2018年07月</h3>
+<ol>
+<li>2018-07-22   俯卧撑100 引体20</li>
+<li>2018-07-23   俯卧撑110 引体向上30</li>
+<li>2018-07-24   100俯卧撑35引体</li>
+<li>2018-07-25   100俯卧撑35引体向上</li>
+<li>2018-07-27   40引体向上</li>
+<li>2018-07-28   43引体向上</li>
+<li>2018-07-29   20引体向上</li>
+<li>2018-07-30   20引体向上</li>
+<li>2018-07-31   引体向上12 8 9 8 7 😊</li>
+</ol>
+<h3 id="2018年08月"><a class="markdownIt-Anchor" href="#2018年08月"></a> 2018年08月</h3>
+<ol>
+<li>2018-08-04   引体向上 11 10 9 8 7 2个借力双力臂</li>
+<li>2018-08-05   11 5 8 8 7</li>
+<li>2018-08-06   12 10 8 8 7</li>
+<li>2018-08-07   今天 100俯卧撑</li>
+<li>2018-08-08   12 8 9 7 5 6</li>
+<li>2018-08-09   11 8 8 8 7</li>
+<li>2018-08-10   100俯卧撑</li>
+<li>2018-08-11   11 9 8 8 8 50俯卧撑</li>
+<li>2018-08-13   10 9 8 8 7</li>
+<li>2018-08-18   110俯卧撑</li>
+<li>2018-08-20   120</li>
+<li>2018-08-21   140个</li>
+<li>2018-08-26   120 单次俯卧撑到达40</li>
+<li>2018-08-28   30 20 20 20 20</li>
+</ol>
+<h3 id="2018年09月"><a class="markdownIt-Anchor" href="#2018年09月"></a> 2018年09月</h3>
+<ol>
+<li>2018-09-02   50个左右</li>
+<li>2018-09-03   引体 11 8 8 9 7</li>
+<li>2018-09-07   12 10 7 10 7 5 间隔有点长了</li>
+<li>2018-09-08   12 8 8 8 7 7 6 3 4 3 手臂感觉胀胀的</li>
+<li>2018-09-09   13 10 8 8 7 6 6 5 第一次13个勉强完成。 后边做了不少半程（实在上不去了），不过没计数。</li>
+<li>2018-09-11   12 10 7 8 5 3 5 3 3 最后一组荡了十几个，果然荡还是简单啊！！！！</li>
+<li>2018-09-13   解锁体操上杠动作 然后几个双力臂，11 11 10 7 8 7 8 6 5 3</li>
+<li>2018-09-14   10 9 10 6 5 6</li>
+<li>2018-09-15   13个半 10 10 8 8</li>
+<li>2018-09-16   100俯卧撑</li>
+<li>2018-09-17   8 14 9 6 9 5</li>
+<li>2018-09-18   10 10 7 8 6 5 5 5 5 5 热热热 🤮</li>
+<li>2018-09-21   12 10 8 8 6 前两天下雨 俯卧撑</li>
+<li>2018-09-25   13 8 6 7 5 7</li>
+<li>2018-09-26   13 10 8 8 7 7 7 6 5 3 😫    摆动的双力臂果然还是技巧很重要啊。。 估计不用10个标准引体就够了</li>
+<li>2018-09-27   150俯卧撑</li>
+<li>2018-09-28   10 9 8 8 8 7 7 7 6 6</li>
+<li>2018-09-28   14 11 10 8 8 6 7 5 5 。。。</li>
+<li>2018-09-30   150俯卧撑。</li>
+</ol>
+<h3 id="2018年10月"><a class="markdownIt-Anchor" href="#2018年10月"></a> 2018年10月</h3>
+<ol>
+<li>2018-10-01   15 2个双力臂 5 8 8 7 7 6 8 5 7</li>
+<li>2018-10-02   14 5 。。。。。。</li>
+<li>2018-10-05   15 10 9 9 9 8 6 7 6 7 啦啦啦</li>
+<li>2018-10-06   15 9 8 9 6 8 6 5 3 4 防删</li>
+<li>2018-10-08   13 8 8 9 8 6 6 嘤嘤嘤</li>
+<li>2018-10-09   15 11 11 6 突然下雨。。。</li>
+<li>2018-10-10   16 10 9 8 8 8 8</li>
+<li>2018-10-11   17 12 11 9 8 7 8 快速拉</li>
+<li>2018-10-12   16 8 8 6 5 虚。。。</li>
+<li>2018-10-16   17 13 11 9 9 9 8 前几天下雨休息</li>
+<li>2018-10-17   16 13 12 9 8 8 5 啦啦啦</li>
+<li>2018-10-18   18 11 10 8 11 9 8 吊杠70s 单杠臂屈伸15</li>
+<li>2018-10-20   20 13 11 10 9 8 第一组极限速度追求数量 动作不是很标准 借力20</li>
+<li>2018-10-22   18 13 11 10 9 8 8 8 啧啧啧啧</li>
+<li>2018-10-23   15 后边各种引体瞎拉 感觉状态不太好</li>
+<li>2018-10-24   100引体5个一组 20分钟 然后 9 8 8</li>
+<li>2018-10-26   20 15 9 10 9 8 7 20标准引体√</li>
+<li>2018-10-27   17 13 11 9 9 11 啦啦啦啦</li>
+<li>2018-10-28   15 11 10 8 9 。。。。。。，，</li>
+<li>2018-10-30   17 11 10 11 10 。。。</li>
+<li>2018-10-31   15 14 10 10 10 8 10 11 越来越菜了</li>
+</ol>
+<h3 id="2018年11月"><a class="markdownIt-Anchor" href="#2018年11月"></a> 2018年11月</h3>
+<ol>
+<li>2018-11-02   8 7 9 8 6 5 4 负重10kg</li>
+<li>2018-11-08   不借力双力臂达成 17 11 13 10 10 10 10   前两天下雨在寝室练的倒立，状态好可以十几秒了</li>
+<li>2018-11-10   曲腿人旗 11 9 😕</li>
+<li>2018-11-11   10 10 10 10 10 10 下雨</li>
+<li>2018-11-13   20 11 12 13 11 10 10 10 舒服。</li>
+<li>2018-11-17   下雨。。。。。</li>
+<li>2018-11-23   10 x 5</li>
+<li>2018-11-30   17 11 10 12 11 10   人旗现在曲腿10s＋ 估计放假前能完成<br />
+前两天的快乐双力臂😋<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://imgsa.baidu.com/forum/w%3D580/sign=2e8800789f45d688a302b2ac94c37dab/3f65c011b912c8fc2ebb3f86f1039245d7882125.jpg" alt="" /></li>
+</ol>
+<h3 id="2018年12月"><a class="markdownIt-Anchor" href="#2018年12月"></a> 2018年12月</h3>
+<ol>
+<li>2018-12-14   接连下了一个月的雨 难受 估计退到15了</li>
+<li>2018-12-18   17 10 5 10 7 7 5 退步也忒快啊</li>
+</ol>
+<h3 id="2019年01月"><a class="markdownIt-Anchor" href="#2019年01月"></a> 2019年01月</h3>
+<ol>
+<li>2019-01-09   15 8 11 8 7 10 5</li>
+</ol>
+<h3 id="2019年03月"><a class="markdownIt-Anchor" href="#2019年03月"></a> 2019年03月</h3>
+<ol>
+<li>2019-03-05   阔别了两个月的引体向上 14 8 5 5 5 5 5</li>
+<li>2019-03-10   10 7 8 6 6 5 5</li>
+<li>2019-03-18   吊杠70s</li>
+<li>2019-03-23   15 9 6 7 8 6 恢复的太慢了。。</li>
+<li>2019-03-30   12 10 7 8 6 啦啦啦啦啦</li>
+</ol>
+<h3 id="2019年04月"><a class="markdownIt-Anchor" href="#2019年04月"></a> 2019年04月</h3>
+<ol>
+<li>2019-04-01   14 10 10 7 7 9 6 慢速恢复训练</li>
+<li>2019-04-07   16 9 8 8 8 8</li>
+<li>2019-04-08   16 11 10 10 10 9 刺激刺激</li>
+<li>2019-04-15   15 8 8 10 9</li>
+<li>2019-04-16   15 10 8 9 8</li>
+<li>2019-04-20   18 12 10 11 10</li>
+<li>2019-04-23   10x7</li>
+<li>2019-04-25   17 11 11 9 10 7 target 20</li>
+<li>2019-04-30   15 8 11 10 10</li>
+</ol>
+<h3 id="2019年05月"><a class="markdownIt-Anchor" href="#2019年05月"></a> 2019年05月</h3>
+<ol>
+<li>2019-05-02   17 8 11 9 9 啦啦啦</li>
+<li>2019-05-04   18 13 10 10 10 争取一个月内到极限20</li>
+<li>2019-05-07   16 11 10 9 9 啦啦啦啦</li>
+<li>2019-05-09   20 10 10 10 10 啊啊啊啊啊啊啊啊啊！！！！！！！！</li>
+<li>2019-05-11   19 12 12 10 10</li>
+<li>2019-05-13   17 10 10 11 10 啊啊啊啊</li>
+<li>2019-05-16   15 10 11 10 10</li>
+<li>2019-05-17   17 12 10 10 10 夏天到了</li>
+<li>2019-05-19   20 15 12 10 10</li>
+<li>2019-05-20   20 13 12 11 9 啦啦啦</li>
+<li>2019-05-22   20 11 12 10 10 啦啦啦</li>
+<li>2019-05-28   17 11 9 10 10 😭😭</li>
+<li>2019-05-29   12 15 10 10 10</li>
+<li>2019-05-30   体测 20</li>
+<li>2019-05-31   21 12 10 10 。。。。略略略</li>
+</ol>
+<h3 id="2019年06月"><a class="markdownIt-Anchor" href="#2019年06月"></a> 2019年06月</h3>
+<ol>
+<li>2019-06-02   17 12 10 10 10 滴滴滴滴滴</li>
+<li>2019-06-07   17 12 12 10</li>
+<li>2019-06-09   15 10 12 10</li>
+<li>2019-06-10   11 16 10 人旗人旗！！！</li>
+<li>2019-06-12   17 14 10 10 10</li>
+<li>2019-06-15   18 10 10 10 10</li>
+<li>2019-06-16   18 8 8 10 10 。。。</li>
+<li>2019-06-22   15 10 10 10</li>
+<li>2019-06-24   18 8 9 9 10 按百度这个尿性，有空还是我记录全都迁到blog上面吧。。</li>
+<li>2019-06-26   20 11 8 8 10</li>
+</ol>
+<div class="note success simple"><p>终于将之前还存在的记录（丢失了19年夏秋的记录）都迁移过来了。    <code>2020-11-09 23:50</code></p>
+</div>
+<h2 id="2020年"><a class="markdownIt-Anchor" href="#2020年"></a> 2020年</h2>
+<h3 id="2020年10月"><a class="markdownIt-Anchor" href="#2020年10月"></a> 2020年10月</h3>
+<ol>
+<li>2020-10-04   <code>pull up</code> 12 6 6 7 6 6 4 3</li>
+<li>2020-10-05   <code>running</code> 3km</li>
+<li>2020-10-06   <code>pull up</code> 10 6 4   <code>bar dips</code>17 10 8   + 人旗</li>
+<li>2020-10-08   <code>pull up</code> 11 7 8 6 8 6 4</li>
+<li>2020-10-10   <code>pull up</code> 11 7 7 7 5 6 5 3</li>
+<li>2020-10-12   <code>running</code> 3km</li>
+<li>2020-10-14   <code>pull up</code> 13 8 9 8 6 6</li>
+<li>2020-10-15   <code>bar dips</code> 10 7 7 10 8</li>
+<li>2020-10-18   <code>pull up</code> 14 8 8 9 6 5</li>
+<li>2020-10-20   <code>pull up</code> 14 10 8 7 7</li>
+<li>2020-10-22   <code>pull up</code> 15 9 9 7 5 6</li>
+<li>2020-10-24   <code>bar dips</code> 17 10 10 10 16</li>
+<li>2020-10-26   <code>pull up</code> 15 10 9 8 8 2</li>
+<li>2020-10-28   <code>pull up</code> 15 11 11 9 6</li>
+<li>2020-10-30   <code>pull up</code> 15 10 10 7 7 2</li>
+</ol>
+<h3 id="2020年11月"><a class="markdownIt-Anchor" href="#2020年11月"></a> 2020年11月</h3>
+<div class="note warning simple"><p><strong>这个月希望能完成单次20个的小目标，恢复到自己的巅峰</strong></p>
+</div>
+<ol>
+<li>2020-11-01   <code>pull up</code> 10 10 10 10 10  人体旗帜还是不太稳定发挥</li>
+<li>2020-11-03   <code>pull up</code> 16 12 10 10 8</li>
+<li>2020-11-05   <code>pull up</code> 17 15 12 8 8  今天晚上很舒服，很小的的风。加上组内间隔时间稍长。</li>
+<li>2020-11-07   <code>pull up</code> 15 13 12 9 8  人旗果然还是主要靠背，练了一个月的引体向上之后，人旗的感觉明显比之前强了。</li>
+<li>2020-11-09   <code>pull up</code> 15 11 11 11 8  人旗的感觉有点像梦一样了，感觉有点不太真实。不要再搞些花里胡哨的了，专心提数量吧</li>
+<li>2020-11-10   人旗80°</li>
+<li>2020-11-11   <code>pull up</code> 17 13 10 8 8</li>
+<li>2020-11-13   <code>pull up</code> 20 14 10 10 8  手感状态哈哈🤪🤪</li>
+<li>2020-11-14   人旗 + 差一点的双力臂</li>
+<li>2020-11-15   <code>pull up</code> 19 14 11 10 10</li>
+<li>2020-11-17   竟然下雨了，推迟到明天</li>
+<li>2020-11-18   <code>pull up</code> 18 14 10 9 10 吊杠60s</li>
+<li>2020-11-20   <code>pull up</code> 19 13 12 10 8</li>
+<li>2020-11-22   <code>bar dips</code> 10*5 太冷了，<s>考虑买个室内的在宿舍内试试。</s></li>
+<li>2020-11-24   <code>pull up</code> 12 15 11 10 10</li>
+<li>2020-11-26   <code>pull up</code> 15 15 11 10 10 <code>bar dips</code> 15*2</li>
+<li>2020-11-28   <code>pull up</code> 15 11 15 15 10    买了个在宿舍的，还行，只需要练双杠和人旗的时候出去了</li>
+<li>2020-11-30   <code>pull up</code> 18 15 15 10 10</li>
+</ol>
+<h3 id="2020年12月"><a class="markdownIt-Anchor" href="#2020年12月"></a> 2020年12月</h3>
+<ol>
+<li>2020-12-02   <code>pull up</code> 20 15 13 10 10</li>
+<li>2020-12-03   <code>bar dips</code> 20 20 15 15 15</li>
+<li>2020-12-04   <code>pull up</code> 22 15 15 13 10</li>
+<li>2020-12-07   <code>pull up</code> 10 13 12 10 10</li>
+<li>2020-12-08   <code>bar dips</code> 20 20 15</li>
+<li>2020-12-09   <code>pull up</code> 15 13 10 10 10</li>
+<li>2020-12-11   <code>pull up</code> 15 12 10 10 10</li>
+<li>2020-12-14   <code>pull up</code> 15 11 11 10 10</li>
+<li>2020-12-15   <code>burpee</code> 30min</li>
+<li>2020-12-17   <code>pull up</code> 17 12 12 10 10</li>
+<li>2020-12-18   <code>burpee</code> 30min</li>
+<li>2020-12-19   <code>pull up</code> 15 12  手被割破了，难受 100蹲起</li>
+<li>2020-12-20   <code>push up</code> 30 20 30 20</li>
+<li>2020-12-23   <code>burpee</code> 110</li>
+<li>2020-12-24   <code>pull up</code> 15 12 10 10 10</li>
+<li>2020-12-25   <code>burpee</code> 100</li>
+<li>2020-12-26   <code>pull up</code> 20 10 11 10 10</li>
+<li>2020-12-25   <code>burpee</code> 130</li>
+</ol>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Win32显示图像</title>
+    <url>/posts/2020-09-001.html</url>
+    <content><![CDATA[<p>在windows下将数据以位图的方式显示：</p>
+<pre><code>//变量定义
+
+HWND hWnd;              //窗口句柄定义
+HDC hdc_mem;            //缓冲句柄
+HBITMAP screen_hb ;		// DIB
+HBITMAP screen_ob ;		// 老的 BITMAP
+void* buffer;           //数据存储区
+
+BITMAPINFO bi = &#123; &#123; sizeof(BITMAPINFOHEADER), 100, 100, 1, 24, BI_RGB,
+       100 * 100 * 3, 0, 0, 0, 0 &#125; &#125;;
+//初始化配置
+HDC hdc = GetDC(hWnd);
+hdc_mem = CreateCompatibleDC(hdc);
+screen_hb = CreateDIBSection(hdc_mem, &amp;bi, DIB_RGB_COLORS, (void**)&amp;buffer, NULL, 0);   
+if (screen_hb == NULL) return -3;
+screen_ob = (HBITMAP)SelectObject(hdc_mem, screen_hb);
+ReleaseDC(hWnd, hdc);
+
+//显示数据  dat为位图数据指针，size为1像素所占字节大小
+ImageLoad(void* dat, int width, int height,int size)
+&#123;
+    if (hdc_mem &amp;&amp; screen_hb)
+    &#123;
+        HDC hDC = GetDC(hWnd);
+        memcpy(buffer, dat, width * height * size);
+        BitBlt(hDC, 0, 0, width, height, hdc_mem, 0, 0, SRCCOPY);
+        ReleaseDC(hWnd, hDC);
+    &#125;
+&#125;
+</code></pre>
+<p>CreateDIBSection函数中的第四个参数非常重要，这个参数是一个指针，指向存储位图数据的一块内存。我们传递给函数一个指针变量后，函数自动分配一块内存出来，这块内存自动分配，自动释放。在配置好后，我们将位图数据放置到这块内存中，在调用BitBlt就可以显示图像了。<br />
+做这个的原因是，自己准备学习3d render需要显示，如果加载QT\SDL库有点大材小用，并且网上一些其他的用来显示的加了很多其他功能代码，总体的代码量有点多。</p>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>CreateDIBSection</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>free-handstand tips</title>
+    <url>/posts/2020-10-005.html</url>
+    <content><![CDATA[<ol>
+<li>改变手的放置位置，不要将整个手全紧贴地面，可以将手指弯曲，形成一个抓地的感觉</li>
+<li>将手掌贴地，只有在需要必须使用手指时是用手指，平常调整身体的平衡时，可以只使用手掌进行调节，当我们身体将要放过去时，这样就可以有额外的力量将身体拉回来</li>
+<li>增大平衡范围，加强自己的核心力量，往后倒时，将臀部前移，腿下移或后移</li>
+<li>练习其他类型的手平衡</li>
+<li>使用不同的底板实现平衡，不只限于地面，其他的比如草地，沙滩，双杠</li>
+<li>倒立时眼睛看下方地面，有利于感受身体，保持平衡</li>
+<li>准备倒立时，手臂保持垂直于地面，减少上肢运动幅度，臀部抬高，上肢先起，倒立起尽量减少动作幅度，下落时先收腿容易控制下落，减少幅度</li>
+<li>靠墙倒立时，可以尝试不用脚蹬，使用手掌的力量使脚离开墙</li>
+<li>折刀俯卧撑</li>
+</ol>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
     <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
     <url>/posts/2020-07-002.html</url>
     <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
@@ -2009,26 +2029,6 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
         <tag>steam</tag>
         <tag>repkg</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>5 free-handstand tips</title>
-    <url>/posts/2020-10-005.html</url>
-    <content><![CDATA[<ol>
-<li>改变手的放置位置，不要将整个手全紧贴地面，可以将手指弯曲，形成一个抓地的感觉</li>
-<li>将手掌贴地，只有在需要必须使用手指时是用手指，平常调整身体的平衡时，可以只使用手掌进行调节，当我们身体将要放过去时，这样就可以有额外的力量将身体拉回来</li>
-<li>增大平衡范围，加强自己的核心力量，往后倒时，将臀部前移，腿下移或后移</li>
-<li>练习其他类型的手平衡</li>
-<li>使用不同的底板实现平衡，不只限于地面，其他的比如草地，沙滩，双杠</li>
-<li>倒立时眼睛看下方地面，有利于感受身体，保持平衡</li>
-<li>准备倒立时，手臂保持垂直于地面，减少上肢运动幅度，臀部抬高，上肢先起，倒立起尽量减少动作幅度，下落时先收腿容易控制下落，减少幅度</li>
-</ol>
-<ul>
-<li>靠墙倒立时，可以尝试不用脚蹬，使用手掌的力量使脚离开墙</li>
-</ul>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
   </entry>
   <entry>
     <title>js多次点击的响应</title>
@@ -2179,6 +2179,27 @@ dp[i] =     if s[i]==’)’
         <tag>C/C++</tag>
         <tag>leetcode</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>python配置文件</title>
+    <url>/posts/2020-11-003.html</url>
+    <content><![CDATA[<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[top]</span></span><br><span class="line"><span class="attr">categories</span>=<span class="number">111</span></span><br><span class="line"><span class="attr">purity</span>=<span class="number">111</span></span><br><span class="line"><span class="attr">sorting</span>=toplist</span><br><span class="line"><span class="attr">order</span>=desc</span><br><span class="line"><span class="section">[hot]</span></span><br><span class="line"><span class="attr">sorting</span>=hot</span><br></pre></td></tr></table></figure>
+<h3 id="引入库"><a class="markdownIt-Anchor" href="#引入库"></a> 引入库</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> configparser</span><br></pre></td></tr></table></figure>
+<h3 id="初始化并读取文件"><a class="markdownIt-Anchor" href="#初始化并读取文件"></a> 初始化并读取文件</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config = ConfigParser()</span><br><span class="line">config.read(<span class="string">&#x27;config.ini&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="获取所有sections选择一个section"><a class="markdownIt-Anchor" href="#获取所有sections选择一个section"></a> 获取所有sections,选择一个section</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sections = config.sections()</span><br><span class="line"><span class="comment">#结果 [&#x27;top&#x27;, &#x27;hot&#x27;]</span></span><br><span class="line"></span><br><span class="line">sec = sections[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="获取一个section中的所有键key"><a class="markdownIt-Anchor" href="#获取一个section中的所有键key"></a> 获取一个section中的所有键(key)</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.options(sec)</span><br><span class="line"><span class="comment">#结果 [&#x27;categories&#x27;, &#x27;purity&#x27;, &#x27;sorting&#x27;, &#x27;order&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h3 id="获取一个section中的所有键值对keyvalue"><a class="markdownIt-Anchor" href="#获取一个section中的所有键值对keyvalue"></a> 获取一个section中的所有键值对(key:value)</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.items(sec)</span><br><span class="line"><span class="comment">#结果 [(&#x27;categories&#x27;, &#x27;111&#x27;), (&#x27;purity&#x27;, &#x27;111&#x27;), (&#x27;sorting&#x27;, &#x27;toplist&#x27;), (&#x27;order&#x27;, &#x27;desc&#x27;)]</span></span><br></pre></td></tr></table></figure>
+<h3 id="获取section中某个键的值"><a class="markdownIt-Anchor" href="#获取section中某个键的值"></a> 获取section中某个键的值</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.get(sec, <span class="string">&#x27;categories&#x27;</span>)</span><br><span class="line"><span class="comment">#结果 111</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
   </entry>
   <entry>
     <title>machine-learning 知识点总结</title>
@@ -2351,27 +2372,6 @@ dp[i] =     if s[i]==’)’
         <tag>machine learning</tag>
         <tag>吴达恩</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>python配置文件</title>
-    <url>/posts/2020-11-003.html</url>
-    <content><![CDATA[<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[top]</span></span><br><span class="line"><span class="attr">categories</span>=<span class="number">111</span></span><br><span class="line"><span class="attr">purity</span>=<span class="number">111</span></span><br><span class="line"><span class="attr">sorting</span>=toplist</span><br><span class="line"><span class="attr">order</span>=desc</span><br><span class="line"><span class="section">[hot]</span></span><br><span class="line"><span class="attr">sorting</span>=hot</span><br></pre></td></tr></table></figure>
-<h3 id="引入库"><a class="markdownIt-Anchor" href="#引入库"></a> 引入库</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> configparser</span><br></pre></td></tr></table></figure>
-<h3 id="初始化并读取文件"><a class="markdownIt-Anchor" href="#初始化并读取文件"></a> 初始化并读取文件</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config = ConfigParser()</span><br><span class="line">config.read(<span class="string">&#x27;config.ini&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="获取所有sections选择一个section"><a class="markdownIt-Anchor" href="#获取所有sections选择一个section"></a> 获取所有sections,选择一个section</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sections = config.sections()</span><br><span class="line"><span class="comment">#结果 [&#x27;top&#x27;, &#x27;hot&#x27;]</span></span><br><span class="line"></span><br><span class="line">sec = sections[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="获取一个section中的所有键key"><a class="markdownIt-Anchor" href="#获取一个section中的所有键key"></a> 获取一个section中的所有键(key)</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.options(sec)</span><br><span class="line"><span class="comment">#结果 [&#x27;categories&#x27;, &#x27;purity&#x27;, &#x27;sorting&#x27;, &#x27;order&#x27;]</span></span><br></pre></td></tr></table></figure>
-<h3 id="获取一个section中的所有键值对keyvalue"><a class="markdownIt-Anchor" href="#获取一个section中的所有键值对keyvalue"></a> 获取一个section中的所有键值对(key:value)</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.items(sec)</span><br><span class="line"><span class="comment">#结果 [(&#x27;categories&#x27;, &#x27;111&#x27;), (&#x27;purity&#x27;, &#x27;111&#x27;), (&#x27;sorting&#x27;, &#x27;toplist&#x27;), (&#x27;order&#x27;, &#x27;desc&#x27;)]</span></span><br></pre></td></tr></table></figure>
-<h3 id="获取section中某个键的值"><a class="markdownIt-Anchor" href="#获取section中某个键的值"></a> 获取section中某个键的值</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.get(sec, <span class="string">&#x27;categories&#x27;</span>)</span><br><span class="line"><span class="comment">#结果 111</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
   </entry>
   <entry>
     <title>pytorch中的LSTM模型</title>
@@ -2561,6 +2561,68 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
+    <title>小四轴飞行器</title>
+    <url>/posts/2020-08-004.html</url>
+    <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
+<p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>博客说明</title>
+    <url>/posts/2020-07-001.html</url>
+    <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
+<p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
+<h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
+<h3 id="创建一个新的文章或页面"><a class="markdownIt-Anchor" href="#创建一个新的文章或页面"></a> 创建一个新的文章或页面</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] [title]</span><br></pre></td></tr></table></figure>
+<h4 id="布局layout"><a class="markdownIt-Anchor" href="#布局layout"></a> 布局（Layout）</h4>
+<p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
+<pre><code>布局	路径
+post	source/_posts
+page	source
+draft	source/_drafts
+</code></pre>
+<h4 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h4>
+<p>创建一个标题为exp的文章，默认布局为post，在命令中可以省略。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new exp   </span><br></pre></td></tr></table></figure>
+<p>创建一个名为exp的页面。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new page exp   </span><br></pre></td></tr></table></figure>
+<h3 id="本地运行服务器可以在localhost4000中查看"><a class="markdownIt-Anchor" href="#本地运行服务器可以在localhost4000中查看"></a> 本地运行服务器，可以在<a href="http://localhost:4000">localhost:4000</a>中查看</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="重新渲染博客"><a class="markdownIt-Anchor" href="#重新渲染博客"></a> 重新渲染博客</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="将项目更新到github-pages上"><a class="markdownIt-Anchor" href="#将项目更新到github-pages上"></a> 将项目更新到GitHub Pages上</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/zh-cn/docs/">Hexo doc</a></p>
+<h3 id="git的使用"><a class="markdownIt-Anchor" href="#git的使用"></a> git的使用</h3>
+<h4 id="git初始化仓库"><a class="markdownIt-Anchor" href="#git初始化仓库"></a> git初始化仓库</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<h4 id="git添加到缓冲区"><a class="markdownIt-Anchor" href="#git添加到缓冲区"></a> git添加到缓冲区</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add *</span><br></pre></td></tr></table></figure>
+<h4 id="git提交改动"><a class="markdownIt-Anchor" href="#git提交改动"></a> git提交改动</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;msg&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="git推送到远程仓库"><a class="markdownIt-Anchor" href="#git推送到远程仓库"></a> git推送到远程仓库</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<h4 id="如果没有远程仓库可以先添加"><a class="markdownIt-Anchor" href="#如果没有远程仓库可以先添加"></a> 如果没有远程仓库，可以先添加</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin server</span><br></pre></td></tr></table></figure>
+<h3 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h3>
+<p>hexo g -d 或者 git push 时可能在Writing objects停住不动，原因是上传文件可能较大，而缓冲区较小。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.postBuffer 524288000</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>全国大学生智能汽车竞赛记录</title>
     <url>/posts/2020-07-005.html</url>
     <content><![CDATA[<h3 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h3>
@@ -2630,68 +2692,6 @@ if __name__ == &quot;__main__&quot;:
         <tag>全国大学生智能汽车竞赛</tag>
         <tag>恩智浦杯</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>博客说明</title>
-    <url>/posts/2020-07-001.html</url>
-    <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
-<p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
-<h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
-<h3 id="创建一个新的文章或页面"><a class="markdownIt-Anchor" href="#创建一个新的文章或页面"></a> 创建一个新的文章或页面</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] [title]</span><br></pre></td></tr></table></figure>
-<h4 id="布局layout"><a class="markdownIt-Anchor" href="#布局layout"></a> 布局（Layout）</h4>
-<p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
-<pre><code>布局	路径
-post	source/_posts
-page	source
-draft	source/_drafts
-</code></pre>
-<h4 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h4>
-<p>创建一个标题为exp的文章，默认布局为post，在命令中可以省略。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new exp   </span><br></pre></td></tr></table></figure>
-<p>创建一个名为exp的页面。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new page exp   </span><br></pre></td></tr></table></figure>
-<h3 id="本地运行服务器可以在localhost4000中查看"><a class="markdownIt-Anchor" href="#本地运行服务器可以在localhost4000中查看"></a> 本地运行服务器，可以在<a href="http://localhost:4000">localhost:4000</a>中查看</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<h3 id="重新渲染博客"><a class="markdownIt-Anchor" href="#重新渲染博客"></a> 重新渲染博客</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
-<h3 id="将项目更新到github-pages上"><a class="markdownIt-Anchor" href="#将项目更新到github-pages上"></a> 将项目更新到GitHub Pages上</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/zh-cn/docs/">Hexo doc</a></p>
-<h3 id="git的使用"><a class="markdownIt-Anchor" href="#git的使用"></a> git的使用</h3>
-<h4 id="git初始化仓库"><a class="markdownIt-Anchor" href="#git初始化仓库"></a> git初始化仓库</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
-<h4 id="git添加到缓冲区"><a class="markdownIt-Anchor" href="#git添加到缓冲区"></a> git添加到缓冲区</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add *</span><br></pre></td></tr></table></figure>
-<h4 id="git提交改动"><a class="markdownIt-Anchor" href="#git提交改动"></a> git提交改动</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;msg&quot;</span></span><br></pre></td></tr></table></figure>
-<h4 id="git推送到远程仓库"><a class="markdownIt-Anchor" href="#git推送到远程仓库"></a> git推送到远程仓库</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
-<h4 id="如果没有远程仓库可以先添加"><a class="markdownIt-Anchor" href="#如果没有远程仓库可以先添加"></a> 如果没有远程仓库，可以先添加</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin server</span><br></pre></td></tr></table></figure>
-<h3 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h3>
-<p>hexo g -d 或者 git push 时可能在Writing objects停住不动，原因是上传文件可能较大，而缓冲区较小。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.postBuffer 524288000</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小四轴飞行器</title>
-    <url>/posts/2020-08-004.html</url>
-    <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
-<p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
   </entry>
   <entry>
     <title>记录</title>
