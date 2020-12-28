@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://slyli.cn/posts/2020-12-002.html</loc>
+    <loc>http://slyli.cn/posts/2020-10-001.html</loc>
     
     <lastmod>2020-12-28</lastmod>
     
   </url>
   
   <url>
-    <loc>http://slyli.cn/posts/2020-10-001.html</loc>
+    <loc>http://slyli.cn/gallery/index.html</loc>
     
     <lastmod>2020-12-28</lastmod>
     
@@ -73,13 +73,6 @@
   
   <url>
     <loc>http://slyli.cn/gallery/favorites/index.html</loc>
-    
-    <lastmod>2020-12-02</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://slyli.cn/gallery/index.html</loc>
     
     <lastmod>2020-12-02</lastmod>
     
@@ -480,13 +473,6 @@
   </url>
   
   <url>
-    <loc>http://slyli.cn/tags/hexo/</loc>
-    <lastmod>2020-12-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://slyli.cn/tags/HFUT/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
@@ -502,6 +488,13 @@
   
   <url>
     <loc>http://slyli.cn/tags/%E6%81%A9%E6%99%BA%E6%B5%A6%E6%9D%AF/</loc>
+    <lastmod>2020-12-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://slyli.cn/tags/hexo/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
