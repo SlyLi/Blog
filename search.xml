@@ -3325,4 +3325,16 @@ $y = d \times cos \left( \theta \right)$
         <tag>RPLIDAR A1 激光雷达</tag>
       </tags>
   </entry>
+  <entry>
+    <title>博客部署到vercel</title>
+    <url>/posts/2020-12-002.html</url>
+    <content><![CDATA[<p>晚上闲逛时突然发现了一个好东西：vercel我们可以将 github-pages 直接部署到上面，部署 github-pages 时可以直接拉取过去</p>
+<ol>
+<li>重要的时个人账户永久免费，并且每个月有100G的宽带额度。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+  </entry>
 </search>
