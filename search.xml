@@ -223,70 +223,6 @@ pts[j] = m2v(viewport * projection * modelview * v2m(v));
       </tags>
   </entry>
   <entry>
-    <title>OneDrive云盘搭建</title>
-    <url>/posts/2020-08-006.html</url>
-    <content><![CDATA[<h3 id="拥有一个onedrive账号"><a class="markdownIt-Anchor" href="#拥有一个onedrive账号"></a> 拥有一个OneDrive账号</h3>
-<ol>
-<li>打开微软的<a href="https://signup.microsoft.com/">注册/登录页面</a>，选择合适的按照流程注册。</li>
-<li>个人免费账户是5G，学生版是1T或5T。</li>
-</ol>
-<h3 id="下载onemanager"><a class="markdownIt-Anchor" href="#下载onemanager"></a> 下载OneManager</h3>
-<ol>
-<li>前往 <a href="https://github.com/qkqpttgf/OneManager-php">OneManager项目地址</a>下载并完成解压，为之后准备。</li>
-</ol>
-<h3 id="部署"><a class="markdownIt-Anchor" href="#部署"></a> 部署</h3>
-<p>选择腾讯云函数，有免费额度，一般来说够用了。</p>
-<ol>
-<li>
-<p>新建函数，输入名称，运行环境选择php7.2，创建方式选择空白函数<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud1.png" alt="" /></p>
-</li>
-<li>
-<p>通过本地上传文件夹方式，上传之前解压后的OneManager文件夹<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud2.png" alt="" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud3.png" alt="" /></p>
-</li>
-<li>
-<p>创建触发器，选择API网关触发器<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud4.png" alt="" /></p>
-</li>
-<li>
-<p>（可选）点击触发器的API服务名 <code>SCF_API_SERVICE</code>，可以自定义域名。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud5.png" alt="" /></p>
-</li>
-</ol>
-<h3 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h3>
-<ol start="5">
-<li>点击触发器下方访问路径，后安装项目，选择新建 SecretId &amp; SecretKey，返回腾讯云新建密钥，完成后将 SecretId &amp; SecretKey填入其中。</li>
-</ol>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud6.png" alt="" /></p>
-<ol start="6">
-<li>设置完密码后登录，通过管理-设置，点击 <code>添加Onedrive盘</code>，然后再填写相关内容就ok了。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud7.png" alt="" /></li>
-</ol>
-<div class="note warning flat"><ul>
-<li>个人账号选择  MS: 国际版（商业版与个人版）</li>
-<li>学生账号只能选择 ShareUrl: 共享链接， 对一个Onedrive文件夹共享进行使用</li>
-</ul>
-</div>
-<p>本人网盘链接 <a href="http://cloud.slyli.cn/cloud">http://cloud.slyli.cn/cloud</a></p>
-<p>目前上传了一部剧：《如此可爱的我们》。然后把之前博客中需要的视频也搬到这上面了。</p>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>KaTeX Supported Functions</title>
-    <url>/posts/2020-10-004.html</url>
-    <content><![CDATA[<h2 id="katex"><a class="markdownIt-Anchor" href="#katex"></a> <a href="https://katex.org/docs/supported.html">KaTeX</a></h2>
-<iframe src="https://katex.org/docs/supported.html" width="100%" height="800px" frameborder="0" loading="lazy" allowfullscreen></iframe>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-  </entry>
-  <entry>
     <title>C</title>
     <url>/posts/2020-08-001.html</url>
     <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
@@ -345,6 +281,60 @@ pts[j] = m2v(viewport * projection * modelview * v2m(v));
       <tags>
         <tag>C</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>OneDrive云盘搭建</title>
+    <url>/posts/2020-08-006.html</url>
+    <content><![CDATA[<h3 id="拥有一个onedrive账号"><a class="markdownIt-Anchor" href="#拥有一个onedrive账号"></a> 拥有一个OneDrive账号</h3>
+<ol>
+<li>打开微软的<a href="https://signup.microsoft.com/">注册/登录页面</a>，选择合适的按照流程注册。</li>
+<li>个人免费账户是5G，学生版是1T或5T。</li>
+</ol>
+<h3 id="下载onemanager"><a class="markdownIt-Anchor" href="#下载onemanager"></a> 下载OneManager</h3>
+<ol>
+<li>前往 <a href="https://github.com/qkqpttgf/OneManager-php">OneManager项目地址</a>下载并完成解压，为之后准备。</li>
+</ol>
+<h3 id="部署"><a class="markdownIt-Anchor" href="#部署"></a> 部署</h3>
+<p>选择腾讯云函数，有免费额度，一般来说够用了。</p>
+<ol>
+<li>
+<p>新建函数，输入名称，运行环境选择php7.2，创建方式选择空白函数<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud1.png" alt="" /></p>
+</li>
+<li>
+<p>通过本地上传文件夹方式，上传之前解压后的OneManager文件夹<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud2.png" alt="" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud3.png" alt="" /></p>
+</li>
+<li>
+<p>创建触发器，选择API网关触发器<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud4.png" alt="" /></p>
+</li>
+<li>
+<p>（可选）点击触发器的API服务名 <code>SCF_API_SERVICE</code>，可以自定义域名。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud5.png" alt="" /></p>
+</li>
+</ol>
+<h3 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h3>
+<ol start="5">
+<li>点击触发器下方访问路径，后安装项目，选择新建 SecretId &amp; SecretKey，返回腾讯云新建密钥，完成后将 SecretId &amp; SecretKey填入其中。</li>
+</ol>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud6.png" alt="" /></p>
+<ol start="6">
+<li>设置完密码后登录，通过管理-设置，点击 <code>添加Onedrive盘</code>，然后再填写相关内容就ok了。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud7.png" alt="" /></li>
+</ol>
+<div class="note warning flat"><ul>
+<li>个人账号选择  MS: 国际版（商业版与个人版）</li>
+<li>学生账号只能选择 ShareUrl: 共享链接， 对一个Onedrive文件夹共享进行使用</li>
+</ul>
+</div>
+<p>本人网盘链接 <a href="http://cloud.slyli.cn/cloud">http://cloud.slyli.cn/cloud</a></p>
+<p>目前上传了一部剧：《如此可爱的我们》。然后把之前博客中需要的视频也搬到这上面了。</p>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
   </entry>
   <entry>
     <title>C++</title>
@@ -697,6 +687,91 @@ capture:</p>
       </tags>
   </entry>
   <entry>
+    <title>KaTeX Supported Functions</title>
+    <url>/posts/2020-10-004.html</url>
+    <content><![CDATA[<h2 id="katex"><a class="markdownIt-Anchor" href="#katex"></a> <a href="https://katex.org/docs/supported.html">KaTeX</a></h2>
+<iframe src="https://katex.org/docs/supported.html" width="100%" height="800px" frameborder="0" loading="lazy" allowfullscreen></iframe>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LinearRegression--python</title>
+    <url>/posts/2020-07-008.html</url>
+    <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
+<pre><code>import numpy as np
+from matplotlib import pyplot as plt
+# 线性回归
+# X是矩阵，每一行是一组输入数据；theta是列向量；y也是列向量
+def ComputeCost(X, y, theta):
+    m = len(y)
+    J = 0
+    t = np.dot(X, theta)-y
+    J = np.dot(t.T, t)/(2*m)
+    return J
+
+# 计算代价函数
+# alpaa是学习率；num_iters是迭代次数
+def GradientDescent(X, y, theta, alpha, num_iters):
+    m = len(y)
+    n = len(theta)
+    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
+    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
+
+    for i in range(num_iters):  # 遍历迭代次数
+        h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
+        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
+        theta = temp[:, i]
+        J_history[i] = ComputeCost(X, y, theta)  # 调用计算代价函数
+        # print(J_history[i])
+    return theta, J_history
+
+def featureNormaliza(X):
+    X_norm = np.array(X)  # 将X转化为numpy数组对象，才可以进行矩阵的运算
+    # 定义所需变量
+    mu = np.zeros((1, X.shape[1]))
+    sigma = np.zeros((1, X.shape[1]))
+    mu = np.mean(X_norm, 0)          # 求每一列的平均值（0指定为列，1代表行）
+    sigma = np.std(X_norm, 0)        # 求每一列的标准差
+    for i in range(X.shape[1]):     # 遍历列
+        X_norm[:, i] = (X_norm[:, i]-mu[i])/sigma[i]  # 归一化
+    return X_norm, mu, sigma
+
+# 逻辑回归
+if __name__ == &quot;__main__&quot;:
+    alpha = 0.01
+    num_iters = 400
+
+    # 取消归一化需要的参数
+    #alpha = 0.0000001
+    #num_iters = 4000
+
+    data = np.loadtxt('data.txt', delimiter=',', dtype=np.float64)
+    X = data[:, 0:-1]
+    y = data[:, -1].reshape(-1, 1)
+    X, mu, s = featureNormaliza(X)
+    #plt.scatter(X_norm[:, 0], X_norm[:, 1])
+    # plt.show()
+    X = np.hstack((np.ones((X.shape[0], 1)), X))
+    theta = np.zeros((X.shape[1], 1))
+    theta, J_history = GradientDescent(X, y, theta, alpha, num_iters)
+
+    x = np.arange(1, num_iters+1)
+    plt.plot(x, J_history)
+    plt.show()
+</code></pre>
+<p>虽然算法理解起来不算很难，等到了自己动手是实现的时候还是有很多问题的。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>machine learning</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LogisticRegression--python</title>
     <url>/posts/2020-07-011.html</url>
     <content><![CDATA[<p>逻辑回归</p>
@@ -946,81 +1021,6 @@ if __name__ == &quot;__main__&quot;:
 
     print(u&quot;预测准确度为：%f%%&quot; % np.mean(np.float64(p == y.reshape(-1, 1))*100))
 </code></pre>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>machine learning</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LinearRegression--python</title>
-    <url>/posts/2020-07-008.html</url>
-    <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
-<pre><code>import numpy as np
-from matplotlib import pyplot as plt
-# 线性回归
-# X是矩阵，每一行是一组输入数据；theta是列向量；y也是列向量
-def ComputeCost(X, y, theta):
-    m = len(y)
-    J = 0
-    t = np.dot(X, theta)-y
-    J = np.dot(t.T, t)/(2*m)
-    return J
-
-# 计算代价函数
-# alpaa是学习率；num_iters是迭代次数
-def GradientDescent(X, y, theta, alpha, num_iters):
-    m = len(y)
-    n = len(theta)
-    temp = np.matrix(np.zeros((n, num_iters)))   # 暂存每次迭代计算的theta，转化为矩阵形式
-    J_history = np.zeros((num_iters, 1))  # 记录每次迭代计算的代价值
-
-    for i in range(num_iters):  # 遍历迭代次数
-        h = np.dot(X, theta)     # 计算内积，matrix可以直接乘
-        temp[:, i] = theta-((alpha/m)*(np.dot(X.T, h-y)))  # 梯度的计算
-        theta = temp[:, i]
-        J_history[i] = ComputeCost(X, y, theta)  # 调用计算代价函数
-        # print(J_history[i])
-    return theta, J_history
-
-def featureNormaliza(X):
-    X_norm = np.array(X)  # 将X转化为numpy数组对象，才可以进行矩阵的运算
-    # 定义所需变量
-    mu = np.zeros((1, X.shape[1]))
-    sigma = np.zeros((1, X.shape[1]))
-    mu = np.mean(X_norm, 0)          # 求每一列的平均值（0指定为列，1代表行）
-    sigma = np.std(X_norm, 0)        # 求每一列的标准差
-    for i in range(X.shape[1]):     # 遍历列
-        X_norm[:, i] = (X_norm[:, i]-mu[i])/sigma[i]  # 归一化
-    return X_norm, mu, sigma
-
-# 逻辑回归
-if __name__ == &quot;__main__&quot;:
-    alpha = 0.01
-    num_iters = 400
-
-    # 取消归一化需要的参数
-    #alpha = 0.0000001
-    #num_iters = 4000
-
-    data = np.loadtxt('data.txt', delimiter=',', dtype=np.float64)
-    X = data[:, 0:-1]
-    y = data[:, -1].reshape(-1, 1)
-    X, mu, s = featureNormaliza(X)
-    #plt.scatter(X_norm[:, 0], X_norm[:, 1])
-    # plt.show()
-    X = np.hstack((np.ones((X.shape[0], 1)), X))
-    theta = np.zeros((X.shape[1], 1))
-    theta, J_history = GradientDescent(X, y, theta, alpha, num_iters)
-
-    x = np.arange(1, num_iters+1)
-    plt.plot(x, J_history)
-    plt.show()
-</code></pre>
-<p>虽然算法理解起来不算很难，等到了自己动手是实现的时候还是有很多问题的。</p>
 ]]></content>
       <categories>
         <category>AI</category>
@@ -1502,6 +1502,51 @@ T_k - \frac  {T_{k,j}} {T_{i,j}} T_i &amp;\text{if}\ k \not= j
       </categories>
   </entry>
   <entry>
+    <title>Win32显示图像</title>
+    <url>/posts/2020-09-001.html</url>
+    <content><![CDATA[<p>在windows下将数据以位图的方式显示：</p>
+<pre><code>//变量定义
+
+HWND hWnd;              //窗口句柄定义
+HDC hdc_mem;            //缓冲句柄
+HBITMAP screen_hb ;		// DIB
+HBITMAP screen_ob ;		// 老的 BITMAP
+void* buffer;           //数据存储区
+
+BITMAPINFO bi = &#123; &#123; sizeof(BITMAPINFOHEADER), 100, 100, 1, 24, BI_RGB,
+       100 * 100 * 3, 0, 0, 0, 0 &#125; &#125;;
+//初始化配置
+HDC hdc = GetDC(hWnd);
+hdc_mem = CreateCompatibleDC(hdc);
+screen_hb = CreateDIBSection(hdc_mem, &amp;bi, DIB_RGB_COLORS, (void**)&amp;buffer, NULL, 0);   
+if (screen_hb == NULL) return -3;
+screen_ob = (HBITMAP)SelectObject(hdc_mem, screen_hb);
+ReleaseDC(hWnd, hdc);
+
+//显示数据  dat为位图数据指针，size为1像素所占字节大小
+ImageLoad(void* dat, int width, int height,int size)
+&#123;
+    if (hdc_mem &amp;&amp; screen_hb)
+    &#123;
+        HDC hDC = GetDC(hWnd);
+        memcpy(buffer, dat, width * height * size);
+        BitBlt(hDC, 0, 0, width, height, hdc_mem, 0, 0, SRCCOPY);
+        ReleaseDC(hWnd, hDC);
+    &#125;
+&#125;
+</code></pre>
+<p>CreateDIBSection函数中的第四个参数非常重要，这个参数是一个指针，指向存储位图数据的一块内存。我们传递给函数一个指针变量后，函数自动分配一块内存出来，这块内存自动分配，自动释放。在配置好后，我们将位图数据放置到这块内存中，在调用BitBlt就可以显示图像了。<br />
+做这个的原因是，自己准备学习3d render需要显示，如果加载QT\SDL库有点大材小用，并且网上一些其他的用来显示的加了很多其他功能代码，总体的代码量有点多。</p>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>CreateDIBSection</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>android</title>
     <url>/posts/2020-08-003.html</url>
     <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
@@ -1722,6 +1767,27 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
       </tags>
   </entry>
   <entry>
+    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
+    <url>/posts/2020-07-002.html</url>
+    <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
+<h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg2.png" alt="解压" /></p>
+<h3 id="解压完成后会将所有文件默认放入同目录下的output文件中"><a class="markdownIt-Anchor" href="#解压完成后会将所有文件默认放入同目录下的output文件中"></a> 解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3>
+<h3 id="想要了解更多可以查看源仓库-notscuffedrepkg说明"><a class="markdownIt-Anchor" href="#想要了解更多可以查看源仓库-notscuffedrepkg说明"></a> 想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg">notscuffed/repkg</a>说明。</h3>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>wallpapper engine</tag>
+        <tag>github</tag>
+        <tag>steam</tag>
+        <tag>repkg</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>beyond</title>
     <url>/posts/2020-10-001.html</url>
     <content><![CDATA[<div class="note info simple"><p>粗滤估计我的街健记录应该是从2018年春天开始的，当时是大二下，断断续续竟然都快3年了！ <code>2020-11-9 23:00</code></p>
@@ -1938,57 +2004,12 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
 <li>2020-12-24   <code>pull up</code> 15 12 10 10 10</li>
 <li>2020-12-25   <code>burpee</code> 100</li>
 <li>2020-12-26   <code>pull up</code> 20 10 11 10 10</li>
-<li>2020-12-25   <code>burpee</code> 130</li>
+<li>2020-12-27   <code>burpee</code> 130</li>
 </ol>
 ]]></content>
       <categories>
         <category>others</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Win32显示图像</title>
-    <url>/posts/2020-09-001.html</url>
-    <content><![CDATA[<p>在windows下将数据以位图的方式显示：</p>
-<pre><code>//变量定义
-
-HWND hWnd;              //窗口句柄定义
-HDC hdc_mem;            //缓冲句柄
-HBITMAP screen_hb ;		// DIB
-HBITMAP screen_ob ;		// 老的 BITMAP
-void* buffer;           //数据存储区
-
-BITMAPINFO bi = &#123; &#123; sizeof(BITMAPINFOHEADER), 100, 100, 1, 24, BI_RGB,
-       100 * 100 * 3, 0, 0, 0, 0 &#125; &#125;;
-//初始化配置
-HDC hdc = GetDC(hWnd);
-hdc_mem = CreateCompatibleDC(hdc);
-screen_hb = CreateDIBSection(hdc_mem, &amp;bi, DIB_RGB_COLORS, (void**)&amp;buffer, NULL, 0);   
-if (screen_hb == NULL) return -3;
-screen_ob = (HBITMAP)SelectObject(hdc_mem, screen_hb);
-ReleaseDC(hWnd, hdc);
-
-//显示数据  dat为位图数据指针，size为1像素所占字节大小
-ImageLoad(void* dat, int width, int height,int size)
-&#123;
-    if (hdc_mem &amp;&amp; screen_hb)
-    &#123;
-        HDC hDC = GetDC(hWnd);
-        memcpy(buffer, dat, width * height * size);
-        BitBlt(hDC, 0, 0, width, height, hdc_mem, 0, 0, SRCCOPY);
-        ReleaseDC(hWnd, hDC);
-    &#125;
-&#125;
-</code></pre>
-<p>CreateDIBSection函数中的第四个参数非常重要，这个参数是一个指针，指向存储位图数据的一块内存。我们传递给函数一个指针变量后，函数自动分配一块内存出来，这块内存自动分配，自动释放。在配置好后，我们将位图数据放置到这块内存中，在调用BitBlt就可以显示图像了。<br />
-做这个的原因是，自己准备学习3d render需要显示，如果加载QT\SDL库有点大材小用，并且网上一些其他的用来显示的加了很多其他功能代码，总体的代码量有点多。</p>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>CreateDIBSection</tag>
-      </tags>
   </entry>
   <entry>
     <title>free-handstand tips</title>
@@ -2008,27 +2029,6 @@ ImageLoad(void* dat, int width, int height,int size)
       <categories>
         <category>others</category>
       </categories>
-  </entry>
-  <entry>
-    <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
-    <url>/posts/2020-07-002.html</url>
-    <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
-<h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">./repkg extract scene.pkg</span><br></pre></td></tr></table></figure>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg2.png" alt="解压" /></p>
-<h3 id="解压完成后会将所有文件默认放入同目录下的output文件中"><a class="markdownIt-Anchor" href="#解压完成后会将所有文件默认放入同目录下的output文件中"></a> 解压完成后，会将所有文件默认放入同目录下的Output文件中。</h3>
-<h3 id="想要了解更多可以查看源仓库-notscuffedrepkg说明"><a class="markdownIt-Anchor" href="#想要了解更多可以查看源仓库-notscuffedrepkg说明"></a> 想要了解更多可以查看源仓库 <a href="https://github.com/notscuffed/repkg">notscuffed/repkg</a>说明。</h3>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>wallpapper engine</tag>
-        <tag>github</tag>
-        <tag>steam</tag>
-        <tag>repkg</tag>
-      </tags>
   </entry>
   <entry>
     <title>js多次点击的响应</title>
@@ -2179,27 +2179,6 @@ dp[i] =     if s[i]==’)’
         <tag>C/C++</tag>
         <tag>leetcode</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>python配置文件</title>
-    <url>/posts/2020-11-003.html</url>
-    <content><![CDATA[<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[top]</span></span><br><span class="line"><span class="attr">categories</span>=<span class="number">111</span></span><br><span class="line"><span class="attr">purity</span>=<span class="number">111</span></span><br><span class="line"><span class="attr">sorting</span>=toplist</span><br><span class="line"><span class="attr">order</span>=desc</span><br><span class="line"><span class="section">[hot]</span></span><br><span class="line"><span class="attr">sorting</span>=hot</span><br></pre></td></tr></table></figure>
-<h3 id="引入库"><a class="markdownIt-Anchor" href="#引入库"></a> 引入库</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> configparser</span><br></pre></td></tr></table></figure>
-<h3 id="初始化并读取文件"><a class="markdownIt-Anchor" href="#初始化并读取文件"></a> 初始化并读取文件</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config = ConfigParser()</span><br><span class="line">config.read(<span class="string">&#x27;config.ini&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="获取所有sections选择一个section"><a class="markdownIt-Anchor" href="#获取所有sections选择一个section"></a> 获取所有sections,选择一个section</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sections = config.sections()</span><br><span class="line"><span class="comment">#结果 [&#x27;top&#x27;, &#x27;hot&#x27;]</span></span><br><span class="line"></span><br><span class="line">sec = sections[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="获取一个section中的所有键key"><a class="markdownIt-Anchor" href="#获取一个section中的所有键key"></a> 获取一个section中的所有键(key)</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.options(sec)</span><br><span class="line"><span class="comment">#结果 [&#x27;categories&#x27;, &#x27;purity&#x27;, &#x27;sorting&#x27;, &#x27;order&#x27;]</span></span><br></pre></td></tr></table></figure>
-<h3 id="获取一个section中的所有键值对keyvalue"><a class="markdownIt-Anchor" href="#获取一个section中的所有键值对keyvalue"></a> 获取一个section中的所有键值对(key:value)</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.items(sec)</span><br><span class="line"><span class="comment">#结果 [(&#x27;categories&#x27;, &#x27;111&#x27;), (&#x27;purity&#x27;, &#x27;111&#x27;), (&#x27;sorting&#x27;, &#x27;toplist&#x27;), (&#x27;order&#x27;, &#x27;desc&#x27;)]</span></span><br></pre></td></tr></table></figure>
-<h3 id="获取section中某个键的值"><a class="markdownIt-Anchor" href="#获取section中某个键的值"></a> 获取section中某个键的值</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.get(sec, <span class="string">&#x27;categories&#x27;</span>)</span><br><span class="line"><span class="comment">#结果 111</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
   </entry>
   <entry>
     <title>machine-learning 知识点总结</title>
@@ -2374,33 +2353,24 @@ dp[i] =     if s[i]==’)’
       </tags>
   </entry>
   <entry>
-    <title>pytorch中的LSTM模型</title>
-    <url>/posts/2020-10-006.html</url>
-    <content><![CDATA[<h2 id="背景知识"><a class="markdownIt-Anchor" href="#背景知识"></a> 背景知识</h2>
-<h3 id="lstm原理介绍"><a class="markdownIt-Anchor" href="#lstm原理介绍"></a> LSTM原理介绍</h3>
-<iframe src="https://datawhalechina.github.io/leeml-notes/#/chapter36/chapter36?id=lstm" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
-<h3 id="pytorch-doc"><a class="markdownIt-Anchor" href="#pytorch-doc"></a> pytorch doc</h3>
-<iframe src="https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html#torch.nn.LSTM" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
-<h2 id="简单实例"><a class="markdownIt-Anchor" href="#简单实例"></a> 简单实例</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">lstm = nn.LSTM(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>)                    <span class="comment"># (input_size(feature_num) ,hidden_size,num_layers ) </span></span><br><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">4</span>, <span class="number">1</span>, <span class="number">1</span>)               <span class="comment"># (seq_len, batch, input_size(feature_num))</span></span><br><span class="line">h0 = torch.randn(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>)                  <span class="comment"># (num_layers * num_directions, batch, hidden_size)</span></span><br><span class="line">c0 = torch.randn(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>)                  <span class="comment"># (num_layers * num_directions, batch, hidden_size)</span></span><br><span class="line">output, (hn, cn) = lstm(<span class="built_in">input</span>, (h0, c0))   <span class="comment"># output:(seq_len, batch, num_directions * hidden_size)</span></span><br><span class="line">                                           <span class="comment"># hn = output[-1] , output = [h1,h2,...,hn] </span></span><br></pre></td></tr></table></figure>
-<h3 id="各个参数的理解"><a class="markdownIt-Anchor" href="#各个参数的理解"></a> 各个参数的理解</h3>
-<ol>
-<li>input_size:一个输入中的特征的个数</li>
-<li>hidden_size: 隐藏层节点的个数，如下图</li>
-<li>num_layers: lstm层的个数，默认为1，如果设为2，则第一层的输出[h0,h1,…hn]作为第二层的输入，在计算出最后的输出[h0,h1,…hn]</li>
-<li>seq_len: 一个序列中输入的个数</li>
-<li>batch: 每批处理的样本个数</li>
-</ol>
-<h3 id="实例结构图"><a class="markdownIt-Anchor" href="#实例结构图"></a> 实例结构图</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-10/lstm.jpg" alt="" /></p>
-<h2 id="航班预测人数"><a class="markdownIt-Anchor" href="#航班预测人数"></a> 航班预测人数</h2>
-<p>参考 <a href="https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/">https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler</span><br><span class="line"></span><br><span class="line"><span class="comment">#  https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_data</span>(<span class="params">data, pred=<span class="literal">None</span></span>):</span></span><br><span class="line">    plt.title(<span class="string">&#x27;mouth vs passengers&#x27;</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;mouths&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;total passengers&#x27;</span>)</span><br><span class="line">    plt.plot(data)</span><br><span class="line">    <span class="keyword">if</span> pred <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        x = np.arange(<span class="number">132</span>, <span class="number">144</span>, <span class="number">1</span>)</span><br><span class="line">        plt.plot(x, pred)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_io_seq</span>(<span class="params">data, tw</span>):</span></span><br><span class="line">    io_seq = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data) - tw):</span><br><span class="line">        seq = data[i:i + tw]</span><br><span class="line">        lab = data[i + tw:i + tw + <span class="number">1</span>]</span><br><span class="line">        io_seq.append((seq, lab))</span><br><span class="line">    <span class="keyword">return</span> io_seq</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LSTM</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, i_size=<span class="number">1</span>, hid_size=<span class="number">200</span>, o_size=<span class="number">1</span></span>):</span></span><br><span class="line">        <span class="built_in">super</span>(LSTM, self).__init__()</span><br><span class="line">        self.hidden_layer_size = hid_size</span><br><span class="line">        self.lstm = nn.LSTM(i_size, self.hidden_layer_size)</span><br><span class="line">        self.linear = nn.Linear(self.hidden_layer_size, o_size)</span><br><span class="line">        self.hidden_cell = (torch.zeros(<span class="number">1</span>, <span class="number">1</span>, self.hidden_layer_size), torch.zeros(<span class="number">1</span>, <span class="number">1</span>, self.hidden_layer_size))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, input_seq</span>):</span></span><br><span class="line">        out, self.hidden_cell = self.lstm(input_seq.view(<span class="built_in">len</span>(input_seq), <span class="number">1</span>, -<span class="number">1</span>), self.hidden_cell)</span><br><span class="line">        pred = self.linear(out.view(<span class="built_in">len</span>(input_seq), -<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> pred[-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">lstm, data, PATH=<span class="string">&#x27;./cifar_net.pth&#x27;</span></span>):</span></span><br><span class="line">    loss_func = nn.MSELoss().to(device)</span><br><span class="line">    optimizer = torch.optim.Adam(lstm.parameters(), lr=<span class="number">0.001</span>)</span><br><span class="line">    print(lstm)</span><br><span class="line">    epochs = <span class="number">150</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">        <span class="keyword">for</span> seq, label <span class="keyword">in</span> data:</span><br><span class="line">            seq = seq.to(device)</span><br><span class="line">            label = label.to(device)</span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            lstm.hidden_cell = (</span><br><span class="line">                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size).to(device),</span><br><span class="line">                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size).to(device))</span><br><span class="line">            y_pred = lstm(seq)</span><br><span class="line">            single_loss = loss_func(y_pred, label)</span><br><span class="line">            single_loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line">        <span class="keyword">if</span> i % <span class="number">25</span> == <span class="number">1</span>:</span><br><span class="line">            print(<span class="string">f&#x27;epoch: <span class="subst">&#123;i:<span class="number">3</span>&#125;</span> loss: <span class="subst">&#123;single_loss.item():<span class="number">10.8</span>f&#125;</span>&#x27;</span>)</span><br><span class="line">    torch.save(lstm.state_dict(), PATH)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    device = torch.device(<span class="string">&quot;cuda:0&quot;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&quot;cpu&quot;</span>)</span><br><span class="line"></span><br><span class="line">    flight = sns.load_dataset(<span class="string">&#x27;flights&#x27;</span>)</span><br><span class="line">    all_data = flight[<span class="string">&#x27;passengers&#x27;</span>].values.astype(<span class="built_in">float</span>)</span><br><span class="line">    test_data_size = <span class="number">12</span></span><br><span class="line">    train_data = all_data[:-test_data_size]</span><br><span class="line">    test_data = all_data[-test_data_size:]</span><br><span class="line">    scaler = MinMaxScaler((<span class="number">0</span>, <span class="number">10</span>))</span><br><span class="line">    train_data_norm = scaler.fit_transform(train_data.reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">    train_data_norm = torch.FloatTensor(train_data_norm).view(-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    train_io_seq = create_io_seq(train_data_norm, <span class="number">12</span>)</span><br><span class="line"></span><br><span class="line">    lstm = LSTM()</span><br><span class="line">    lstm.to(device)</span><br><span class="line">    <span class="comment"># train(lstm, train_io_seq)</span></span><br><span class="line"></span><br><span class="line">    fut_pred = <span class="number">12</span></span><br><span class="line">    lstm.load_state_dict(torch.load(<span class="string">&#x27;./cifar_net.pth&#x27;</span>))</span><br><span class="line">    lstm.cpu()</span><br><span class="line">    test_input = train_data_norm[-<span class="number">12</span>:].tolist()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(fut_pred):</span><br><span class="line">        seq = torch.FloatTensor(test_input[-<span class="number">12</span>:])</span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">            lstm.hidden_cell = (torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size),</span><br><span class="line">                                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size))</span><br><span class="line">            test_input.append(lstm(seq).item())</span><br><span class="line"></span><br><span class="line">    act_pred = scaler.inverse_transform(np.array(test_input[-<span class="number">12</span>:]).reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">    plot_data(flight[<span class="string">&#x27;passengers&#x27;</span>], act_pred)</span><br></pre></td></tr></table></figure>
-<p>最终结果，蓝色为原始数据，橙红色是预测数据<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-10/myplot.png" alt="" /></p>
+    <title>python配置文件</title>
+    <url>/posts/2020-11-003.html</url>
+    <content><![CDATA[<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[top]</span></span><br><span class="line"><span class="attr">categories</span>=<span class="number">111</span></span><br><span class="line"><span class="attr">purity</span>=<span class="number">111</span></span><br><span class="line"><span class="attr">sorting</span>=toplist</span><br><span class="line"><span class="attr">order</span>=desc</span><br><span class="line"><span class="section">[hot]</span></span><br><span class="line"><span class="attr">sorting</span>=hot</span><br></pre></td></tr></table></figure>
+<h3 id="引入库"><a class="markdownIt-Anchor" href="#引入库"></a> 引入库</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> configparser</span><br></pre></td></tr></table></figure>
+<h3 id="初始化并读取文件"><a class="markdownIt-Anchor" href="#初始化并读取文件"></a> 初始化并读取文件</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config = ConfigParser()</span><br><span class="line">config.read(<span class="string">&#x27;config.ini&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="获取所有sections选择一个section"><a class="markdownIt-Anchor" href="#获取所有sections选择一个section"></a> 获取所有sections,选择一个section</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sections = config.sections()</span><br><span class="line"><span class="comment">#结果 [&#x27;top&#x27;, &#x27;hot&#x27;]</span></span><br><span class="line"></span><br><span class="line">sec = sections[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="获取一个section中的所有键key"><a class="markdownIt-Anchor" href="#获取一个section中的所有键key"></a> 获取一个section中的所有键(key)</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.options(sec)</span><br><span class="line"><span class="comment">#结果 [&#x27;categories&#x27;, &#x27;purity&#x27;, &#x27;sorting&#x27;, &#x27;order&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h3 id="获取一个section中的所有键值对keyvalue"><a class="markdownIt-Anchor" href="#获取一个section中的所有键值对keyvalue"></a> 获取一个section中的所有键值对(key:value)</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.items(sec)</span><br><span class="line"><span class="comment">#结果 [(&#x27;categories&#x27;, &#x27;111&#x27;), (&#x27;purity&#x27;, &#x27;111&#x27;), (&#x27;sorting&#x27;, &#x27;toplist&#x27;), (&#x27;order&#x27;, &#x27;desc&#x27;)]</span></span><br></pre></td></tr></table></figure>
+<h3 id="获取section中某个键的值"><a class="markdownIt-Anchor" href="#获取section中某个键的值"></a> 获取section中某个键的值</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">config.get(sec, <span class="string">&#x27;categories&#x27;</span>)</span><br><span class="line"><span class="comment">#结果 111</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>AI</category>
+        <category>Python</category>
       </categories>
   </entry>
   <entry>
@@ -2495,6 +2465,36 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
+    <title>pytorch中的LSTM模型</title>
+    <url>/posts/2020-10-006.html</url>
+    <content><![CDATA[<h2 id="背景知识"><a class="markdownIt-Anchor" href="#背景知识"></a> 背景知识</h2>
+<h3 id="lstm原理介绍"><a class="markdownIt-Anchor" href="#lstm原理介绍"></a> LSTM原理介绍</h3>
+<iframe src="https://datawhalechina.github.io/leeml-notes/#/chapter36/chapter36?id=lstm" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
+<h3 id="pytorch-doc"><a class="markdownIt-Anchor" href="#pytorch-doc"></a> pytorch doc</h3>
+<iframe src="https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html#torch.nn.LSTM" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
+<h2 id="简单实例"><a class="markdownIt-Anchor" href="#简单实例"></a> 简单实例</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">lstm = nn.LSTM(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>)                    <span class="comment"># (input_size(feature_num) ,hidden_size,num_layers ) </span></span><br><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">4</span>, <span class="number">1</span>, <span class="number">1</span>)               <span class="comment"># (seq_len, batch, input_size(feature_num))</span></span><br><span class="line">h0 = torch.randn(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>)                  <span class="comment"># (num_layers * num_directions, batch, hidden_size)</span></span><br><span class="line">c0 = torch.randn(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>)                  <span class="comment"># (num_layers * num_directions, batch, hidden_size)</span></span><br><span class="line">output, (hn, cn) = lstm(<span class="built_in">input</span>, (h0, c0))   <span class="comment"># output:(seq_len, batch, num_directions * hidden_size)</span></span><br><span class="line">                                           <span class="comment"># hn = output[-1] , output = [h1,h2,...,hn] </span></span><br></pre></td></tr></table></figure>
+<h3 id="各个参数的理解"><a class="markdownIt-Anchor" href="#各个参数的理解"></a> 各个参数的理解</h3>
+<ol>
+<li>input_size:一个输入中的特征的个数</li>
+<li>hidden_size: 隐藏层节点的个数，如下图</li>
+<li>num_layers: lstm层的个数，默认为1，如果设为2，则第一层的输出[h0,h1,…hn]作为第二层的输入，在计算出最后的输出[h0,h1,…hn]</li>
+<li>seq_len: 一个序列中输入的个数</li>
+<li>batch: 每批处理的样本个数</li>
+</ol>
+<h3 id="实例结构图"><a class="markdownIt-Anchor" href="#实例结构图"></a> 实例结构图</h3>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-10/lstm.jpg" alt="" /></p>
+<h2 id="航班预测人数"><a class="markdownIt-Anchor" href="#航班预测人数"></a> 航班预测人数</h2>
+<p>参考 <a href="https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/">https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler</span><br><span class="line"></span><br><span class="line"><span class="comment">#  https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_data</span>(<span class="params">data, pred=<span class="literal">None</span></span>):</span></span><br><span class="line">    plt.title(<span class="string">&#x27;mouth vs passengers&#x27;</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;mouths&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;total passengers&#x27;</span>)</span><br><span class="line">    plt.plot(data)</span><br><span class="line">    <span class="keyword">if</span> pred <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        x = np.arange(<span class="number">132</span>, <span class="number">144</span>, <span class="number">1</span>)</span><br><span class="line">        plt.plot(x, pred)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_io_seq</span>(<span class="params">data, tw</span>):</span></span><br><span class="line">    io_seq = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data) - tw):</span><br><span class="line">        seq = data[i:i + tw]</span><br><span class="line">        lab = data[i + tw:i + tw + <span class="number">1</span>]</span><br><span class="line">        io_seq.append((seq, lab))</span><br><span class="line">    <span class="keyword">return</span> io_seq</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LSTM</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, i_size=<span class="number">1</span>, hid_size=<span class="number">200</span>, o_size=<span class="number">1</span></span>):</span></span><br><span class="line">        <span class="built_in">super</span>(LSTM, self).__init__()</span><br><span class="line">        self.hidden_layer_size = hid_size</span><br><span class="line">        self.lstm = nn.LSTM(i_size, self.hidden_layer_size)</span><br><span class="line">        self.linear = nn.Linear(self.hidden_layer_size, o_size)</span><br><span class="line">        self.hidden_cell = (torch.zeros(<span class="number">1</span>, <span class="number">1</span>, self.hidden_layer_size), torch.zeros(<span class="number">1</span>, <span class="number">1</span>, self.hidden_layer_size))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, input_seq</span>):</span></span><br><span class="line">        out, self.hidden_cell = self.lstm(input_seq.view(<span class="built_in">len</span>(input_seq), <span class="number">1</span>, -<span class="number">1</span>), self.hidden_cell)</span><br><span class="line">        pred = self.linear(out.view(<span class="built_in">len</span>(input_seq), -<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> pred[-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">lstm, data, PATH=<span class="string">&#x27;./cifar_net.pth&#x27;</span></span>):</span></span><br><span class="line">    loss_func = nn.MSELoss().to(device)</span><br><span class="line">    optimizer = torch.optim.Adam(lstm.parameters(), lr=<span class="number">0.001</span>)</span><br><span class="line">    print(lstm)</span><br><span class="line">    epochs = <span class="number">150</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">        <span class="keyword">for</span> seq, label <span class="keyword">in</span> data:</span><br><span class="line">            seq = seq.to(device)</span><br><span class="line">            label = label.to(device)</span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            lstm.hidden_cell = (</span><br><span class="line">                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size).to(device),</span><br><span class="line">                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size).to(device))</span><br><span class="line">            y_pred = lstm(seq)</span><br><span class="line">            single_loss = loss_func(y_pred, label)</span><br><span class="line">            single_loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line">        <span class="keyword">if</span> i % <span class="number">25</span> == <span class="number">1</span>:</span><br><span class="line">            print(<span class="string">f&#x27;epoch: <span class="subst">&#123;i:<span class="number">3</span>&#125;</span> loss: <span class="subst">&#123;single_loss.item():<span class="number">10.8</span>f&#125;</span>&#x27;</span>)</span><br><span class="line">    torch.save(lstm.state_dict(), PATH)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    device = torch.device(<span class="string">&quot;cuda:0&quot;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&quot;cpu&quot;</span>)</span><br><span class="line"></span><br><span class="line">    flight = sns.load_dataset(<span class="string">&#x27;flights&#x27;</span>)</span><br><span class="line">    all_data = flight[<span class="string">&#x27;passengers&#x27;</span>].values.astype(<span class="built_in">float</span>)</span><br><span class="line">    test_data_size = <span class="number">12</span></span><br><span class="line">    train_data = all_data[:-test_data_size]</span><br><span class="line">    test_data = all_data[-test_data_size:]</span><br><span class="line">    scaler = MinMaxScaler((<span class="number">0</span>, <span class="number">10</span>))</span><br><span class="line">    train_data_norm = scaler.fit_transform(train_data.reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">    train_data_norm = torch.FloatTensor(train_data_norm).view(-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    train_io_seq = create_io_seq(train_data_norm, <span class="number">12</span>)</span><br><span class="line"></span><br><span class="line">    lstm = LSTM()</span><br><span class="line">    lstm.to(device)</span><br><span class="line">    <span class="comment"># train(lstm, train_io_seq)</span></span><br><span class="line"></span><br><span class="line">    fut_pred = <span class="number">12</span></span><br><span class="line">    lstm.load_state_dict(torch.load(<span class="string">&#x27;./cifar_net.pth&#x27;</span>))</span><br><span class="line">    lstm.cpu()</span><br><span class="line">    test_input = train_data_norm[-<span class="number">12</span>:].tolist()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(fut_pred):</span><br><span class="line">        seq = torch.FloatTensor(test_input[-<span class="number">12</span>:])</span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">            lstm.hidden_cell = (torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size),</span><br><span class="line">                                torch.zeros(<span class="number">1</span>, <span class="number">1</span>, lstm.hidden_layer_size))</span><br><span class="line">            test_input.append(lstm(seq).item())</span><br><span class="line"></span><br><span class="line">    act_pred = scaler.inverse_transform(np.array(test_input[-<span class="number">12</span>:]).reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">    plot_data(flight[<span class="string">&#x27;passengers&#x27;</span>], act_pred)</span><br></pre></td></tr></table></figure>
+<p>最终结果，蓝色为原始数据，橙红色是预测数据<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-10/myplot.png" alt="" /></p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+  </entry>
+  <entry>
     <title>伽马兽王</title>
     <url>/posts/2020-07-004.html</url>
     <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
@@ -2559,17 +2559,6 @@ if __name__ == &quot;__main__&quot;:
         <tag>伽马兽王</tag>
         <tag>borderlands3</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>小四轴飞行器</title>
-    <url>/posts/2020-08-004.html</url>
-    <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
-<p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
   </entry>
   <entry>
     <title>博客说明</title>
@@ -2692,6 +2681,17 @@ draft	source/_drafts
         <tag>全国大学生智能汽车竞赛</tag>
         <tag>恩智浦杯</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>小四轴飞行器</title>
+    <url>/posts/2020-08-004.html</url>
+    <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
+<p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
   </entry>
   <entry>
     <title>记录</title>
