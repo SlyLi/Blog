@@ -283,60 +283,6 @@ pts[j] = m2v(viewport * projection * modelview * v2m(v));
       </tags>
   </entry>
   <entry>
-    <title>OneDrive云盘搭建</title>
-    <url>/posts/2020-08-006.html</url>
-    <content><![CDATA[<h3 id="拥有一个onedrive账号"><a class="markdownIt-Anchor" href="#拥有一个onedrive账号"></a> 拥有一个OneDrive账号</h3>
-<ol>
-<li>打开微软的<a href="https://signup.microsoft.com/">注册/登录页面</a>，选择合适的按照流程注册。</li>
-<li>个人免费账户是5G，学生版是1T或5T。</li>
-</ol>
-<h3 id="下载onemanager"><a class="markdownIt-Anchor" href="#下载onemanager"></a> 下载OneManager</h3>
-<ol>
-<li>前往 <a href="https://github.com/qkqpttgf/OneManager-php">OneManager项目地址</a>下载并完成解压，为之后准备。</li>
-</ol>
-<h3 id="部署"><a class="markdownIt-Anchor" href="#部署"></a> 部署</h3>
-<p>选择腾讯云函数，有免费额度，一般来说够用了。</p>
-<ol>
-<li>
-<p>新建函数，输入名称，运行环境选择php7.2，创建方式选择空白函数<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud1.png" alt="" /></p>
-</li>
-<li>
-<p>通过本地上传文件夹方式，上传之前解压后的OneManager文件夹<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud2.png" alt="" /><br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud3.png" alt="" /></p>
-</li>
-<li>
-<p>创建触发器，选择API网关触发器<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud4.png" alt="" /></p>
-</li>
-<li>
-<p>（可选）点击触发器的API服务名 <code>SCF_API_SERVICE</code>，可以自定义域名。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud5.png" alt="" /></p>
-</li>
-</ol>
-<h3 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h3>
-<ol start="5">
-<li>点击触发器下方访问路径，后安装项目，选择新建 SecretId &amp; SecretKey，返回腾讯云新建密钥，完成后将 SecretId &amp; SecretKey填入其中。</li>
-</ol>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud6.png" alt="" /></p>
-<ol start="6">
-<li>设置完密码后登录，通过管理-设置，点击 <code>添加Onedrive盘</code>，然后再填写相关内容就ok了。<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud7.png" alt="" /></li>
-</ol>
-<div class="note warning flat"><ul>
-<li>个人账号选择  MS: 国际版（商业版与个人版）</li>
-<li>学生账号只能选择 ShareUrl: 共享链接， 对一个Onedrive文件夹共享进行使用</li>
-</ul>
-</div>
-<p>本人网盘链接 <a href="http://cloud.slyli.cn/cloud">http://cloud.slyli.cn/cloud</a></p>
-<p>目前上传了一部剧：《如此可爱的我们》。然后把之前博客中需要的视频也搬到这上面了。</p>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-  </entry>
-  <entry>
     <title>C++</title>
     <url>/posts/2020-07-009.html</url>
     <content><![CDATA[<h3 id="virtural继承"><a class="markdownIt-Anchor" href="#virtural继承"></a> virtural继承</h3>
@@ -685,6 +631,60 @@ capture:</p>
       <tags>
         <tag>C++</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>OneDrive云盘搭建</title>
+    <url>/posts/2020-08-006.html</url>
+    <content><![CDATA[<h3 id="拥有一个onedrive账号"><a class="markdownIt-Anchor" href="#拥有一个onedrive账号"></a> 拥有一个OneDrive账号</h3>
+<ol>
+<li>打开微软的<a href="https://signup.microsoft.com/">注册/登录页面</a>，选择合适的按照流程注册。</li>
+<li>个人免费账户是5G，学生版是1T或5T。</li>
+</ol>
+<h3 id="下载onemanager"><a class="markdownIt-Anchor" href="#下载onemanager"></a> 下载OneManager</h3>
+<ol>
+<li>前往 <a href="https://github.com/qkqpttgf/OneManager-php">OneManager项目地址</a>下载并完成解压，为之后准备。</li>
+</ol>
+<h3 id="部署"><a class="markdownIt-Anchor" href="#部署"></a> 部署</h3>
+<p>选择腾讯云函数，有免费额度，一般来说够用了。</p>
+<ol>
+<li>
+<p>新建函数，输入名称，运行环境选择php7.2，创建方式选择空白函数<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud1.png" alt="" /></p>
+</li>
+<li>
+<p>通过本地上传文件夹方式，上传之前解压后的OneManager文件夹<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud2.png" alt="" /><br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud3.png" alt="" /></p>
+</li>
+<li>
+<p>创建触发器，选择API网关触发器<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud4.png" alt="" /></p>
+</li>
+<li>
+<p>（可选）点击触发器的API服务名 <code>SCF_API_SERVICE</code>，可以自定义域名。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud5.png" alt="" /></p>
+</li>
+</ol>
+<h3 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h3>
+<ol start="5">
+<li>点击触发器下方访问路径，后安装项目，选择新建 SecretId &amp; SecretKey，返回腾讯云新建密钥，完成后将 SecretId &amp; SecretKey填入其中。</li>
+</ol>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud6.png" alt="" /></p>
+<ol start="6">
+<li>设置完密码后登录，通过管理-设置，点击 <code>添加Onedrive盘</code>，然后再填写相关内容就ok了。<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/cloud7.png" alt="" /></li>
+</ol>
+<div class="note warning flat"><ul>
+<li>个人账号选择  MS: 国际版（商业版与个人版）</li>
+<li>学生账号只能选择 ShareUrl: 共享链接， 对一个Onedrive文件夹共享进行使用</li>
+</ul>
+</div>
+<p>本人网盘链接 <a href="http://cloud.slyli.cn/cloud">http://cloud.slyli.cn/cloud</a></p>
+<p>目前上传了一部剧：《如此可爱的我们》。然后把之前博客中需要的视频也搬到这上面了。</p>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
   </entry>
   <entry>
     <title>KaTeX Supported Functions</title>
@@ -1270,51 +1270,6 @@ printf(“Hello, Markdown.”);<br />
       </tags>
   </entry>
   <entry>
-    <title>Win32显示图像</title>
-    <url>/posts/2020-09-001.html</url>
-    <content><![CDATA[<p>在windows下将数据以位图的方式显示：</p>
-<pre><code>//变量定义
-
-HWND hWnd;              //窗口句柄定义
-HDC hdc_mem;            //缓冲句柄
-HBITMAP screen_hb ;		// DIB
-HBITMAP screen_ob ;		// 老的 BITMAP
-void* buffer;           //数据存储区
-
-BITMAPINFO bi = &#123; &#123; sizeof(BITMAPINFOHEADER), 100, 100, 1, 24, BI_RGB,
-       100 * 100 * 3, 0, 0, 0, 0 &#125; &#125;;
-//初始化配置
-HDC hdc = GetDC(hWnd);
-hdc_mem = CreateCompatibleDC(hdc);
-screen_hb = CreateDIBSection(hdc_mem, &amp;bi, DIB_RGB_COLORS, (void**)&amp;buffer, NULL, 0);   
-if (screen_hb == NULL) return -3;
-screen_ob = (HBITMAP)SelectObject(hdc_mem, screen_hb);
-ReleaseDC(hWnd, hdc);
-
-//显示数据  dat为位图数据指针，size为1像素所占字节大小
-ImageLoad(void* dat, int width, int height,int size)
-&#123;
-    if (hdc_mem &amp;&amp; screen_hb)
-    &#123;
-        HDC hDC = GetDC(hWnd);
-        memcpy(buffer, dat, width * height * size);
-        BitBlt(hDC, 0, 0, width, height, hdc_mem, 0, 0, SRCCOPY);
-        ReleaseDC(hWnd, hDC);
-    &#125;
-&#125;
-</code></pre>
-<p>CreateDIBSection函数中的第四个参数非常重要，这个参数是一个指针，指向存储位图数据的一块内存。我们传递给函数一个指针变量后，函数自动分配一块内存出来，这块内存自动分配，自动释放。在配置好后，我们将位图数据放置到这块内存中，在调用BitBlt就可以显示图像了。<br />
-做这个的原因是，自己准备学习3d render需要显示，如果加载QT\SDL库有点大材小用，并且网上一些其他的用来显示的加了很多其他功能代码，总体的代码量有点多。</p>
-]]></content>
-      <categories>
-        <category>C/C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>CreateDIBSection</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Optimization</title>
     <url>/posts/2020-11-002.html</url>
     <content><![CDATA[<h2 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h2>
@@ -1582,6 +1537,51 @@ D被定义为P的对偶</p>
       </categories>
   </entry>
   <entry>
+    <title>Win32显示图像</title>
+    <url>/posts/2020-09-001.html</url>
+    <content><![CDATA[<p>在windows下将数据以位图的方式显示：</p>
+<pre><code>//变量定义
+
+HWND hWnd;              //窗口句柄定义
+HDC hdc_mem;            //缓冲句柄
+HBITMAP screen_hb ;		// DIB
+HBITMAP screen_ob ;		// 老的 BITMAP
+void* buffer;           //数据存储区
+
+BITMAPINFO bi = &#123; &#123; sizeof(BITMAPINFOHEADER), 100, 100, 1, 24, BI_RGB,
+       100 * 100 * 3, 0, 0, 0, 0 &#125; &#125;;
+//初始化配置
+HDC hdc = GetDC(hWnd);
+hdc_mem = CreateCompatibleDC(hdc);
+screen_hb = CreateDIBSection(hdc_mem, &amp;bi, DIB_RGB_COLORS, (void**)&amp;buffer, NULL, 0);   
+if (screen_hb == NULL) return -3;
+screen_ob = (HBITMAP)SelectObject(hdc_mem, screen_hb);
+ReleaseDC(hWnd, hdc);
+
+//显示数据  dat为位图数据指针，size为1像素所占字节大小
+ImageLoad(void* dat, int width, int height,int size)
+&#123;
+    if (hdc_mem &amp;&amp; screen_hb)
+    &#123;
+        HDC hDC = GetDC(hWnd);
+        memcpy(buffer, dat, width * height * size);
+        BitBlt(hDC, 0, 0, width, height, hdc_mem, 0, 0, SRCCOPY);
+        ReleaseDC(hWnd, hDC);
+    &#125;
+&#125;
+</code></pre>
+<p>CreateDIBSection函数中的第四个参数非常重要，这个参数是一个指针，指向存储位图数据的一块内存。我们传递给函数一个指针变量后，函数自动分配一块内存出来，这块内存自动分配，自动释放。在配置好后，我们将位图数据放置到这块内存中，在调用BitBlt就可以显示图像了。<br />
+做这个的原因是，自己准备学习3d render需要显示，如果加载QT\SDL库有点大材小用，并且网上一些其他的用来显示的加了很多其他功能代码，总体的代码量有点多。</p>
+]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>CreateDIBSection</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>android</title>
     <url>/posts/2020-08-003.html</url>
     <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
@@ -1669,97 +1669,6 @@ D被定义为P的对偶</p>
       </categories>
       <tags>
         <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>butterfly修改及使用</title>
-    <url>/posts/2020-07-003.html</url>
-    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
-<h3 id="评论"><a class="markdownIt-Anchor" href="#评论"></a> 评论</h3>
-<p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br />
-如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
-<pre><code>---
-title: butterfly修改
-date: 2020-07-05 21:11:42
-comments: false
----
-</code></pre>
-<h3 id="valine评论添加qq提醒"><a class="markdownIt-Anchor" href="#valine评论添加qq提醒"></a> valine评论添加QQ提醒</h3>
-<p>butterfly主题把下列js代码修改后添加到butterfly.yml中的inject后面就好了。<br />
-其他的需要将下列代码添加到一个位置，使每个有valine评论的页面有下列代码。</p>
-<div class="note warning flat"><p>要先加Qmsg酱为好友。</p>
-</div>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var title2&#x3D;&quot;msg&#x3D;您的博客又有新评论啦~ \n&quot;;</span><br><span class="line">var SCKEY_Qmsg&#x3D;&quot; &quot;;</span><br><span class="line">function send_valine_Qmsg()&#123;</span><br><span class="line">    var pagename&#x3D;document.title;</span><br><span class="line">    var wz&#x3D;pagename.indexOf(&#39;|&#39;);</span><br><span class="line">    var res&#x3D;pagename.substring(0,wz);</span><br><span class="line">    var pageurl&#x3D;document.URL;</span><br><span class="line">    var ptime&#x3D;new Date();</span><br><span class="line">    var vnick&#x3D;document.getElementsByClassName(&quot;vnick vinput&quot;)[0].value;</span><br><span class="line">    var vmail&#x3D;document.getElementsByClassName(&quot;vmail vinput&quot;)[0].value;</span><br><span class="line">    var vlink&#x3D;document.getElementsByClassName(&quot;vlink vinput&quot;)[0].value;</span><br><span class="line">    var veditor&#x3D;document.getElementsByClassName(&quot;veditor vinput&quot;)[0].value;</span><br><span class="line">    var data&#x3D;&quot;昵称：&quot;+vnick+&quot;\n邮箱：&quot;+vmail+&quot;\n网站地址：&quot;+vlink+&quot;\n当前页面：&quot;+pagename+&quot;\n评论内容：&quot;+veditor+&quot;\n跳转链接：&quot;+pageurl+&quot;\n评论时间：&quot;+ptime.toLocaleString();</span><br><span class="line">    var httpRequest &#x3D; new XMLHttpRequest();</span><br><span class="line">    httpRequest.open(&#39;POST&#39;,SCKEY_Qmsg, true); </span><br><span class="line">    httpRequest.setRequestHeader(&quot;Content-type&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;);</span><br><span class="line">    httpRequest.send(title2+data);</span><br><span class="line">&#125;;</span><br><span class="line">var ValineButton&#x3D;document.getElementsByClassName(&quot;vsubmit vbtn&quot;)[0];</span><br><span class="line">ValineButton.onclick&#x3D;send_valine_Qmsg;</span><br></pre></td></tr></table></figure>
-<p>SCKEY_Qmsg设置为Qmsg酱的接口地址。<br />
-转自<a href="https://www.zyskys.com/posts/bd75.html">零奇</a></p>
-<h3 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h3>
-<p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，</p>
-<div class="note warning flat"><p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
-</div>
-<h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3>
-<p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
-<h3 id="引入katex"><a class="markdownIt-Anchor" href="#引入katex"></a> 引入Katex</h3>
-<p>使用时需要在<code>front-matter</code>里加入： <code>katex: true</code><br />
-具体使用方法见<a href="https://katex.org/docs/supported.html">katex</a>。</p>
-<h3 id="subtitle"><a class="markdownIt-Anchor" href="#subtitle"></a> Subtitle</h3>
-<p>主页面的subtitle，在设置 <code>source : 3</code> 的 <a href="http://yijuzhan.com/">一句</a> 接口时出现了https错误。</p>
-<pre><code>Mixed Content: xxx This request has been blocked; the content must be served over HTTPS.
-</code></pre>
-<p>原因是在HTTPS页面中引入了HTTP的资源，解决方案实在页面头部插入</p>
-<pre><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;upgrade-insecure-requests&quot;&gt;
-</code></pre>
-<p>可以在 <code>butterfly.yml</code> 找到<code>inject:head</code>,在后面加入上述代码即可。</p>
-<h3 id="note标签"><a class="markdownIt-Anchor" href="#note标签"></a> note标签</h3>
-<div class="note simple"><p>默認 提示塊標籤</p>
-</div>
-<div class="note default simple"><p>default 提示塊標籤</p>
-</div>
-<div class="note primary simple"><p>primary 提示塊標籤</p>
-</div>
-<div class="note success simple"><p>success 提示塊標籤</p>
-</div>
-<div class="note info simple"><p>info 提示塊標籤</p>
-</div>
-<div class="note warning simple"><p>warning 提示塊標籤</p>
-</div>
-<div class="note danger simple"><p>danger 提示塊標籤</p>
-</div>
-<h3 id="butterfly-更新至-342-20201227"><a class="markdownIt-Anchor" href="#butterfly-更新至-342-20201227"></a> butterfly 更新至 3.4.2  (2020/12/27)</h3>
-<ol>
-<li>
-<p>添加了pjax</p>
-</li>
-<li>
-<p>文章页目录改为aside显示</p>
-</li>
-<li>
-<p>添加aplayer全局播放器</p>
-</li>
-<li>
-<p>添加了豆瓣 电影、书籍、游戏</p>
-</li>
-<li>
-<p>添加gitalk，和Qmsg的提示，变成gitalk和valine双评论</p>
-</li>
-<li>
-<p>aerith位置修改</p>
-</li>
-<li>
-<p>添加steam，暂时先用着，作者很长时间没更新了，等之后有时间自己写一个好看点的。。。</p>
-</li>
-<li>
-<p>添加老版本3.2，使用时需要将  <code>_config.yml</code> 内</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">theme: butterfly-3.2</span><br></pre></td></tr></table></figure>
-<p><code>\source\_data\.butterfly.yml</code> 改为 <code>butterfly.yml</code></p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
       </tags>
   </entry>
   <entry>
@@ -1987,6 +1896,108 @@ comments: false
       <categories>
         <category>others</category>
       </categories>
+  </entry>
+  <entry>
+    <title>butterfly修改及使用</title>
+    <url>/posts/2020-07-003.html</url>
+    <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
+<h3 id="评论"><a class="markdownIt-Anchor" href="#评论"></a> 评论</h3>
+<p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br />
+如果不想在某个页面开启评论，可以在页面头部使用如下方式</p>
+<pre><code>---
+title: butterfly修改
+date: 2020-07-05 21:11:42
+comments: false
+---
+</code></pre>
+<h3 id="valine评论添加qq提醒"><a class="markdownIt-Anchor" href="#valine评论添加qq提醒"></a> valine评论添加QQ提醒</h3>
+<p>butterfly主题把下列js代码修改后添加到butterfly.yml中的inject后面就好了。<br />
+其他的需要将下列代码添加到一个位置，使每个有valine评论的页面有下列代码。</p>
+<div class="note warning flat"><p>要先加Qmsg酱为好友。</p>
+</div>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var title2&#x3D;&quot;msg&#x3D;您的博客又有新评论啦~ \n&quot;;</span><br><span class="line">var SCKEY_Qmsg&#x3D;&quot; &quot;;</span><br><span class="line">function send_valine_Qmsg()&#123;</span><br><span class="line">    var pagename&#x3D;document.title;</span><br><span class="line">    var wz&#x3D;pagename.indexOf(&#39;|&#39;);</span><br><span class="line">    var res&#x3D;pagename.substring(0,wz);</span><br><span class="line">    var pageurl&#x3D;document.URL;</span><br><span class="line">    var ptime&#x3D;new Date();</span><br><span class="line">    var vnick&#x3D;document.getElementsByClassName(&quot;vnick vinput&quot;)[0].value;</span><br><span class="line">    var vmail&#x3D;document.getElementsByClassName(&quot;vmail vinput&quot;)[0].value;</span><br><span class="line">    var vlink&#x3D;document.getElementsByClassName(&quot;vlink vinput&quot;)[0].value;</span><br><span class="line">    var veditor&#x3D;document.getElementsByClassName(&quot;veditor vinput&quot;)[0].value;</span><br><span class="line">    var data&#x3D;&quot;昵称：&quot;+vnick+&quot;\n邮箱：&quot;+vmail+&quot;\n网站地址：&quot;+vlink+&quot;\n当前页面：&quot;+pagename+&quot;\n评论内容：&quot;+veditor+&quot;\n跳转链接：&quot;+pageurl+&quot;\n评论时间：&quot;+ptime.toLocaleString();</span><br><span class="line">    var httpRequest &#x3D; new XMLHttpRequest();</span><br><span class="line">    httpRequest.open(&#39;POST&#39;,SCKEY_Qmsg, true); </span><br><span class="line">    httpRequest.setRequestHeader(&quot;Content-type&quot;,&quot;application&#x2F;x-www-form-urlencoded&quot;);</span><br><span class="line">    httpRequest.send(title2+data);</span><br><span class="line">&#125;;</span><br><span class="line">var ValineButton&#x3D;document.getElementsByClassName(&quot;vsubmit vbtn&quot;)[0];</span><br><span class="line">ValineButton.onclick&#x3D;send_valine_Qmsg;</span><br></pre></td></tr></table></figure>
+<p>SCKEY_Qmsg设置为Qmsg酱的接口地址。<br />
+转自<a href="https://www.zyskys.com/posts/bd75.html">零奇</a></p>
+<h3 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h3>
+<p>Github加载图片速度<strong>极慢</strong>，选择Gitee上的Gitee Pages作为图床，</p>
+<div class="note warning flat"><p>在gitee的仓库中上传完图片后，一定要重新更新一下Gitee Pages服务后才能生效。</p>
+</div>
+<h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3>
+<p>此版本使用hexo-abbrlink插件生成永久链接时会出现bug，卸载解决。</p>
+<h3 id="引入katex"><a class="markdownIt-Anchor" href="#引入katex"></a> 引入Katex</h3>
+<p>使用时需要在<code>front-matter</code>里加入： <code>katex: true</code><br />
+具体使用方法见<a href="https://katex.org/docs/supported.html">katex</a>。</p>
+<h3 id="subtitle"><a class="markdownIt-Anchor" href="#subtitle"></a> Subtitle</h3>
+<p>主页面的subtitle，在设置 <code>source : 3</code> 的 <a href="http://yijuzhan.com/">一句</a> 接口时出现了https错误。</p>
+<pre><code>Mixed Content: xxx This request has been blocked; the content must be served over HTTPS.
+</code></pre>
+<p>原因是在HTTPS页面中引入了HTTP的资源，解决方案实在页面头部插入</p>
+<pre><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;upgrade-insecure-requests&quot;&gt;
+</code></pre>
+<p>可以在 <code>butterfly.yml</code> 找到<code>inject:head</code>,在后面加入上述代码即可。</p>
+<h3 id="note标签"><a class="markdownIt-Anchor" href="#note标签"></a> note标签</h3>
+<div class="note simple"><p>默認 提示塊標籤</p>
+</div>
+<div class="note default simple"><p>default 提示塊標籤</p>
+</div>
+<div class="note primary simple"><p>primary 提示塊標籤</p>
+</div>
+<div class="note success simple"><p>success 提示塊標籤</p>
+</div>
+<div class="note info simple"><p>info 提示塊標籤</p>
+</div>
+<div class="note warning simple"><p>warning 提示塊標籤</p>
+</div>
+<div class="note danger simple"><p>danger 提示塊標籤</p>
+</div>
+<h3 id="butterfly-更新至-342-20201227"><a class="markdownIt-Anchor" href="#butterfly-更新至-342-20201227"></a> butterfly 更新至 3.4.2  (2020/12/27)</h3>
+<ol>
+<li>
+<p>添加了pjax</p>
+</li>
+<li>
+<p>文章页目录改为aside显示</p>
+</li>
+<li>
+<p>添加aplayer全局播放器</p>
+</li>
+<li>
+<p>添加了豆瓣 电影、书籍、游戏</p>
+</li>
+<li>
+<p>添加gitalk，和Qmsg的提示，变成gitalk和valine双评论</p>
+</li>
+<li>
+<p>aerith位置修改</p>
+</li>
+<li>
+<p>添加steam，暂时先用着，作者很长时间没更新了，等之后有时间自己写一个好看点的。。。</p>
+</li>
+<li>
+<p>添加老版本3.2，使用时需要将  <code>_config.yml</code> 内</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">theme: butterfly-3.2</span><br></pre></td></tr></table></figure>
+<p><code>\source\_data\.butterfly.yml</code> 改为 <code>butterfly.yml</code></p>
+<h3 id="隐藏-archives-的sidebar"><a class="markdownIt-Anchor" href="#隐藏-archives-的sidebar"></a> 隐藏 Archives 的sidebar</h3>
+<ol>
+<li>修改 <code>\theme\layout\includes\layout.pug</code> 文件</li>
+</ol>
+<ul>
+<li>1、2行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- var htmlClassHideAside &#x3D; (theme.aside.enable &amp;&amp; theme.aside.hide)|| is_archive()&#x3D;&#x3D;true? &#39;hide-aside&#39; : &#39;&#39;</span><br><span class="line">- var hideAside &#x3D; !theme.aside.enable || page.aside &#x3D;&#x3D;&#x3D; false || is_archive()&#x3D;&#x3D;true ? &#39;hide-aside&#39; : &#39;&#39;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>26行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if theme.aside.enable &amp;&amp; page.aside !&#x3D;&#x3D; false &amp;&amp; is_archive()&#x3D;&#x3D;false</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
+      </tags>
   </entry>
   <entry>
     <title>cocos2dx</title>
@@ -2617,57 +2628,6 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>博客说明</title>
-    <url>/posts/2020-07-001.html</url>
-    <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
-<p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
-<h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
-<h3 id="创建一个新的文章或页面"><a class="markdownIt-Anchor" href="#创建一个新的文章或页面"></a> 创建一个新的文章或页面</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] [title]</span><br></pre></td></tr></table></figure>
-<h4 id="布局layout"><a class="markdownIt-Anchor" href="#布局layout"></a> 布局（Layout）</h4>
-<p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
-<pre><code>布局	路径
-post	source/_posts
-page	source
-draft	source/_drafts
-</code></pre>
-<h4 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h4>
-<p>创建一个标题为exp的文章，默认布局为post，在命令中可以省略。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new exp   </span><br></pre></td></tr></table></figure>
-<p>创建一个名为exp的页面。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new page exp   </span><br></pre></td></tr></table></figure>
-<h3 id="本地运行服务器可以在localhost4000中查看"><a class="markdownIt-Anchor" href="#本地运行服务器可以在localhost4000中查看"></a> 本地运行服务器，可以在<a href="http://localhost:4000">localhost:4000</a>中查看</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<h3 id="重新渲染博客"><a class="markdownIt-Anchor" href="#重新渲染博客"></a> 重新渲染博客</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
-<h3 id="将项目更新到github-pages上"><a class="markdownIt-Anchor" href="#将项目更新到github-pages上"></a> 将项目更新到GitHub Pages上</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/zh-cn/docs/">Hexo doc</a></p>
-<h3 id="git的使用"><a class="markdownIt-Anchor" href="#git的使用"></a> git的使用</h3>
-<h4 id="git初始化仓库"><a class="markdownIt-Anchor" href="#git初始化仓库"></a> git初始化仓库</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
-<h4 id="git添加到缓冲区"><a class="markdownIt-Anchor" href="#git添加到缓冲区"></a> git添加到缓冲区</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add *</span><br></pre></td></tr></table></figure>
-<h4 id="git提交改动"><a class="markdownIt-Anchor" href="#git提交改动"></a> git提交改动</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;msg&quot;</span></span><br></pre></td></tr></table></figure>
-<h4 id="git推送到远程仓库"><a class="markdownIt-Anchor" href="#git推送到远程仓库"></a> git推送到远程仓库</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
-<h4 id="如果没有远程仓库可以先添加"><a class="markdownIt-Anchor" href="#如果没有远程仓库可以先添加"></a> 如果没有远程仓库，可以先添加</h4>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin server</span><br></pre></td></tr></table></figure>
-<h3 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h3>
-<p>hexo g -d 或者 git push 时可能在Writing objects停住不动，原因是上传文件可能较大，而缓冲区较小。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.postBuffer 524288000</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>全国大学生智能汽车竞赛记录</title>
     <url>/posts/2020-07-005.html</url>
     <content><![CDATA[<h3 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h3>
@@ -2736,6 +2696,57 @@ draft	source/_drafts
         <tag>HFUT</tag>
         <tag>全国大学生智能汽车竞赛</tag>
         <tag>恩智浦杯</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客说明</title>
+    <url>/posts/2020-07-001.html</url>
+    <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
+<p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
+<h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
+<h3 id="创建一个新的文章或页面"><a class="markdownIt-Anchor" href="#创建一个新的文章或页面"></a> 创建一个新的文章或页面</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] [title]</span><br></pre></td></tr></table></figure>
+<h4 id="布局layout"><a class="markdownIt-Anchor" href="#布局layout"></a> 布局（Layout）</h4>
+<p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
+<pre><code>布局	路径
+post	source/_posts
+page	source
+draft	source/_drafts
+</code></pre>
+<h4 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h4>
+<p>创建一个标题为exp的文章，默认布局为post，在命令中可以省略。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new exp   </span><br></pre></td></tr></table></figure>
+<p>创建一个名为exp的页面。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new page exp   </span><br></pre></td></tr></table></figure>
+<h3 id="本地运行服务器可以在localhost4000中查看"><a class="markdownIt-Anchor" href="#本地运行服务器可以在localhost4000中查看"></a> 本地运行服务器，可以在<a href="http://localhost:4000">localhost:4000</a>中查看</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="重新渲染博客"><a class="markdownIt-Anchor" href="#重新渲染博客"></a> 重新渲染博客</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="将项目更新到github-pages上"><a class="markdownIt-Anchor" href="#将项目更新到github-pages上"></a> 将项目更新到GitHub Pages上</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/zh-cn/docs/">Hexo doc</a></p>
+<h3 id="git的使用"><a class="markdownIt-Anchor" href="#git的使用"></a> git的使用</h3>
+<h4 id="git初始化仓库"><a class="markdownIt-Anchor" href="#git初始化仓库"></a> git初始化仓库</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<h4 id="git添加到缓冲区"><a class="markdownIt-Anchor" href="#git添加到缓冲区"></a> git添加到缓冲区</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add *</span><br></pre></td></tr></table></figure>
+<h4 id="git提交改动"><a class="markdownIt-Anchor" href="#git提交改动"></a> git提交改动</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;msg&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="git推送到远程仓库"><a class="markdownIt-Anchor" href="#git推送到远程仓库"></a> git推送到远程仓库</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<h4 id="如果没有远程仓库可以先添加"><a class="markdownIt-Anchor" href="#如果没有远程仓库可以先添加"></a> 如果没有远程仓库，可以先添加</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin server</span><br></pre></td></tr></table></figure>
+<h3 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h3>
+<p>hexo g -d 或者 git push 时可能在Writing objects停住不动，原因是上传文件可能较大，而缓冲区较小。也有可能是网不太行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.postBuffer 524288000</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
