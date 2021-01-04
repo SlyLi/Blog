@@ -382,14 +382,14 @@
   </url>
   
   <url>
-    <loc>http://slyli.cn/tags/butterfly/</loc>
+    <loc>http://slyli.cn/tags/cocos2dx%E9%BC%A0%E6%A0%87%E6%8E%A7%E5%88%B6%E7%B2%BE%E7%81%B5/</loc>
     <lastmod>2021-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://slyli.cn/tags/cocos2dx%E9%BC%A0%E6%A0%87%E6%8E%A7%E5%88%B6%E7%B2%BE%E7%81%B5/</loc>
+    <loc>http://slyli.cn/tags/butterfly/</loc>
     <lastmod>2021-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -418,6 +418,13 @@
   
   <url>
     <loc>http://slyli.cn/tags/repkg/</loc>
+    <lastmod>2021-01-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://slyli.cn/tags/hexo-steam/</loc>
     <lastmod>2021-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -521,13 +528,6 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>http://slyli.cn/tags/hexo-steam/</loc>
-    <lastmod>2021-01-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   
   <url>
@@ -545,14 +545,14 @@
   </url>
   
   <url>
-    <loc>http://slyli.cn/categories/blog/</loc>
+    <loc>http://slyli.cn/categories/AI/</loc>
     <lastmod>2021-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://slyli.cn/categories/AI/</loc>
+    <loc>http://slyli.cn/categories/blog/</loc>
     <lastmod>2021-01-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
