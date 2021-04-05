@@ -2363,7 +2363,12 @@ ImageLoad(void* dat, int width, int height,int size)
 <ol>
 <li>2021-03-09   <code>pull up</code> 10 10 10</li>
 <li>2021-03-11   <code>pull up</code> 15 9 5</li>
-<li>2021-03-24   <code>pull up</code> 15 10 10 5 20</li>
+<li>2021-03-24   <code>pull up</code> 15 10 10 5 10</li>
+<li>2021-03-28   <code>pull up</code> 10 10 10 10 10</li>
+</ol>
+<h3 id="2021年04月"><a class="markdownIt-Anchor" href="#2021年04月"></a> 2021年04月</h3>
+<ol>
+<li>2021-04-04  <code>burpee</code> 50 开始恢复运动了</li>
 </ol>
 ]]></content>
       <categories>
@@ -3950,10 +3955,27 @@ end</p>
   <entry>
     <title>基因组组装</title>
     <url>/posts/2021-03-001.html</url>
-    <content><![CDATA[<h3 id="计划"><a class="markdownIt-Anchor" href="#计划"></a> 计划</h3>
+    <content><![CDATA[<h3 id="每日小结"><a class="markdownIt-Anchor" href="#每日小结"></a> 每日小结</h3>
 <ol>
-<li>搞明白数据</li>
-<li>组装算法， sga dbg</li>
+<li>
+<p>2020-03-31<br />
+完成<br />
+看了点纠错知识<br />
+服务器跑商三代数据 align,sort,merge<br />
+明日计划<br />
+三代数据比对结果（3970000-39870000）<br />
+二代比对结果到（3970000-39870000）上深度信息有点奇怪等二代数据比对到chr13结果出来后再看看，<br />
+看看三代自纠错和二代数据纠三代</p>
+</li>
+<li>
+<p>2020-04-02</p>
+<ul>
+<li>三代数据比对到chr13中完成，结果也是比较怪，有部分长度的序列深度特别高，结果在2_chr13_pacbio_align.sort.bam中</li>
+<li>二代的在服务器上出了点问题</li>
+<li>放假前把二代数据比对到全基因组上，看看效果</li>
+<li>之后应该看纠错的知识了</li>
+</ul>
+</li>
 </ol>
 <h1 id="资料"><a class="markdownIt-Anchor" href="#资料"></a> 资料</h1>
 <h2 id="生物信息学博客"><a class="markdownIt-Anchor" href="#生物信息学博客"></a> 生物信息学博客</h2>
@@ -4043,12 +4065,53 @@ W是X的一个字串，<span class="katex"><span class="katex-mathml"><math><sem
 </ol>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">samtools view -h abc.bam &gt; abc.sam</span><br></pre></td></tr></table></figure>
 <ol>
-<li>centos挂载windows共享文件夹<br />
-首先需要安装cifs-ufils</li>
+<li>提取fastq中的基因</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#首先为利用faidx为fasta文件建立索引</span><br><span class="line">samtools faidx input.fa</span><br><span class="line">#创建索引之后就可以快速提取了</span><br><span class="line">samtools faidx input.fa gene3 gene5</span><br><span class="line">samtools faidx input.fa chr1:100-200 &gt; chr1.fa</span><br></pre></td></tr></table></figure>
+<ol>
+<li>sort</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">samtools sort in.bam -o out.sort.bam</span><br></pre></td></tr></table></figure>
+<ol>
+<li>可视化查看比对结果（查看序列gene1,400bp开始的比对结果）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">samtools tview in.sorted.bam ref.fa -p gene1:400</span><br></pre></td></tr></table></figure>
+<h4 id="blast"><a class="markdownIt-Anchor" href="#blast"></a> blast</h4>
+<ol>
+<li>
+<p>构建数据库<br />
+makeblastdb -in genome.fasta -dbtype nucl -parse_seqids -out ./index</p>
+</li>
+<li>
+<p>将核苷酸序列比对至核苷酸数据库<br />
+blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out out_file</p>
+<p>第1列：输入序列的名称。<br />
+第2列：比对到的目标序列名称。<br />
+第3列：序列相似度。<br />
+第4列：比对的有效长度。<br />
+第5列：错配数。<br />
+第6列：gap数。<br />
+第7-8列：输入序列比对上的起始和终止位置。<br />
+第9-10列：比对到目标序列的起始和终止位置。<br />
+第11列：e-value。e-value低于1e-5就可认为序列具有较高的同源性。<br />
+第12列：比对得分<br />
+如果想要知道序列每个碱基的比对情况，删去outfmt参数即可。</p>
+</li>
+<li>
+<p>centos挂载windows共享文件夹<br />
+首先需要安装cifs-ufils</p>
+</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install cifs-ufils</span><br></pre></td></tr></table></figure>
 <p>然后挂载</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mount -t cifs -o username=xxx //shared_link/path /mount_path</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mount -t cifs -o username=xxx //shared_link/path /mount_path</span><br></pre></td></tr></table></figure>
+<p>Bowtie2 是将测序reads与长参考序列比对工具。适用于将长度大约为50到100或1000字符的reads与相对较长的基因组（如哺乳动物）进行比对。Bowtie2使用FM索引（基于Burrows-Wheeler Transform 或 BWT）对基因组进行索引，以此来保持其占用较小内存。对于人类基因组来说，内存占用在3.2G左右。Bowtie2 支持间隔，局部和双端对齐模式。可以同时使用多个处理器来极大的提升比对速度。</p>
+<h4 id="xshell-上传下载文件"><a class="markdownIt-Anchor" href="#xshell-上传下载文件"></a> Xshell 上传下载文件</h4>
+<ol>
+<li>rz 上传到Linux上</li>
+<li>sz file 下载到本地电脑上</li>
+</ol>
+]]></content>
       <categories>
         <category>Master</category>
       </categories>
