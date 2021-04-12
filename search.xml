@@ -1631,6 +1631,8 @@ if __name__ == &quot;__main__&quot;:
 <ol>
 <li>2021-04-04  <code>burpee</code> 50 开始恢复运动了</li>
 <li>2021-04-07  <code>pull up</code> 15 10 10 10 10</li>
+<li>2021-04-10   卧推</li>
+<li>2021-04-12   卧推</li>
 </ol>
 ]]></content>
       <categories>
@@ -2739,6 +2741,15 @@ blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out ou
 <li>下一步，查看删除后的比对结果，然后对三代数据进行纠错，提取出所有于三代数据有相关的reads，设计算法进行组装</li>
 </ul>
 </li>
+<li>
+<p>2020-04-12</p>
+<ul>
+<li>早上查看比对结果时，发现使用minimap2比对三代数据时意外终止，猜测原因可能是自己使用多线程导致内存不够用，或者代码对多线程有bug，原来使用14个线程跑，使用8个线程时恢复正常，继续跑三代数据比对</li>
+<li>下午去健身了~~~</li>
+<li>晚上回到实验室查看比对结果，发现有一条约3k的read比对到了拷贝，以及拷贝后的序列，中间有约1k的deletion，将这条read添加到参考基因组中重新比对，虽然只有一条read偶然性较大，若比对结果理想，仍能表明这个课题基本上能有个好的结果，这可以算是一个重大进展了。</li>
+<li>第一次体会到了科研的乐趣，看到这条read时，心中有股难以言喻的喜悦之情，跑出去坐了10分钟才平息下来，哈哈。</li>
+</ul>
+</li>
 </ol>
 <h1 id="资料"><a class="markdownIt-Anchor" href="#资料"></a> 资料</h1>
 <h2 id="生物信息学博客"><a class="markdownIt-Anchor" href="#生物信息学博客"></a> 生物信息学博客</h2>
@@ -2752,10 +2763,15 @@ blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out ou
 </ol>
 <h2 id="论文"><a class="markdownIt-Anchor" href="#论文"></a> 论文</h2>
 <ol>
+<li><a href="https://www.biorxiv.org/content/10.1101/2020.03.06.977975v1.full.pdf">Long-read error correction: a survey and qualitative comparison</a></li>
 <li><a href="https://academic.oup.com/bioinformatics/article-abstract/21/suppl_2/ii79/227189">The fragment assembly string graph</a></li>
 <li><a href="https://academic.oup.com/bioinformatics/article-abstract/26/12/i367/286190">Efficient construction of an assembly string graph using the FM-index</a></li>
 <li><a href="https://genome.cshlp.org/content/22/3/549.full.pdf">Efficient de novo assembly of large genomesusing compressed data structures</a></li>
 <li><a href="https://academic.oup.com/bioinformatics/article-pdf/25/14/1754/605544/btp324.pdf">Fast and accurate short read alignment with Burrows–Wheeler transform </a></li>
+</ol>
+<h2 id="知识点"><a class="markdownIt-Anchor" href="#知识点"></a> 知识点</h2>
+<ol>
+<li>mapping：只提供read比对的参考序列上的位置信息；alignment：不仅提供位置信息，还有他们的实际位点和参考位点之间的匹配、不匹配、插入或删除的关系</li>
 </ol>
 <h2 id="fast-and-accurate-short-read-alignment-with-burrowswheelertransform"><a class="markdownIt-Anchor" href="#fast-and-accurate-short-read-alignment-with-burrowswheelertransform"></a> <a href="https://academic.oup.com/bioinformatics/article/25/14/1754/225615">Fast and accurate short read alignment with Burrows–Wheelertransform</a></h2>
 <h3 id="prefix-trie"><a class="markdownIt-Anchor" href="#prefix-trie"></a> prefix trie</h3>
