@@ -1633,6 +1633,9 @@ if __name__ == &quot;__main__&quot;:
 <li>2021-04-07  <code>pull up</code> 15 10 10 10 10</li>
 <li>2021-04-10   卧推</li>
 <li>2021-04-12   卧推</li>
+<li>2021-04-13   乒乓球</li>
+<li>2021-04-14   17 12 12 10 10</li>
+<li>2021-04-15   卧推</li>
 </ol>
 ]]></content>
       <categories>
@@ -2282,6 +2285,10 @@ dp[i] =     if s[i]==’)’
     <url>/posts/2021-04-001.html</url>
     <content><![CDATA[<p>前几天将实验室电脑装成ubuntu 20.04 后，在使用的过程中，经常发生死机的情况，鼠标键盘完全没有反应，根本无法切换到命令行界面，只能通过物理方法完全关机。此外也无法正常关机，关机后会出现几行出错的命令，然后卡死，也是只能摁电源强制关机。<br />
 当时是外接了一个移动硬盘，将移动硬盘去除后，这些情况就消失了，但是在使用移动硬盘的过程中并没有发现有什么异常情况，猜测原因是移动硬盘和linux的文件系统不一致，而ubuntu 20.04 对以移动硬盘中文件系统的支持代码有bug导致死机。</p>
+<ol>
+<li>2021-04-14 今天又发现意外卡死了，点并没有接硬盘，查看log时，发现了一个硬件问题，搜索发现很多类似的情况发生，解决方法是将这个驱动禁止或换用其他的驱动<br />
+硬件  nouveau 0000:01:00.0:fifo:fault00 [READ] at xxxxxxxxxx</li>
+</ol>
 ]]></content>
   </entry>
   <entry>
@@ -2686,7 +2693,7 @@ blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out ou
     <content><![CDATA[<h3 id="每日小结"><a class="markdownIt-Anchor" href="#每日小结"></a> 每日小结</h3>
 <ol>
 <li>
-<p>2020-03-31<br />
+<p>2021-03-31<br />
 完成<br />
 看了点纠错知识<br />
 服务器跑商三代数据 align,sort,merge<br />
@@ -2696,7 +2703,7 @@ blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out ou
 看看三代自纠错和二代数据纠三代</p>
 </li>
 <li>
-<p>2020-04-02</p>
+<p>2021-04-02</p>
 <ul>
 <li>三代数据比对到chr13中完成，结果也是比较怪，有部分长度的序列深度特别高，结果在2_chr13_pacbio_align.sort.bam中</li>
 <li>二代的在服务器上出了点问题</li>
@@ -2705,20 +2712,20 @@ blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out ou
 </ul>
 </li>
 <li>
-<p>2020-04-05</p>
+<p>2021-04-05</p>
 <ul>
 <li>将实验室电脑装成ubuntu系统，并配置相应的实验环境。</li>
 <li>看了看比对到全基因组上的结果，发现2.JY中是两个拷贝，不是给的4个拷贝，对于不同的拷贝，其只是有偶尔一个碱基不同</li>
 </ul>
 </li>
 <li>
-<p>2020-04-06</p>
+<p>2021-04-06</p>
 <ul>
 <li>得到三代数据的比对结果后，发现拷贝位置的深度确实是其他位置的四倍，重新查看二代数据的比对信息时，发现比对的二代数据是选择错误的H25，重新比对二代数据</li>
 </ul>
 </li>
 <li>
-<p>2020-04-07</p>
+<p>2021-04-07</p>
 <ul>
 <li>获得二代数据的比对结果，使用IGV软件进行查看，发现，二代数据比对深度不平稳，但也明显可以看出是其他正常区域的四倍，三代数据深度平稳，是其他位置的四倍，其中四个拷贝，不同的地方仅仅是一个碱基，考虑简单的排列组合进行组装是否可行，以及此项目是否有继续进行的必要。</li>
 <li>部分拷贝区域内的二代数据深度低的部分，三代数据中的错误率也较高，但并不绝对，这一点不仅仅在多个拷贝的区域这样，具体原因仍需要考虑（组装的参考基因组的问题？）</li>
@@ -2727,13 +2734,13 @@ blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out ou
 </ul>
 </li>
 <li>
-<p>2020-04-08</p>
+<p>2021-04-08</p>
 <ul>
 <li>三代数据的长度从 几k 到 一百k 左右都存在。查看了拷贝接触位置的覆盖深度，没有什么结论，疑问：最后一个拷贝是否不是和之前的拷贝的长度相同，也就是最后一个拷贝的中间位置连接之后的部分</li>
 </ul>
 </li>
 <li>
-<p>2020-04-09</p>
+<p>2021-04-09</p>
 <ul>
 <li>开会 仔细注意两边连接处的详细信息，</li>
 <li>将74k拷贝后接的于它开始相同的到nnnnnnn之间的碱基去掉，进行全基因组的比对，查看比对结果，</li>
@@ -2742,12 +2749,46 @@ blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out ou
 </ul>
 </li>
 <li>
-<p>2020-04-12</p>
+<p>2021-04-12</p>
 <ul>
 <li>早上查看比对结果时，发现使用minimap2比对三代数据时意外终止，猜测原因可能是自己使用多线程导致内存不够用，或者代码对多线程有bug，原来使用14个线程跑，使用8个线程时恢复正常，继续跑三代数据比对</li>
 <li>下午去健身了~~~</li>
 <li>晚上回到实验室查看比对结果，发现有一条约3k的read比对到了拷贝，以及拷贝后的序列，中间有约1k的deletion，将这条read添加到参考基因组中重新比对，虽然只有一条read偶然性较大，若比对结果理想，仍能表明这个课题基本上能有个好的结果，这可以算是一个重大进展了。</li>
 <li>第一次体会到了科研的乐趣，看到这条read时，心中有股难以言喻的喜悦之情，跑出去坐了10分钟才平息下来，哈哈。</li>
+</ul>
+</li>
+<li>
+<p>2021-04-13</p>
+<ul>
+<li>查看了比对结果，coverage只有二十几，并不是很完美，但感觉也够用了，</li>
+<li>重新修改了一个参考基因组，重新比对看看结果会不会好一点</li>
+<li>修正三代数据</li>
+<li>开始看sga源码，论文</li>
+</ul>
+</li>
+<li>
+<p>2021-04-14</p>
+<ul>
+<li>coverage还是只有20多，而且二代数据的coverage很多位置是0，猜测原因开始是添加的三代read中错误率较高，可以等之后纠错后再找到read添加测试</li>
+<li>纠错，开始时发现软件经常意外终止，开始还以为是软件有bug，后面才知道是自己内存不够大，而且swap分区也比较小，把swap分区调大（64G）后就可以了，之前minimap2的意外终止也可能是这个原因</li>
+</ul>
+</li>
+<li>
+<p>2021-04-15</p>
+<ul>
+<li>ubuntu出问题了，进不去桌面，命令行正常，重装了一遍显卡的驱动后就好了，自带的显卡驱动也太辣鸡了呀</li>
+<li>查看纠错后的read，输入的read数量少了很多。。。</li>
+<li>手动将纠错之后的read添加到参考基因组上进行比对，</li>
+</ul>
+</li>
+<li>
+<p>2021-04-16</p>
+<ul>
+<li>手动将纠错之后的read添加到参考基因组上进行比对后，在三代数据中，添加的和拷贝的连接处有一段的coverage比较高，有500左右，暂不清楚是什么原因</li>
+<li>将原始的参考数据中的断开的区域中的nnnn去掉后，在进行比对，查看是否能有其他的数据能够连接上这两段</li>
+<li>进行了三代数据的纠错，不知道两天多能不能跑完</li>
+<li>对两个拷贝的进行的比对</li>
+<li>继续看组装算法的论文</li>
 </ul>
 </li>
 </ol>
@@ -2803,6 +2844,11 @@ Burrows–Wheeler transform 转换后的结果是S和B</li>
 <li>O(a,i):在B[0:i]中a出现的次数<br />
 W是X的一个字串，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><munder accentunder="true"><mi>R</mi><mo stretchy="true">‾</mo></munder><mo stretchy="false">(</mo><mi>a</mi><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mi>C</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mi>O</mi><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><munder accentunder="true"><mi>R</mi><mo stretchy="true">‾</mo></munder><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\underline R(aW)=C(a)+O(a,\underline R(W)-1)+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord underline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.68333em;"><span style="top:-2.84em;"><span class="pstrut" style="height:3em;"></span><span class="underline-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.20000000000000007em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord underline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.68333em;"><span style="top:-2.84em;"><span class="pstrut" style="height:3em;"></span><span class="underline-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.20000000000000007em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> , <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>R</mi><mo stretchy="true">‾</mo></mover><mo stretchy="false">(</mo><mi>a</mi><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mi>C</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mi>O</mi><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mover accent="true"><mi>R</mi><mo stretchy="true">‾</mo></mover><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\overline R(aW)=C(a)+O(a,\overline R(W)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.13333em;vertical-align:-0.25em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.13333em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span></span></span></span> ，当且仅当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><munder accentunder="true"><mi>R</mi><mo stretchy="true">‾</mo></munder><mo stretchy="false">(</mo><mi>a</mi><mi>W</mi><mo stretchy="false">)</mo><mo>≤</mo><mover accent="true"><mi>R</mi><mo stretchy="true">‾</mo></mover><mo stretchy="false">(</mo><mi>a</mi><mi>w</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\underline R(aW) \le \overline R(aw)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord underline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.68333em;"><span style="top:-2.84em;"><span class="pstrut" style="height:3em;"></span><span class="underline-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.20000000000000007em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.13333em;vertical-align:-0.25em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span></span></span></span> 时，aW是X的字串</li>
 </ul>
+<h2 id="the-fragment-assembly-string-graph"><a class="markdownIt-Anchor" href="#the-fragment-assembly-string-graph"></a> <a href="https://academic.oup.com/bioinformatics/article-abstract/21/suppl_2/ii79/227189">The fragment assembly string graph</a></h2>
+<h3 id="building-string-graph"><a class="markdownIt-Anchor" href="#building-string-graph"></a> Building string graph</h3>
+<ol>
+<li></li>
+</ol>
 ]]></content>
       <categories>
         <category>Master</category>
