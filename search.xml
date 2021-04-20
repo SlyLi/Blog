@@ -1636,6 +1636,7 @@ if __name__ == &quot;__main__&quot;:
 <li>2021-04-13   乒乓球</li>
 <li>2021-04-14   17 12 12 10 10</li>
 <li>2021-04-15   卧推</li>
+<li>2021-04-19   卧推</li>
 </ol>
 ]]></content>
       <categories>
@@ -2791,6 +2792,22 @@ blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out ou
 <li>继续看组装算法的论文</li>
 </ul>
 </li>
+<li>
+<p>2021-04-19</p>
+<ul>
+<li>coverage到达500左右，可能是因为进行了纠错的缘故，纠错后的序列 更靠近的了其他序列</li>
+<li>还有只有那个read能连接起来两端序列，但第一段后还是又可以比对上的序列的</li>
+<li>要完成三代数据纠错至少要十几天，暂时放弃，之后应该会自己在组装的过程中实现纠错</li>
+<li>进行了4.JY的拷贝位置的比对，以及2.H25的全基因比对和删掉拷贝后边的重复的全基因比对</li>
+</ul>
+</li>
+<li>
+<p>2021-04-20</p>
+<ul>
+<li>2.H25中并没有找到能够连接到后面的read，初步猜想是终端的间隔有点长，导致基因组不好比对上</li>
+<li>在拷贝位置的比对结果中，发现有某几个区域的coverage特别高，其他的正常，可能这个位置是某个基因，在其他的地方也有相同的</li>
+</ul>
+</li>
 </ol>
 <h1 id="资料"><a class="markdownIt-Anchor" href="#资料"></a> 资料</h1>
 <h2 id="生物信息学博客"><a class="markdownIt-Anchor" href="#生物信息学博客"></a> 生物信息学博客</h2>
@@ -2809,6 +2826,7 @@ blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out ou
 <li><a href="https://academic.oup.com/bioinformatics/article-abstract/26/12/i367/286190">Efficient construction of an assembly string graph using the FM-index</a></li>
 <li><a href="https://genome.cshlp.org/content/22/3/549.full.pdf">Efficient de novo assembly of large genomesusing compressed data structures</a></li>
 <li><a href="https://academic.oup.com/bioinformatics/article-pdf/25/14/1754/605544/btp324.pdf">Fast and accurate short read alignment with Burrows–Wheeler transform </a></li>
+<li><a href="https://academic.oup.com/bioinformatics/article/34/18/3094/4994778">Minimap2: pairwise alignment for nucleotidesequences</a></li>
 </ol>
 <h2 id="知识点"><a class="markdownIt-Anchor" href="#知识点"></a> 知识点</h2>
 <ol>
@@ -2845,10 +2863,22 @@ Burrows–Wheeler transform 转换后的结果是S和B</li>
 W是X的一个字串，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><munder accentunder="true"><mi>R</mi><mo stretchy="true">‾</mo></munder><mo stretchy="false">(</mo><mi>a</mi><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mi>C</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mi>O</mi><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><munder accentunder="true"><mi>R</mi><mo stretchy="true">‾</mo></munder><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\underline R(aW)=C(a)+O(a,\underline R(W)-1)+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord underline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.68333em;"><span style="top:-2.84em;"><span class="pstrut" style="height:3em;"></span><span class="underline-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.20000000000000007em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord underline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.68333em;"><span style="top:-2.84em;"><span class="pstrut" style="height:3em;"></span><span class="underline-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.20000000000000007em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> , <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>R</mi><mo stretchy="true">‾</mo></mover><mo stretchy="false">(</mo><mi>a</mi><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mi>C</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mi>O</mi><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mover accent="true"><mi>R</mi><mo stretchy="true">‾</mo></mover><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\overline R(aW)=C(a)+O(a,\overline R(W)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.13333em;vertical-align:-0.25em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.13333em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span></span></span></span> ，当且仅当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><munder accentunder="true"><mi>R</mi><mo stretchy="true">‾</mo></munder><mo stretchy="false">(</mo><mi>a</mi><mi>W</mi><mo stretchy="false">)</mo><mo>≤</mo><mover accent="true"><mi>R</mi><mo stretchy="true">‾</mo></mover><mo stretchy="false">(</mo><mi>a</mi><mi>w</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\underline R(aW) \le \overline R(aw)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord underline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.68333em;"><span style="top:-2.84em;"><span class="pstrut" style="height:3em;"></span><span class="underline-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.20000000000000007em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.13333em;vertical-align:-0.25em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span></span></span></span> 时，aW是X的字串</li>
 </ul>
 <h2 id="the-fragment-assembly-string-graph"><a class="markdownIt-Anchor" href="#the-fragment-assembly-string-graph"></a> <a href="https://academic.oup.com/bioinformatics/article-abstract/21/suppl_2/ii79/227189">The fragment assembly string graph</a></h2>
-<h3 id="building-string-graph"><a class="markdownIt-Anchor" href="#building-string-graph"></a> Building string graph</h3>
+<p>伪码我在这里就不贴了，感兴趣可以去读原文.</p>
+<h3 id="building-a-string-graph"><a class="markdownIt-Anchor" href="#building-a-string-graph"></a> BUILDING A STRING GRAPH</h3>
 <ol>
-<li></li>
+<li>两个read的重叠时，重叠区的端点，在原read中有两个是read的端点</li>
+<li>顶点 Vertic {type;read} type:B/E 表示为read的开始点或者结束点，read表示和这个顶点相关的read</li>
+<li>每个read F是两个节点，一个节点时表示它的开始点F.B，一个表示他的结束点F.E</li>
+<li>两个顶点之间相连是两个read的端点相连，一个端点处于重叠区中，另一个位于非重叠区</li>
+<li>这样生成的图中有可以削减的边
+<ul>
+<li>A-&gt;B-&gt;C和A-&gt;C，可以去掉A-&gt;C</li>
+<li>如果有多个入度和出度都是1的节点相连，可以用一条复合边替代</li>
+<li>任意两个有重叠区的read相连时，都会有两条边连接四个顶点，这两组是等价的，可以去掉一条边和两个顶点</li>
+</ul>
+</li>
 </ol>
+<h3 id="a-linear-transitive-reductionalgorithm"><a class="markdownIt-Anchor" href="#a-linear-transitive-reductionalgorithm"></a> A LINEAR TRANSITIVE REDUCTIONALGORITHM</h3>
 ]]></content>
       <categories>
         <category>Master</category>
