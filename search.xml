@@ -1637,6 +1637,7 @@ if __name__ == &quot;__main__&quot;:
 <li>2021-04-14   17 12 12 10 10</li>
 <li>2021-04-15   卧推</li>
 <li>2021-04-19   卧推</li>
+<li>2021-04-21   18 15 12 10 11</li>
 </ol>
 ]]></content>
       <categories>
@@ -2808,6 +2809,12 @@ blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out ou
 <li>在拷贝位置的比对结果中，发现有某几个区域的coverage特别高，其他的正常，可能这个位置是某个基因，在其他的地方也有相同的</li>
 </ul>
 </li>
+<li>
+<p>2021-04-21</p>
+<ul>
+<li>论文论文，后面在开始写代码之前估计就时一直看论文了。。</li>
+</ul>
+</li>
 </ol>
 <h1 id="资料"><a class="markdownIt-Anchor" href="#资料"></a> 资料</h1>
 <h2 id="生物信息学博客"><a class="markdownIt-Anchor" href="#生物信息学博客"></a> 生物信息学博客</h2>
@@ -2879,6 +2886,7 @@ W是X的一个字串，<span class="katex"><span class="katex-mathml"><math><sem
 </li>
 </ol>
 <h3 id="a-linear-transitive-reductionalgorithm"><a class="markdownIt-Anchor" href="#a-linear-transitive-reductionalgorithm"></a> A LINEAR TRANSITIVE REDUCTIONALGORITHM</h3>
+<h2 id="efficient-construction-of-an-assembly-string-graph-using-the-fm-index"><a class="markdownIt-Anchor" href="#efficient-construction-of-an-assembly-string-graph-using-the-fm-index"></a> <a href="https://academic.oup.com/bioinformatics/article-abstract/26/12/i367/286190">Efficient construction of an assembly string graph using the FM-index</a></h2>
 ]]></content>
       <categories>
         <category>Master</category>
