@@ -1640,7 +1640,7 @@ if __name__ == &quot;__main__&quot;:
 <li>2021-04-21   <code>pull up</code> 18 15 12 10 11</li>
 <li>2021-04-24   <code>pull up</code> 19 10 10 10 12</li>
 <li>2021-04-25   卧推</li>
-<li>2021-04-24   <code>pull up</code> 15 12 10 12 11</li>
+<li>2021-04-26   <code>pull up</code> 15 12 10 12 11</li>
 </ol>
 ]]></content>
       <categories>
@@ -2818,6 +2818,12 @@ blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out ou
 <li>论文论文，后面在开始写代码之前估计就时一直看论文了。。</li>
 </ul>
 </li>
+<li>
+<p>2021-04-28</p>
+<ul>
+<li>开始写组装算法。</li>
+</ul>
+</li>
 </ol>
 <h1 id="资料"><a class="markdownIt-Anchor" href="#资料"></a> 资料</h1>
 <h2 id="生物信息学博客"><a class="markdownIt-Anchor" href="#生物信息学博客"></a> 生物信息学博客</h2>
@@ -2970,7 +2976,7 @@ W是X的一个字串，<span class="katex"><span class="katex-mathml"><math><sem
 </ol>
 <h2 id="三代测序数据-pacbio"><a class="markdownIt-Anchor" href="#三代测序数据-pacbio"></a> 三代测序数据 (pacbio)</h2>
 <p><a href="https://pacbiofileformats.readthedocs.io/en/3.0/BAM.html">BAM format specification for PacBio</a></p>
-<h3 id="bamsam"><a class="markdownIt-Anchor" href="#bamsam"></a> bam/sam</h3>
+<h3 id="bamsam-sam"><a class="markdownIt-Anchor" href="#bamsam-sam"></a> bam/sam <a href="http://samtools.sourceforge.net/SAM1.pdf">sam</a></h3>
 <ol>
 <li>
 <p>bam和sam其实是同一种文件，bam是sam的二进制表示，便于存储和运算</p>
