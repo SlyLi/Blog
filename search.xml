@@ -1658,7 +1658,12 @@ if __name__ == &quot;__main__&quot;:
 <li>2021-05-21   <code>Explosive Pullup</code> 6 3  <code>pull up</code> 18 12 14 10 10   unstoppable</li>
 <li>2021-05-22   卧推 55<em>2</em>6 50<em>4</em>5</li>
 <li>2021-05-23   <code>human flag</code>  <code>Explosive Pullup</code> 7 <code>pull up</code> 18 10 10 10 10  先热个身感觉会更好一些</li>
+<li>2021-05-24   卧推  60kg<em>5</em>2 55kg<em>7</em>6</li>
+<li>2021-05-27   卧推 60kg<em>5</em>5 二头</li>
+<li>2021-05-29   <code>Explosive Pullup</code> 6 <code>pull up</code> 20 13 10 10 10</li>
+<li>2021-05-30   卧推 60kg<em>5</em>7 肩飞鸟 下拉80kg*3</li>
 </ol>
+<h3 id="2021年06月"><a class="markdownIt-Anchor" href="#2021年06月"></a> 2021年06月</h3>
 ]]></content>
       <categories>
         <category>others</category>
@@ -2860,10 +2865,17 @@ blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out ou
 <li><a href="https://genome.cshlp.org/content/22/3/549.full.pdf">Efficient de novo assembly of large genomesusing compressed data structures</a></li>
 <li><a href="https://academic.oup.com/bioinformatics/article-pdf/25/14/1754/605544/btp324.pdf">Fast and accurate short read alignment with Burrows–Wheeler transform </a></li>
 <li><a href="https://academic.oup.com/bioinformatics/article/34/18/3094/4994778">Minimap2: pairwise alignment for nucleotidesequences</a></li>
+<li><a href="https://www.nature.com/articles/s41592-019-0669-3">Fast and accurate long-read assembly with wtdbg2</a></li>
 </ol>
 <h2 id="知识点"><a class="markdownIt-Anchor" href="#知识点"></a> 知识点</h2>
 <ol>
 <li>mapping：只提供read比对的参考序列上的位置信息；alignment：不仅提供位置信息，还有他们的实际位点和参考位点之间的匹配、不匹配、插入或删除的关系</li>
+<li>
+<ol>
+<li>global alignment ：需要比对整个查询序列，查询序列在参考序列上的比对结果可能会不连续，一般用来比较同源基因，或者基因的差异性</li>
+<li>local alignment ：查找最能匹配上参考序列的局部区域，比对上的结果可能是查询序列的子序列，</li>
+</ol>
+</li>
 </ol>
 <h2 id="fast-and-accurate-short-read-alignment-with-burrowswheelertransform"><a class="markdownIt-Anchor" href="#fast-and-accurate-short-read-alignment-with-burrowswheelertransform"></a> <a href="https://academic.oup.com/bioinformatics/article/25/14/1754/225615">Fast and accurate short read alignment with Burrows–Wheelertransform</a></h2>
 <h3 id="prefix-trie"><a class="markdownIt-Anchor" href="#prefix-trie"></a> prefix trie</h3>
@@ -2912,7 +2924,11 @@ W是X的一个字串，<span class="katex"><span class="katex-mathml"><math><sem
 </li>
 </ol>
 <h3 id="a-linear-transitive-reductionalgorithm"><a class="markdownIt-Anchor" href="#a-linear-transitive-reductionalgorithm"></a> A LINEAR TRANSITIVE REDUCTIONALGORITHM</h3>
-<h2 id="efficient-construction-of-an-assembly-string-graph-using-the-fm-index"><a class="markdownIt-Anchor" href="#efficient-construction-of-an-assembly-string-graph-using-the-fm-index"></a> <a href="https://academic.oup.com/bioinformatics/article-abstract/26/12/i367/286190">Efficient construction of an assembly string graph using the FM-index</a></h2>
+<h2 id="fast-and-accurate-long-read-assembly-with-wtdbg2"><a class="markdownIt-Anchor" href="#fast-and-accurate-long-read-assembly-with-wtdbg2"></a> <a href="https://www.nature.com/articles/s41592-019-0669-3">Fast and accurate long-read assembly with wtdbg2</a></h2>
+<h3 id="main"><a class="markdownIt-Anchor" href="#main"></a> Main</h3>
+<ol>
+<li>使用的是基于overlap的方法，主要内容有：快速的all vs all read alignment 和 一种基于 fuzzy-Bruijin graph 的布局算法</li>
+</ol>
 ]]></content>
       <categories>
         <category>Master</category>
