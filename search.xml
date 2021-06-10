@@ -1631,21 +1631,21 @@ if __name__ == &quot;__main__&quot;:
 <ol>
 <li>2021-04-04   <code>burpee</code> 50 开始恢复运动了</li>
 <li>2021-04-07   <code>pull up</code> 15 10 10 10 10</li>
-<li>2021-04-10   卧推</li>
-<li>2021-04-12   卧推</li>
+<li>2021-04-10   <code>bench press</code></li>
+<li>2021-04-12   <code>bench press</code></li>
 <li>2021-04-13   乒乓球</li>
 <li>2021-04-14   <code>pull up</code> 17 12 12 10 10</li>
-<li>2021-04-15   卧推</li>
-<li>2021-04-19   卧推</li>
+<li>2021-04-15   <code>bench press</code></li>
+<li>2021-04-19   <code>bench press</code></li>
 <li>2021-04-21   <code>pull up</code> 18 15 12 10 11</li>
 <li>2021-04-24   <code>pull up</code> 19 10 10 10 12</li>
-<li>2021-04-25   卧推</li>
+<li>2021-04-25   <code>bench press</code></li>
 <li>2021-04-26   <code>pull up</code> 15 12 10 12 11</li>
 </ol>
 <h3 id="2021年05月"><a class="markdownIt-Anchor" href="#2021年05月"></a> 2021年05月</h3>
 <ol>
 <li>2021-05-05  <code>pull up</code> 17 12 10 10 10</li>
-<li>2021-05-07   卧推</li>
+<li>2021-05-07   <code>bench press</code></li>
 <li>2021-05-09  <code>pull up</code> 15 12 14 3 12 12</li>
 <li>2021-05-11  <code>pull up</code> 20 14 12 10 9</li>
 <li>2021-05-13   健身房</li>
@@ -1654,16 +1654,23 @@ if __name__ == &quot;__main__&quot;:
 <li>2021-05-17   健身房</li>
 <li>2021-05-18   双力臂，学了一点技巧后就感觉很轻松了，可以连做几个。顺风旗 5s 可能动作还不是很完美，之后找个时间拍个照片看看</li>
 <li>2021-05-19   乒乓球</li>
-<li>2021-05-20   卧推 50kg<em>5</em>8 可以加重量了</li>
-<li>2021-05-21   <code>Explosive Pullup</code> 6 3  <code>pull up</code> 18 12 14 10 10   unstoppable</li>
-<li>2021-05-22   卧推 55<em>2</em>6 50<em>4</em>5</li>
-<li>2021-05-23   <code>human flag</code>  <code>Explosive Pullup</code> 7 <code>pull up</code> 18 10 10 10 10  先热个身感觉会更好一些</li>
-<li>2021-05-24   卧推  60kg<em>5</em>2 55kg<em>7</em>6</li>
-<li>2021-05-27   卧推 60kg<em>5</em>5 二头</li>
-<li>2021-05-29   <code>Explosive Pullup</code> 6 <code>pull up</code> 20 13 10 10 10</li>
-<li>2021-05-30   卧推 60kg<em>5</em>7 肩飞鸟 下拉80kg*3</li>
+<li>2021-05-20   <code>bench press</code> 50kg<em>5</em>8 可以加重量了</li>
+<li>2021-05-21   <code>muscle u</code> 6 3  <code>pull up</code> 18 12 14 10 10   unstoppable</li>
+<li>2021-05-22   <code>bench press</code> 55<em>2</em>6 50<em>4</em>5</li>
+<li>2021-05-23   <code>human flag</code>  <code>muscle u</code> 7 <code>pull up</code> 18 10 10 10 10  先热个身感觉会更好一些</li>
+<li>2021-05-24   <code>bench press</code>  60kg<em>5</em>2 55kg<em>7</em>6</li>
+<li>2021-05-27   <code>bench press</code> 60kg<em>5</em>5 二头</li>
+<li>2021-05-29   <code>muscle u</code> 6 <code>pull up</code> 20 13 10 10 10</li>
+<li>2021-05-30   <code>bench press</code> 60kg<em>5</em>7 肩飞鸟 下拉80kg*3</li>
 </ol>
 <h3 id="2021年06月"><a class="markdownIt-Anchor" href="#2021年06月"></a> 2021年06月</h3>
+<ol>
+<li>2021-06-02  <code>bench press</code> 60kg<em>5</em>6 最后一组差点完求了</li>
+<li>2021-06-04  <code>pull up</code> 前水平！！！  <code>muscle u</code> 5  <code>pull up</code> 14 10 10 10</li>
+<li>2021-06-05  <code>bench press</code> 60kg<em>5</em>8 二头 25kg<em>8</em>5</li>
+<li>2021-06-07  <code>muscle up</code> <code>front lever</code> 5  <code>pull up</code> 18 14 12 10 10</li>
+<li>2021-06-08  <code>bench press</code> 60kg</li>
+</ol>
 ]]></content>
       <categories>
         <category>others</category>
@@ -2927,7 +2934,30 @@ W是X的一个字串，<span class="katex"><span class="katex-mathml"><math><sem
 <h2 id="fast-and-accurate-long-read-assembly-with-wtdbg2"><a class="markdownIt-Anchor" href="#fast-and-accurate-long-read-assembly-with-wtdbg2"></a> <a href="https://www.nature.com/articles/s41592-019-0669-3">Fast and accurate long-read assembly with wtdbg2</a></h2>
 <h3 id="main"><a class="markdownIt-Anchor" href="#main"></a> Main</h3>
 <ol>
-<li>使用的是基于overlap的方法，主要内容有：快速的all vs all read alignment 和 一种基于 fuzzy-Bruijin graph 的布局算法</li>
+<li>
+<p>使用的是基于overlap的方法，主要内容有：快速的all vs all read alignment 和 一种基于 fuzzy-Bruijin graph 的布局算法</p>
+</li>
+<li>
+<p>contigs:</p>
+<ol>
+<li>read中256个base作为一个bin，在所有read的所有的bins之间进行 all vs all read alignment 和 构建 fuzzy-Bruijin graph</li>
+<li>binning 操作是为了加速计算</li>
+<li>fuzzy-Bruijin graph ：一个vertex是four-bins，如果两个vertex在一个read中，就有一条边连接到这两个vertex</li>
+</ol>
+</li>
+<li>
+<p>FDB:</p>
+<ol>
+<li>类比：FBG中256base作为一个bin类似于DBG中的一个base，相应的K-mer变成K-bins，由k个连续的bins组成</li>
+</ol>
+</li>
+</ol>
+<h3 id="method"><a class="markdownIt-Anchor" href="#method"></a> Method</h3>
+<h4 id="the-wtdbg2-algorithm"><a class="markdownIt-Anchor" href="#the-wtdbg2-algorithm"></a> The wtdbg2 algorithm</h4>
+<ol>
+<li>过滤掉只出现一次或超过1000次的k-mer，为剩余的k-mer构建一个hashtable</li>
+<li>遍历所有read，找到那些之间有共同k-mer的read，把每个bin作为一个base，在binned序列，gap 和不匹配的bins间使用Smith–Waterman-like dynamic programming ，保留那些不少于8*256bp的alignment</li>
+<li></li>
 </ol>
 ]]></content>
       <categories>
