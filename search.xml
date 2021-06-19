@@ -1672,7 +1672,10 @@ if __name__ == &quot;__main__&quot;:
 <li>2021-06-08   <code>bench press</code> 60kg</li>
 <li>2021-06-10   <code>bench press</code> 60kg</li>
 <li>2021-06-13   <code>bench press</code> 60kg<em>5</em>5</li>
-<li>2021-06-13   <code>pull up</code> 20 15 10 10 10</li>
+<li>2021-06-14   <code>pull up</code> 20 15 10 10 10</li>
+<li>2021-06-16   <code>bench press</code> 60kg</li>
+<li>2021-06-17   <code>squat</code> 40kg</li>
+<li>2021-06-19   <code>bench press</code> 60kg</li>
 </ol>
 ]]></content>
       <categories>
@@ -2865,6 +2868,7 @@ blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out ou
 <li><a href="https://academic.oup.com/bioinformatics/article-pdf/25/14/1754/605544/btp324.pdf">Fast and accurate short read alignment with Burrows–Wheeler transform </a></li>
 <li><a href="https://academic.oup.com/bioinformatics/article/34/18/3094/4994778">Minimap2: pairwise alignment for nucleotidesequences</a></li>
 <li><a href="https://www.nature.com/articles/s41592-019-0669-3">Fast and accurate long-read assembly with wtdbg2</a></li>
+<li><a href="https://genome.cshlp.org/content/27/5/722.full.pdf+html">Canu: scalable and accurate long-read assembly viaadaptivek-mer weighting and repeat separation</a></li>
 </ol>
 <h2 id="知识点"><a class="markdownIt-Anchor" href="#知识点"></a> 知识点</h2>
 <ol>
@@ -2962,6 +2966,20 @@ W是X的一个字串，<span class="katex"><span class="katex-mathml"><math><sem
 <ol>
 <li>主要就是拓展DBG吧，因为是长read而且有noisy，把256个base看作一个base，可以有效忽略噪声，还能加速。</li>
 </ol>
+<h2 id="canu-scalable-and-accurate-long-read-assembly-viaadaptivek-mer-weighting-and-repeat-separation"><a class="markdownIt-Anchor" href="#canu-scalable-and-accurate-long-read-assembly-viaadaptivek-mer-weighting-and-repeat-separation"></a> <a href="https://genome.cshlp.org/content/27/5/722.full.pdf+html">Canu: scalable and accurate long-read assembly viaadaptivek-mer weighting and repeat separation</a></h2>
+<h3 id="methods"><a class="markdownIt-Anchor" href="#methods"></a> Methods</h3>
+<h4 id="minhash-overlapping"><a class="markdownIt-Anchor" href="#minhash-overlapping"></a> MinHash overlapping</h4>
+<ol>
+<li>refer <a href="https://www.nature.com/articles/nbt.3238">Assembling large genomes with single-molecule sequencing and locality-sensitive hashing</a></li>
+<li>使用MHAP计算所有read之间的overlap，他有两个阶段，第一个阶段找到那些有可能有overlap的一对，</li>
+<li><a href="https://zhuanlan.zhihu.com/p/31197209">TF-IDF算法</a> :TF(词频) x IDF(逆文档排序) ，简单快速容易理解，但重要性不够全面</li>
+<li>第一阶段用了IF-IDF来加权k-mer，第二阶段用bottom sketch多重hash</li>
+</ol>
+<h4 id="parallel-overlap-sort-and-index"><a class="markdownIt-Anchor" href="#parallel-overlap-sort-and-index"></a> Parallel overlap sort and index</h4>
+<ol>
+<li>bucket sort</li>
+</ol>
+<h4 id="read-correction"><a class="markdownIt-Anchor" href="#read-correction"></a> Read correction</h4>
 ]]></content>
       <categories>
         <category>Master</category>
