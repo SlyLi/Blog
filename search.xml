@@ -1679,6 +1679,12 @@ if __name__ == &quot;__main__&quot;:
 <li>2021-06-19   <code>bench press</code> 60kg</li>
 <li>2021-06-20   前水平练习 <code>pull up</code> 12 11 10 10 10</li>
 <li>2021-06-22   <code>pull up</code> 23 15 10 10 10 <code>free handstand</code> 5s</li>
+<li>2021-06-24 – 2021-06-30  <code>bench press</code> or `row pull up</li>
+</ol>
+<h3 id="2021年07月"><a class="markdownIt-Anchor" href="#2021年07月"></a> 2021年07月</h3>
+<ol>
+<li>2021-07-01   <code>bench press</code> 60kg 7 6 6 6 6 6</li>
+<li>2021-07-02   <code>row pull up</code> 10*5</li>
 </ol>
 ]]></content>
       <categories>
@@ -2983,6 +2989,17 @@ W是X的一个字串，<span class="katex"><span class="katex-mathml"><math><sem
 <li>bucket sort</li>
 </ol>
 <h4 id="read-correction"><a class="markdownIt-Anchor" href="#read-correction"></a> Read correction</h4>
+<h2 id="lordec-accurate-and-efficient-long-read-error-correction"><a class="markdownIt-Anchor" href="#lordec-accurate-and-efficient-long-read-error-correction"></a> <a href="https://academic.oup.com/bioinformatics/article/30/24/3506/2422175">LoRDEC: accurate and efficient long read error correction</a></h2>
+<h3 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h3>
+<h4 id="related-works-for-pacbio-reads"><a class="markdownIt-Anchor" href="#related-works-for-pacbio-reads"></a> Related works for PacBio reads</h4>
+<ol>
+<li>测序错误在read中是均匀分布的，独立于序列的内容，并倾向于插入，缺失的较少</li>
+</ol>
+<h4 id="contribution"><a class="markdownIt-Anchor" href="#contribution"></a> Contribution</h4>
+<ol>
+<li>本文提出了一种高效的复合纠错方法</li>
+<li>首先构建SR的DBG，在DBG内搜索最佳路径来纠正LR</li>
+</ol>
 ]]></content>
       <categories>
         <category>Master</category>
