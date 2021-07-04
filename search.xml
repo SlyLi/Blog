@@ -4542,7 +4542,7 @@ $y = d \times cos \left( \theta \right)$
       </categories>
   </entry>
   <entry>
-    <title>获取JDJD_COOKIE</title>
+    <title>获取JD_COOKIE</title>
     <url>/posts/2021-07-004.html</url>
     <content><![CDATA[<h2 id="浏览器获取京东cookie教程1"><a class="markdownIt-Anchor" href="#浏览器获取京东cookie教程1"></a> 浏览器获取京东cookie教程1</h2>
 <p><strong>以下浏览器都行</strong></p>
@@ -4553,46 +4553,30 @@ $y = d \times cos \left( \theta \right)$
 </ul>
 <h3 id="操作步骤"><a class="markdownIt-Anchor" href="#操作步骤"></a> 操作步骤</h3>
 <ol>
-<li>
-<p>电脑浏览器打开京东网址 <a href="https://m.jd.com/">https://m.jd.com/</a></p>
-</li>
-<li>
-<p>按键盘F12键打开开发者工具，然后点下图中的图标<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="../icon/jd1.jpg" alt="切换到手机模式" /></p>
-</li>
-<li>
-<p>此时是未登录状态(使用手机短信验证码登录)，如已登录请忽略此步骤</p>
+<li>电脑浏览器打开京东网址 <a href="https://m.jd.com/">https://m.jd.com/</a></li>
+<li>按键盘F12键打开开发者工具，然后点下图中的图标<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2021-07/jd1.jpg" alt="切换到手机模式" /></li>
+<li>此时是未登录状态(使用手机短信验证码登录)，如已登录请忽略此步骤
 <ul>
 <li>使用手机短信验证码登录(此方式cookie有效时长大概31天，其他登录方式比较短)</li>
 </ul>
 </li>
-<li>
-<p>登录后，选择Network,有很多链接的话点箭头这里清空下<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="../icon/jd2.jpg" alt="清空" /></p>
+<li>登录后，选择Network,有很多链接的话点箭头这里清空下<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2021-07/jd2.jpg" alt="清空" /></li>
+<li>然后再点我的，链接就变少了<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2021-07/jd3.jpg" alt="再次点击我的" /></li>
+<li>点第一个链接(log.gif)进去，找到cookie，复制出来，新建一个TXT文本临时保存一下，下面需要用到<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2021-07/jd4.jpg" alt="寻找log.gi" /></li>
+<li>我们需要从获取的cookie中找到<code>pt_pin=xxxx;</code>和 <code>pt_key=xxxx;</code>，他们的格式是 <code>pt_key=jdDC2F833333EFDGTCE5BD4AD1A952D4F4DF84A46052; pt_pin=jd_123456;</code></li>
+<li><code>非必须</code> 第六步复制出来的cookie比较长，找<code>pt_pin=xxxx;</code>和 <code>pt_key=xxxx;</code>部分的内容(注:英文引号<code>;</code>是必要的)可以用下面的脚本，在Chrome浏览器按F12，console里面输入下面脚本按enter回车键 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var CV &#x3D; &#39;单引号里面放第六步拿到的cookie&#39;;</span><br><span class="line">var CookieValue &#x3D; CV.match(&#x2F;pt_pin&#x3D;.+?;&#x2F;) + CV.match(&#x2F;pt_key&#x3D;.+?;&#x2F;);</span><br><span class="line">copy(CookieValue);</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>然后再点我的，链接就变少了<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="../icon/jd3.jpg" alt="再次点击我的" /></p>
-</li>
-<li>
-<p>点第一个链接(log.gif)进去，找到cookie，复制出来，新建一个TXT文本临时保存一下，下面需要用到<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="../icon/jd4.jpg" alt="寻找log.gi" /></p>
-</li>
-<li>
-<p>第六步复制出来的cookie比较长，我们只需要<code>pt_pin=xxxx;</code>和 <code>pt_key=xxxx;</code>部分的内容即可(注:英文引号<code>;</code>是必要的)。可以用下面的脚本，在Chrome浏览器按F12，console里面输入下面脚本按enter回车键</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var CV &#x3D; &#39;单引号里面放第六步拿到的cookie&#39;;</span><br><span class="line">var CookieValue &#x3D; CV.match(&#x2F;pt_pin&#x3D;.+?;&#x2F;) + CV.match(&#x2F;pt_key&#x3D;.+?;&#x2F;);</span><br><span class="line">copy(CookieValue);</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>这样子整理出关键的的cookie已经在你的剪贴板上， 可直接粘贴</p>
-</li>
-<li>
-<p>如果需获取第二个京东账号的cookie,不要在刚才的浏览器上面退出登录账号一(否则刚才获取的cookie会失效),需另外换一个浏览器(Chrome浏览器 <code>ctr+shift+n</code> 打开无痕模式也行),然后继续按上面步骤操作即可</p>
-</li>
+<li>这样子整理出关键的的cookie已经在你的剪贴板上， 可直接粘贴</li>
 </ol>
+<div class="note info simple"><ol start="9">
+<li>如果需获取第二个京东账号的cookie,不要在刚才的浏览器上面退出登录账号一(否则刚才获取的cookie会失效),需另外换一个浏览器(Chrome浏览器 <code>ctr+shift+n</code> 打开无痕模式也行),然后继续按上面步骤操作即可</li>
+</ol>
+</div>
 <h2 id="浏览器插件获取京东cookie教程2"><a class="markdownIt-Anchor" href="#浏览器插件获取京东cookie教程2"></a> 浏览器插件获取京东cookie教程2</h2>
-<blockquote>
-<p>此教程内容由tg用户@wukongdada提供,特此感谢</p>
-</blockquote>
 <p><strong>以下浏览器都行</strong></p>
 <ul>
 <li>Chrome浏览器</li>
@@ -4617,18 +4601,18 @@ $y = d \times cos \left( \theta \right)$
 </li>
 <li>
 <p>以下是chrome和edge的相关设置截图，输入的网址是 <code>jd.com</code></p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="../icon/jd5.png" alt="Chrome浏览器相关设置" /></p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="../icon/jd6.png" alt="Edge浏览器相关设置" /></p>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2021-07/jd5.png" alt="Chrome浏览器相关设置" /></p>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2021-07/jd6.png" alt="Edge浏览器相关设置" /></p>
 </li>
 <li>
 <p>现在点击回到京东触屏版，再点击EditThisCookie/Cookie Editor，再点击搜索，输入key或pin，如下图所示的pt_key，复制pt_key的value值。此插件可以看到cookie的有效期。</p>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="../icon/jd7.png" alt="插件显示" /></p>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2021-07/jd7.png" alt="插件显示" /></p>
 </li>
 <li>
 <p>按照以下格式形成自己的jd_cookie</p>
 <ul>
 <li><code>pt_key=复制插件搜索出来的key值;pt_pin=复制插件搜索出来的pin值;</code> ,后面的英文引号<code>;</code>是必须要的</li>
-<li>给一个京东cookie具体示例 <code>pt_key=jdDC2F833333EFDGTCE5BD4AD1A952D4F4DF84A46052;pt_pin=jd_123456;</code></li>
+<li>给一个京东cookie具体示例 <code>pt_key=jdDC2F833333EFDGTCE5BD4AD1A952D4F4DF84A46052; pt_pin=jd_123456;</code></li>
 </ul>
 </li>
 <li>
