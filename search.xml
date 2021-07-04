@@ -4569,7 +4569,7 @@ $y = d \times cos \left( \theta \right)$
 <img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2021-07/jd4.jpg" alt="寻找log.gi" /></li>
 <li>我们需要从获取的cookie中找到<code>pt_pin=xxxx;</code>和 <code>pt_key=xxxx;</code></li>
 </ol>
-<div class="note info warnning flat"><p>不要在浏览器上面退出登录账号(否则刚才获取的cookie会失效)<br />
+<div class="note warning simple"><p>不要在浏览器上面退出登录账号(否则刚才获取的cookie会失效)<br />
 最终需要的cookie格式：<code>pt_key=jdDC2F833333EFDGTCE5BD4AD1A952D4F4DF84A46052; pt_pin=jd_123456;</code></p>
 </div>   
 <ol start="8">
