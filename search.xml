@@ -4654,4 +4654,13 @@ $y = d \times cos \left( \theta \right)$
         <tag>jd_scripts</tag>
       </tags>
   </entry>
+  <entry>
+    <title>MECAT: fast mapping, error correction, and de novo assembly for single-molecule sequencing reads</title>
+    <url>/posts/2021-07-002.html</url>
+    <content><![CDATA[<h2 id="mecat-fast-mapping-error-correction-and-de-novo-assembly-for-single-molecule-sequencing-reads-httpswwwnaturecomarticlesnmeth4432"><a class="markdownIt-Anchor" href="#mecat-fast-mapping-error-correction-and-de-novo-assembly-for-single-molecule-sequencing-reads-httpswwwnaturecomarticlesnmeth4432"></a> [MECAT: fast mapping, error correction, and de novo assembly for single-molecule sequencing reads] (<a href="https://www.nature.com/articles/nmeth.4432">https://www.nature.com/articles/nmeth.4432</a>)</h2>
+]]></content>
+      <categories>
+        <category>Master</category>
+      </categories>
+  </entry>
 </search>
