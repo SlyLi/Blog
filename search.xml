@@ -1667,7 +1667,7 @@ if __name__ == &quot;__main__&quot;:
 <h3 id="2021年06月"><a class="markdownIt-Anchor" href="#2021年06月"></a> 2021年06月</h3>
 <ol>
 <li>2021-06-02   <code>bench press</code> 60kg<em>5</em>6 最后一组差点完求了</li>
-<li>2021-06-04   <code>pull up</code> 前水平！！！  <code>muscle u</code> 5  <code>pull up</code> 14 10 10 10</li>
+<li>2021-06-04   <code>pull up</code> 前水平！！！  <code>muscle up</code> 5  <code>pull up</code> 14 10 10 10</li>
 <li>2021-06-05   <code>bench press</code> 60kg<em>5</em>8 二头 25kg<em>8</em>5</li>
 <li>2021-06-07   <code>muscle up</code> <code>front lever</code> 5  <code>pull up</code> 18 14 12 10 10</li>
 <li>2021-06-08   <code>bench press</code> 60kg</li>
@@ -1685,6 +1685,13 @@ if __name__ == &quot;__main__&quot;:
 <ol>
 <li>2021-07-01   <code>bench press</code> 60kg 7 6 6 6 6 6</li>
 <li>2021-07-02   <code>row pull up</code> 10*5</li>
+<li>2021-06-05   <code>bench press</code> 65kg</li>
+<li>2021-07-06   <code>row pull up</code> 10*5</li>
+<li>2021-07-08   <code>pull up</code> 23 15 12 10 10   <code>front lever</code> 3s then <code>muscle up</code> 3</li>
+<li>2021-07-09   <code>tuck push-ups</code> to <code>tuck planche</code></li>
+<li>2021-07-12   <code>row pull up</code> 10<em>5 <code>human flag</code> 5s</em>2</li>
+<li>2021-07-13   <code>tuck push-ups</code> to <code>tuck planche</code> and <code>push-ups</code></li>
+<li>2021-07-13</li>
 </ol>
 ]]></content>
       <categories>
@@ -4540,11 +4547,23 @@ $y = d \times cos \left( \theta \right)$
       <categories>
         <category>others</category>
       </categories>
+      <tags>
+        <tag>crontab 定时器问题</tag>
+      </tags>
   </entry>
   <entry>
     <title>获取JD_COOKIE</title>
-    <url>/posts/2021-07-004.html</url>
-    <content><![CDATA[<h2 id="浏览器获取京东cookie教程1"><a class="markdownIt-Anchor" href="#浏览器获取京东cookie教程1"></a> 浏览器获取京东cookie教程1</h2>
+    <url>/posts/2021-07-001.html</url>
+    <content><![CDATA[<h2 id="在线扫码获取京东cookie"><a class="markdownIt-Anchor" href="#在线扫码获取京东cookie"></a> 在线扫码获取京东cookie</h2>
+<div id="tab_1">
+    <iframe src="https://jd.slyli.cn"
+            width="100%"
+            height = "800px"
+            frameborder="0"
+            scrolling="0"
+    ></iframe>
+</div>
+<h2 id="浏览器获取京东cookie教程1"><a class="markdownIt-Anchor" href="#浏览器获取京东cookie教程1"></a> 浏览器获取京东cookie教程1</h2>
 <p><strong>以下浏览器都行</strong></p>
 <ul>
 <li>Chrome浏览器</li>
@@ -4567,7 +4586,7 @@ $y = d \times cos \left( \theta \right)$
 <img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2021-07/jd3.jpg" alt="再次点击我的" /></li>
 <li>点第一个链接(log.gif)进去，找到cookie，复制出来，新建一个TXT文本临时保存一下，下面需要用到<br />
 <img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2021-07/jd4.jpg" alt="寻找log.gi" /></li>
-<li>我们需要从获取的cookie中找到<code>pt_pin=xxxx;</code>和 <code>pt_key=xxxx;</code></li>
+<li>我们需要从获取的cookie中找到<code>pt_pin=xxxx;</code>和 <code>pt_key=xxxx;</code>.</li>
 </ol>
 <div class="note warning simple"><p>不要在浏览器上面退出登录账号(否则刚才获取的cookie会失效)<br />
 最终需要的cookie格式：<code>pt_key=jdDC2F833333EFDGTCE5BD4AD1A952D4F4DF84A46052; pt_pin=jd_123456;</code></p>
@@ -4631,5 +4650,8 @@ $y = d \times cos \left( \theta \right)$
       <categories>
         <category>others</category>
       </categories>
+      <tags>
+        <tag>jd_scripts</tag>
+      </tags>
   </entry>
 </search>
