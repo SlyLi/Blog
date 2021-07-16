@@ -4658,6 +4658,34 @@ $y = d \times cos \left( \theta \right)$
     <title>MECAT: fast mapping, error correction, and de novo assembly for single-molecule sequencing reads</title>
     <url>/posts/2021-07-002.html</url>
     <content><![CDATA[<h1 id="mecat-fast-mapping-error-correction-and-de-novo-assembly-for-single-molecule-sequencing-reads"><a class="markdownIt-Anchor" href="#mecat-fast-mapping-error-correction-and-de-novo-assembly-for-single-molecule-sequencing-reads"></a> <a href="https://www.nature.com/articles/nmeth.4432">MECAT: fast mapping, error correction, and de novo assembly for single-molecule sequencing reads</a></h1>
+<pre><code>仅代表个人理解，如果有不准确的欢迎指正
+</code></pre>
+<ul>
+<li>SMS:single-molecule sequencing 单分子测序技术</li>
+<li>mapping：只提供read比对的参考序列上的位置信息；alignment：不仅提供位置信息，还有他们的实际位点和参考位点之间的匹配、不匹配、插入或删除的关系</li>
+<li>global alignment ：需要比对整个查询序列，查询序列在参考序列上的比对结果可能会不连续，一般用来比较同源基因，或者基因的差异性</li>
+<li>local alignment ：查找最能匹配上参考序列的局部区域，比对上的结果可能是查询序列的子序列，</li>
+</ul>
+<p>Chimeric reads occur when one sequencing read aligns to two distinct portions of the genome with little or no overlap. Chimeric reads are indicative of structural variation. Chimeric reads are also called split reads.</p>
+<h2 id="main"><a class="markdownIt-Anchor" href="#main"></a> Main</h2>
+<p>SMS read 的 alignment 是非常耗时的，通常基于k-mer的方法是找种子（read 中的一段） 进行read间的alignment，但由于生物学基因的的重复性，位于重复区的read的k-mer能够匹配上的数量非常高，这会导致有额外的候选者，忽略高重复率的k-mer可能导致缺失正确的overlap，BLASR中是利用稀疏的动态规划来完成的，最近，canu中使用tf-idf k-mer weighting 方法来减少高重复k-mer的影响，但canu没有考虑k-mer之间的排列。</p>
+<p>本文中的方法是使用距离影响因子DDF（distance difference factors）给k-mer对打分，包括所有的匹配k-mer对和他们的内部距离，因此，这个分数可以表示read之间的全局匹配信息，通过提取高分数的read对来过滤不合适的候选者</p>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnmeth.4432/MediaObjects/41592_2017_Article_BFnmeth4432_Fig1_HTML.jpg?as=webp" alt="" /></p>
+<pre><code>- a 两个read上block间的 k-mer alignment
+- b 在block对里面，使用DDF对k-mer对打分，
+- c 选择分数最高的作为k-mer种子，有分数相同的就随机选，（彩旗表示）
+- d 加上其他block的k-mer对，对k-mer种子打分
+- e 进行 sequence alignment
+</code></pre>
+<p>基于DDF score 算法，本文提供了 MECAT ，一个快速的比对工具，运行时可以选择是否使用 local alignment 。我们可以仅根据DDF分数来选择可靠的read对，当只需要候选匹配对时，我们可以不进行local alignment 。</p>
+<p>DDF alignment score 对 overlap 长度敏感，所以MECAT 也适合 read到参考基因上的比对</p>
+<p>由于SMS read的高错误率，必须要进行纠错，纠错后的read一般是根据一定数量匹配read的共同部分进行构建的，MECAT可以不使用local alignment 快速选择候选read</p>
+<h2 id="methods"><a class="markdownIt-Anchor" href="#methods"></a> Methods</h2>
+<pre><code>自己暂时只用 correct 和 assembly
+</code></pre>
+<h3 id="correcting-single-molecule-sequencing-reads"><a class="markdownIt-Anchor" href="#correcting-single-molecule-sequencing-reads"></a> Correcting single-molecule sequencing reads</h3>
+<p>一般来说，纠错有两个步骤，第一步是在成对的read之间查找overlap，第二步是根据相关 alignment 结果中的一致（consensus）部分构建正确的结果</p>
+<p>在第一步中，我们使用不带 local alignment 的 MECAT 查找 overlap ， 输出放在多个文件中，每个文件包括200000个read 的 overlap 匹配信息，对于每个 read 的匹配信息，我们根据DDF score 降序排序，我们在read和相匹配的read间，从DDF score最高的开始，进行 local alignment，为消除 **** 和重复zixvie的影响</p>
 ]]></content>
       <categories>
         <category>Master</category>
