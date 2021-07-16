@@ -1691,7 +1691,7 @@ if __name__ == &quot;__main__&quot;:
 <li>2021-07-09   <code>tuck push-ups</code> to <code>tuck planche</code></li>
 <li>2021-07-12   <code>row pull up</code> 10<em>5 <code>human flag</code> 5s</em>2</li>
 <li>2021-07-13   <code>tuck push-ups</code> to <code>tuck planche</code> and <code>push-ups</code></li>
-<li>2021-07-13</li>
+<li>2021-07-13   <code>pull up</code> 22 10 10 10 10</li>
 </ol>
 ]]></content>
       <categories>
@@ -4657,7 +4657,7 @@ $y = d \times cos \left( \theta \right)$
   <entry>
     <title>MECAT: fast mapping, error correction, and de novo assembly for single-molecule sequencing reads</title>
     <url>/posts/2021-07-002.html</url>
-    <content><![CDATA[<h2 id="mecat-fast-mapping-error-correction-and-de-novo-assembly-for-single-molecule-sequencing-reads-httpswwwnaturecomarticlesnmeth4432"><a class="markdownIt-Anchor" href="#mecat-fast-mapping-error-correction-and-de-novo-assembly-for-single-molecule-sequencing-reads-httpswwwnaturecomarticlesnmeth4432"></a> [MECAT: fast mapping, error correction, and de novo assembly for single-molecule sequencing reads] (<a href="https://www.nature.com/articles/nmeth.4432">https://www.nature.com/articles/nmeth.4432</a>)</h2>
+    <content><![CDATA[<h1 id="mecat-fast-mapping-error-correction-and-de-novo-assembly-for-single-molecule-sequencing-reads"><a class="markdownIt-Anchor" href="#mecat-fast-mapping-error-correction-and-de-novo-assembly-for-single-molecule-sequencing-reads"></a> <a href="https://www.nature.com/articles/nmeth.4432">MECAT: fast mapping, error correction, and de novo assembly for single-molecule sequencing reads</a></h1>
 ]]></content>
       <categories>
         <category>Master</category>
