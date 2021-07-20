@@ -4714,7 +4714,7 @@ match_count,碱基位置能够相匹配的read的数量，insertion、deletion �
 <h3 id="de-novo-assembly-using-single-molecule-sequencing-reads"><a class="markdownIt-Anchor" href="#de-novo-assembly-using-single-molecule-sequencing-reads"></a> De novo assembly using single-molecule sequencing reads.</h3>
 <p>使用 SMS read 组装基因组有三步：找到 reads 和 template reads 间的 overlap，对 template reads 纠错，使用纠错后的 reads 构建 contigs。本文通过整合 canu 和新的 alignment 和纠错方法开发了两个新的pipeline。在 MECAT pipeline 的第一步，对所有超过3000bp的read运行分别进行alignment，从匹配上的read中选择分数最高的100个，在找overlap的过程中，不进行local alignment 使用mapping 信息进行纠错，第二步，用能够匹配到 template reads （&gt;3000bp）的 read 对 template reads 纠错，最后，把纠错后的 read 使用 MECAT 中的 alignment 工具进行 alignment，然后把这些 alignment 结果放到 Canu 的 Unitig Construction 模型中去构建 unitigs 。或者直接把纠错后的read放到canu里。</p>
 <h2 id="supplementary"><a class="markdownIt-Anchor" href="#supplementary"></a> Supplementary</h2>
-<p><a href="https://www.nature.com/articles/nbt.2280">DAGCon</a> , <a href="https://www.nature.com/articles/nmeth.4035">FC_consensus</a> 和 <a href="https://www.nature.com/articles/nbt.3238">FalconSense</a>是三个被广泛使用的 consensus 算法。他们有以下步骤：</p>
+<p><a href="https://www.nature.com/articles/nbt.2280">DAGCon</a> , <a href="https://genome.cshlp.org/content/27/5/722">FC_consensus</a> 和 <a href="https://www.nature.com/articles/nmeth.4035">FalconSense</a>是三个被广泛使用的 consensus 算法。他们有以下步骤：</p>
 <ol>
 <li>根据两个 read 间的 alignment 构建一个多重序列的 alignment (multiple sequence alignment, MSA)</li>
 <li>从多重 alignment 列中选择正确的碱基（base)</li>
@@ -4725,7 +4725,7 @@ match_count,碱基位置能够相匹配的read的数量，insertion、deletion �
 <p>DAGCon 有最高的准确性和最慢的速度（自己之后应该会选择这种方法，现在需要做的可能是找一个更准确的local alignment 工具，minimap2 的结果准确率只有95%，还是有点低，导致生成的一致性序列错误率很高，这个虽然可以通过多重纠错来解决，不过这就更麻烦了）</p>
 <p>在研究中，提出了一个结合 DAGCon 和 FalconSense 概念的一个新的算法：在不重要的区域上，使用和 FalconSense 一样的基于计数的纠错方法，但在复杂区域（删除区域）通过 DAGCon 算法处理，但复杂区域一般都小于10个 base ， 所以可以处理的很快</p>
 <h3 id="mecat2cns"><a class="markdownIt-Anchor" href="#mecat2cns"></a> MECAT2CNS</h3>
-<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2021-07/mecat.png" alt="" /><br />
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2021-07/mecat.png" alt="cns figure" /><br />
 程序输入包含一个模板 read 和一组其他 read</p>
 <ol>
 <li>构建一个 consensus table ，每个 base 都有匹配 mat 、插入 ins 、删除 del 三项记录表，分别记录匹配的个数，和在这个碱基后插入和删除的个数。</li>
@@ -4753,6 +4753,28 @@ match_count,碱基位置能够相匹配的read的数量，insertion、deletion �
 <li>然后引出本文的主要内容方法和做出的成果，并且进行成果分析，以及和其他现有工具对结果进行比较</li>
 <li>然后就是方法部分，分别就本文中的各个部分较为详细的介绍一一下自己的思路，具体的细节可能会放到 Supplementary 中说明</li>
 </ol>
+]]></content>
+      <categories>
+        <category>Master</category>
+      </categories>
+      <tags>
+        <tag>bioinformatics</tag>
+        <tag>essay</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Phased diploid genome assembly with single-molecule real-time sequencing</title>
+    <url>/posts/2021-07-003.html</url>
+    <content><![CDATA[<h1 id="phased-diploid-genome-assembly-with-single-molecule-real-time-sequencing"><a class="markdownIt-Anchor" href="#phased-diploid-genome-assembly-with-single-molecule-real-time-sequencing"></a> <a href="https://www.nature.com/articles/nmeth.4035">Phased diploid genome assembly with single-molecule real-time sequencing</a></h1>
+<blockquote>
+<p>仅代表个人理解，如果有不准确的欢迎指正</p>
+</blockquote>
+<h2 id="可能会用到的知识点"><a class="markdownIt-Anchor" href="#可能会用到的知识点"></a> 可能会用到的知识点</h2>
+<ul>
+<li>SNP 单核苷酸多态性 SingleNucleotide Polymorphism 例如，对于某种生物，同一位置基因组片段一部分为<code>AAGC*C*TA</code>，另一部分为<code>AAGC*T*TA</code>，则认为此处存在SNP、两种基因型属于等位基因。</li>
+</ul>
+<h2 id="main"><a class="markdownIt-Anchor" href="#main"></a> Main</h2>
+<p>单分子实时测序技术 Single-molecule real-time (SMRT) 可以为哺乳动物提供高连续性的组装，long read 可以横跨多个重复区域，和帮助解决复杂的双倍体基因，本文提供了 FALCON 一个双倍体敏感的 long read 组装工具，FALCON-Unzip 一个相关的单倍体解析工具，用正确的同源染色体来组装代表具有 正确 定相 同源染色体的二倍体基因组的单倍体 contigs</p>
 ]]></content>
       <categories>
         <category>Master</category>
