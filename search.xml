@@ -4771,10 +4771,52 @@ match_count,碱基位置能够相匹配的read的数量，insertion、deletion �
 </blockquote>
 <h2 id="可能会用到的知识点"><a class="markdownIt-Anchor" href="#可能会用到的知识点"></a> 可能会用到的知识点</h2>
 <ul>
-<li>SNP 单核苷酸多态性 SingleNucleotide Polymorphism 例如，对于某种生物，同一位置基因组片段一部分为<code>AAGC*C*TA</code>，另一部分为<code>AAGC*T*TA</code>，则认为此处存在SNP、两种基因型属于等位基因。</li>
+<li>等位基因！！！！！！</li>
+<li>SNP 单核苷酸多态性 SingleNucleotide Polymorphism 例如，对于某种生物，同一位置基因组片段一部分为<code>AAGC CTA</code>，另一部分为<code>AAGC T TA</code>，则认为此处存在SNP、两种基因型属于等位基因。</li>
+<li>VS 结构体变异 Structural variation 生物染色体上结构的变异，多指涉长度介于1Kb与3Mb之间的序列大于单核苷酸多态性并且小于染色体畸变</li>
 </ul>
 <h2 id="main"><a class="markdownIt-Anchor" href="#main"></a> Main</h2>
 <p>单分子实时测序技术 Single-molecule real-time (SMRT) 可以为哺乳动物提供高连续性的组装，long read 可以横跨多个重复区域，和帮助解决复杂的双倍体基因，本文提供了 FALCON 一个双倍体敏感的 long read 组装工具，FALCON-Unzip 一个相关的单倍体解析工具，用正确的同源染色体来组装代表具有 正确 定相 同源染色体的二倍体基因组的单倍体 contigs</p>
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnmeth.4035/MediaObjects/41592_2016_Article_BFnmeth4035_Fig1_HTML.jpg" width="70%">
+    (a) An initial assembly is computed by FALCON, which error corrects the raw reads (not shown) and then assembles them using a string graph of the read overlaps. The assembled contigs are further refined by FALCON-Unzip into a final set of contigs and haplotigs. 
+    (b) Phase heterozygous SNPs and group reads by haplotype. 
+    (c) The phased reads are used to open up the haplotype-fused path and generate as output a set of primary contigs and associated haplotigs.
+<p>FALCON assembler 首先用 reads 构建了包含单倍体融合（haplotype-fused）的 contigs和同源序列不同区域气泡的 string graph （a）。<br />
+FALCON-Unzip 使用来自其识别的杂合位置的定相信息识别读取单倍型（b）。</p>
+<h2 id="method"><a class="markdownIt-Anchor" href="#method"></a> Method</h2>
+<h3 id="raw-long-read-error-correction"><a class="markdownIt-Anchor" href="#raw-long-read-error-correction"></a> Raw long-read error correction</h3>
+<p>使用 daligner 把所有的 read 都 align 到任意其他 read，这些 overlap 和 read 信息用 FALCON-sense 于生成 consensus 序列。FALCON-sense 算法可以保留杂合 SNP 的信息</p>
+<h2 id="supplementary-information"><a class="markdownIt-Anchor" href="#supplementary-information"></a> Supplementary information</h2>
+<h3 id="updated-falcon-consensus-algorithm"><a class="markdownIt-Anchor" href="#updated-falcon-consensus-algorithm"></a> Updated FALCON consensus algorithm</h3>
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnmeth.4035/MediaObjects/41592_2016_Article_BFnmeth4035_Fig14_ESM.jpg" width="70%">
+    Two paths are highlighted in the graph with dashed curves. The cyan dashed curve indicates the 
+    path of the seed sequence. The green dashed curve indicates the final consensus path. Node 
+    “0092:0:T:T” is identified as an erroneous extra base in the seed read. The new nodes, 
+    “0091:0:-:C” and “0091:0:-:A” are added to the consensus path. The green arrows 
+    highlight the path of the original template sequence. The “CA” insertion to the seed sequence 
+    concurs with the original template sequence. Namely, the consensus indeed corrects 3 
+    simulated errors in the seed read for this case.
+<p>FALCON-sense 使用一系列种子序列和支持他们的 reads 产生每个种子序列的 consensus</p>
+<ol>
+<li>使用 Gene Myers’ O(ND) aligner 把支持种子序列的 reads align 到种子序列上，在 alignment 中只允许插入和删除，不允许存在错配</li>
+<li>在 alignment 的每一个位置都生成一个 alignment tag，tag 包含4个方面
+<ol>
+<li>在种子序列上的锚点位置</li>
+<li>种子序列上锚点位置的 delta （偏移？）</li>
+<li>种子序列上的base（碱基）</li>
+<li>alignment 中支持序列上的base<br />
+在给定位置上的支持read上如果有插入，alignment 上插入 base 的非零 delta 表示来自锚点 base 的 base 数量。tag 1 和 3 有相同的信息，只是表示不同，加入3只是为了方便</li>
+</ol>
+</li>
+<li>根据支持reads的 tag 构建一个 alignment graph
+<ol>
+<li>对于每个不同的tag，构建一个相应的node</li>
+<li>对于 支持 read 上连续的tag，在图上创建一条边并给这条边上的 edge_count 赋值 1，如果这条边之前存在则 edge_count 的值 +1 ，结果是一个单项无环图（DAG），每一个 node 都有 tag，edge_count 表明有多少个read支持两个 nodes 之间的链接，edge_count 值越大表明支持 reads 上 nodes 之间的连接越可靠，一个高质量的 consensus sequence 也就是通过这些高可靠性的 edge 连接起来的 nodes 形成的一条链</li>
+</ol>
+</li>
+<li>在 alignment graph 上使用标准的动态规划算法找到最可靠的路径，通过串联路径上 tags 上的 bases 产生 consensus sequence</li>
+</ol>
+<h3 id="assembly-string-graph-reduction-process-summary"><a class="markdownIt-Anchor" href="#assembly-string-graph-reduction-process-summary"></a> Assembly string graph reduction process summary</h3>
 ]]></content>
       <categories>
         <category>Master</category>
