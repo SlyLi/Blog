@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>3D-Render</title>
-    <url>/posts/2020-09-002.html</url>
+    <url>/2020-09-002.html</url>
     <content><![CDATA[<p>选择Sokolov的<a href="https://github.com/ssloy/tinyrenderer">Tiny Renderer</a>教程开始入门。<br />
 Sokolov从一个最简单的画点函数开始，一个小节一个小节地讲解怎么画出一条线，怎么填充一个面，怎么逐步加入背面剔除、深度测试、透视相机、着色器等高级功能。每个小节的课程都有详细的讲解以及完整的实现代码可供参考。这个教程一共有9个小节，只要学到第6个小节我们就已经可以实现一个具有可编程渲染管线的软件渲染器了，而这时候的总代码量只有500行而已，可以说是非常简洁适合入门了。</p>
 <p>本文只记录在学习过程中遇到的一些问题，和自己的一些想法</p>
@@ -224,7 +224,7 @@ pts[j] = m2v(viewport * projection * modelview * v2m(v));
   </entry>
   <entry>
     <title>C++</title>
-    <url>/posts/2020-07-009.html</url>
+    <url>/2020-07-009.html</url>
     <content><![CDATA[<h3 id="virtural继承"><a class="markdownIt-Anchor" href="#virtural继承"></a> virtural继承</h3>
 <pre><code>class AAAA &#123; int  a; &#125;;
 class BBBB :public virtual AAAA &#123; int b; char a; &#125;;
@@ -574,7 +574,7 @@ capture:</p>
   </entry>
   <entry>
     <title>C</title>
-    <url>/posts/2020-08-001.html</url>
+    <url>/2020-08-001.html</url>
     <content><![CDATA[<p>测试环境：Visual Studio Community 2019</p>
 <h3 id="作用域"><a class="markdownIt-Anchor" href="#作用域"></a> 作用域</h3>
 <p>有四种不同类型的作用域----文件作用域，函数作用域，代码块作用域和原型作用域。</p>
@@ -634,7 +634,7 @@ capture:</p>
   </entry>
   <entry>
     <title>OneDrive云盘搭建</title>
-    <url>/posts/2020-08-006.html</url>
+    <url>/2020-08-006.html</url>
     <content><![CDATA[<h3 id="拥有一个onedrive账号"><a class="markdownIt-Anchor" href="#拥有一个onedrive账号"></a> 拥有一个OneDrive账号</h3>
 <ol>
 <li>打开微软的<a href="https://signup.microsoft.com/">注册/登录页面</a>，选择合适的按照流程注册。</li>
@@ -688,7 +688,7 @@ capture:</p>
   </entry>
   <entry>
     <title>KaTeX Supported Functions</title>
-    <url>/posts/2020-10-004.html</url>
+    <url>/2020-10-004.html</url>
     <content><![CDATA[<h2 id="katex"><a class="markdownIt-Anchor" href="#katex"></a> <a href="https://katex.org/docs/supported.html">KaTeX</a></h2>
 <iframe src="https://katex.org/docs/supported.html" width="100%" height="800px" frameborder="0" loading="lazy" allowfullscreen></iframe>
 ]]></content>
@@ -698,7 +698,7 @@ capture:</p>
   </entry>
   <entry>
     <title>LinearRegression--python</title>
-    <url>/posts/2020-07-008.html</url>
+    <url>/2020-07-008.html</url>
     <content><![CDATA[<p>本系列所有代码实现均参考https://github.com/lawlite19/MachineLearning_Python</p>
 <pre><code>import numpy as np
 from matplotlib import pyplot as plt
@@ -773,7 +773,7 @@ if __name__ == &quot;__main__&quot;:
   </entry>
   <entry>
     <title>LCS</title>
-    <url>/posts/2021-02-001.html</url>
+    <url>/2021-02-001.html</url>
     <content><![CDATA[<ol>
 <li>在线算法：指这个算法可以实时根据输入计算出输出，可以一个个的进行输入输出，并不需要所有的输入数据，</li>
 <li>离线算法：在算法开始前，需要获得所有的输入数据</li>
@@ -805,7 +805,7 @@ end</p>
   </entry>
   <entry>
     <title>Markdown语法</title>
-    <url>/posts/2020-06-001.html</url>
+    <url>/2020-06-001.html</url>
     <content><![CDATA[<h2 id="主要内容"><a class="markdownIt-Anchor" href="#主要内容"></a> 主要内容</h2>
 <blockquote>
 <h4 id="markdown是什么"><a class="markdownIt-Anchor" href="#markdown是什么"></a> Markdown<em>是什么</em>？</h4>
@@ -1044,7 +1044,7 @@ printf(“Hello, Markdown.”);<br />
   </entry>
   <entry>
     <title>LogisticRegression--python</title>
-    <url>/posts/2020-07-011.html</url>
+    <url>/2020-07-011.html</url>
     <content><![CDATA[<p>逻辑回归</p>
 <pre><code>import numpy as np
 from matplotlib import pyplot as plt
@@ -1303,7 +1303,7 @@ if __name__ == &quot;__main__&quot;:
   </entry>
   <entry>
     <title>android</title>
-    <url>/posts/2020-08-003.html</url>
+    <url>/2020-08-003.html</url>
     <content><![CDATA[<p>折腾了一天终于把安卓开发环境弄好了，从开始想使用 VS20199 + C#/C++开发，弄了一上午，还是出现了莫名其妙的问题，再加上这个环境下开发的人又很少，也不知道如何解决，最终还是放弃了。后面采用 Android Studio 后就很顺利的，随便找个流程，照着操作一般就没什么问题，后面打开项目后可能会出现一个有关网络的问题。<br />
 具体是Unknown host ‘<a href="http://d29vzk4ow07wi7.cloudfront.net">d29vzk4ow07wi7.cloudfront.net</a>’. You may need to adjust the proxy settings in Gradle.<br />
 把 build.gradle 中的两个 jcenter() 用 maven{ url “<a href="http://maven.aliyun.com/nexus/content/groups/public/">http://maven.aliyun.com/nexus/content/groups/public/</a>”} 代替，然后等待下载安装完成就好了。<br />
@@ -1393,7 +1393,7 @@ if __name__ == &quot;__main__&quot;:
   </entry>
   <entry>
     <title>beyond</title>
-    <url>/posts/2020-10-001.html</url>
+    <url>/2020-10-001.html</url>
     <content><![CDATA[<div class="note info simple"><p>粗滤估计我的街健记录应该是从2018年春天开始的，当时是大二下，断断续续竟然都快3年了！ <code>2020-11-9 23:00</code></p>
 </div>
 <h2 id="2020年之前原帖"><a class="markdownIt-Anchor" href="#2020年之前原帖"></a> 2020年之前（<a href="https://tieba.baidu.com/p/5805622993">原帖</a>）</h2>
@@ -1701,7 +1701,7 @@ if __name__ == &quot;__main__&quot;:
   </entry>
   <entry>
     <title>Win32显示图像</title>
-    <url>/posts/2020-09-001.html</url>
+    <url>/2020-09-001.html</url>
     <content><![CDATA[<p>在windows下将数据以位图的方式显示：</p>
 <pre><code>//变量定义
 
@@ -1746,7 +1746,7 @@ ImageLoad(void* dat, int width, int height,int size)
   </entry>
   <entry>
     <title>butterfly修改及使用</title>
-    <url>/posts/2020-07-003.html</url>
+    <url>/2020-07-003.html</url>
     <content><![CDATA[<p>官方教程上有的就不在赘述了，仔细阅读官方文档能解决绝大部分问题。</p>
 <h3 id="评论"><a class="markdownIt-Anchor" href="#评论"></a> 评论</h3>
 <p>在使用评论系统之前需要首先 npm安装相应的插件，然后配置butterfly.yml中关于评论的设置。<br />
@@ -1848,7 +1848,7 @@ comments: false
   </entry>
   <entry>
     <title>cocos2dx</title>
-    <url>/posts/2020-09-003.html</url>
+    <url>/2020-09-003.html</url>
     <content><![CDATA[<h2 id="记录cocos2dx的学习历程和遇到的坑-版本40"><a class="markdownIt-Anchor" href="#记录cocos2dx的学习历程和遇到的坑-版本40"></a> 记录cocos2dx的学习历程和遇到的坑。 版本4.0</h2>
 <h3 id="坐标系问题"><a class="markdownIt-Anchor" href="#坐标系问题"></a> 坐标系问题</h3>
 <ul>
@@ -1906,7 +1906,7 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
   </entry>
   <entry>
     <title>解压wallpapper中下载的壁纸里面的pkg文件</title>
-    <url>/posts/2020-07-002.html</url>
+    <url>/2020-07-002.html</url>
     <content><![CDATA[<h3 id="下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"><a class="markdownIt-Anchor" href="#下载-httpsgithubcomnotscuffedrepkg-中的release项目将其中的可执行文件解压出来并找到下载的壁纸中的pkg将二者放到同一目录下"></a> 下载 <a href="https://github.com/notscuffed/repkg">https://github.com/notscuffed/repkg</a> 中的Release项目，将其中的可执行文件解压出来，并找到下载的壁纸中的.pkg，将二者放到同一目录下。</h3>
 <p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/pkg1.png" alt="目录示例" /></p>
 <h3 id="启动powershell进入到此目录执行命令"><a class="markdownIt-Anchor" href="#启动powershell进入到此目录执行命令"></a> 启动powershell进入到此目录执行命令。</h3>
@@ -1927,7 +1927,7 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
   </entry>
   <entry>
     <title>free-handstand tips</title>
-    <url>/posts/2020-10-005.html</url>
+    <url>/2020-10-005.html</url>
     <content><![CDATA[<ol>
 <li>改变手的放置位置，不要将整个手全紧贴地面，可以将手指弯曲，形成一个抓地的感觉</li>
 <li>将手掌贴地，只有在需要必须使用手指时是用手指，平常调整身体的平衡时，可以只使用手掌进行调节，当我们身体将要放过去时，这样就可以有额外的力量将身体拉回来</li>
@@ -1946,7 +1946,7 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
   </entry>
   <entry>
     <title>hexo-steam</title>
-    <url>/posts/2021-01-001.html</url>
+    <url>/2021-01-001.html</url>
     <content><![CDATA[<h1 id="hexo-steam-games"><a class="markdownIt-Anchor" href="#hexo-steam-games"></a> hexo-steam-games</h1>
 <p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://img.shields.io/npm/v/hexo-steam?color=%09%23bf00ff" alt="https://img.shields.io/npm/v/hexo-steam?color=%09%23bf00ff" /><br />
 <img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://img.shields.io/github/license/slyli/hexo-steam?color=FF5531" alt="license" /></p>
@@ -1996,7 +1996,7 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
   </entry>
   <entry>
     <title>js多次点击的响应</title>
-    <url>/posts/2020-10-003.html</url>
+    <url>/2020-10-003.html</url>
     <content><![CDATA[<ul>
 <li>js中只内置了单击和双击的相应，而且这两者之间还有冲突，使用起来不太方便。</li>
 <li>下列代码可以完成任意次点击的相应，且无冲突，原理是使用了一个定时器，在一定时间内完成多少次点击便执行多少次点击相应的任务。这个时间可以由自己选择。</li>
@@ -2012,7 +2012,7 @@ _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(myMouseListener, thi
   </entry>
   <entry>
     <title>leetcode-动态规划</title>
-    <url>/posts/2020-10-002.html</url>
+    <url>/2020-10-002.html</url>
     <content><![CDATA[<h3 id="5-最长回文子串"><a class="markdownIt-Anchor" href="#5-最长回文子串"></a> 5. 最长回文子串</h3>
 <p>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
 <ul>
@@ -2127,7 +2127,7 @@ dp[i] =     if s[i]==’)’
   </entry>
   <entry>
     <title>leetcode-每日一题</title>
-    <url>/posts/2020-12-001.html</url>
+    <url>/2020-12-001.html</url>
     <content><![CDATA[<h3 id="204-计数质数"><a class="markdownIt-Anchor" href="#204-计数质数"></a> <a href="https://leetcode-cn.com/problems/count-primes/">204. 计数质数</a></h3>
 <ul>
 <li>暴力</li>
@@ -2146,7 +2146,7 @@ dp[i] =     if s[i]==’)’
   </entry>
   <entry>
     <title>machine-learning 知识点总结</title>
-    <url>/posts/2020-07-006.html</url>
+    <url>/2020-07-006.html</url>
     <content><![CDATA[<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
 <h3 id="监督学习"><a class="markdownIt-Anchor" href="#监督学习"></a> 监督学习</h3>
 <ul>
@@ -2318,7 +2318,7 @@ dp[i] =     if s[i]==’)’
   </entry>
   <entry>
     <title>python配置文件</title>
-    <url>/posts/2020-11-003.html</url>
+    <url>/2020-11-003.html</url>
     <content><![CDATA[<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[top]</span></span><br><span class="line"><span class="attr">categories</span>=<span class="number">111</span></span><br><span class="line"><span class="attr">purity</span>=<span class="number">111</span></span><br><span class="line"><span class="attr">sorting</span>=toplist</span><br><span class="line"><span class="attr">order</span>=desc</span><br><span class="line"><span class="section">[hot]</span></span><br><span class="line"><span class="attr">sorting</span>=hot</span><br></pre></td></tr></table></figure>
 <h3 id="引入库"><a class="markdownIt-Anchor" href="#引入库"></a> 引入库</h3>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> configparser</span><br></pre></td></tr></table></figure>
@@ -2339,7 +2339,7 @@ dp[i] =     if s[i]==’)’
   </entry>
   <entry>
     <title>pytorch中的LSTM模型</title>
-    <url>/posts/2020-10-006.html</url>
+    <url>/2020-10-006.html</url>
     <content><![CDATA[<h2 id="背景知识"><a class="markdownIt-Anchor" href="#背景知识"></a> 背景知识</h2>
 <h3 id="lstm原理介绍"><a class="markdownIt-Anchor" href="#lstm原理介绍"></a> LSTM原理介绍</h3>
 <iframe src="https://datawhalechina.github.io/leeml-notes/#/chapter36/chapter36?id=lstm" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
@@ -2369,7 +2369,7 @@ dp[i] =     if s[i]==’)’
   </entry>
   <entry>
     <title>伽马兽王</title>
-    <url>/posts/2020-07-004.html</url>
+    <url>/2020-07-004.html</url>
     <content><![CDATA[<h3 id="兽王"><a class="markdownIt-Anchor" href="#兽王"></a> 兽王</h3>
 <p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/b00.png" alt="兽王" /></p>
 <h3 id="加点"><a class="markdownIt-Anchor" href="#加点"></a> 加点</h3>
@@ -2435,7 +2435,7 @@ dp[i] =     if s[i]==’)’
   </entry>
   <entry>
     <title>小说网站爬虫</title>
-    <url>/posts/2020-07-010.html</url>
+    <url>/2020-07-010.html</url>
     <content><![CDATA[<h3 id="1小说爬虫简易模板"><a class="markdownIt-Anchor" href="#1小说爬虫简易模板"></a> 1.小说爬虫简易模板</h3>
 <pre><code>import requests
 from bs4 import BeautifulSoup
@@ -2526,7 +2526,7 @@ if __name__ == &quot;__main__&quot;:
   </entry>
   <entry>
     <title>全国大学生智能汽车竞赛记录</title>
-    <url>/posts/2020-07-005.html</url>
+    <url>/2020-07-005.html</url>
     <content><![CDATA[<h3 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h3>
 <p>18年下半年，也就是我大三的上半学期，是第二年的全国大学生智能汽车竞赛的校内报名时间。同学来邀请我参加，我也想做点东西，就一起参加了。我们一组三人，自己主要负责相关代码的编写。</p>
 <h3 id="准备"><a class="markdownIt-Anchor" href="#准备"></a> 准备</h3>
@@ -2597,7 +2597,7 @@ if __name__ == &quot;__main__&quot;:
   </entry>
   <entry>
     <title>博客说明</title>
-    <url>/posts/2020-07-001.html</url>
+    <url>/2020-07-001.html</url>
     <content><![CDATA[<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
 <p>腾讯云服务器到期，根据自己4年的服务器使用情况来看，没有必要重新购买服务器。经过多方学习调查，最终选择GitHub Pages搭载博客，采用Hexo框架和butterfly主题。这篇文章主要目的是记录下博客使用的基本流程，供自己之后参考。</p>
 <h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
@@ -2648,7 +2648,7 @@ draft	source/_drafts
   </entry>
   <entry>
     <title>基因组文件处理</title>
-    <url>/posts/2021-03-002.html</url>
+    <url>/2021-03-002.html</url>
     <content><![CDATA[<h3 id="文件格式"><a class="markdownIt-Anchor" href="#文件格式"></a> 文件格式</h3>
 <p>常用文件格式有fa、sam、bam</p>
 <ol>
@@ -2738,7 +2738,7 @@ blastn -query input.fa -db ./index -evalue 1e-6 -outfmt 6 -num_threads 6 -out ou
   </entry>
   <entry>
     <title>基因组组装</title>
-    <url>/posts/2021-03-001.html</url>
+    <url>/2021-03-001.html</url>
     <content><![CDATA[<h3 id="每日小结"><a class="markdownIt-Anchor" href="#每日小结"></a> 每日小结</h3>
 <ol>
 <li>
@@ -3021,7 +3021,7 @@ W是X的一个字串，<span class="katex"><span class="katex-mathml"><math><sem
   </entry>
   <entry>
     <title>小四轴飞行器</title>
-    <url>/posts/2020-08-004.html</url>
+    <url>/2020-08-004.html</url>
     <content><![CDATA[<h3 id="待更新"><a class="markdownIt-Anchor" href="#待更新"></a> 待更新</h3>
 <p>目前只完成的硬件的采购和驱动测试电路的焊接。<br />
 <img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-08/IMG_20200807_180113.jpg" alt="" /></p>
@@ -3032,7 +3032,7 @@ W是X的一个字串，<span class="katex"><span class="katex-mathml"><math><sem
   </entry>
   <entry>
     <title>记录</title>
-    <url>/posts/2020-08-005.html</url>
+    <url>/2020-08-005.html</url>
     <content><![CDATA[<ol>
 <li>
 <p>楼下一个男人病得要死，那间壁的一家唱着留声机；对面是弄孩子。楼上有两人狂笑；还有打牌声。河中的船上有女人哭着她死去的母亲。 人类的悲欢并不相通，我只觉得他们吵闹。  —鲁迅《而已集》《小杂感》</p>
@@ -3055,7 +3055,7 @@ W是X的一个字串，<span class="katex"><span class="katex-mathml"><math><sem
   </entry>
   <entry>
     <title>测序数据解释</title>
-    <url>/posts/2021-03-003.html</url>
+    <url>/2021-03-003.html</url>
     <content><![CDATA[<h2 id="二代测序数据-hiseq-x"><a class="markdownIt-Anchor" href="#二代测序数据-hiseq-x"></a> 二代测序数据 (hiseq X)</h2>
 <h3 id="二代测序"><a class="markdownIt-Anchor" href="#二代测序"></a> 二代测序</h3>
 <ol>
@@ -3197,7 +3197,7 @@ mRNA与cDNA单链互补，且A与U互补</code></pre>
   </entry>
   <entry>
     <title>Optimization</title>
-    <url>/posts/2020-11-002.html</url>
+    <url>/2020-11-002.html</url>
     <content><![CDATA[<h2 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h2>
 <ol>
 <li>最优化：在满足一系列约束条件下，获得目标函数或指标获得一个最大值（最小值）</li>
@@ -3923,7 +3923,7 @@ D被定义为P的对偶</p>
   </entry>
   <entry>
     <title>leetcode-每日一题</title>
-    <url>/posts/2020-08-002.html</url>
+    <url>/2020-08-002.html</url>
     <content><![CDATA[<h3 id="每日一题"><a class="markdownIt-Anchor" href="#每日一题"></a> 每日一题</h3>
 <h3 id="336回文对"><a class="markdownIt-Anchor" href="#336回文对"></a> 336.回文对</h3>
 <p>题目比较简单，上来可以先判断两个拼接好的字符串是否符合，然后遍历判断。</p>
@@ -4120,7 +4120,7 @@ dp[i][j] 表示从数组的[0,i] 下标范围内选取若干个正整数（可�
   </entry>
   <entry>
     <title>leetcode-每日一题</title>
-    <url>/posts/2020-11-001.html</url>
+    <url>/2020-11-001.html</url>
     <content><![CDATA[<h3 id="349-两个数组的交集"><a class="markdownIt-Anchor" href="#349-两个数组的交集"></a> 349. 两个数组的交集</h3>
 <ul>
 <li>首先记录下nums1中出现过的数字，如果nums2中也出现就将其加入到集合中。</li>
@@ -4298,7 +4298,7 @@ dp[i][j] 表示从数组的[0,i] 下标范围内选取若干个正整数（可�
   </entry>
   <entry>
     <title>基于雷达探测技术和stm32平台的自动避障智能车</title>
-    <url>/posts/2020-07-007.html</url>
+    <url>/2020-07-007.html</url>
     <content><![CDATA[<p>对于毕业设计，我最初的构想就是，首先要有一个能够无线控制移动的小车，然后在小车上面搭载一个激光雷达，激光雷达工作返回的数据都通过无线传输到计算机上面，然后计算机可视化显示雷达数据并且能够同时定位和生成地图。之后我们可以给定目标点，自动规划合理的行驶路径，小车自动行驶到目标点。</p>
 <h2 id="整体结构"><a class="markdownIt-Anchor" href="#整体结构"></a> 整体结构</h2>
 <p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/gp1.png" alt="框图" /></p>
@@ -4535,7 +4535,7 @@ $y = d \times cos \left( \theta \right)$
   </entry>
   <entry>
     <title>ubuntu相关</title>
-    <url>/posts/2021-04-001.html</url>
+    <url>/2021-04-001.html</url>
     <content><![CDATA[<h1 id="azure-ubuntu服务器连接失败"><a class="markdownIt-Anchor" href="#azure-ubuntu服务器连接失败"></a> Azure ubuntu服务器连接失败</h1>
 <ol>
 <li>自己使用VSCODE remoteSSH连接Azure ubuntu20 服务器时，经常会出现断开连接，后面在连时就连不上了，只能把服务器重启。</li>
@@ -4563,7 +4563,7 @@ $y = d \times cos \left( \theta \right)$
   </entry>
   <entry>
     <title>获取JD_COOKIE</title>
-    <url>/posts/2021-07-001.html</url>
+    <url>/2021-07-001.html</url>
     <content><![CDATA[<h2 id="在线扫码获取京东cookie"><a class="markdownIt-Anchor" href="#在线扫码获取京东cookie"></a> 在线扫码获取京东cookie</h2>
 <div id="tab_1">
     <iframe src="https://jd.slyli.cn"
@@ -4666,7 +4666,7 @@ $y = d \times cos \left( \theta \right)$
   </entry>
   <entry>
     <title>MECAT: fast mapping, error correction, and de novo assembly for single-molecule sequencing reads</title>
-    <url>/posts/2021-07-002.html</url>
+    <url>/2021-07-002.html</url>
     <content><![CDATA[<h1 id="mecat-fast-mapping-error-correction-and-de-novo-assembly-for-single-molecule-sequencing-reads"><a class="markdownIt-Anchor" href="#mecat-fast-mapping-error-correction-and-de-novo-assembly-for-single-molecule-sequencing-reads"></a> <a href="https://www.nature.com/articles/nmeth.4432">MECAT: fast mapping, error correction, and de novo assembly for single-molecule sequencing reads</a></h1>
 <blockquote>
 <p>仅代表个人理解，如果有不准确的欢迎指正</p>
@@ -4764,7 +4764,7 @@ match_count,碱基位置能够相匹配的read的数量，insertion、deletion �
   </entry>
   <entry>
     <title>Phased diploid genome assembly with single-molecule real-time sequencing</title>
-    <url>/posts/2021-07-003.html</url>
+    <url>/2021-07-003.html</url>
     <content><![CDATA[<h1 id="phased-diploid-genome-assembly-with-single-molecule-real-time-sequencing"><a class="markdownIt-Anchor" href="#phased-diploid-genome-assembly-with-single-molecule-real-time-sequencing"></a> <a href="https://www.nature.com/articles/nmeth.4035">Phased diploid genome assembly with single-molecule real-time sequencing</a></h1>
 <blockquote>
 <p>仅代表个人理解，如果有不准确的欢迎指正</p>
@@ -4777,10 +4777,11 @@ match_count,碱基位置能够相匹配的read的数量，insertion、deletion �
 </ul>
 <h2 id="main"><a class="markdownIt-Anchor" href="#main"></a> Main</h2>
 <p>单分子实时测序技术 Single-molecule real-time (SMRT) 可以为哺乳动物提供高连续性的组装，long read 可以横跨多个重复区域，和帮助解决复杂的双倍体基因，本文提供了 FALCON 一个双倍体敏感的 long read 组装工具，FALCON-Unzip 一个相关的单倍体解析工具，用正确的同源染色体来组装代表具有 正确 定相 同源染色体的二倍体基因组的单倍体 contigs</p>
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnmeth.4035/MediaObjects/41592_2016_Article_BFnmeth4035_Fig1_HTML.jpg" width="70%">
-    (a) An initial assembly is computed by FALCON, which error corrects the raw reads (not shown) and then assembles them using a string graph of the read overlaps. The assembled contigs are further refined by FALCON-Unzip into a final set of contigs and haplotigs. 
-    (b) Phase heterozygous SNPs and group reads by haplotype. 
-    (c) The phased reads are used to open up the haplotype-fused path and generate as output a set of primary contigs and associated haplotigs.
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnmeth.4035/MediaObjects/41592_2016_Article_BFnmeth4035_Fig1_HTML.jpg" >
+<pre><code>(a) 使用 FALCON 的一个最初的组装结果，先对原始 reads 纠错，然后通过关于 overlap 的 string graph 组装，组装后的 contigs 通过 FALCON-Unzip 完善成最后的 contigs 和 haplotigs
+(b) Phase heterozygous SNPs and group reads by haplotype. 
+(c) The phased reads are used to open up the haplotype-fused path and generate as output a set of primary contigs and associated haplotigs.
+</code></pre>
 <p>FALCON assembler 首先用 reads 构建了包含单倍体融合（haplotype-fused）的 contigs和同源序列不同区域气泡的 string graph （a）。<br />
 FALCON-Unzip 使用来自其识别的杂合位置的定相信息识别读取单倍型（b）。</p>
 <h2 id="method"><a class="markdownIt-Anchor" href="#method"></a> Method</h2>
@@ -4788,26 +4789,23 @@ FALCON-Unzip 使用来自其识别的杂合位置的定相信息识别读取单�
 <p>使用 daligner 把所有的 read 都 align 到任意其他 read，这些 overlap 和 read 信息用 FALCON-sense 于生成 consensus 序列。FALCON-sense 算法可以保留杂合 SNP 的信息</p>
 <h2 id="supplementary-information"><a class="markdownIt-Anchor" href="#supplementary-information"></a> Supplementary information</h2>
 <h3 id="updated-falcon-consensus-algorithm"><a class="markdownIt-Anchor" href="#updated-falcon-consensus-algorithm"></a> Updated FALCON consensus algorithm</h3>
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnmeth.4035/MediaObjects/41592_2016_Article_BFnmeth4035_Fig14_ESM.jpg" width="70%">
-    Two paths are highlighted in the graph with dashed curves. The cyan dashed curve indicates the 
-    path of the seed sequence. The green dashed curve indicates the final consensus path. Node 
-    “0092:0:T:T” is identified as an erroneous extra base in the seed read. The new nodes, 
-    “0091:0:-:C” and “0091:0:-:A” are added to the consensus path. The green arrows 
-    highlight the path of the original template sequence. The “CA” insertion to the seed sequence 
-    concurs with the original template sequence. Namely, the consensus indeed corrects 3 
-    simulated errors in the seed read for this case.
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnmeth.4035/MediaObjects/41592_2016_Article_BFnmeth4035_Fig14_ESM.jpg" >
+<pre><code>图中虚线突出显示了两条路径，青色虚线表示种子序列的路径，绿色虚线表示最后的 consensus 路径，Node “0092:0:T:T” 被认为是种子 read 上错误的额外碱基。新 Nodes 0091:0:-:C” and “0091:0:-:A” 添加到 consensus 路径，绿色箭头突出了原始的模板序列，插入到种子序列的 “CA” 与原始模板一致，也就是说，consensus 纠正了3个种子 read 中模拟的错误
+</code></pre>
 <p>FALCON-sense 使用一系列种子序列和支持他们的 reads 产生每个种子序列的 consensus</p>
 <ol>
 <li>使用 Gene Myers’ O(ND) aligner 把支持种子序列的 reads align 到种子序列上，在 alignment 中只允许插入和删除，不允许存在错配</li>
 <li>在 alignment 的每一个位置都生成一个 alignment tag，tag 包含4个方面
 <ol>
 <li>在种子序列上的锚点位置</li>
-<li>种子序列上锚点位置的 delta （偏移？）</li>
+<li>种子序列上锚点位置的 delta （插入的base数量）</li>
 <li>种子序列上的base（碱基）</li>
-<li>alignment 中支持序列上的base<br />
-在给定位置上的支持read上如果有插入，alignment 上插入 base 的非零 delta 表示来自锚点 base 的 base 数量。tag 1 和 3 有相同的信息，只是表示不同，加入3只是为了方便</li>
+<li>alignment 中支持序列上的base</li>
 </ol>
 </li>
+</ol>
+<p>当在给定位置上的支持read相对于种子序列有插入时，alignment 上插入的 base 的非零 delta 表示来自锚点位置的 base 数量。tag 1 和 3 有相同的信息，只是表示不同，加入3只是为了方便</p>
+<ol>
 <li>根据支持reads的 tag 构建一个 alignment graph
 <ol>
 <li>对于每个不同的tag，构建一个相应的node</li>
@@ -4817,6 +4815,40 @@ FALCON-Unzip 使用来自其识别的杂合位置的定相信息识别读取单�
 <li>在 alignment graph 上使用标准的动态规划算法找到最可靠的路径，通过串联路径上 tags 上的 bases 产生 consensus sequence</li>
 </ol>
 <h3 id="assembly-string-graph-reduction-process-summary"><a class="markdownIt-Anchor" href="#assembly-string-graph-reduction-process-summary"></a> Assembly string graph reduction process summary</h3>
+<h4 id="constructing-the-initial-string-graph"><a class="markdownIt-Anchor" href="#constructing-the-initial-string-graph"></a> Constructing the initial string graph</h4>
+<p>在纠正完 reads 后，使用 daligner 获取 reads 间的 overlap。然后 overlap-filtering 步骤过滤掉已包含的 reads 和出现在高度重复区域的 reads。使用 Myers’ paper (Myers 2005)上的方法，根据过滤后的 reads pairs 构建 string graph。 本文通过 overlap 构建普通的单向图，每对 overlap 实际上构建了两条有向的边， 但是我们只需要沿着一个方向延伸，以获取 contigs 和它们反向互补相对应的部分。也就是说，在最终的 contigs 中只有每对有向边的一条。在构建结构阶段，我们根据每对边的对称性去除冗余。.</p>
+<h4 id="a-heuristic-algorithm-for-constructing-compound-paths-启发式算法构建复合路径"><a class="markdownIt-Anchor" href="#a-heuristic-algorithm-for-constructing-compound-paths-启发式算法构建复合路径"></a> A heuristic algorithm for constructing compound paths 启发式算法构建复合路径</h4>
+<p>概念上讲，bubble 表示子图，就像（1）只有一个源节点和一个宿节点，（2）源节点到宿节点有多条路径，（3）在去掉任意一条边后，都保持着弱连接。复杂的杂合结构变异或二倍体数据集中两个单倍型之间的重复区域可能会导致更复杂的结构。</p>
+<p>(1) 可能有嵌套 bubbles</p>
+<pre><code>              _______   
+       ______/       \________ 
+      /      \_______/        \______ 
+_____/                        / 
+     \_______________________/ 
+</code></pre>
+<p>(2) 图中也能有环</p>
+<pre><code>              ___&lt;___   
+       ______/       \________ 
+      /   &gt;  \_______/   &gt;    \______ 
+_____/           &gt;            / 
+     \_______________________/ 
+                 &gt; 
+</code></pre>
+<p>(3) 还有非常复杂的嵌套 bubbles，这可能表示某些局部复杂重复难以解决</p>
+<pre><code>        ______________ 
+       /        /     \ 
+      /________/ \   / \ 
+     /____________\_/   \_______ 
+____/___________________/   / 
+    \______/    /__________/ 
+     \_____\___/ 
+</code></pre>
+<p>Falcon 用于寻找 bubbles 的复合路径的启发式方法如下所示：</p>
+<ol>
+<li>把最初组装的 string graph 简化成一个具有简单路径的图。也即是说，把没有分支节点路径上的所有边变成一条边，把这个称为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>U</mi><msub><mi>G</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">UG_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>U</mi><msub><mi>G</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">UG_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 中每个有多条出边的节点，搜索边的本地 bundle。设置 active tracers 追踪每个节点的每个分支<br />
+1.</li>
+</ol>
 ]]></content>
       <categories>
         <category>Master</category>
