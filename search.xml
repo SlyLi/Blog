@@ -907,11 +907,17 @@ ____/___________________/   /
     \______/    /__________/ 
      \_____\___/ 
 </code></pre>
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnmeth.4035/MediaObjects/41592_2016_Article_BFnmeth4035_Fig16_ESM.jpg" width="75%" >
 <p>Falcon 用于寻找 bubbles 的复合路径的启发式方法如下所示：</p>
 <ol>
 <li>把最初组装的 string graph 简化成一个具有简单路径的图。也即是说，把没有分支节点路径上的所有边变成一条边，把这个称为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>U</mi><msub><mi>G</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">UG_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
-<li>对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>U</mi><msub><mi>G</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">UG_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 中每个有多条出边的节点，搜索边的本地 bundle。设置 active tracers 追踪每个节点的每个分支<br />
-1.</li>
+<li>对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>U</mi><msub><mi>G</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">UG_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 中每个有多条出边的节点，搜索边的本地 bundle。设置 active tracers 追踪每个节点的每个分支
+<ol>
+<li>每次迭代都检查节点是否有 active tracers，如果一个节点的所有入节点都有一个 tracer ，给他的子节点添加 tracer 并且使它父节点的 tracer 变成 inactive，如果只剩一个 active tracer，那么多有遍历过的节点和边形成的子图称为复合路径（compound path）</li>
+<li>如果任意一个active tracer 节点的后代有用过的 tracer，就表明探测到了一个循环，此时停止搜索并且不产生复合路径</li>
+<li></li>
+</ol>
+</li>
 </ol>
 ]]></content>
       <categories>
@@ -2338,314 +2344,6 @@ ImageLoad(void* dat, int width, int height,int size)
       <tags>
         <tag>android</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>beyond</title>
-    <url>/2020-10-001.html</url>
-    <content><![CDATA[<div class="note info simple"><p>粗滤估计我的街健记录应该是从2018年春天开始的，当时是大二下，断断续续竟然都快3年了！ <code>2020-11-9 23:00</code></p>
-</div>
-<h2 id="2020年之前原帖"><a class="markdownIt-Anchor" href="#2020年之前原帖"></a> 2020年之前（<a href="https://tieba.baidu.com/p/5805622993">原帖</a>）</h2>
-<h3 id="2018年07月"><a class="markdownIt-Anchor" href="#2018年07月"></a> 2018年07月</h3>
-<ol>
-<li>2018-07-22   俯卧撑100 引体20</li>
-<li>2018-07-23   俯卧撑110 引体向上30</li>
-<li>2018-07-24   100俯卧撑35引体</li>
-<li>2018-07-25   100俯卧撑35引体向上</li>
-<li>2018-07-27   40引体向上</li>
-<li>2018-07-28   43引体向上</li>
-<li>2018-07-29   20引体向上</li>
-<li>2018-07-30   20引体向上</li>
-<li>2018-07-31   引体向上12 8 9 8 7 😊</li>
-</ol>
-<h3 id="2018年08月"><a class="markdownIt-Anchor" href="#2018年08月"></a> 2018年08月</h3>
-<ol>
-<li>2018-08-04   引体向上 11 10 9 8 7 2个借力双力臂</li>
-<li>2018-08-05   11 5 8 8 7</li>
-<li>2018-08-06   12 10 8 8 7</li>
-<li>2018-08-07   今天 100俯卧撑</li>
-<li>2018-08-08   12 8 9 7 5 6</li>
-<li>2018-08-09   11 8 8 8 7</li>
-<li>2018-08-10   100俯卧撑</li>
-<li>2018-08-11   11 9 8 8 8 50俯卧撑</li>
-<li>2018-08-13   10 9 8 8 7</li>
-<li>2018-08-18   110俯卧撑</li>
-<li>2018-08-20   120</li>
-<li>2018-08-21   140个</li>
-<li>2018-08-26   120 单次俯卧撑到达40</li>
-<li>2018-08-28   30 20 20 20 20</li>
-</ol>
-<h3 id="2018年09月"><a class="markdownIt-Anchor" href="#2018年09月"></a> 2018年09月</h3>
-<ol>
-<li>2018-09-02   50个左右</li>
-<li>2018-09-03   引体 11 8 8 9 7</li>
-<li>2018-09-07   12 10 7 10 7 5 间隔有点长了</li>
-<li>2018-09-08   12 8 8 8 7 7 6 3 4 3 手臂感觉胀胀的</li>
-<li>2018-09-09   13 10 8 8 7 6 6 5 第一次13个勉强完成。 后边做了不少半程（实在上不去了），不过没计数。</li>
-<li>2018-09-11   12 10 7 8 5 3 5 3 3 最后一组荡了十几个，果然荡还是简单啊！！！！</li>
-<li>2018-09-13   解锁体操上杠动作 然后几个双力臂，11 11 10 7 8 7 8 6 5 3</li>
-<li>2018-09-14   10 9 10 6 5 6</li>
-<li>2018-09-15   13个半 10 10 8 8</li>
-<li>2018-09-16   100俯卧撑</li>
-<li>2018-09-17   8 14 9 6 9 5</li>
-<li>2018-09-18   10 10 7 8 6 5 5 5 5 5 热热热 🤮</li>
-<li>2018-09-21   12 10 8 8 6 前两天下雨 俯卧撑</li>
-<li>2018-09-25   13 8 6 7 5 7</li>
-<li>2018-09-26   13 10 8 8 7 7 7 6 5 3 😫    摆动的双力臂果然还是技巧很重要啊。。 估计不用10个标准引体就够了</li>
-<li>2018-09-27   150俯卧撑</li>
-<li>2018-09-28   10 9 8 8 8 7 7 7 6 6</li>
-<li>2018-09-28   14 11 10 8 8 6 7 5 5 。。。</li>
-<li>2018-09-30   150俯卧撑。</li>
-</ol>
-<h3 id="2018年10月"><a class="markdownIt-Anchor" href="#2018年10月"></a> 2018年10月</h3>
-<ol>
-<li>2018-10-01   15 2个双力臂 5 8 8 7 7 6 8 5 7</li>
-<li>2018-10-02   14 5 。。。。。。</li>
-<li>2018-10-05   15 10 9 9 9 8 6 7 6 7 啦啦啦</li>
-<li>2018-10-06   15 9 8 9 6 8 6 5 3 4 防删</li>
-<li>2018-10-08   13 8 8 9 8 6 6 嘤嘤嘤</li>
-<li>2018-10-09   15 11 11 6 突然下雨。。。</li>
-<li>2018-10-10   16 10 9 8 8 8 8</li>
-<li>2018-10-11   17 12 11 9 8 7 8 快速拉</li>
-<li>2018-10-12   16 8 8 6 5 虚。。。</li>
-<li>2018-10-16   17 13 11 9 9 9 8 前几天下雨休息</li>
-<li>2018-10-17   16 13 12 9 8 8 5 啦啦啦</li>
-<li>2018-10-18   18 11 10 8 11 9 8 吊杠70s 单杠臂屈伸15</li>
-<li>2018-10-20   20 13 11 10 9 8 第一组极限速度追求数量 动作不是很标准 借力20</li>
-<li>2018-10-22   18 13 11 10 9 8 8 8 啧啧啧啧</li>
-<li>2018-10-23   15 后边各种引体瞎拉 感觉状态不太好</li>
-<li>2018-10-24   100引体5个一组 20分钟 然后 9 8 8</li>
-<li>2018-10-26   20 15 9 10 9 8 7 20标准引体√</li>
-<li>2018-10-27   17 13 11 9 9 11 啦啦啦啦</li>
-<li>2018-10-28   15 11 10 8 9 。。。。。。，，</li>
-<li>2018-10-30   17 11 10 11 10 。。。</li>
-<li>2018-10-31   15 14 10 10 10 8 10 11 越来越菜了</li>
-</ol>
-<h3 id="2018年11月"><a class="markdownIt-Anchor" href="#2018年11月"></a> 2018年11月</h3>
-<ol>
-<li>2018-11-02   8 7 9 8 6 5 4 负重10kg</li>
-<li>2018-11-08   不借力双力臂达成 17 11 13 10 10 10 10   前两天下雨在寝室练的倒立，状态好可以十几秒了</li>
-<li>2018-11-10   曲腿人旗 11 9 😕</li>
-<li>2018-11-11   10 10 10 10 10 10 下雨</li>
-<li>2018-11-13   20 11 12 13 11 10 10 10 舒服。</li>
-<li>2018-11-17   下雨。。。。。</li>
-<li>2018-11-23   10 x 5</li>
-<li>2018-11-30   17 11 10 12 11 10   人旗现在曲腿10s＋ 估计放假前能完成<br />
-前两天的快乐双力臂😋<br />
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://imgsa.baidu.com/forum/w%3D580/sign=2e8800789f45d688a302b2ac94c37dab/3f65c011b912c8fc2ebb3f86f1039245d7882125.jpg" alt="" /></li>
-</ol>
-<h3 id="2018年12月"><a class="markdownIt-Anchor" href="#2018年12月"></a> 2018年12月</h3>
-<ol>
-<li>2018-12-14   接连下了一个月的雨 难受 估计退到15了</li>
-<li>2018-12-18   17 10 5 10 7 7 5 退步也忒快啊</li>
-</ol>
-<h3 id="2019年01月"><a class="markdownIt-Anchor" href="#2019年01月"></a> 2019年01月</h3>
-<ol>
-<li>2019-01-09   15 8 11 8 7 10 5</li>
-</ol>
-<h3 id="2019年03月"><a class="markdownIt-Anchor" href="#2019年03月"></a> 2019年03月</h3>
-<ol>
-<li>2019-03-05   阔别了两个月的引体向上 14 8 5 5 5 5 5</li>
-<li>2019-03-10   10 7 8 6 6 5 5</li>
-<li>2019-03-18   吊杠70s</li>
-<li>2019-03-23   15 9 6 7 8 6 恢复的太慢了。。</li>
-<li>2019-03-30   12 10 7 8 6 啦啦啦啦啦</li>
-</ol>
-<h3 id="2019年04月"><a class="markdownIt-Anchor" href="#2019年04月"></a> 2019年04月</h3>
-<ol>
-<li>2019-04-01   14 10 10 7 7 9 6 慢速恢复训练</li>
-<li>2019-04-07   16 9 8 8 8 8</li>
-<li>2019-04-08   16 11 10 10 10 9 刺激刺激</li>
-<li>2019-04-15   15 8 8 10 9</li>
-<li>2019-04-16   15 10 8 9 8</li>
-<li>2019-04-20   18 12 10 11 10</li>
-<li>2019-04-23   10x7</li>
-<li>2019-04-25   17 11 11 9 10 7 target 20</li>
-<li>2019-04-30   15 8 11 10 10</li>
-</ol>
-<h3 id="2019年05月"><a class="markdownIt-Anchor" href="#2019年05月"></a> 2019年05月</h3>
-<ol>
-<li>2019-05-02   17 8 11 9 9 啦啦啦</li>
-<li>2019-05-04   18 13 10 10 10 争取一个月内到极限20</li>
-<li>2019-05-07   16 11 10 9 9 啦啦啦啦</li>
-<li>2019-05-09   20 10 10 10 10 啊啊啊啊啊啊啊啊啊！！！！！！！！</li>
-<li>2019-05-11   19 12 12 10 10</li>
-<li>2019-05-13   17 10 10 11 10 啊啊啊啊</li>
-<li>2019-05-16   15 10 11 10 10</li>
-<li>2019-05-17   17 12 10 10 10 夏天到了</li>
-<li>2019-05-19   20 15 12 10 10</li>
-<li>2019-05-20   20 13 12 11 9 啦啦啦</li>
-<li>2019-05-22   20 11 12 10 10 啦啦啦</li>
-<li>2019-05-28   17 11 9 10 10 😭😭</li>
-<li>2019-05-29   12 15 10 10 10</li>
-<li>2019-05-30   体测 20</li>
-<li>2019-05-31   21 12 10 10 。。。。略略略</li>
-</ol>
-<h3 id="2019年06月"><a class="markdownIt-Anchor" href="#2019年06月"></a> 2019年06月</h3>
-<ol>
-<li>2019-06-02   17 12 10 10 10 滴滴滴滴滴</li>
-<li>2019-06-07   17 12 12 10</li>
-<li>2019-06-09   15 10 12 10</li>
-<li>2019-06-10   11 16 10 人旗人旗！！！</li>
-<li>2019-06-12   17 14 10 10 10</li>
-<li>2019-06-15   18 10 10 10 10</li>
-<li>2019-06-16   18 8 8 10 10 。。。</li>
-<li>2019-06-22   15 10 10 10</li>
-<li>2019-06-24   18 8 9 9 10 按百度这个尿性，有空还是我记录全都迁到blog上面吧。。</li>
-<li>2019-06-26   20 11 8 8 10</li>
-</ol>
-<div class="note success simple"><p>终于将之前还存在的记录（丢失了19年夏秋的记录）都迁移过来了。    <code>2020-11-09 23:50</code></p>
-</div>
-<h2 id="2020年"><a class="markdownIt-Anchor" href="#2020年"></a> 2020年</h2>
-<h3 id="2020年10月"><a class="markdownIt-Anchor" href="#2020年10月"></a> 2020年10月</h3>
-<ol>
-<li>2020-10-04   <code>pull up</code> 12 6 6 7 6 6 4 3</li>
-<li>2020-10-05   <code>running</code> 3km</li>
-<li>2020-10-06   <code>pull up</code> 10 6 4   <code>bar dips</code>17 10 8   + 人旗</li>
-<li>2020-10-08   <code>pull up</code> 11 7 8 6 8 6 4</li>
-<li>2020-10-10   <code>pull up</code> 11 7 7 7 5 6 5 3</li>
-<li>2020-10-12   <code>running</code> 3km</li>
-<li>2020-10-14   <code>pull up</code> 13 8 9 8 6 6</li>
-<li>2020-10-15   <code>bar dips</code> 10 7 7 10 8</li>
-<li>2020-10-18   <code>pull up</code> 14 8 8 9 6 5</li>
-<li>2020-10-20   <code>pull up</code> 14 10 8 7 7</li>
-<li>2020-10-22   <code>pull up</code> 15 9 9 7 5 6</li>
-<li>2020-10-24   <code>bar dips</code> 17 10 10 10 16</li>
-<li>2020-10-26   <code>pull up</code> 15 10 9 8 8 2</li>
-<li>2020-10-28   <code>pull up</code> 15 11 11 9 6</li>
-<li>2020-10-30   <code>pull up</code> 15 10 10 7 7 2</li>
-</ol>
-<h3 id="2020年11月"><a class="markdownIt-Anchor" href="#2020年11月"></a> 2020年11月</h3>
-<div class="note warning simple"><p><strong>这个月希望能完成单次20个的小目标，恢复到自己的巅峰</strong></p>
-</div>
-<ol>
-<li>2020-11-01   <code>pull up</code> 10 10 10 10 10  人体旗帜还是不太稳定发挥</li>
-<li>2020-11-03   <code>pull up</code> 16 12 10 10 8</li>
-<li>2020-11-05   <code>pull up</code> 17 15 12 8 8  今天晚上很舒服，很小的的风。加上组内间隔时间稍长。</li>
-<li>2020-11-07   <code>pull up</code> 15 13 12 9 8  人旗果然还是主要靠背，练了一个月的引体向上之后，人旗的感觉明显比之前强了。</li>
-<li>2020-11-09   <code>pull up</code> 15 11 11 11 8  人旗的感觉有点像梦一样了，感觉有点不太真实。不要再搞些花里胡哨的了，专心提数量吧</li>
-<li>2020-11-10   人旗80°</li>
-<li>2020-11-11   <code>pull up</code> 17 13 10 8 8</li>
-<li>2020-11-13   <code>pull up</code> 20 14 10 10 8  手感状态哈哈🤪🤪</li>
-<li>2020-11-14   人旗 + 差一点的双力臂</li>
-<li>2020-11-15   <code>pull up</code> 19 14 11 10 10</li>
-<li>2020-11-17   竟然下雨了，推迟到明天</li>
-<li>2020-11-18   <code>pull up</code> 18 14 10 9 10 吊杠60s</li>
-<li>2020-11-20   <code>pull up</code> 19 13 12 10 8</li>
-<li>2020-11-22   <code>bar dips</code> 10*5 太冷了，<s>考虑买个室内的在宿舍内试试。</s></li>
-<li>2020-11-24   <code>pull up</code> 12 15 11 10 10</li>
-<li>2020-11-26   <code>pull up</code> 15 15 11 10 10 <code>bar dips</code> 15*2</li>
-<li>2020-11-28   <code>pull up</code> 15 11 15 15 10    买了个在宿舍的，还行，只需要练双杠和人旗的时候出去了</li>
-<li>2020-11-30   <code>pull up</code> 18 15 15 10 10</li>
-</ol>
-<h3 id="2020年12月"><a class="markdownIt-Anchor" href="#2020年12月"></a> 2020年12月</h3>
-<ol>
-<li>2020-12-02   <code>pull up</code> 20 15 13 10 10</li>
-<li>2020-12-03   <code>bar dips</code> 20 20 15 15 15</li>
-<li>2020-12-04   <code>pull up</code> 22 15 15 13 10</li>
-<li>2020-12-07   <code>pull up</code> 10 13 12 10 10</li>
-<li>2020-12-08   <code>bar dips</code> 20 20 15</li>
-<li>2020-12-09   <code>pull up</code> 15 13 10 10 10</li>
-<li>2020-12-11   <code>pull up</code> 15 12 10 10 10</li>
-<li>2020-12-14   <code>pull up</code> 15 11 11 10 10</li>
-<li>2020-12-15   <code>burpee</code> 30min</li>
-<li>2020-12-17   <code>pull up</code> 17 12 12 10 10</li>
-<li>2020-12-18   <code>burpee</code> 30min</li>
-<li>2020-12-19   <code>pull up</code> 15 12  手被割破了，难受 100蹲起</li>
-<li>2020-12-20   <code>push up</code> 30 20 30 20</li>
-<li>2020-12-23   <code>burpee</code> 110</li>
-<li>2020-12-24   <code>pull up</code> 15 12 10 10 10</li>
-<li>2020-12-25   <code>burpee</code> 100</li>
-<li>2020-12-26   <code>pull up</code> 20 10 11 10 10</li>
-<li>2020-12-27   <code>burpee</code> 130</li>
-<li>2020-12-29   <code>pull up</code> 16 13 11 10 10</li>
-<li>2020-12-30   <code>burpee</code> 150</li>
-</ol>
-<h2 id="2021年"><a class="markdownIt-Anchor" href="#2021年"></a> 2021年</h2>
-<h3 id="2021年01月"><a class="markdownIt-Anchor" href="#2021年01月"></a> 2021年01月</h3>
-<ol>
-<li>2021-01-01   <code>pull up</code> 20 12 11 10 10</li>
-<li>2021-01-02   <code>burpee</code> 100</li>
-<li>2021-01-03   <code>pull up</code> 20 12 10 10 10</li>
-<li>2021-01-04  <code>burpee</code> 200 练完后w拉伸刺激！！！</li>
-<li>2021-01-06   <code>pull up</code> 20 12 11 11 11   突然解锁搭腕慢双</li>
-</ol>
-<h3 id="2021年03月"><a class="markdownIt-Anchor" href="#2021年03月"></a> 2021年03月</h3>
-<ol>
-<li>2021-03-09   <code>pull up</code> 10 10 10</li>
-<li>2021-03-11   <code>pull up</code> 15 9 5</li>
-<li>2021-03-24   <code>pull up</code> 15 10 10 5 10</li>
-<li>2021-03-28   <code>pull up</code> 10 10 10 10 10</li>
-</ol>
-<h3 id="2021年04月"><a class="markdownIt-Anchor" href="#2021年04月"></a> 2021年04月</h3>
-<ol>
-<li>2021-04-04   <code>burpee</code> 50 开始恢复运动了</li>
-<li>2021-04-07   <code>pull up</code> 15 10 10 10 10</li>
-<li>2021-04-10   <code>bench press</code></li>
-<li>2021-04-12   <code>bench press</code></li>
-<li>2021-04-13   乒乓球</li>
-<li>2021-04-14   <code>pull up</code> 17 12 12 10 10</li>
-<li>2021-04-15   <code>bench press</code></li>
-<li>2021-04-19   <code>bench press</code></li>
-<li>2021-04-21   <code>pull up</code> 18 15 12 10 11</li>
-<li>2021-04-24   <code>pull up</code> 19 10 10 10 12</li>
-<li>2021-04-25   <code>bench press</code></li>
-<li>2021-04-26   <code>pull up</code> 15 12 10 12 11</li>
-</ol>
-<h3 id="2021年05月"><a class="markdownIt-Anchor" href="#2021年05月"></a> 2021年05月</h3>
-<ol>
-<li>2021-05-05  <code>pull up</code> 17 12 10 10 10</li>
-<li>2021-05-07   <code>bench press</code></li>
-<li>2021-05-09  <code>pull up</code> 15 12 14 3 12 12</li>
-<li>2021-05-11  <code>pull up</code> 20 14 12 10 9</li>
-<li>2021-05-13   健身房</li>
-<li>2021-05-15   健身房</li>
-<li>2021-05-16   20 15 10 12 10</li>
-<li>2021-05-17   健身房</li>
-<li>2021-05-18   双力臂，学了一点技巧后就感觉很轻松了，可以连做几个。顺风旗 5s 可能动作还不是很完美，之后找个时间拍个照片看看</li>
-<li>2021-05-19   乒乓球</li>
-<li>2021-05-20   <code>bench press</code> 50kg<em>5</em>8 可以加重量了</li>
-<li>2021-05-21   <code>muscle u</code> 6 3  <code>pull up</code> 18 12 14 10 10   unstoppable</li>
-<li>2021-05-22   <code>bench press</code> 55<em>2</em>6 50<em>4</em>5</li>
-<li>2021-05-23   <code>human flag</code>  <code>muscle u</code> 7 <code>pull up</code> 18 10 10 10 10  先热个身感觉会更好一些</li>
-<li>2021-05-24   <code>bench press</code>  60kg<em>5</em>2 55kg<em>7</em>6</li>
-<li>2021-05-27   <code>bench press</code> 60kg<em>5</em>5 二头</li>
-<li>2021-05-29   <code>muscle u</code> 6 <code>pull up</code> 20 13 10 10 10</li>
-<li>2021-05-30   <code>bench press</code> 60kg<em>5</em>7 肩飞鸟 下拉80kg*3</li>
-</ol>
-<h3 id="2021年06月"><a class="markdownIt-Anchor" href="#2021年06月"></a> 2021年06月</h3>
-<ol>
-<li>2021-06-02   <code>bench press</code> 60kg<em>5</em>6 最后一组差点完求了</li>
-<li>2021-06-04   <code>pull up</code> 前水平！！！  <code>muscle up</code> 5  <code>pull up</code> 14 10 10 10</li>
-<li>2021-06-05   <code>bench press</code> 60kg<em>5</em>8 二头 25kg<em>8</em>5</li>
-<li>2021-06-07   <code>muscle up</code> <code>front lever</code> 5  <code>pull up</code> 18 14 12 10 10</li>
-<li>2021-06-08   <code>bench press</code> 60kg</li>
-<li>2021-06-10   <code>bench press</code> 60kg</li>
-<li>2021-06-13   <code>bench press</code> 60kg<em>5</em>5</li>
-<li>2021-06-14   <code>pull up</code> 20 15 10 10 10</li>
-<li>2021-06-16   <code>bench press</code> 60kg</li>
-<li>2021-06-17   <code>squat</code> 40kg</li>
-<li>2021-06-19   <code>bench press</code> 60kg</li>
-<li>2021-06-20   前水平练习 <code>pull up</code> 12 11 10 10 10</li>
-<li>2021-06-22   <code>pull up</code> 23 15 10 10 10 <code>free handstand</code> 5s</li>
-<li>2021-06-24 – 2021-06-30  <code>bench press</code> or `row pull up</li>
-</ol>
-<h3 id="2021年07月"><a class="markdownIt-Anchor" href="#2021年07月"></a> 2021年07月</h3>
-<ol>
-<li>2021-07-01   <code>bench press</code> 60kg 7 6 6 6 6 6</li>
-<li>2021-07-02   <code>row pull up</code> 10*5</li>
-<li>2021-06-05   <code>bench press</code> 65kg</li>
-<li>2021-07-06   <code>row pull up</code> 10*5</li>
-<li>2021-07-08   <code>pull up</code> 23 15 12 10 10   <code>front lever</code> 3s then <code>muscle up</code> 3</li>
-<li>2021-07-09   <code>tuck push-ups</code> to <code>tuck planche</code></li>
-<li>2021-07-12   <code>row pull up</code> 10<em>5 <code>human flag</code> 5s</em>2</li>
-<li>2021-07-13   <code>tuck push-ups</code> to <code>tuck planche</code> and <code>push-ups</code></li>
-<li>2021-07-15   <code>pull up</code> 22 10 10 10 10</li>
-<li>2021-07-17   <code>muscle up</code> 5*3 <code>human flag</code>  <code>tuck push-ups</code> to <code>tuck planche</code> and <code>push-ups</code></li>
-</ol>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
   </entry>
   <entry>
     <title>cocos2dx</title>
@@ -4870,5 +4568,316 @@ $y = d \times cos \left( \theta \right)$
         <tag>STM32</tag>
         <tag>RPLIDAR A1 激光雷达</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>beyond</title>
+    <url>/2020-10-001.html</url>
+    <content><![CDATA[<div class="note info simple"><p>粗滤估计我的街健记录应该是从2018年春天开始的，当时是大二下，断断续续竟然都快3年了！ <code>2020-11-9 23:00</code></p>
+</div>
+<h2 id="2020年之前原帖"><a class="markdownIt-Anchor" href="#2020年之前原帖"></a> 2020年之前（<a href="https://tieba.baidu.com/p/5805622993">原帖</a>）</h2>
+<h3 id="2018年07月"><a class="markdownIt-Anchor" href="#2018年07月"></a> 2018年07月</h3>
+<ol>
+<li>2018-07-22   俯卧撑100 引体20</li>
+<li>2018-07-23   俯卧撑110 引体向上30</li>
+<li>2018-07-24   100俯卧撑35引体</li>
+<li>2018-07-25   100俯卧撑35引体向上</li>
+<li>2018-07-27   40引体向上</li>
+<li>2018-07-28   43引体向上</li>
+<li>2018-07-29   20引体向上</li>
+<li>2018-07-30   20引体向上</li>
+<li>2018-07-31   引体向上12 8 9 8 7 😊</li>
+</ol>
+<h3 id="2018年08月"><a class="markdownIt-Anchor" href="#2018年08月"></a> 2018年08月</h3>
+<ol>
+<li>2018-08-04   引体向上 11 10 9 8 7 2个借力双力臂</li>
+<li>2018-08-05   11 5 8 8 7</li>
+<li>2018-08-06   12 10 8 8 7</li>
+<li>2018-08-07   今天 100俯卧撑</li>
+<li>2018-08-08   12 8 9 7 5 6</li>
+<li>2018-08-09   11 8 8 8 7</li>
+<li>2018-08-10   100俯卧撑</li>
+<li>2018-08-11   11 9 8 8 8 50俯卧撑</li>
+<li>2018-08-13   10 9 8 8 7</li>
+<li>2018-08-18   110俯卧撑</li>
+<li>2018-08-20   120</li>
+<li>2018-08-21   140个</li>
+<li>2018-08-26   120 单次俯卧撑到达40</li>
+<li>2018-08-28   30 20 20 20 20</li>
+</ol>
+<h3 id="2018年09月"><a class="markdownIt-Anchor" href="#2018年09月"></a> 2018年09月</h3>
+<ol>
+<li>2018-09-02   50个左右</li>
+<li>2018-09-03   引体 11 8 8 9 7</li>
+<li>2018-09-07   12 10 7 10 7 5 间隔有点长了</li>
+<li>2018-09-08   12 8 8 8 7 7 6 3 4 3 手臂感觉胀胀的</li>
+<li>2018-09-09   13 10 8 8 7 6 6 5 第一次13个勉强完成。 后边做了不少半程（实在上不去了），不过没计数。</li>
+<li>2018-09-11   12 10 7 8 5 3 5 3 3 最后一组荡了十几个，果然荡还是简单啊！！！！</li>
+<li>2018-09-13   解锁体操上杠动作 然后几个双力臂，11 11 10 7 8 7 8 6 5 3</li>
+<li>2018-09-14   10 9 10 6 5 6</li>
+<li>2018-09-15   13个半 10 10 8 8</li>
+<li>2018-09-16   100俯卧撑</li>
+<li>2018-09-17   8 14 9 6 9 5</li>
+<li>2018-09-18   10 10 7 8 6 5 5 5 5 5 热热热 🤮</li>
+<li>2018-09-21   12 10 8 8 6 前两天下雨 俯卧撑</li>
+<li>2018-09-25   13 8 6 7 5 7</li>
+<li>2018-09-26   13 10 8 8 7 7 7 6 5 3 😫    摆动的双力臂果然还是技巧很重要啊。。 估计不用10个标准引体就够了</li>
+<li>2018-09-27   150俯卧撑</li>
+<li>2018-09-28   10 9 8 8 8 7 7 7 6 6</li>
+<li>2018-09-28   14 11 10 8 8 6 7 5 5 。。。</li>
+<li>2018-09-30   150俯卧撑。</li>
+</ol>
+<h3 id="2018年10月"><a class="markdownIt-Anchor" href="#2018年10月"></a> 2018年10月</h3>
+<ol>
+<li>2018-10-01   15 2个双力臂 5 8 8 7 7 6 8 5 7</li>
+<li>2018-10-02   14 5 。。。。。。</li>
+<li>2018-10-05   15 10 9 9 9 8 6 7 6 7 啦啦啦</li>
+<li>2018-10-06   15 9 8 9 6 8 6 5 3 4 防删</li>
+<li>2018-10-08   13 8 8 9 8 6 6 嘤嘤嘤</li>
+<li>2018-10-09   15 11 11 6 突然下雨。。。</li>
+<li>2018-10-10   16 10 9 8 8 8 8</li>
+<li>2018-10-11   17 12 11 9 8 7 8 快速拉</li>
+<li>2018-10-12   16 8 8 6 5 虚。。。</li>
+<li>2018-10-16   17 13 11 9 9 9 8 前几天下雨休息</li>
+<li>2018-10-17   16 13 12 9 8 8 5 啦啦啦</li>
+<li>2018-10-18   18 11 10 8 11 9 8 吊杠70s 单杠臂屈伸15</li>
+<li>2018-10-20   20 13 11 10 9 8 第一组极限速度追求数量 动作不是很标准 借力20</li>
+<li>2018-10-22   18 13 11 10 9 8 8 8 啧啧啧啧</li>
+<li>2018-10-23   15 后边各种引体瞎拉 感觉状态不太好</li>
+<li>2018-10-24   100引体5个一组 20分钟 然后 9 8 8</li>
+<li>2018-10-26   20 15 9 10 9 8 7 20标准引体√</li>
+<li>2018-10-27   17 13 11 9 9 11 啦啦啦啦</li>
+<li>2018-10-28   15 11 10 8 9 。。。。。。，，</li>
+<li>2018-10-30   17 11 10 11 10 。。。</li>
+<li>2018-10-31   15 14 10 10 10 8 10 11 越来越菜了</li>
+</ol>
+<h3 id="2018年11月"><a class="markdownIt-Anchor" href="#2018年11月"></a> 2018年11月</h3>
+<ol>
+<li>2018-11-02   8 7 9 8 6 5 4 负重10kg</li>
+<li>2018-11-08   不借力双力臂达成 17 11 13 10 10 10 10   前两天下雨在寝室练的倒立，状态好可以十几秒了</li>
+<li>2018-11-10   曲腿人旗 11 9 😕</li>
+<li>2018-11-11   10 10 10 10 10 10 下雨</li>
+<li>2018-11-13   20 11 12 13 11 10 10 10 舒服。</li>
+<li>2018-11-17   下雨。。。。。</li>
+<li>2018-11-23   10 x 5</li>
+<li>2018-11-30   17 11 10 12 11 10   人旗现在曲腿10s＋ 估计放假前能完成<br />
+前两天的快乐双力臂😋<br />
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://imgsa.baidu.com/forum/w%3D580/sign=2e8800789f45d688a302b2ac94c37dab/3f65c011b912c8fc2ebb3f86f1039245d7882125.jpg" alt="" /></li>
+</ol>
+<h3 id="2018年12月"><a class="markdownIt-Anchor" href="#2018年12月"></a> 2018年12月</h3>
+<ol>
+<li>2018-12-14   接连下了一个月的雨 难受 估计退到15了</li>
+<li>2018-12-18   17 10 5 10 7 7 5 退步也忒快啊</li>
+</ol>
+<h3 id="2019年01月"><a class="markdownIt-Anchor" href="#2019年01月"></a> 2019年01月</h3>
+<ol>
+<li>2019-01-09   15 8 11 8 7 10 5</li>
+</ol>
+<h3 id="2019年03月"><a class="markdownIt-Anchor" href="#2019年03月"></a> 2019年03月</h3>
+<ol>
+<li>2019-03-05   阔别了两个月的引体向上 14 8 5 5 5 5 5</li>
+<li>2019-03-10   10 7 8 6 6 5 5</li>
+<li>2019-03-18   吊杠70s</li>
+<li>2019-03-23   15 9 6 7 8 6 恢复的太慢了。。</li>
+<li>2019-03-30   12 10 7 8 6 啦啦啦啦啦</li>
+</ol>
+<h3 id="2019年04月"><a class="markdownIt-Anchor" href="#2019年04月"></a> 2019年04月</h3>
+<ol>
+<li>2019-04-01   14 10 10 7 7 9 6 慢速恢复训练</li>
+<li>2019-04-07   16 9 8 8 8 8</li>
+<li>2019-04-08   16 11 10 10 10 9 刺激刺激</li>
+<li>2019-04-15   15 8 8 10 9</li>
+<li>2019-04-16   15 10 8 9 8</li>
+<li>2019-04-20   18 12 10 11 10</li>
+<li>2019-04-23   10x7</li>
+<li>2019-04-25   17 11 11 9 10 7 target 20</li>
+<li>2019-04-30   15 8 11 10 10</li>
+</ol>
+<h3 id="2019年05月"><a class="markdownIt-Anchor" href="#2019年05月"></a> 2019年05月</h3>
+<ol>
+<li>2019-05-02   17 8 11 9 9 啦啦啦</li>
+<li>2019-05-04   18 13 10 10 10 争取一个月内到极限20</li>
+<li>2019-05-07   16 11 10 9 9 啦啦啦啦</li>
+<li>2019-05-09   20 10 10 10 10 啊啊啊啊啊啊啊啊啊！！！！！！！！</li>
+<li>2019-05-11   19 12 12 10 10</li>
+<li>2019-05-13   17 10 10 11 10 啊啊啊啊</li>
+<li>2019-05-16   15 10 11 10 10</li>
+<li>2019-05-17   17 12 10 10 10 夏天到了</li>
+<li>2019-05-19   20 15 12 10 10</li>
+<li>2019-05-20   20 13 12 11 9 啦啦啦</li>
+<li>2019-05-22   20 11 12 10 10 啦啦啦</li>
+<li>2019-05-28   17 11 9 10 10 😭😭</li>
+<li>2019-05-29   12 15 10 10 10</li>
+<li>2019-05-30   体测 20</li>
+<li>2019-05-31   21 12 10 10 。。。。略略略</li>
+</ol>
+<h3 id="2019年06月"><a class="markdownIt-Anchor" href="#2019年06月"></a> 2019年06月</h3>
+<ol>
+<li>2019-06-02   17 12 10 10 10 滴滴滴滴滴</li>
+<li>2019-06-07   17 12 12 10</li>
+<li>2019-06-09   15 10 12 10</li>
+<li>2019-06-10   11 16 10 人旗人旗！！！</li>
+<li>2019-06-12   17 14 10 10 10</li>
+<li>2019-06-15   18 10 10 10 10</li>
+<li>2019-06-16   18 8 8 10 10 。。。</li>
+<li>2019-06-22   15 10 10 10</li>
+<li>2019-06-24   18 8 9 9 10 按百度这个尿性，有空还是我记录全都迁到blog上面吧。。</li>
+<li>2019-06-26   20 11 8 8 10</li>
+</ol>
+<div class="note success simple"><p>终于将之前还存在的记录（丢失了19年夏秋的记录）都迁移过来了。    <code>2020-11-09 23:50</code></p>
+</div>
+<h2 id="2020年"><a class="markdownIt-Anchor" href="#2020年"></a> 2020年</h2>
+<h3 id="2020年10月"><a class="markdownIt-Anchor" href="#2020年10月"></a> 2020年10月</h3>
+<ol>
+<li>2020-10-04   <code>pull-ups</code> 12 6 6 7 6 6 4 3</li>
+<li>2020-10-05   <code>running</code> 3km</li>
+<li>2020-10-06   <code>pull-ups</code> 10 6 4   <code>bar dips</code>17 10 8   + 人旗</li>
+<li>2020-10-08   <code>pull-ups</code> 11 7 8 6 8 6 4</li>
+<li>2020-10-10   <code>pull-ups</code> 11 7 7 7 5 6 5 3</li>
+<li>2020-10-12   <code>running</code> 3km</li>
+<li>2020-10-14   <code>pull-ups</code> 13 8 9 8 6 6</li>
+<li>2020-10-15   <code>bar dips</code> 10 7 7 10 8</li>
+<li>2020-10-18   <code>pull-ups</code> 14 8 8 9 6 5</li>
+<li>2020-10-20   <code>pull-ups</code> 14 10 8 7 7</li>
+<li>2020-10-22   <code>pull-ups</code> 15 9 9 7 5 6</li>
+<li>2020-10-24   <code>bar dips</code> 17 10 10 10 16</li>
+<li>2020-10-26   <code>pull-ups</code> 15 10 9 8 8 2</li>
+<li>2020-10-28   <code>pull-ups</code> 15 11 11 9 6</li>
+<li>2020-10-30   <code>pull-ups</code> 15 10 10 7 7 2</li>
+</ol>
+<h3 id="2020年11月"><a class="markdownIt-Anchor" href="#2020年11月"></a> 2020年11月</h3>
+<div class="note warning simple"><p><strong>这个月希望能完成单次20个的小目标，恢复到自己的巅峰</strong></p>
+</div>
+<ol>
+<li>2020-11-01   <code>pull-ups</code> 10 10 10 10 10  人体旗帜还是不太稳定发挥</li>
+<li>2020-11-03   <code>pull-ups</code> 16 12 10 10 8</li>
+<li>2020-11-05   <code>pull-ups</code> 17 15 12 8 8  今天晚上很舒服，很小的的风。加上组内间隔时间稍长。</li>
+<li>2020-11-07   <code>pull-ups</code> 15 13 12 9 8  人旗果然还是主要靠背，练了一个月的引体向上之后，人旗的感觉明显比之前强了。</li>
+<li>2020-11-09   <code>pull-ups</code> 15 11 11 11 8  人旗的感觉有点像梦一样了，感觉有点不太真实。不要再搞些花里胡哨的了，专心提数量吧</li>
+<li>2020-11-10   人旗80°</li>
+<li>2020-11-11   <code>pull-ups</code> 17 13 10 8 8</li>
+<li>2020-11-13   <code>pull-ups</code> 20 14 10 10 8  手感状态哈哈🤪🤪</li>
+<li>2020-11-14   人旗 + 差一点的双力臂</li>
+<li>2020-11-15   <code>pull-ups</code> 19 14 11 10 10</li>
+<li>2020-11-17   竟然下雨了，推迟到明天</li>
+<li>2020-11-18   <code>pull-ups</code> 18 14 10 9 10 吊杠60s</li>
+<li>2020-11-20   <code>pull-ups</code> 19 13 12 10 8</li>
+<li>2020-11-22   <code>bar dips</code> 10*5 太冷了，<s>考虑买个室内的在宿舍内试试。</s></li>
+<li>2020-11-24   <code>pull-ups</code> 12 15 11 10 10</li>
+<li>2020-11-26   <code>pull-ups</code> 15 15 11 10 10 <code>bar dips</code> 15*2</li>
+<li>2020-11-28   <code>pull-ups</code> 15 11 15 15 10    买了个在宿舍的，还行，只需要练双杠和人旗的时候出去了</li>
+<li>2020-11-30   <code>pull-ups</code> 18 15 15 10 10</li>
+</ol>
+<h3 id="2020年12月"><a class="markdownIt-Anchor" href="#2020年12月"></a> 2020年12月</h3>
+<ol>
+<li>2020-12-02   <code>pull-ups</code> 20 15 13 10 10</li>
+<li>2020-12-03   <code>bar dips</code> 20 20 15 15 15</li>
+<li>2020-12-04   <code>pull-ups</code> 22 15 15 13 10</li>
+<li>2020-12-07   <code>pull-ups</code> 10 13 12 10 10</li>
+<li>2020-12-08   <code>bar dips</code> 20 20 15</li>
+<li>2020-12-09   <code>pull-ups</code> 15 13 10 10 10</li>
+<li>2020-12-11   <code>pull-ups</code> 15 12 10 10 10</li>
+<li>2020-12-14   <code>pull-ups</code> 15 11 11 10 10</li>
+<li>2020-12-15   <code>burpee</code> 30min</li>
+<li>2020-12-17   <code>pull-ups</code> 17 12 12 10 10</li>
+<li>2020-12-18   <code>burpee</code> 30min</li>
+<li>2020-12-19   <code>pull-ups</code> 15 12  手被割破了，难受 100蹲起</li>
+<li>2020-12-20   <code>push up</code> 30 20 30 20</li>
+<li>2020-12-23   <code>burpee</code> 110</li>
+<li>2020-12-24   <code>pull-ups</code> 15 12 10 10 10</li>
+<li>2020-12-25   <code>burpee</code> 100</li>
+<li>2020-12-26   <code>pull-ups</code> 20 10 11 10 10</li>
+<li>2020-12-27   <code>burpee</code> 130</li>
+<li>2020-12-29   <code>pull-ups</code> 16 13 11 10 10</li>
+<li>2020-12-30   <code>burpee</code> 150</li>
+</ol>
+<h2 id="2021年"><a class="markdownIt-Anchor" href="#2021年"></a> 2021年</h2>
+<h3 id="2021年01月"><a class="markdownIt-Anchor" href="#2021年01月"></a> 2021年01月</h3>
+<ol>
+<li>2021-01-01   <code>pull-ups</code> 20 12 11 10 10</li>
+<li>2021-01-02   <code>burpee</code> 100</li>
+<li>2021-01-03   <code>pull-ups</code> 20 12 10 10 10</li>
+<li>2021-01-04  <code>burpee</code> 200 练完后w拉伸刺激！！！</li>
+<li>2021-01-06   <code>pull-ups</code> 20 12 11 11 11   突然解锁搭腕慢双</li>
+</ol>
+<h3 id="2021年03月"><a class="markdownIt-Anchor" href="#2021年03月"></a> 2021年03月</h3>
+<ol>
+<li>2021-03-09   <code>pull-ups</code> 10 10 10</li>
+<li>2021-03-11   <code>pull-ups</code> 15 9 5</li>
+<li>2021-03-24   <code>pull-ups</code> 15 10 10 5 10</li>
+<li>2021-03-28   <code>pull-ups</code> 10 10 10 10 10</li>
+</ol>
+<h3 id="2021年04月"><a class="markdownIt-Anchor" href="#2021年04月"></a> 2021年04月</h3>
+<ol>
+<li>2021-04-04   <code>burpee</code> 50 开始恢复运动了</li>
+<li>2021-04-07   <code>pull-ups</code> 15 10 10 10 10</li>
+<li>2021-04-10   <code>bench press</code></li>
+<li>2021-04-12   <code>bench press</code></li>
+<li>2021-04-13   乒乓球</li>
+<li>2021-04-14   <code>pull-ups</code> 17 12 12 10 10</li>
+<li>2021-04-15   <code>bench press</code></li>
+<li>2021-04-19   <code>bench press</code></li>
+<li>2021-04-21   <code>pull-ups</code> 18 15 12 10 11</li>
+<li>2021-04-24   <code>pull-ups</code> 19 10 10 10 12</li>
+<li>2021-04-25   <code>bench press</code></li>
+<li>2021-04-26   <code>pull-ups</code> 15 12 10 12 11</li>
+</ol>
+<h3 id="2021年05月"><a class="markdownIt-Anchor" href="#2021年05月"></a> 2021年05月</h3>
+<ol>
+<li>2021-05-05  <code>pull-ups</code> 17 12 10 10 10</li>
+<li>2021-05-07   <code>bench press</code></li>
+<li>2021-05-09  <code>pull-ups</code> 15 12 14 3 12 12</li>
+<li>2021-05-11  <code>pull-ups</code> 20 14 12 10 9</li>
+<li>2021-05-13   健身房</li>
+<li>2021-05-15   健身房</li>
+<li>2021-05-16   20 15 10 12 10</li>
+<li>2021-05-17   健身房</li>
+<li>2021-05-18   双力臂，学了一点技巧后就感觉很轻松了，可以连做几个。顺风旗 5s 可能动作还不是很完美，之后找个时间拍个照片看看</li>
+<li>2021-05-19   乒乓球</li>
+<li>2021-05-20   <code>bench press</code> 50kg<em>5</em>8 可以加重量了</li>
+<li>2021-05-21   <code>muscle up</code> 6 3  <code>pull-ups</code> 18 12 14 10 10   unstoppable</li>
+<li>2021-05-22   <code>bench press</code> 55<em>2</em>6 50<em>4</em>5</li>
+<li>2021-05-23   <code>human flag</code>  <code>muscle up</code> 7 <code>pull-ups</code> 18 10 10 10 10  先热个身感觉会更好一些</li>
+<li>2021-05-24   <code>bench press</code>  60kg<em>5</em>2 55kg<em>7</em>6</li>
+<li>2021-05-27   <code>bench press</code> 60kg<em>5</em>5 二头</li>
+<li>2021-05-29   <code>muscle up</code> 6 <code>pull-ups</code> 20 13 10 10 10</li>
+<li>2021-05-30   <code>bench press</code> 60kg<em>5</em>7 肩飞鸟 下拉80kg*3</li>
+</ol>
+<h3 id="2021年06月"><a class="markdownIt-Anchor" href="#2021年06月"></a> 2021年06月</h3>
+<ol>
+<li>2021-06-02   <code>bench press</code> 60kg<em>5</em>6 最后一组差点完求了</li>
+<li>2021-06-04   <code>pull-ups</code> 前水平！！！  <code>muscle up</code> 5  <code>pull-ups</code> 14 10 10 10</li>
+<li>2021-06-05   <code>bench press</code> 60kg<em>5</em>8 二头 25kg<em>8</em>5</li>
+<li>2021-06-07   <code>muscle up</code> <code>front lever</code> 5  <code>pull-ups</code> 18 14 12 10 10</li>
+<li>2021-06-08   <code>bench press</code> 60kg</li>
+<li>2021-06-10   <code>bench press</code> 60kg</li>
+<li>2021-06-13   <code>bench press</code> 60kg<em>5</em>5</li>
+<li>2021-06-14   <code>pull-ups</code> 20 15 10 10 10</li>
+<li>2021-06-16   <code>bench press</code> 60kg</li>
+<li>2021-06-17   <code>squat</code> 40kg</li>
+<li>2021-06-19   <code>bench press</code> 60kg</li>
+<li>2021-06-20   前水平练习 <code>pull-ups</code> 12 11 10 10 10</li>
+<li>2021-06-22   <code>pull-ups</code> 23 15 10 10 10 <code>free handstand</code> 5s</li>
+<li>2021-06-24 – 2021-06-30  <code>bench press</code> or `row pull-ups</li>
+</ol>
+<h3 id="2021年07月"><a class="markdownIt-Anchor" href="#2021年07月"></a> 2021年07月</h3>
+<ol>
+<li>2021-07-01   <code>bench press</code> 60kg 7 6 6 6 6 6</li>
+<li>2021-07-02   <code>row pull-ups</code> 10*5</li>
+<li>2021-06-05   <code>bench press</code> 65kg</li>
+<li>2021-07-06   <code>row pull-ups</code> 10*5</li>
+<li>2021-07-08   <code>pull-ups</code> 23 15 12 10 10   <code>front lever</code> 3s then <code>muscle up</code> 3</li>
+<li>2021-07-09   <code>tuck pull-ups</code> to <code>tuck planche</code></li>
+<li>2021-07-12   <code>row pull-ups</code> 10<em>5 <code>human flag</code> 5s</em>2</li>
+<li>2021-07-13   <code>tuck pull-ups</code> to <code>tuck planche</code> and <code>pull-ups</code></li>
+<li>2021-07-15   <code>pull-ups</code> 22 10 10 10 10</li>
+<li>2021-07-17   <code>muscle up</code> 5*3 <code>human flag</code>  <code>tuck pull-ups</code> to <code>tuck planche</code> and <code>pull-ups</code></li>
+<li>2021-07-23   <code>muscle up</code> 5 <code>human flag</code> 5s*2 <code>pull-ups</code> 23 19 10 10 14</li>
+<li>2021-07-25   <code>tuck push-ups</code> 5 3 3  <code>push-ups</code> 30 25 20</li>
+<li>2021-07-26   <code>human flag</code> 5s*2 <code>front lever</code> <code>tuck pull-ups</code> 10 10 10</li>
+</ol>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
   </entry>
 </search>
