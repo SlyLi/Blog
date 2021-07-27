@@ -907,7 +907,6 @@ ____/___________________/   /
     \______/    /__________/ 
      \_____\___/ 
 </code></pre>
-<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnmeth.4035/MediaObjects/41592_2016_Article_BFnmeth4035_Fig16_ESM.jpg" width="75%" >
 <p>Falcon 用于寻找 bubbles 的复合路径的启发式方法如下所示：</p>
 <ol>
 <li>把最初组装的 string graph 简化成一个具有简单路径的图。也即是说，把没有分支节点路径上的所有边变成一条边，把这个称为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>U</mi><msub><mi>G</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">UG_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
@@ -915,10 +914,79 @@ ____/___________________/   /
 <ol>
 <li>每次迭代都检查节点是否有 active tracers，如果一个节点的所有入节点都有一个 tracer ，给他的子节点添加 tracer 并且使它父节点的 tracer 变成 inactive，如果只剩一个 active tracer，那么多有遍历过的节点和边形成的子图称为复合路径（compound path）</li>
 <li>如果任意一个active tracer 节点的后代有用过的 tracer，就表明探测到了一个循环，此时停止搜索并且不产生复合路径</li>
-<li></li>
+<li>基因复杂重复的部分，active tracer 会快速增加。限制 active tracer 的数量可以避免不必要的计算。如果数量超过了预设值，就停止搜索</li>
+<li>对于每一步我们可以计算节点的数量和路径长度，路径长度可以看做从源节点开始到所有带有 active tracer 的节点的路径中有最多数量 bases 的路径。如果节点的数量或路径长度超过预设值，停止搜索</li>
 </ol>
 </li>
+<li>某些复合路径和其他路径之间有重叠部分，或者一个包含另一个，这样的小的 bubbles 是大 bubble 嵌入的一部分，这种情况下选择大的忽略小的</li>
 </ol>
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnmeth.4035/MediaObjects/41592_2016_Article_BFnmeth4035_Fig16_ESM.jpg" width="75%" >
+<pre><code>每个复合路径都是$UG_0$中简单路径的集合，$UG_0$中的简单路径可以被新确定的复合路径代替，可以形成一个联合图，图中的边要么是简单路径要么是复合路径。下一步是在联合图中确定没有分支的路径，和沿着边串联序列来产生 contigs。
+</code></pre>
+<h4 id="from-sequence-overlaps-to-primary-and-associated-contigs"><a class="markdownIt-Anchor" href="#from-sequence-overlaps-to-primary-and-associated-contigs"></a> From sequence overlaps to primary and associated contigs</h4>
+<p>上图总结了从纠错后的 read 通过多个图简化步骤到 contigs 的整个步骤。首先，把图分解成简单路径和复合路径，通过结合复合路径和简单路径构建出原始的 contig。这些 contig 仍然是单倍体混合的 contig。也就是说，不同区域的原始 contig 可能来自不同的单倍体，在这个阶段，布局规则不保证单倍体一致性，而且，两个单倍体之间有少部分不同时，不会有关联的 contig 生成。可以使用 ALCON-Unzip 去分离单倍体序列和生成单倍体相关的 contig。</p>
+<h4 id="a-greedy-snps-phasing-algorithm"><a class="markdownIt-Anchor" href="#a-greedy-snps-phasing-algorithm"></a> A greedy SNPs phasing algorithm</h4>
+<p>构建单倍体序列，需要分离同源的 reads 到不同的组中，步骤如下：</p>
+<ol>
+<li>
+<p>查看 read 在原始 contig 中的位置，在 read 和 contig 之间生成 alignment，有两种策略</p>
+<ol>
+<li>检查组装期间生成的 overlap 数据，确定属于每个特定 contig 的 reads 并把这些 reads 重新 align 到特定的 contig</li>
+<li>简单的把 read align 到组装后的 contig</li>
+</ol>
+<p>对于第一种，首先检查每个contig的平铺路径，检查完组装步骤生成的 overlap 数据后，每个 read 都可能和原始 overlap 数据中，分配到contig或未分配的有 overlap。分配给 contig 有 overlap 的 reads 可能不是来自同一个 contig。需要打分决定那个是最好的，通过 overlap 的长度给他们打分。如果有 overlap 最好的一对 read 被分配给了 contig，那么未分配的查询 read 也分配给这个 contig。把 reads 分组分成和原始 contig 相关的集合，每个集合和他们的 reads 分别独立的进行 align。策略1因为可以重新使用存在的 overlap 数据，可以节约算力</p>
+</li>
+<li>
+<p>对每个 contig 调用 het-SNPs。对于大多数单倍体重构算法都需要 het-SNPs 结果作为输入，我们使用简单的 alignment 和计数方法来调用 het-SNPs。使用 BLASR 把 read 比对到 contig 上，生成 BAM/SAM 文件，只关注 SNP 并且忽略附近有插入或删除的 SNP ，也就是说只记录 BAM 文件 CIGAR 中的 “M” 模块。对于 contig 中的每个 base，记录 aligned read 每个 A、G、C、T 的数量，如果数量最高的小于75%，并且第二的大于25%,我们称之为一个 het-SNP位点，并且这两个 bases 作为 SNP 定相下游的两个等位基因 base</p>
+</li>
+</ol>
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnmeth.4035/MediaObjects/41592_2016_Article_BFnmeth4035_Fig17_ESM.jpg" width="80%" >
+<pre><code>(a) All pairs of het-SNPs that are covered by multiple reads are evaluation. A “coupling score” is calculation from the number reads that support current haplotype assignment of the het-SNPs. (b)(c) We linearly scan through the het-SNP positions. If the total score is improved by flipping the haplotype assigned at one location, then we flip the assignment. (d) An example showing the “coupling score” before the flipping process (un-phased het-SNPs assignment) and afterward (phased het-SNP assignment).
+</code></pre>
+<ol>
+<li>
+<p>对每个 het-SNPs 定向。使用简单的贪婪算法在不同的单倍体组中定相 SNPs ，一般模型如上图所示。For<br />
+each het-SNP site, the initial phase of the variants are randomly chosen.  For any two sites<br />
+that have shared reads mapped on, we can calculate a “coupling score”.  The “coupling<br />
+score” is defined simply as the number of reads supporting the particular phase.  Along the<br />
+reference, we scan the het-SNP sites from the 5’-end to 3’-end. We test the two possible<br />
+choices of the phase at the given site for each het-SNP site. The choice with more “coupling<br />
+score” support is kept.  When there are fewer than 6 reads connecting two het-SNP sites,<br />
+we break the haplotype blocks. We apply this scanning and updating process iteratively<br />
+until no more optimization of the score is possible or reach a pre-specified limit of<br />
+iterations.  At the end of this process, the het-SNP sites along the reference will be grouped<br />
+into different haplotype blocks and we have a set of phased SNPs associated with each<br />
+block.</p>
+</li>
+<li>
+<p>Assign phases to the raw reads. For each read, we examine the alignment to the reference.<br />
+If the read contain het-SNP calls against the reference, we count which phases it agrees the<br />
+most and assign a tuple of “(block identifier, phase identifier)” to the read.  For reads where<br />
+no haplotype block and phase assignment is possible, e.g. reads without enough het-SNP<br />
+calls, we simply assign a sentinel value for the block identifier to trace the un-phased reads.</p>
+</li>
+</ol>
+<p>The phasing method presented here is rather generic. It performs reasonably as shown in the<br />
+evaluation work presented in the main manuscript. We anticipate if we integrate more<br />
+sophisticate algorithms for phasing can further increase the accuracy and phasing contiguity.</p>
+<h4 id="incorporate-phased-reads-to-haplotype-fused-string-graph-for-unzipping-collapsed-paths"><a class="markdownIt-Anchor" href="#incorporate-phased-reads-to-haplotype-fused-string-graph-for-unzipping-collapsed-paths"></a> Incorporate phased reads to haplotype-fused string graph for unzipping collapsed paths</h4>
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnmeth.4035/MediaObjects/41592_2016_Article_BFnmeth4035_Fig15_ESM.jpg" width="75%" >
+<p>(a) shows the schematic of how to merge the haplotype specific<br />
+assembly graph  Hc to the initial haplotype-fused graph Gc<br />
+(f)and reconstruct the haplotype<br />
+tiling paths for generating the haplotigs.  The haplotype specific assembly graph has 4<br />
+disconnected subgraphs inside the cyan boxes, two for each haplotype.  If we add the edges<br />
+and nodes from the  Hc to the haplotype-fused graph in the yellow box, we get the<br />
+intermediate graph shown in the upper right panle.  In the graph, the red nodes and blue nodes<br />
+indicate the reads from the two different haplotypes.  There are some edges connecting the<br />
+nodes from two different haplotypes. Once the haplotype of the reads are known, we can<br />
+remove those edges. This results in the graph in lower panel. We can construct the tiling paths<br />
+for the two haplotigs from the two disconnected and haplotype specific components.</p>
+<p>(b)shows an example constructing the primary contig and haplotigs<br />
+from the Clavicorona pyxidata assembly. Along the initial primary contig, we can find 4<br />
+haplotype blocks and an un-phased region.  By applying the FALCON-Unzip process, we bring<br />
+back some reads to fully reconstruct the haplotigs. In this example, the four initial haplotype<br />
+block can be further merged by the overlaps across the bubbles in the assembly graph.</p>
 ]]></content>
       <categories>
         <category>Master</category>
