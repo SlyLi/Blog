@@ -1000,6 +1000,36 @@ block can be further merged by the overlaps across the bubbles in the assembly g
     <title>Canu: scalable and accurate long-read assembly via adaptive k-mer weighting and repeat separation</title>
     <url>/2021-07-240.html</url>
     <content><![CDATA[<h1 id="canu-scalable-and-accurate-long-read-assembly-via-adaptive-k-mer-weighting-and-repeat-separation"><a class="markdownIt-Anchor" href="#canu-scalable-and-accurate-long-read-assembly-via-adaptive-k-mer-weighting-and-repeat-separation"></a> Canu: scalable and accurate long-read assembly via adaptive k-mer weighting and repeat separation</h1>
+<h2 id="abstract"><a class="markdownIt-Anchor" href="#abstract"></a> Abstract</h2>
+<p>对于 SMS read，准确高效的组装大的重复块和密切相关的单倍体仍然具有挑战性。CANU 包含新的 overlapping 和 assembly 策略，包含 tf-idf weighted MinHash 和 构建稀疏组装图可以避免折叠发散的重复区域和单倍体。</p>
+<h2 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h2>
+<p>有时基因的重复区域可能会比 overlap 区域的长度长，这会导致基因重建具有不确定性，并组装会碎片化。<a href="https://www.liebertpub.com/doi/pdf/10.1089/cmb.2009.0005">Parametric Complexity of Sequence Assembly: Theory and Applications to Next Generation Sequencing</a> 有两个方法能克服这个基础的限制：增加有效的 read 长度或者基于拷贝的特异性变体分离不精确的重复。</p>
+<p>本文的目标是重新构建整个基因组，着重于分层策略，它能够生成最具有连续性的从头组装。分层方法不需要其他的 read，而是在组装前使用多轮 read overlapping （alignment） 和校正来提高 SMS read 的质量</p>
+<h2 id="results"><a class="markdownIt-Anchor" href="#results"></a> Results</h2>
+<h3 id="architecture"><a class="markdownIt-Anchor" href="#architecture"></a> Architecture</h3>
+<p>CANU 包含几个新特征：计算资源探测，自适应 k-mer 加权，自动估计错误率，稀疏图构建，图的片段组装输出</p>
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://www.biorxiv.org/content/biorxiv/early/2017/01/04/071282/F1.large.jpg" width="75%" >
+<pre><code>Canu 包含三个阶段：纠错（绿色），修剪（红色），组装（紫色）。Canu 各个阶段共享二进制磁盘存储和并行存储构造的接口。所有阶段的第一步都是，索引输入序列，生成 k-mer 直方图，构建 all-vs-all overlap 的索引，整理总结分析。
+纠错步骤，首先选择最好的 overlap 用于纠错，估计纠错后 read 的长度，生成纠错后的 read
+修剪步骤，确定输入不支持的区域，然后修剪或分割 read 到它们能支持的最长范围
+组装步骤，确定序列的错误，构建最好的 overlap graph，输出 contigs，组装图和总结分析  
+</code></pre>
+<h3 id="adaptive-minhash-k-mer-weighting"><a class="markdownIt-Anchor" href="#adaptive-minhash-k-mer-weighting"></a> Adaptive MinHash k-mer weighting</h3>
+<p>处理 read 间的 overlap 一般有两个阶段，首先构建一系列具有相似性的 read pairs，然后对它们进行更直接的比较。在第一步通过确定公共的 k-mer 一般都能找到候选的 overlap，然而重复区域减少了 k-mer 的分布熵，并且一些 k-mer 的出现频率的大幅增加导致了候选 overlap 的增加，这些必须由更消耗资源的第二阶段进行处理。通用方法是掩码低复杂性序列或在索引的时候忽略高重复的 k-mer，但这可能会导致探测不到部分正确的 overlap。</p>
+<p>Canu 使用一个弹性的方法去处理重复的 k-mer，它概率性的减少（但不去除）高重复性的 k-mer 被选择生成 overlap 的机会 。Canu 使用 MinHash Alignment Process (MHAP) 比较整个 read 的压缩草图，因为 MinHash 草图包含一个固定大小的k-mer（ read 中选择的 ） 的子集，草图中包含特定 k-mer 的概率是可以调整的。例如，一个在基因中重复性很高的 k-mer 应该有更小的权重，因为它携带的关于原始 read 的相关信息较少。相反，在一条 read 中出现多次的 相对独特的 k-mer 应该含有更高的权重，因为他能代表更长的 read，这些 k-mer 的相对重要性在 NLP 中称为 tf-idf weight</p>
+<h2 id="methods"><a class="markdownIt-Anchor" href="#methods"></a> Methods</h2>
+<h3 id="minhash-overlapping"><a class="markdownIt-Anchor" href="#minhash-overlapping"></a> MinHash overlapping</h3>
+<ol>
+<li>refer <a href="https://www.nature.com/articles/nbt.3238">Assembling large genomes with single-molecule sequencing and locality-sensitive hashing</a></li>
+<li>使用MHAP计算所有read之间的overlap，他有两个阶段，第一个阶段找到那些有可能有overlap的一对，</li>
+<li><a href="https://zhuanlan.zhihu.com/p/31197209">TF-IDF算法</a> :TF(词频) x IDF(逆文档排序) ，简单快速容易理解，但重要性不够全面</li>
+<li>第一阶段用了IF-IDF来加权k-mer，第二阶段用bottom sketch多重hash</li>
+</ol>
+<h3 id="parallel-overlap-sort-and-index"><a class="markdownIt-Anchor" href="#parallel-overlap-sort-and-index"></a> Parallel overlap sort and index</h3>
+<ol>
+<li>bucket sort</li>
+</ol>
+<h3 id="read-correction"><a class="markdownIt-Anchor" href="#read-correction"></a> Read correction</h3>
 ]]></content>
       <categories>
         <category>Master</category>
@@ -4942,6 +4972,10 @@ $y = d \times cos \left( \theta \right)$
 <li>2021-07-23   <code>muscle up</code> 5 <code>human flag</code> 5s*2 <code>pull-ups</code> 23 19 10 10 14</li>
 <li>2021-07-25   <code>tuck push-ups</code> 5 3 3  <code>push-ups</code> 30 25 20</li>
 <li>2021-07-26   <code>human flag</code> 5s*2 <code>front lever</code> <code>tuck pull-ups</code> 10 10 10</li>
+</ol>
+<h3 id="2021年08月"><a class="markdownIt-Anchor" href="#2021年08月"></a> 2021年08月</h3>
+<ol>
+<li>2021-08-01   <code>muscle up</code> 7 6 5  <code>pull-ups</code> 15 13 12  <code>front lever</code> 脱鞋完美解锁</li>
 </ol>
 ]]></content>
       <categories>
