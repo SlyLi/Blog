@@ -1017,6 +1017,24 @@ block can be further merged by the overlaps across the bubbles in the assembly g
 <h3 id="adaptive-minhash-k-mer-weighting"><a class="markdownIt-Anchor" href="#adaptive-minhash-k-mer-weighting"></a> Adaptive MinHash k-mer weighting</h3>
 <p>处理 read 间的 overlap 一般有两个阶段，首先构建一系列具有相似性的 read pairs，然后对它们进行更直接的比较。在第一步通过确定公共的 k-mer 一般都能找到候选的 overlap，然而重复区域减少了 k-mer 的分布熵，并且一些 k-mer 的出现频率的大幅增加导致了候选 overlap 的增加，这些必须由更消耗资源的第二阶段进行处理。通用方法是掩码低复杂性序列或在索引的时候忽略高重复的 k-mer，但这可能会导致探测不到部分正确的 overlap。</p>
 <p>Canu 使用一个弹性的方法去处理重复的 k-mer，它概率性的减少（但不去除）高重复性的 k-mer 被选择生成 overlap 的机会 。Canu 使用 MinHash Alignment Process (MHAP) 比较整个 read 的压缩草图，因为 MinHash 草图包含一个固定大小的k-mer（ read 中选择的 ） 的子集，草图中包含特定 k-mer 的概率是可以调整的。例如，一个在基因中重复性很高的 k-mer 应该有更小的权重，因为它携带的关于原始 read 的相关信息较少。相反，在一条 read 中出现多次的 相对独特的 k-mer 应该含有更高的权重，因为他能代表更长的 read，这些 k-mer 的相对重要性在 NLP 中称为 tf-idf weight</p>
+<p>在 read overlapping 上，权值就是，单个 read 中 k-mer 出现的次数和 k-mer 在所有 read 中的整体的稀有性。比如文档的相似性，在确定相似文档的时候，一个稀有的词语在文档中出现多次说明他是一个好的相似文档。对于overlap，重复的 k-mer 有小的权值，通过减少草图中重复的 k-mer 出现的次数，可以是 k-mer 的索引分布更加均匀，这减少了草图中的无意义信息。更重要的是，这是有概率实现的不是屏蔽重复，重复 read 之间真正的 overlap 仍然可以被探测到。</p>
+<h3 id="best-overlap-graph"><a class="markdownIt-Anchor" href="#best-overlap-graph"></a> Best overlap graph</h3>
+<p>Canu 使用 <a href="https://academic.oup.com/bioinformatics/article/24/24/2818/197033">“best overlap graph” (BOG) 算法</a> 的变体，构建了一个稀疏的 overlap 图。<a href="https://academic.oup.com/bioinformatics/article/21/suppl_2/ii79/227189">The fragment assembly string graph</a> 把整个 overlap graph 都加载到内存中了，非常消耗资源。相对来说，本文的贪婪算法只加载最好（长）的 overlap 到内存中去，当 read 足够长这种算法是最优的。然而，当重复区域的长度超过 overlap 的长度时，算法可能会被误导，导致出现错误的组装，Canu 的新算法 Bogart，通过统计性的过滤由于重复引起的重叠，并回顾性检查图形中的潜在错误来解决这个问题。</p>
+<p>原始的 BOG 方法，在所有的 overlaps 中选择错误率低于用户指定值的 overlap，overlap 的错误率是编辑距离除以 overlap alignment 的长度。因此，阈值必须确定的足够低，避免引入错误的 overlap，因为序列的错误，为了探测正确的序列又必须设的足够高。在新的 Bogart 算法中，最优的错误率参数通过全局和局部数据自动估计，因为原始的 SMS read 错误率达 10%-20%，导致这具有挑战性，因此在构建图之前，Canu 进行多次纠错步骤，在这些纠错之后，剩余的读取错误是从最长的 overlap 中估计出来的。整个 overlap 集合然后过滤到只包含那些错误率小于全局错误率中位数的 overlap，然后会用这个子集重新计算最长的 overlap。低错误率的阈值有效的移除了大部分不对的 overlap，使贪婪算法能构建一个干净的最好的图。在图中，从最长的没有分支的路径中构建最初的 contigs。</p>
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://www.biorxiv.org/content/biorxiv/early/2017/01/04/071282/F2.large.jpg" width="75%" >
+<pre><code>overlap 错误率估计，重复区域确定和分割
+A 所有最好的边的错误率
+B 虚线表示全局错误率阈值（1.6%），此图代表这次组装中最大的 contig 计算出来的局部错误率
+C 中间的双向黑线是 contig ，紫色代表的是重复区域，一条 read （蓝色）能横穿整个重复区域表明 contig 重建是正确的
+D 这种情况下，没有单条 read 能横穿整个 重复区域，最初的 contig 是通过两条蓝色的 read 构建的，如果由两条蓝色 read 构建的 contig 不是明显的比任何一条蓝色到红色 read 构成的 contig 效果好，就需要把这个 contig 进行拆分
+</code></pre>
+<p>构建和评估后，Canu 以 Graphical Fragment Assembly (GFA) 格式提供一个组装图，这个图类似一个稀疏的 overlap 图</p>
+<img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://www.biorxiv.org/content/biorxiv/early/2017/01/04/071282/F3.large.jpg" width="75%" >
+<pre><code>Canu 的 GFA 输出，可以定位复杂的区域，并且能够提升 scaffold
+A Bandage 绘制输出，Nodes 是 contigs，edges 表示 contigs 间没用到过的 overlap，最大的 contigs 用随机的颜色标注
+B 唯一的 contig 用黑色阴影表示，红色阴影表示 重复区域的 contig
+</code></pre>
+<h3 id="pacbio-sequence-assembly"><a class="markdownIt-Anchor" href="#pacbio-sequence-assembly"></a> PacBio sequence assembly</h3>
 <h2 id="methods"><a class="markdownIt-Anchor" href="#methods"></a> Methods</h2>
 <h3 id="minhash-overlapping"><a class="markdownIt-Anchor" href="#minhash-overlapping"></a> MinHash overlapping</h3>
 <ol>
