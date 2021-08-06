@@ -1028,13 +1028,12 @@ B 虚线表示全局错误率阈值（1.6%），此图代表这次组装中最�
 C 中间的双向黑线是 contig ，紫色代表的是重复区域，一条 read （蓝色）能横穿整个重复区域表明 contig 重建是正确的
 D 这种情况下，没有单条 read 能横穿整个 重复区域，最初的 contig 是通过两条蓝色的 read 构建的，如果由两条蓝色 read 构建的 contig 不是明显的比任何一条蓝色到红色 read 构成的 contig 效果好，就需要把这个 contig 进行拆分
 </code></pre>
-<p>构建和评估后，Canu 以 Graphical Fragment Assembly (GFA) 格式提供一个组装图，这个图类似一个稀疏的 overlap 图</p>
+<p>构建和评估后，Canu 以 Graphical Fragment Assembly (GFA) 格式提供一个组装图，这个图类似一个稀疏的 overlap 图，一些染色体组装成了单个的 contig，但这个图显示了那些组装中更复杂的，未解决的重复区域的结构，Canu 的输出定位了这些复杂的结构，但重复区域的长度阻碍了完全组装，将 Canu 组装图与补充的其他信息相结合，例如来自光学或染色质接触映射可以帮助识别正确的路径并解析此类结构。</p>
 <img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://www.biorxiv.org/content/biorxiv/early/2017/01/04/071282/F3.large.jpg" width="75%" >
 <pre><code>Canu 的 GFA 输出，可以定位复杂的区域，并且能够提升 scaffold
 A Bandage 绘制输出，Nodes 是 contigs，edges 表示 contigs 间没用到过的 overlap，最大的 contigs 用随机的颜色标注
 B 唯一的 contig 用黑色阴影表示，红色阴影表示 重复区域的 contig
 </code></pre>
-<h3 id="pacbio-sequence-assembly"><a class="markdownIt-Anchor" href="#pacbio-sequence-assembly"></a> PacBio sequence assembly</h3>
 <h2 id="methods"><a class="markdownIt-Anchor" href="#methods"></a> Methods</h2>
 <h3 id="minhash-overlapping"><a class="markdownIt-Anchor" href="#minhash-overlapping"></a> MinHash overlapping</h3>
 <ol>
@@ -1048,6 +1047,19 @@ B 唯一的 contig 用黑色阴影表示，红色阴影表示 重复区域的 co
 <li>bucket sort</li>
 </ol>
 <h3 id="read-correction"><a class="markdownIt-Anchor" href="#read-correction"></a> Read correction</h3>
+<p>Canu 使用 all-vs-all overlap 对单条read进行纠错，因为简单的使用所有 overlap 计算每个 read 的 overlap 会导致掩盖特定重复区域的拷贝变体。因此对纠错单条 read 使用的 overlap 进行过滤，有全局过滤和局部过滤，策略的目的是克服序列质量和重复区域所造成的偏差。比如，高于平均质量的read 更可能决定纠错结果，而不管它是否是处于正确的重复区域，为了避免这个，每个read只能被其他read进行纠错使用 C 次，C read 的期望深度。全局过滤器对每个 overlap 打分（length * identity），对每个 read 只留下最好的 C 个overlap，从而会将来自同意副本区域的相似的重复 read 聚集到一起。当错误是均匀分布的时候，因为来自同一重复区域的 read 的比来自不同重复拷贝你区域 read 的总体差异性更小，所以来自同一区域的更有可能会分到同一组。</p>
+<p>在进行纠错计算之前，每对 overlap 都会用于计算每条read 纠错后的期望长度，根据这个估计，选择最长的且达到用户制定的覆盖深度的 read 来进行纠错，使用修改后的 falcon_sense 算法进行纠错，对于给定的进行纠错的 read，使用 Myers’ O(ND) 算法进行 align，然后根据 alignment 生成有向无环图，根据权重最高的路径生成纠错后的序列，当没有足够的证据进行纠错时，会分割原始 read</p>
+<h3 id="overlap-based-trimming"><a class="markdownIt-Anchor" href="#overlap-based-trimming"></a> Overlap Based Trimming</h3>
+<p>对纠错后的 read 重新计算 overlap，移除那些不被其他read所支持的区域，</p>
+<h3 id="overlap-error-adjustment"><a class="markdownIt-Anchor" href="#overlap-error-adjustment"></a> Overlap Error Adjustment</h3>
+<p>在修剪后和构建图之前，Canu再次计算overlap 对序列错误做最后一次检测，<a href="https://science.sciencemag.org/content/298/5591/129?ijkey=64009ff21ea80cab7193e6a0e6044b1a6a331026&amp;keytype2=tf_ipsecsha">Holt et al.</a> 算法的目的是提高真实有差别序列的分离性（不同的重复区域和单倍体）和随机测序c错误倒追的错误的差异。每条read 通过 overlapping alignment 的多数票进行纠错，只有当有其他充足的read支持这个不同的碱基时，才保存这个碱基。每个overlap的错误率是根据解决序列错误后生成的alignment进行调整的。算法需要使用两次 overlap，第一次用于检测可能的测序错误，第二次暂时应用这些修改，重新计算 alignment 更新计算的错误率。</p>
+<h3 id="graph-construction"><a class="markdownIt-Anchor" href="#graph-construction"></a> Graph Construction</h3>
+<p>Bogart 使用基于的 <a href="https://academic.oup.com/bioinformatics/article-abstract/21/suppl_2/ii79/227189">The fragment assembly string graph</a> 的 best overlap graph 策略，在 Bogart 中，最好的 overlap 是经过多重过滤后选择的，过滤包括不正常的高错误的 overlap，潜在的嵌合 reads 和 read 的overlap显示可能不是正常序列的，这会生成一个更精确和整洁的图。</p>
+<p>在纠错、修剪、overlap修正后，所有的 overlap 被用来选择一个最好的边的集合，用这个集合计算 overlap 错误率的中值和中值绝对偏差，这个分布代表了之前纠错步骤的错误率剩余，低的平均 overlap 错误率，代表了好的序列数据和之前的纠错过程是成功的，然后自动计算 overlap 错误率的一个最大限制值，超过这个值的 overlap 不在这个图的构建中使用，这个是算法有能力区别紧密的相关read 和单倍型。</p>
+<p>为了过滤不好的 overlap， Bogart 过滤那些没有经过合适修剪和纠错的可疑 read</p>
+<p>剩下的 reads 和最好的 overlaps 集合构成了最好的 overlap graph，然后根据这个图构建出了最初的 contig</p>
+<p>当由于单倍型的差异导致特定基因上某个特殊的区域不止一个重建时，就会出现组装气泡，小部分的不同，例如几十个碱基，在 overlap 中通常不会被探测到，因为相比于overlap的大小，这个不同就显得不是那么重要了，更大的差别，会导致形成两个几乎是冗余的 contigs 覆盖了相同的区域，具有更多 read 的单倍型通常会在跨越整个区域的的大 contig 中重建，而较少的仅作为变异区域。</p>
+<p>尽管经过仔细的过滤，贪婪算法仍然易于出错，相较于全 string graph 所代表的，会缺少部分边，所以最后的步骤是增加缺少的边，并且打断那些组装好但不正确的 contigs。使用所有的成对的 overlap 信息，再次使用read放置机制和所有非气泡contig中的read，可以将每个组装好的 contig 使用相应的 read 位置注释。</p>
 ]]></content>
       <categories>
         <category>Master</category>
