@@ -600,7 +600,36 @@ mRNA与cDNA单链互补，且A与U互补</code></pre>
   <entry>
     <title>ubuntu相关</title>
     <url>/2021-04-001.html</url>
-    <content><![CDATA[<h1 id="azure-ubuntu服务器连接失败"><a class="markdownIt-Anchor" href="#azure-ubuntu服务器连接失败"></a> Azure ubuntu服务器连接失败</h1>
+    <content><![CDATA[<h1 id="ubuntu修改-swap分区大小"><a class="markdownIt-Anchor" href="#ubuntu修改-swap分区大小"></a> ubuntu修改 swap分区大小</h1>
+<ol>
+<li>先查看是否有swap分区</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo swapon -s</span><br></pre></td></tr></table></figure>
+<ol>
+<li>如果存在swapfile则需要先禁用</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo swapoff /swapfile</span><br></pre></td></tr></table></figure>
+<ol>
+<li>创建一个将用作swap交换的文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo fallocate -l 4G /swapfile</span><br></pre></td></tr></table></figure>
+<p>或者使用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo dd <span class="keyword">if</span>=/dev/zero of=/swapfile bs=1M count=4096</span><br></pre></td></tr></table></figure>
+<ol>
+<li>修改文件权限为600，以防止其它普通用户读写文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo chmod 600 /swapfile</span><br></pre></td></tr></table></figure>
+<ol>
+<li>格式化Linux swap交换文件：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo mkswap /swapfile</span><br></pre></td></tr></table></figure>
+<ol>
+<li>激活交换文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo swapon /swapfile</span><br></pre></td></tr></table></figure>
+<p>如果这一步报错可以将swapfile删除，然后重新创建</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo rm /swapfile</span><br></pre></td></tr></table></figure>
+<h1 id="azure-ubuntu服务器连接失败"><a class="markdownIt-Anchor" href="#azure-ubuntu服务器连接失败"></a> Azure ubuntu服务器连接失败</h1>
 <ol>
 <li>自己使用VSCODE remoteSSH连接Azure ubuntu20 服务器时，经常会出现断开连接，后面在连时就连不上了，只能把服务器重启。</li>
 <li>用其他ssh连接时并没有出现这些问题，这样看来只可能是VSCODE的remoteSSH有bug，或者与Azure服务器的兼容性有问题</li>
@@ -5012,6 +5041,9 @@ $y = d \times cos \left( \theta \right)$
 <li>2021-08-05   <code>tuck push-ups</code> 6 5 5</li>
 <li>2021-08-06   <code>core</code></li>
 <li>2021-08-07   <code>pull-ups</code> 8 25 15 10 10 10</li>
+<li>2021-08-11   <code>tuck pull-ups</code></li>
+<li>2021-08-12   <code>tuck push-ups</code></li>
+<li>2021-08-14   <code>front lever</code>  <code>muscle up</code> 8 5 5  <code>side pull-ups</code></li>
 </ol>
 ]]></content>
       <categories>
