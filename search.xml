@@ -600,7 +600,18 @@ mRNA与cDNA单链互补，且A与U互补</code></pre>
   <entry>
     <title>ubuntu相关</title>
     <url>/2021-04-001.html</url>
-    <content><![CDATA[<h1 id="ubuntu修改-swap分区大小"><a class="markdownIt-Anchor" href="#ubuntu修改-swap分区大小"></a> ubuntu修改 swap分区大小</h1>
+    <content><![CDATA[<h1 id="wsl-设置代理使用外部windows的代理"><a class="markdownIt-Anchor" href="#wsl-设置代理使用外部windows的代理"></a> WSL 设置代理，使用外部windows的代理</h1>
+<ol>
+<li>
+<p><code>cat /etc/resolv.conf</code> 查看 DNS 服务器 IP。</p>
+</li>
+<li>
+<p>可以看到 DNS 服务器 172.20.176.1 ，通过ALL_PROXY设置代理，</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> ALL_PROXY=<span class="string">&quot;http://172.20.176.1:10809&quot;</span></span><br></pre></td></tr></table></figure>
+<p>10809是windows代理的端口，需要在 Windows 代理客户端上配置允许本地局域网请求。</p>
+<h1 id="ubuntu修改-swap分区大小"><a class="markdownIt-Anchor" href="#ubuntu修改-swap分区大小"></a> ubuntu修改 swap分区大小</h1>
 <ol>
 <li>先查看是否有swap分区</li>
 </ol>
