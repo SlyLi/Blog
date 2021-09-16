@@ -5060,12 +5060,52 @@ $y = d \times cos \left( \theta \right)$
 <h3 id="2021年09月"><a class="markdownIt-Anchor" href="#2021年09月"></a> 2021年09月</h3>
 <ol>
 <li>2021-09-10   <code>pull-ups</code> 20 10 10 10 10</li>
-<li>2021-08-12   <code>push-ups</code> 100</li>
-<li>2021-08-15   <code>pull-ups</code> 15 10 10 10 10</li>
+<li>2021-09-11   <code>push-ups</code> 100</li>
+<li>2021-09-13   <code>pull-ups</code> 15 10 10 10 10</li>
+<li>2021-09-15   <code>push-ups</code> 100</li>
+<li>2021-09-16   <code>pull-ups</code> 20 9 12 10 10 | 5 10</li>
 </ol>
 ]]></content>
       <categories>
         <category>others</category>
       </categories>
+  </entry>
+  <entry>
+    <title>DAGCON</title>
+    <url>/2021-09-150.html</url>
+    <content><![CDATA[<ol>
+<li>git clone <a href="https://github.com/PacificBiosciences/pbdagcon.git">https://github.com/PacificBiosciences/pbdagcon.git</a></li>
+<li>cd pbdagcon</li>
+<li>修改 makefile中25行， 	cd blasr_libcpp; NOHDF=1 NOPBBAM=1  python2.7 <a href="http://configure.py">configure.py</a></li>
+<li>查看自己python默认版本，如果是3.x 要使用python2.X 运行 <a href="http://config.py">config.py</a><br />
+但直接运行会报错<br />
+zip2: (stdin) is not a bzip2 file.<br />
+tar: Child returned status 2<br />
+tar: Error is not recoverable: exiting now<br />
+原因是原来文件的连接已经失效，需要我们手动去下载</li>
+<li>cd src/cpp/third-party</li>
+<li>下载boost库  wget -O boost_1_58_0.tar.bz2 <a href="http://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.bz2/download">http://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.bz2/download</a></li>
+<li>解压boost库 sudo tar vxjf boost_1_58_0-headersonly.bz2</li>
+<li>修改文件名为 boost_1_58_0-headersonly</li>
+<li>回到pbdagcon文件夹继续运行  python2.7 <a href="http://configure.py">configure.py</a> --boost --gtest --sub --no-pbbam</li>
+<li>make init-submodule<br />
+如果报错 algorithms/alignment/…/…/…/pbdata/matrix/FlatMatrix.hpp:11:71: error: ‘std::ostream’ has not been declared<br />
+找到 blasr_libcpp/pbdata/matrix/FlatMatrix.hpp 在第5行下面添加 #include <iostream></li>
+<li>重新 make init-submodule</li>
+<li>make<br />
+如果错误中有  error: ‘DAZZ_DB’ does not name a type<br />
+在 DAZZ_DB/DB.h 254行中的HIT_DB后面加上 ,DAZZ_DB</li>
+<li>make check</li>
+<li>cd src/cpp</li>
+<li>./pbdagcon --help</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Master</category>
+      </categories>
+      <tags>
+        <tag>bioinformatics</tag>
+        <tag>essay</tag>
+      </tags>
   </entry>
 </search>
