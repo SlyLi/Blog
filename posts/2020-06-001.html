@@ -1,0 +1,664 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Markdown语法 | The World</title><meta name="keywords" content="markdown,blog"><meta name="author" content="归去来兮"><meta name="copyright" content="归去来兮"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="主要内容   Markdown是什么？  谁创造了它？  为什么要使用它？  怎么使用？  谁在用？  尝试一下   正文  1. Markdown是什么？ Markdown是一种轻量级标记语言，它以纯文本形式(易读、易写、易更改)编写文档，并最终以HTML格式发布。 Markdown也可以理解为将以MARKDOWN语法编写的语言转换成HTML内容的工具。  2. 谁创造了它？ 它由Aaron">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown语法">
+<meta property="og:url" content="http://slyli.cn/posts/2020-06-001.html">
+<meta property="og:site_name" content="The World">
+<meta property="og:description" content="主要内容   Markdown是什么？  谁创造了它？  为什么要使用它？  怎么使用？  谁在用？  尝试一下   正文  1. Markdown是什么？ Markdown是一种轻量级标记语言，它以纯文本形式(易读、易写、易更改)编写文档，并最终以HTML格式发布。 Markdown也可以理解为将以MARKDOWN语法编写的语言转换成HTML内容的工具。  2. 谁创造了它？ 它由Aaron">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/markdown.jpeg">
+<meta property="article:published_time" content="2020-06-21T01:38:03.000Z">
+<meta property="article:modified_time" content="2021-07-23T18:10:39.697Z">
+<meta property="article:author" content="归去来兮">
+<meta property="article:tag" content="markdown">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/markdown.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/favicon.png"><link rel="canonical" href="http://slyli.cn/posts/2020-06-001"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta name="msvalidate.01" content="40800d7ddbfe4bc789367280a8addd52"/><meta name="baidu-site-verification" content="G9pFOrKi8Sw1jxpS"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6facd0f053c5c32a56f404f1655089bb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-07-24 02:10:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/ava1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">42</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">35</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> Article</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-cube"></i><span> Entertain</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/steam/"><i class="fa-fw fab fa-steam"></i><span> Steam</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://cloud.slyli.cn/cloud/"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://v.slyli.cn"><i class="fa-fw fa fa-clone"></i><span> Mirror</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/artitalk/"><i class="fa-fw fa-fw fas fa-cubes"></i><span> Saying</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/markdown.jpeg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">The World</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> Article</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-cube"></i><span> Entertain</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/steam/"><i class="fa-fw fab fa-steam"></i><span> Steam</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-folder"></i><span> Others</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/comment/"><i class="fa-fw fas fa-comment"></i><span> Comment</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></li><li><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://cloud.slyli.cn/cloud/"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://v.slyli.cn"><i class="fa-fw fa fa-clone"></i><span> Mirror</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/artitalk/"><i class="fa-fw fa-fw fas fa-cubes"></i><span> Saying</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Markdown语法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-06-21T01:38:03.000Z" title="Created 2020-06-21 09:38:03">2020-06-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-07-23T18:10:39.697Z" title="Updated 2021-07-24 02:10:39">2021-07-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/blog/">blog</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>4min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/posts/2020-06-001.html#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="主要内容"><a class="markdownIt-Anchor" href="#主要内容"></a> 主要内容</h2>
+<blockquote>
+<h4 id="markdown是什么"><a class="markdownIt-Anchor" href="#markdown是什么"></a> Markdown<em>是什么</em>？</h4>
+<h4 id="谁创造了它"><a class="markdownIt-Anchor" href="#谁创造了它"></a> <em>谁</em>创造了它？</h4>
+<h4 id="为什么要使用它"><a class="markdownIt-Anchor" href="#为什么要使用它"></a> <em>为什么</em>要使用它？</h4>
+<h4 id="怎么使用"><a class="markdownIt-Anchor" href="#怎么使用"></a> <em>怎么</em>使用？</h4>
+<h4 id="谁在用"><a class="markdownIt-Anchor" href="#谁在用"></a> <em>谁</em>在用？</h4>
+<h4 id="尝试一下"><a class="markdownIt-Anchor" href="#尝试一下"></a> 尝试一下</h4>
+</blockquote>
+<h2 id="正文"><a class="markdownIt-Anchor" href="#正文"></a> 正文</h2>
+<h3 id="1-markdown是什么"><a class="markdownIt-Anchor" href="#1-markdown是什么"></a> 1. Markdown<em>是什么</em>？</h3>
+<p><strong>Markdown</strong>是一种轻量级<strong>标记语言</strong>，它以纯文本形式(<em>易读、易写、易更改</em>)编写文档，并最终以HTML格式发布。<br />
+<strong>Markdown</strong>也可以理解为将以MARKDOWN语法编写的语言转换成HTML内容的工具。</p>
+<h3 id="2-谁创造了它"><a class="markdownIt-Anchor" href="#2-谁创造了它"></a> 2. <em>谁</em>创造了它？</h3>
+<p>它由<a target="_blank" rel="noopener" href="http://www.aaronsw.com/"><strong>Aaron Swartz</strong></a>和<strong>John Gruber</strong>共同设计，<strong>Aaron Swartz</strong>就是那位于去年（<em>2013年1月11日</em>）自杀,有着<strong>开挂</strong>一般人生经历的程序员。维基百科对他的<a target="_blank" rel="noopener" href="http://zh.wikipedia.org/wiki/%E4%BA%9A%E4%BC%A6%C2%B7%E6%96%AF%E6%B2%83%E8%8C%A8">介绍</a>是：<strong>软件工程师、作家、政治组织者、互联网活动家、维基百科人</strong>。</p>
+<p>他有着足以让你跪拜的人生经历：</p>
+<ul>
+<li><strong>14岁</strong>参与RSS 1.0规格标准的制订。</li>
+<li><strong>2004</strong>年入读<strong>斯坦福</strong>，之后退学。</li>
+<li><strong>2005</strong>年创建<a target="_blank" rel="noopener" href="http://infogami.org/">Infogami</a>，之后与<a target="_blank" rel="noopener" href="http://www.reddit.com/">Reddit</a>合并成为其合伙人。</li>
+<li><strong>2010</strong>年创立求进会（Demand Progress），积极参与禁止网络盗版法案（SOPA）活动，最终该提案被撤回。</li>
+<li><strong>2011</strong>年7月19日，因被控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕。</li>
+<li><strong>2013</strong>年1月自杀身亡。</li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/loading.gif" data-lazy-src="https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg" alt="Aaron Swartz" /></p>
+<p>天才都有早逝的归途。</p>
+<h3 id="3-为什么要使用它"><a class="markdownIt-Anchor" href="#3-为什么要使用它"></a> 3. <em>为什么</em>要使用它？</h3>
+<ul>
+<li>它是易读（看起来舒服）、易写（语法简单）、易更改<strong>纯文本</strong>。处处体现着<strong>极简主义</strong>的影子。</li>
+<li>兼容HTML，可以转换为HTML格式发布。</li>
+<li>跨平台使用。</li>
+<li>越来越多的网站支持Markdown。</li>
+<li>更方便清晰地组织你的电子邮件。（Markdown-here, Airmail）</li>
+<li>摆脱Word（我不是认真的）。</li>
+</ul>
+<h3 id="4-怎么使用"><a class="markdownIt-Anchor" href="#4-怎么使用"></a> 4. <em>怎么</em>使用？</h3>
+<p>如果不算<strong>扩展</strong>，Markdown的语法绝对<strong>简单</strong>到让你爱不释手。</p>
+<p>Markdown语法主要分为如下几大部分：<br />
+<strong>标题</strong>，<strong>段落</strong>，<strong>区块引用</strong>，<strong>代码区块</strong>，<strong>强调</strong>，<strong>列表</strong>，<strong>分割线</strong>，<strong>链接</strong>，<strong>图片</strong>，<strong>反斜杠 <code>\</code></strong>，<strong>符号’`’</strong>。</p>
+<h4 id="41-标题"><a class="markdownIt-Anchor" href="#41-标题"></a> 4.1 标题</h4>
+<p>两种形式：<br />
+1）使用<code>=</code>和<code>-</code>标记一级和二级标题。</p>
+<blockquote>
+<p>一级标题<br />
+<code>=========</code><br />
+二级标题<br />
+<code>---------</code></p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<h1 id="一级标题"><a class="markdownIt-Anchor" href="#一级标题"></a> 一级标题</h1>
+<h2 id="二级标题"><a class="markdownIt-Anchor" href="#二级标题"></a> 二级标题</h2>
+</blockquote>
+<p>2）使用<code>#</code>，可表示1-6级标题。</p>
+<blockquote>
+<p># 一级标题<br />
+## 二级标题<br />
+### 三级标题<br />
+#### 四级标题<br />
+##### 五级标题<br />
+###### 六级标题</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<h1 id="一级标题-2"><a class="markdownIt-Anchor" href="#一级标题-2"></a> 一级标题</h1>
+<h2 id="二级标题-2"><a class="markdownIt-Anchor" href="#二级标题-2"></a> 二级标题</h2>
+<h3 id="三级标题"><a class="markdownIt-Anchor" href="#三级标题"></a> 三级标题</h3>
+<h4 id="四级标题"><a class="markdownIt-Anchor" href="#四级标题"></a> 四级标题</h4>
+<h5 id="五级标题"><a class="markdownIt-Anchor" href="#五级标题"></a> 五级标题</h5>
+<h6 id="六级标题"><a class="markdownIt-Anchor" href="#六级标题"></a> 六级标题</h6>
+</blockquote>
+<h4 id="42-段落"><a class="markdownIt-Anchor" href="#42-段落"></a> 4.2 段落</h4>
+<p>段落的前后要有空行，所谓的空行是指没有文字内容。若想在段内强制换行的方式是使用<strong>两个以上</strong>空格加上回车（引用中换行省略回车）。</p>
+<h4 id="43-区块引用"><a class="markdownIt-Anchor" href="#43-区块引用"></a> 4.3 区块引用</h4>
+<p>在段落的每行或者只在第一行使用符号<code>&gt;</code>,还可使用多个嵌套引用，如：</p>
+<blockquote>
+<p>&gt; 区块引用<br />
+&gt;&gt; 嵌套引用</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p>区块引用</p>
+<blockquote>
+<p>嵌套引用</p>
+</blockquote>
+</blockquote>
+<h4 id="44-代码区块"><a class="markdownIt-Anchor" href="#44-代码区块"></a> 4.4 代码区块</h4>
+<p>代码区块的建立是在每行加上4个空格或者一个制表符（如同写代码一样）。如<br />
+普通段落：</p>
+<p>void main()<br />
+{<br />
+printf(“Hello, Markdown.”);<br />
+}</p>
+<p>代码区块：</p>
+<pre><code>void main()
+&#123;
+    printf(&quot;Hello, Markdown.&quot;);
+&#125;
+</code></pre>
+<p><strong>注意</strong>:需要和普通段落之间存在空行。</p>
+<h4 id="45-强调"><a class="markdownIt-Anchor" href="#45-强调"></a> 4.5 强调</h4>
+<p>在强调内容两侧分别加上<code>*</code>或者<code>_</code>，如：</p>
+<blockquote>
+<p>*斜体*，_斜体_<br />
+**粗体**，__粗体__</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><em>斜体</em>，<em>斜体</em><br />
+<strong>粗体</strong>，<strong>粗体</strong></p>
+</blockquote>
+<h4 id="46-列表"><a class="markdownIt-Anchor" href="#46-列表"></a> 4.6 列表</h4>
+<p>使用<code>·</code>、<code>+</code>、或<code>-</code>标记无序列表，如：</p>
+<blockquote>
+<p>-（+*） 第一项<br />
+-（+*） 第二项<br />
+- （+*）第三项</p>
+</blockquote>
+<p><strong>注意</strong>：标记后面最少有一个_空格_或_制表符_。若不在引用区块中，必须和前方段落之间存在空行。</p>
+<p>效果：</p>
+<blockquote>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+</blockquote>
+<p>有序列表的标记方式是将上述的符号换成数字,并辅以<code>.</code>，如：</p>
+<blockquote>
+<p>1 . 第一项<br />
+2 . 第二项<br />
+3 . 第三项</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<ol>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ol>
+</blockquote>
+<h4 id="47-分割线"><a class="markdownIt-Anchor" href="#47-分割线"></a> 4.7 分割线</h4>
+<p>分割线最常使用就是三个或以上<code>*</code>，还可以使用<code>-</code>和<code>_</code>。</p>
+<h4 id="48-链接"><a class="markdownIt-Anchor" href="#48-链接"></a> 4.8 链接</h4>
+<p>链接可以由两种形式生成：<strong>行内式</strong>和<strong>参考式</strong>。<br />
+<strong>行内式</strong>：</p>
+<blockquote>
+<p>[younghz的Markdown库](https:😕/github.com/younghz/Markdown “Markdown”)。</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库</a>。</p>
+</blockquote>
+<p><strong>参考式</strong>：</p>
+<blockquote>
+<p>[younghz的Markdown库1][1]<br />
+[younghz的Markdown库2][2]<br />
+[1]:https:😕/github.com/younghz/Markdown “Markdown”<br />
+[2]:https:😕/github.com/younghz/Markdown “Markdown”</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库1</a><br />
+<a href="https:://github.com/younghz/Markdown" title="Markdown">younghz的Markdown库2</a></p>
+</blockquote>
+<p><strong>注意</strong>：上述的<code>[1]:https:://github.com/younghz/Markdown &quot;Markdown&quot;</code>不出现在区块中。</p>
+<h4 id="49-图片"><a class="markdownIt-Anchor" href="#49-图片"></a> 4.9 图片</h4>
+<p>添加图片的形式和链接相似，只需在链接的基础上前方加一个<code>！</code>。</p>
+<h4 id="410-反斜杠"><a class="markdownIt-Anchor" href="#410-反斜杠"></a> 4.10 反斜杠<code>\</code></h4>
+<p>相当于<strong>反转义</strong>作用。使符号成为普通符号。</p>
+<h4 id="411-符号"><a class="markdownIt-Anchor" href="#411-符号"></a> 4.11 符号’`’</h4>
+<p>起到标记作用。如：</p>
+<blockquote>
+<p>`ctrl+a`</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><code>ctrl+a</code></p>
+</blockquote>
+<h4 id="5-谁在用"><a class="markdownIt-Anchor" href="#5-谁在用"></a> 5. <em>谁</em>在用？</h4>
+<p>Markdown的使用者：</p>
+<ul>
+<li>GitHub</li>
+<li>简书</li>
+<li>Stack Overflow</li>
+<li>Apollo</li>
+<li>Moodle</li>
+<li>Reddit</li>
+<li>等等</li>
+</ul>
+<h4 id="6-尝试一下"><a class="markdownIt-Anchor" href="#6-尝试一下"></a> 6. 尝试一下</h4>
+<ul>
+<li><strong>Chrome</strong>下的插件诸如<code>stackedit</code>与<code>markdown-here</code>等非常方便，也不用担心平台受限。</li>
+<li><strong>在线</strong>的dillinger.io评价也不错</li>
+<li><strong>Windowns</strong>下的MarkdownPad也用过，不过免费版的体验不是很好。</li>
+<li><strong>Mac</strong>下的Mou是国人贡献的，口碑很好。</li>
+<li><strong>Linux</strong>下的ReText不错。</li>
+</ul>
+<p><strong>当然，最终境界永远都是笔下是语法，心中格式化 😃。</strong></p>
+<hr />
+<p><strong>注意</strong>：不同的Markdown解释器或工具对相应语法（扩展语法）的解释效果不尽相同，具体可参见工具的使用说明。<br />
+虽然有人想出面搞一个所谓的标准化的Markdown，[没想到还惹怒了健在的创始人John Gruber]<br />
+(<a target="_blank" rel="noopener" href="http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/">http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/</a> )。</p>
+<hr />
+<p>以上基本是所有traditonal markdown的语法。</p>
+<h3 id="其它"><a class="markdownIt-Anchor" href="#其它"></a> 其它：</h3>
+<p>列表的使用(非traditonal markdown)：</p>
+<p>用<code>|</code>表示表格纵向边界，表头和表内容用<code>-</code>隔开，并可用<code>:</code>进行对齐设置，两边都有<code>:</code>则表示居中，若不加<code>:</code>则默认左对齐。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">代码库</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">MarkDown</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/younghz/Markdown" title="Markdown">https://github.com/younghz/Markdown</a></td>
+</tr>
+<tr>
+<td style="text-align:center">MarkDownCopy</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/younghz/Markdown" title="Markdown">https://github.com/younghz/Markdown</a></td>
+</tr>
+</tbody>
+</table>
+<p>关于其它扩展语法可参见具体工具的使用说明。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">归去来兮</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://slyli.cn/posts/2020-06-001.html">http://slyli.cn/posts/2020-06-001.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/markdown/">markdown</a><a class="post-meta__tags" href="/tags/blog/">blog</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/2020-07/markdown.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/posts/2020-07-001.html"><img class="prev-cover" data-lazy-src="https://slyli.github.io/img2/fav-sfw/wallhaven-nr1jj0.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">博客说明</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/posts/2020-07-003.html" title="butterfly修改及使用"><img class="cover" data-lazy-src="https://slyli.github.io/img2/fav-sfw/wallhaven-nr1jj0.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-05</div><div class="title">butterfly修改及使用</div></div></a></div><div><a href="/posts/2020-07-001.html" title="博客说明"><img class="cover" data-lazy-src="https://slyli.github.io/img2/fav-sfw/wallhaven-nr1jj0.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-04</div><div class="title">博客说明</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div><div id="comment-switch"><span class="first-comment">Gitalk</span><span class="switch-btn"></span><span class="second-comment">Valine</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text"> 主要内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#markdown%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.0.1.</span> <span class="toc-text"> Markdown是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%81%E5%88%9B%E9%80%A0%E4%BA%86%E5%AE%83"><span class="toc-number">1.0.2.</span> <span class="toc-text"> 谁创造了它？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%AE%83"><span class="toc-number">1.0.3.</span> <span class="toc-text"> 为什么要使用它？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8"><span class="toc-number">1.0.4.</span> <span class="toc-text"> 怎么使用？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%81%E5%9C%A8%E7%94%A8"><span class="toc-number">1.0.5.</span> <span class="toc-text"> 谁在用？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95%E4%B8%80%E4%B8%8B"><span class="toc-number">1.0.6.</span> <span class="toc-text"> 尝试一下</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text"> 正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-markdown%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">2.1.</span> <span class="toc-text"> 1. Markdown是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%B0%81%E5%88%9B%E9%80%A0%E4%BA%86%E5%AE%83"><span class="toc-number">2.2.</span> <span class="toc-text"> 2. 谁创造了它？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%AE%83"><span class="toc-number">2.3.</span> <span class="toc-text"> 3. 为什么要使用它？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8"><span class="toc-number">2.4.</span> <span class="toc-text"> 4. 怎么使用？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#41-%E6%A0%87%E9%A2%98"><span class="toc-number">2.4.1.</span> <span class="toc-text"> 4.1 标题</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number"></span> <span class="toc-text"> 一级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text"> 二级标题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E7%BA%A7%E6%A0%87%E9%A2%98-2"><span class="toc-number"></span> <span class="toc-text"> 一级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98-2"><span class="toc-number">1.</span> <span class="toc-text"> 二级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text"> 三级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 四级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%94%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">1.1.1.1.</span> <span class="toc-text"> 五级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%85%AD%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text"> 六级标题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#42-%E6%AE%B5%E8%90%BD"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 4.2 段落</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#43-%E5%8C%BA%E5%9D%97%E5%BC%95%E7%94%A8"><span class="toc-number">1.1.3.</span> <span class="toc-text"> 4.3 区块引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#44-%E4%BB%A3%E7%A0%81%E5%8C%BA%E5%9D%97"><span class="toc-number">1.1.4.</span> <span class="toc-text"> 4.4 代码区块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#45-%E5%BC%BA%E8%B0%83"><span class="toc-number">1.1.5.</span> <span class="toc-text"> 4.5 强调</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#46-%E5%88%97%E8%A1%A8"><span class="toc-number">1.1.6.</span> <span class="toc-text"> 4.6 列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#47-%E5%88%86%E5%89%B2%E7%BA%BF"><span class="toc-number">1.1.7.</span> <span class="toc-text"> 4.7 分割线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#48-%E9%93%BE%E6%8E%A5"><span class="toc-number">1.1.8.</span> <span class="toc-text"> 4.8 链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#49-%E5%9B%BE%E7%89%87"><span class="toc-number">1.1.9.</span> <span class="toc-text"> 4.9 图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#410-%E5%8F%8D%E6%96%9C%E6%9D%A0"><span class="toc-number">1.1.10.</span> <span class="toc-text"> 4.10 反斜杠\</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#411-%E7%AC%A6%E5%8F%B7"><span class="toc-number">1.1.11.</span> <span class="toc-text"> 4.11 符号’&#96;’</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E8%B0%81%E5%9C%A8%E7%94%A8"><span class="toc-number">1.1.12.</span> <span class="toc-text"> 5. 谁在用？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E5%B0%9D%E8%AF%95%E4%B8%80%E4%B8%8B"><span class="toc-number">1.1.13.</span> <span class="toc-text"> 6. 尝试一下</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E5%AE%83"><span class="toc-number">1.2.</span> <span class="toc-text"> 其它：</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 归去来兮</div><div class="footer_custom_text">All Right Reserved  <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/"><img class="icp-icon" src="https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/icp.png"><span>皖ICP备17005781号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'e19f7a3f5790b3cdd656',
+      clientSecret: '4c94d6a5fdffc731957d1222b75df676b21e4fcc',
+      repo: 'slyli.github.io',
+      owner: 'SlyLi',
+      admin: ['SlyLi'],
+      id: 'd0f768a852d2e141054b5020f5e6e839',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'a6SkEWr1cDgiFLXRdcU3DkUn-gzGzoHsz',
+      appKey: 'LaMtrAthbpM4HvRmTUUilSbo',
+      placeholder: '昵称框输入QQ号自动获取必填信息~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Gitalk' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+    content = content.replace(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|webp)/g, '') // remove image link
+    content = content.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi, '') // remove url
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    fetch('https://api.github.com/repos/https://github.com/SlyLi/slyli.github.io/issues/comments?sort=updated&direction=desc&per_page=6&page=1')
+      .then(response => response.json())
+      .then(data => {
+        const githubArray = data.map(item => {
+          return {
+            'avatar': item.user.avatar_url,
+            'content': changeContent(item.body),
+            'nick': item.user.login,
+            'url': item.html_url,
+            'date': item.updated_at
+          }
+        })
+        saveToLocal.set('github-newest-comments', JSON.stringify(githubArray), 10/(60*24))
+        generateHtml(githubArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "Unable to get the data, please make sure the settings are correct."
+      })
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          let name = 'src'
+          if(true) {
+            name = 'data-lazy-src'
+          }
+          result += `<a href='${array[i].url}' class="thumbnail"><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += 'No Comment'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('github-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><div> <div class="aplayer no-destroy" data-id="535672890" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" data-mutex="true"	 muted></div> <script type="text/javascript">
+function PlayerVisibility() { var pathname = document.location.pathname; var box = document.getElementsByClassName("aplayer no-destroy")[0];
+if(box) { if(pathname == "/music/") { box.style.visibility="hidden"; aplayers[0].pause(); } else { box.style.visibility="visible"; aplayers[0].play(); } } } </script>
+<img src = "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/aerith1.png" id="aerith" style=" opacity:0.4; position:fixed; left:20px; bottom:80px; height:60px; z-index:10; " />
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript"> function Aerith(){var set_h = window.screen.height*0.7;var timer = null;$("#aerith").mouseover(function(){$("#aerith").css("opacity","1.0");});$("#aerith").mouseout(function(){if($("#aerith").height()<300)$("#aerith").css("opacity","0.4");});var url = "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/config";	var ZGF0YTp = "ZGF0YTpkYXRhOmltYWdlL3BuZztiYXNlNjQs";var cnt =0;$("#aerith").click(function(){cnt++;timer = setTimeout(function(){switch (cnt) {case 1:if($("#aerith").height()<300){$("#aerith").height(set_h);$("#aerith").css("opacity","1.0");}else {$("#aerith").height(60);$("#aerith").css("opacity","0.4");}break;case 2:if($("#aerith").attr("src") == "https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/aerith1.png")$("#aerith").attr("src","https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/aerith2.png");else  $("#aerith").attr("src","https://cdn.jsdelivr.net/gh/slyli/slyli.github.io/image/static/aerith1.png");break;case 3:break;case 4:var htmlobj= $.ajax({url:url,async:false}); $("#aerith").attr("src",window.atob(ZGF0YTp)+ htmlobj.responseText);default:break;}clearTimeout(timer);cnt =0;    }, 440);}); } Aerith(); </script> </div>
+<script type="text/javascript"> var title2="msg=哥哥~~ 您的博客又有新评论啦~   ฅ(๑ ̀ㅅ ́๑)ฅ \n"; var SCKEY_Qmsg="https://qmsg.zendee.cn:443/send/ce2e5ff5e06719f8e3e96f3ab08aed67"; function send_valine_Qmsg(){ var pagename=document.title; var wz=pagename.indexOf('|'); var res=pagename.substring(0,wz); var pageurl=document.URL; var ptime=new Date(); var vnick=document.getElementsByClassName("vnick vinput")[0].value; var vmail=document.getElementsByClassName("vmail vinput")[0].value; var vlink=document.getElementsByClassName("vlink vinput")[0].value; var veditor=document.getElementsByClassName("veditor vinput")[0].value; var data="昵称："+vnick+"\n邮箱："+vmail+"\n网站地址："+vlink+"\n当前页面："+pagename+"\n评论内容："+veditor+"\n跳转链接："+pageurl+"\n评论时间："+ptime.toLocaleString(); var httpRequest = new XMLHttpRequest(); httpRequest.open('POST',SCKEY_Qmsg, true); httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded"); httpRequest.send(title2+data); }; function AddToButton() { var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0]; if(ValineButton!=null) ValineButton.onclick=send_valine_Qmsg; var GitalkButton = document.getElementsByClassName("gt-btn gt-btn-public")[0]; if(GitalkButton!=null) GitalkButton.onclick=send_valine_Qmsg; } var myInterval; function FirstSetGitalk() { var GitalkButton = document.getElementsByClassName("gt-btn gt-btn-public")[0]; if(GitalkButton!=null) { GitalkButton.onclick=send_valine_Qmsg; clearInterval(myInterval); }
+} function CommentOnload() { AddToButton(); var SwitchButton = document.getElementsByClassName("switch-btn")[0]; if(SwitchButton!=null) { SwitchButton.onclick=AddToButton; myInterval = setInterval(FirstSetGitalk,200); } }
+function whenDOMReady() { CommentOnload(); console.log("ready"); } window.onload=function() { whenDOMReady(); var pjax = new Pjax(); document.addEventListener("pjax:success", whenDOMReady) };
+</script>
+<script type="text/javascript"> (function(){ var bp = document.createElement('script'); var curProtocol = window.location.protocol.split(':')[0]; if (curProtocol === 'https') { bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'; } else { bp.src = 'http://push.zhanzhang.baidu.com/push.js'; } var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(bp, s); })(); </script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})</script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>
